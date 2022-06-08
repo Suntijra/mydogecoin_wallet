@@ -8,9 +8,10 @@
     <title>Transaction
 
     </title>
+  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
@@ -63,16 +64,22 @@
         
 </style>
 
+<script>
+    $(function(){
+  $("#footer").load("./footer.html"); 
+});
+</script>
+
 </head>
 
-<body style="margin: 0px; font-family: 'Inter', sans-serif;">
+<body style="margin: 0px; font-family: 'Inter', sans-serif; font-weight: 200;">
     <header>
         <img style="height: 14px; width: 15px" src="./img/Vector (3).png" alt="">
         <span style="color: white;font-size=16px; width: 15%;">Back</span>
         <span style="color: white;width: 60%;">MOONDOGE</span>
     </header>
     <div id="coinBody">
-        <span>0.00 DOGE</span>
+        <span style="font-weight: 400ls;">0.00 DOGE</span>
     </div>
     <div id="transaction">
         <div id="btnSend">
@@ -113,10 +120,7 @@
             <span id="box_table" style="width: 60%;">sending</span>
             <span id="box_table">15.22 DOGE</span>
         </div>
-
-        
-
-        
     </div>
+    <footer id="footer" role="contentinfo"></footer>
 </body>
 </html>
