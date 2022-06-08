@@ -5,45 +5,107 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <script src="jquery.js"></script> 
+    <script src="jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 </head>
-<body style="margin: 0;">
+
+<style>
+    .slide_background{
+        background-color: #D19C4B; 
+        width: 100%; 
+        height: 80%; 
+        position: absolute; 
+        bottom: 0;
+        transition: height 1s;
+    }
+    .slide_background_active{
+        height: 30%;
+    }
+    .lotate_b_foot{
+        width: 100%;
+        transition-duration: 1s;
+        transform: rotate(0deg);
+
+    }
+</style>
+
+<body style="margin: 0; font-family: 'Inter'; font-weight: 200;">
+
+
 
     <section style="width: 100%; background-color: #000; color: #ffffff;">
-        <div style="display: flex; flex-direction: column; justify-content: center; font-size: 30px; text-align: center;">
+        <div style="display: flex; flex-direction: column; font-size: 30px; text-align: center; height: 100vh;">
 
-            <div style="margin-top: 40px;">0.0000 D</div>
-
+            <div>
+                <div style="margin-top: 55px;">
+                    <span>0.0000 DOGE &nbsp;</span>
+                    <br style="line-height: 0;">
+                    <span style="font-size: 15px;">doge = 2.76 ฿ &nbsp; &nbsp; &nbsp;</span></div>
+            </div>
 
             <!--  -->
-            <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <div style="display: flex; justify-content: center; margin-top: 50px;">
                 <div>My QR-Code<br>
                     <img src="/Mobile/img/image 2.png" style="width: 60vw; margin: 20px 0;"><br>
                     <div style="border-radius: 5px; background-color: #f5f5f5; text-align: center; color: #000; padding: 5px 20px; font-size: medium;">
                         00006hkf44hyfh33dd
                         <div style="float: right;">
-                            <img src="/Mobile/img/Group.png" style="height: 15px;">
+                            <img id="b_foot" src="/Mobile/img/Group.png" style="height: 15px;" >
                         </div>
                     </div>
                 </div>
             </div>
             <!--  -->
 
-            <div style="display: flex; justify-content: center;">
-                <div style="position: relative; top: 30px; width: 25%; height: 7vh;">
-                    <img src="/Mobile/img/Group 7.png" style="width: 100%;" onclick="slide_down()">
-                </div>
-            </div>
-
         </div>
     </section>
 
+    <!--  -->
+    <div id="back_color" class="slide_background">
 
-    <div style="background-color: #D19C4B; width: 100%; height: 100%; position: absolute; bottom: 0;">
-        sfdfadf
+        <div style="display: flex; justify-content: center;">
+            <div style="position: relative; top: -30px; width: 25%; height: 7vh;">
+                <img id="lotatelol" class="lotate_b_foot" onclick="slide_down()" src="/Mobile/img/Group 7.png">
+            </div>
+        </div>
 
     </div>
+    <!--  -->
+
+    <footer id="foot"></footer>
+
+
     
 </body>
+
+<script>
+
+    var change = false
+    function slide_down(){
+        if(!change){
+            change = !change
+            $("#back_color").addClass('slide_background_active')
+            // $('#lotatelol').addClass('lotate_b_foot_active')
+            $('#lotatelol').css('transform','rotate(180deg)')
+
+        }
+        else{
+            change = !change
+            $("#back_color").removeClass('slide_background_active')
+            // $('lotatelol').removeClass('lotate_b_foot_activate')
+            $('#lotatelol').css('transform','rotate(0deg)')
+        }
+    }
+
+
+    $(function (){
+        $('#foot').load('./nevbottom.html')
+    })
+
+</script>
 
 </html>
