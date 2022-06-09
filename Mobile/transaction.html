@@ -8,7 +8,7 @@
     <title>Transaction
 
     </title>
-  
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet">
@@ -40,35 +40,39 @@
             height: 100%;
             width: 100%;
         }
-        #btnSend{
-            background-color: #221F1F; 
-            border-radius:8px; 
-            display: flex; 
-            margin: 5vw; 
-            width: 30%; 
-            justify-content: center; 
+
+        #btnSend {
+            background-color: #221F1F;
+            border-radius: 8px;
+            display: flex;
+            margin: 5vw;
+            width: 30%;
+            justify-content: center;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
-        .flex{
+
+        .flex {
             display: flex;
         }
-        #transacbody{
-         margin: 2vw;
-         padding: 0 5vw;
+
+        #transacbody {
+            margin: 2vw;
+            padding: 0 5vw;
         }
-        .box_table{
+
+        .box_table {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
-</style>
+    </style>
 
-<script>
-    $(function(){
-  $("#footer").load("./footer.html"); 
-});
-</script>
+    <script>
+        $(function () {
+            $("#footer").load("./footer.html");
+        });
+
+    </script>
 
 </head>
 
@@ -79,41 +83,50 @@
         <span style="color: white;width: 60%;">MOONDOGE</span>
     </header>
     <div id="coinBody">
-        <span style="font-weight: 400ls;">0.00 DOGE</span>
+        <span style="font-weight: 400;">0.00 DOGE</span>
     </div>
     <div id="transaction">
         <div id="btnSend">
             <img style="width: 26px; object-fit: contain;" src="./img/moon.png" alt="">
             <div style="padding: 2vw; font-size:20px;color: white;">send</div>
         </div>
+        <script>
+            $('#btnSend').click(function () {
+                document.location.href = "./send_doge.html"
+            });
+        </script>
         <div>
             transter
         </div>
     </div>
     <div id="transacbody">
         <span>today</span>
-        <div style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
+        <div
+            style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div class="box_table">
                 <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
             <span class="box_table" style="width: 60%;">received</span>
             <span class="box_table">20.22 DOGE</span>
         </div>
-        <div style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
+        <div
+            style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div class="box_table">
                 <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
             <span class="box_table" style="width: 60%;">received</span>
             <span class="box_table">20.22 DOGE</span>
         </div>
-        <div style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
+        <div
+            style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div class="box_table">
                 <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
             <span class="box_table" style="width: 60%;">received</span>
             <span class="box_table">20.22 DOGE</span>
         </div>
-        <div style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
+        <div
+            style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div class="box_table">
                 <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
@@ -122,6 +135,6 @@
         </div>
     </div>
     <footer id="footer" role="contentinfo"></footer>
-    
 </body>
+
 </html>

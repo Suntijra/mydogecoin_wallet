@@ -13,11 +13,11 @@
 
     <div style="position: absolute; bottom:0px;">
         <div style="display: flex; align-items: center; justify-content: space-around; background-color: #20192E; width: 100%; height: 10vh;">
-            <div id="link1" onclick="gogo1()" style="width: 13%; margin-left: 30px;">
+            <div id="gogo1"  onclick="gogo1()" style="width: 13%; margin-left: 30px;">
                 <img id="img1" src="/Mobile/img/Frame 9.png" style="width: 100%;"></div>
-            <div id="link2" onclick="gogo2()" style="width: 40%; height: 80%; position: relative; bottom: 80px;">
+            <div  onclick="gogo2()" style="width: 40%; height: 80%; position: relative; bottom: 80px;">
                 <img id="img2"src="/Mobile/img/whitecoin.png" style="width: 100%;"></div>
-            <div id="link3" onclick="gogo3()" style="width: 15%; margin-right: 30px;">
+            <div  onclick="gogo3()" style="width: 15%; margin-right: 30px;">
                 <img id="img3" src="/Mobile/img/Frame 11.png" style="width: 100%;">
             </div>
         </div>
@@ -27,26 +27,32 @@
     
 </body>
 <script>
+
+    // $('#gogo1').click(function () { 
+    //     $('#gogo2').attr('src',"./img/wallet_yellow.png")
+    // });
+
     function gogo1(){
         resetimg();
         document.location.href = "./transaction.html"
-        $("#img1").attr("/Mobile/img/wallet_yellow.png")
+        $("#img1").attr("src", "./img/wallet_yellow.png");
     }
     function gogo2(){
         resetimg();
         document.location.href = "./index.html"
-        $("#img2").attr("/Mobile/img/Vector.png")
+        $("#img2").attr("src", "./img/Vector.png");
+    
     }
     function gogo3(){
         resetimg();
         document.location.href = "./setting.html"
-        $("#img3").attr("/Mobile/img/setting_yellow.png")
+        $("#img3").attr("src", "./img/setting_yellow.png")
     }
     resetimg = () =>
     {
-        $("#img1").attr("src", "/Mobile/img/Frame 9.png");
-        $("#img2").attr("src", "/Mobile/img/whitecoin.png");
-        $("#img3").attr("src", "/Mobile/img/Frame 11.png");
+        $("#img1").attr("src", "./img/Frame 9.png");
+        $("#img2").attr("src", "./img/whitecoin.png");
+        $("#img3").attr("src", "./img/Frame 11.png");
     }
 </script>
 </html>
