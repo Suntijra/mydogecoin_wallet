@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Title</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 
 <style>
-    .slide_background{
-        background-color: #D19C4B; 
-        width: 100%; 
-        height: 80%; 
-        position: absolute; 
+    .slide_background {
+        background-color: #D19C4B;
+        width: 100%;
+        height: 80%;
+        position: absolute;
         bottom: 0;
         transition: height 1s;
     }
-    .slide_background_active{
+
+    .slide_background_active {
         height: 30%;
     }
-    .lotate_b_foot{
+
+    .lotate_b_foot {
         width: 100%;
         transition-duration: 1s;
         transform: rotate(0deg);
 
-        
+
     }
 </style>
 
 <body style="margin: 0; font-family: 'Inter'; font-weight: 200;">
-
-
-
     <section style="width: 100%; background-color: #20192E; color: #fff;">
         <div style="display: flex; flex-direction: column; font-size: 30px; text-align: center; height: 100vh;">
 
@@ -44,17 +45,19 @@
                 <div style="margin-top: 55px;">
                     <span>0.0000 DOGE &nbsp;</span>
                     <br style="line-height: 0;">
-                    <span style="font-size: 15px;">doge = 2.76 ฿ &nbsp; &nbsp; &nbsp;</span></div>
+                    <span style="font-size: 15px;">doge ≈ <span id = 'dogePrice'></span> &nbsp; &nbsp; &nbsp;</span>
+                </div>
             </div>
 
             <!--  -->
             <div style="display: flex; justify-content: center; margin-top: 50px;">
                 <div>My QR-Code<br>
                     <img src="/Mobile/img/image 2.png" style="width: 60vw; margin: 20px 0;"><br>
-                    <div style="border-radius: 5px; background-color: #f5f5f5; text-align: center; color: #000; padding: 5px 20px; font-size: medium;">
+                    <div
+                        style="border-radius: 5px; background-color: #f5f5f5; text-align: center; color: #000; padding: 5px 20px; font-size: medium;">
                         00006hkf44hyfh33dd
                         <div style="float: right;">
-                            <img id="b_foot" src="/Mobile/img/Group.png" style="height: 15px;" >
+                            <img id="b_foot" src="/Mobile/img/Group.png" style="height: 15px;">
                         </div>
                     </div>
                 </div>
@@ -87,30 +90,54 @@
     <footer id="foot"></footer>
 
 
-    
+
 </body>
 
 <script>
+        // const axios = require('axios');
+        getPriceDOGE()
+        async function getPriceDOGE() {
+            axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
+            console.log(resp.data['THB_DOGE'].last)
+            document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
+    });
+
+const api_url = "https://api.bitkub.com/api/market/ticker"; 
+
+async function get_data_from_api(api_url) { 
+    // data
+    const response = await fetch(api_url); 
+    var data = await response.json();
+    // song info
+    var track = data["recenttracks"]["track"][0]["name"]
+    var artist = data["recenttracks"]["track"][0]["artist"]["#text"]
+    console.lop("&#x1F3A7; listening to " + track +  " by " + artist)
+    setTimeout(() => get_data_from_api(api_url), 10000)
+}
+
+get_data_from_api(api_url)
+
+}
 
     var change = false
-    function slide_down(){
-        if(!change){
+    function slide_down() {
+        if (!change) {
             change = !change
             $("#back_color").addClass('slide_background_active')
             // $('#lotatelol').addClass('lotate_b_foot_active')
-            $('#lotatelol').css('transform','rotate(180deg)')
+            $('#lotatelol').css('transform', 'rotate(180deg)')
 
         }
-        else{
+        else {
             change = !change
             $("#back_color").removeClass('slide_background_active')
             // $('lotatelol').removeClass('lotate_b_foot_activate')
-            $('#lotatelol').css('transform','rotate(0deg)')
+            $('#lotatelol').css('transform', 'rotate(0deg)')
         }
     }
 
 
-    $(function (){
+    $(function () {
         $('#foot').load('./footer.html')
     })
 
