@@ -1,0 +1,20 @@
+{
+  "name": "mydogecoin_wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suntijra/mydogecoin_wallet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Suntijra/mydogecoin_wallet/issues"
+  },
+  "homepage": "https://github.com/Suntijra/mydogecoin_wallet#readme"
+}
