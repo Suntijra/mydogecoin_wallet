@@ -106,8 +106,9 @@
 
 .img-back{
   position: absolute;
-  transition-duration: 500ms;
-  right: 150px;
+  transition-duration: 2ms;
+  right: 170px;
+  top: 65px;
 }
 
 .star {
@@ -270,6 +271,7 @@
 #hide-checkbox:checked + .toggle .img-back{
     transition-duration: 1s;
     right: 0;
+    top: 0;
 }
 
 #hide-checkbox:checked + .toggle .star{
@@ -328,6 +330,81 @@
   top: 5px;
   animation-delay: -2s;
 }
+/* ----------star main background------------ */
+
+@keyframes star {
+  0% {
+    transform: rotate(-45deg) translateX(180px);
+  }
+
+  50% {
+    transform: rotate(-45deg) translateX(-40px);
+    box-shadow: 10px 0px 12px 2px #FFF;
+  }
+
+  100% {
+    transform: rotate(-45deg) translateX(-60px);
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+.starmain-1, .starmain-2, .starmain-3, .starmain-4, .starmain-5, .starmain-6 {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+  background: #FFF;
+  box-shadow: 2px 0 4px 2px rgba(255, 255, 255);
+  width: 7px;
+  height: 7px;
+  border-radius: 10px;
+  transform: rotate(-45deg);
+  box-shadow: 10px 0px 8px 2px #FFF;
+  animation-name: star;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+.starmain-1{
+  left: 90px;
+  top: 80px;
+  animation-delay: 0;
+}
+
+.starmain-2{
+  left: 300px;
+  top: 175px;
+  animation-delay: -2s;
+}
+
+.starmain-3{
+  left: 89px;
+  top: 500px;
+  animation-delay: -4s;
+}
+
+.starmain-4{
+  right: 50px;
+  bottom: 250px;
+  animation-delay: -5s;
+}
+
+.starmain-5{
+  right: 30px;
+  bottom: 300px;
+  animation-delay: -3s;
+}
+
+.starmain-6{
+  right: 30px;
+  bottom: 200px;
+  animation-delay: -1s;
+}
+
+
 /* ---------------slide right---------------- */
 #first{
     position: absolute;
@@ -364,6 +441,13 @@
     <div style="display: flex; position: relative;">
 
         <div id="first">
+
+            <span class="starmain-1"></span>
+            <span class="starmain-2"></span>
+            <span class="starmain-3"></span>
+            <span class="starmain-4"></span>
+            <span class="starmain-5"></span>
+            <span class="starmain-6"></span>
 
             <div style="display: flex; justify-content: center; align-items: center; height: 60vh;">
                 <img src="/Mobile/img/emojione_full-moonmoonx10.png" style="width: 80%;">
