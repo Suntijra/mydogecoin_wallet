@@ -8,11 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <title>setting</title>
+    <title>Language</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
-    <title>Send Doge</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
@@ -28,25 +27,22 @@
 
 </head>
 <body style="margin: 0; font-family: 'Inter';">
-    <div style="display: flex; height:37.436vw;background:#20192E; align-items: center; justify-content: center;">
-        <div style="color: white;font-size:24px">Setting</div>
+    
+    <div style="display: flex; height:37.436vw;background:#20192E;  ">
+        <img id="back" style="height: 14px; width: 15px;display: flex;padding: 6.5vw;"
+            src="./img/Vector (3).png" alt="">
+        <div style="color: white;font-size:24px;padding: 15vw 19vw;">Language</div>
+        
     </div>
     <div style="display: flex; justify-content:center; position: absolute; top: 118px; left: 170px;">
-        <img src="./img/bob.png" style="object-fit: contain; width: 50px; height: 50px;" alt="">
-    </div>
-    <div class="transacbody" >
-        <div onclick="btn_about()" id="btn_about_us" class="setTxt">About us</div>
-        <div onclick="btn_language()" id="btn_language" class="setTxt" >Language</div>
+        <img src="./img/Vectorlang.png" style="object-fit: contain; width: 50px; height: 50px;" alt="">
     </div>
     <footer id = 'foot'></footer>
 </body>
 <script>
-    btn_about =()=>{
-        window.location.href = "./btn_aboutUs.html"
-    } 
-    btn_language =()=>{
-        window.location.href = "./btn_language.html"
-    }
+    $('#back').click(function (e) { 
+        document.location.href = './setting.html'
+    });
     $(function (){
         $('#foot').load('./footer.html')
     })
