@@ -24,8 +24,8 @@
 
         #coinBody {
             display: flex;
-            height: 146px;
-            background: #D19C4B;
+            height: 200px;
+            background: #20192E;
             color: white;
             justify-content: center;
             align-items: center;
@@ -42,8 +42,8 @@
         }
 
         #btnSend {
-            background-color: #221F1F;
-            border-radius: 8px;
+            background-color: #514E58;
+            border-radius: 100px;
             display: flex;
             margin: 5vw;
             width: 30%;
@@ -77,60 +77,56 @@
 </head>
 
 <body style="margin: 0px; font-family: 'Inter', sans-serif; font-weight: 200;">
-    <header>
-        <img style="height: 14px; width: 15px" src="./img/Vector (3).png" alt="">
-        <span style="color: white;font-size:16px; width: 15%;">Back</span>
-        <span style="color: white;width: 60%;">MOONDOGE</span>
-    </header>
+    
     <div id="coinBody">
         <span style="font-weight: 400;">0.00 DOGE</span>
     </div>
     <div id="transaction">
         <div id="btnSend">
             <img style="width: 26px; object-fit: contain;" src="./img/moon.png" alt="">
-            <div style="padding: 2vw; font-size:20px;color: white;">send</div>
+            <div style="padding: 2vw; font-size:20px;color: white; font-weight: 400;">send</div>
         </div>
         <script>
             $('#btnSend').click(function () {
                 document.location.href = "./send_doge.html"
             });
         </script>
-        <div>
-            transter
+        <div style="color: #878788;">
+            Transaction
         </div>
     </div>
     <div id="transacbody">
-        <span>today</span>
+        <span style="font-weight: 400;">today</span>
         <div
             style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div id="back" class="box_table">
-                <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
+                <img src="img/dogecoin.png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
-            <span class="box_table" style="width: 60%;">received</span>
+            <span class="box_table" style="width: 60%; font-weight: 400; color: #2454FF;">Received</span>
             <span class="box_table">20.22 DOGE</span>
         </div>
         <div
             style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div class="box_table">
-                <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
+                <img src="img/dogecoin.png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
-            <span class="box_table" style="width: 60%;">received</span>
+            <span class="box_table" style="width: 60%; font-weight: 400; color: #2454FF;">Received</span>
             <span class="box_table">20.22 DOGE</span>
         </div>
         <div
             style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div class="box_table">
-                <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
+                <img src="img/dogerocket.png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
-            <span class="box_table" style="width: 60%;">received</span>
+            <span class="box_table" style="width: 60%; font-weight: 400; color: #DA6363;">Sending</span>
             <span class="box_table">20.22 DOGE</span>
         </div>
         <div
             style="display:flex; justify-content:center;padding:3vw 0vw; margin: 3vw 0; border-bottom: solid #8E8E8E80;">
             <div class="box_table">
-                <img src="img/Vector (2).png" style="object-fit: contain; height: 10vw;" alt="">
+                <img src="img/dogecoin.png" style="object-fit: contain; height: 10vw;" alt="">
             </div>
-            <span class="box_table" style="width: 60%;">sending</span>
+            <span class="box_table" style="width: 60%; font-weight: 400; color: #2454FF;">Received</span>
             <span class="box_table">15.22 DOGE</span>
         </div>
     </div>
