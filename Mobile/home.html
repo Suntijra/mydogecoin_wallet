@@ -45,7 +45,7 @@
                 <div style="margin-top: 55px;">
                     <span>0.0000 DOGE &nbsp;</span>
                     <br style="line-height: 0;">
-                    <span style="font-size: 15px;">doge ≈ <span id = 'dogePrice'></span> &nbsp; &nbsp; &nbsp;</span>
+                    <span style="font-size: 15px;">doge ≈ <span id='dogePrice'></span> &nbsp; &nbsp; &nbsp;</span>
                 </div>
             </div>
 
@@ -94,30 +94,57 @@
 </body>
 
 <script>
-        // const axios = require('axios');
-        getPriceDOGE()
-        async function getPriceDOGE() {
-            axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
-            console.log(resp.data['THB_DOGE'].last)
-            document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
-    });
+    // const axios = require('axios');
+    $.ajax({
+                method: 'get',
+                url: 'https://api.bitkub.com/api/market/ticker',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Cookie': '__cf_bm=TiPmEUvqVTZLo2ct08wtOyYXUyhQa76CKNBCC00Z.2A-1655292882-0-AX80oOKn8uFDPRXotgCZOFJ6GMXH4tqI32+q9QXjvK/CG+AVGM3chq7aSTU05lyIil9ORO4MyagAJ6APvlikFxk='
+                },
 
-const api_url = "https://api.bitkub.com/api/market/ticker"; 
+                success: function(response) {
+                    console.log(response)
 
-async function get_data_from_api(api_url) { 
-    // data
-    const response = await fetch(api_url); 
-    var data = await response.json();
-    // song info
-    var track = data["recenttracks"]["track"][0]["name"]
-    var artist = data["recenttracks"]["track"][0]["artist"]["#text"]
-    console.lop("&#x1F3A7; listening to " + track +  " by " + artist)
-    setTimeout(() => get_data_from_api(api_url), 10000)
-}
+                }
+            })
+    getPriceDOGE()
+    function getPriceDOGE() {
+        setInterval(() => {
+            // axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
+            //     console.log(resp.data['THB_DOGE'].last)
+            //     document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
+            //     console.log('change')
+            // });
 
-get_data_from_api(api_url)
+            // $.ajax({
+            //     method: 'get',
+            //     url: 'https://api.bitkub.com/api/market/ticker',
+            //     success: function(response) {
+            //         console.log(response)
 
-}
+            //     }
+            // })
+
+        }, 5000)
+
+        // const api_url = "https://api.bitkub.com/api/market/ticker";
+
+        // async function get_data_from_api(api_url) {
+        //     // data
+        //     const response = await fetch(api_url);
+        //     var data = await response.json();
+        //     // song info
+        //     var track = data["recenttracks"]["track"][0]["name"]
+        //     var artist = data["recenttracks"]["track"][0]["artist"]["#text"]
+        //     console.lop("&#x1F3A7; listening to " + track + " by " + artist)
+        //     setTimeout(() => get_data_from_api(api_url), 10000)
+        // }
+
+        // get_data_from_api(api_url)
+
+    }
 
     var change = false
     function slide_down() {
