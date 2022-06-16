@@ -15,6 +15,9 @@
 </head>
 
 <style>
+    body{
+        overflow: hidden;
+    }
     .slide_background {
         background-color: #D19C4B;
         width: 100%;
@@ -32,8 +35,6 @@
         width: 100%;
         transition-duration: 1s;
         transform: rotate(0deg);
-
-
     }
 </style>
 
@@ -95,28 +96,33 @@
 
 <script>
     // const axios = require('axios');
-    $.ajax({
-                method: 'get',
-                url: 'https://api.bitkub.com/api/market/ticker',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Cookie': '__cf_bm=TiPmEUvqVTZLo2ct08wtOyYXUyhQa76CKNBCC00Z.2A-1655292882-0-AX80oOKn8uFDPRXotgCZOFJ6GMXH4tqI32+q9QXjvK/CG+AVGM3chq7aSTU05lyIil9ORO4MyagAJ6APvlikFxk='
-                },
+    // $.ajax({
+    //             method: 'get',
+    //             url: 'https://api.bitkub.com/api/market/ticker',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Accept': 'application/json',
+    //                 'Cookie': '__cf_bm=TiPmEUvqVTZLo2ct08wtOyYXUyhQa76CKNBCC00Z.2A-1655292882-0-AX80oOKn8uFDPRXotgCZOFJ6GMXH4tqI32+q9QXjvK/CG+AVGM3chq7aSTU05lyIil9ORO4MyagAJ6APvlikFxk='
+    //             },
 
-                success: function(response) {
-                    console.log(response)
+    //             success: function(response) {
+    //                 console.log(response)
 
-                }
-            })
+    //             }
+    //         })
     getPriceDOGE()
     function getPriceDOGE() {
+        axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
+                console.log(resp.data['THB_DOGE'].last)
+                document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
+                console.log('change')
+                });
         setInterval(() => {
-            // axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
-            //     console.log(resp.data['THB_DOGE'].last)
-            //     document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
-            //     console.log('change')
-            // });
+            axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
+                console.log(resp.data['THB_DOGE'].last)
+                document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
+                console.log('change')
+            });
 
             // $.ajax({
             //     method: 'get',
@@ -127,7 +133,7 @@
             //     }
             // })
 
-        }, 5000)
+        }, 60000)
 
         // const api_url = "https://api.bitkub.com/api/market/ticker";
 

@@ -12,7 +12,7 @@
 <body style="margin: 0;">
 
     <div style="width: 100%; position: absolute; bottom:0;">
-        <div style="display: flex; align-items: center; justify-content: space-around; background-color: #20192E; width: 100%; height: 10vh;">
+        <div style="display: flex; align-items: center; justify-content: space-around; background-color: #20192E; width: 100%; height: 10vh; position: relative;">
             <div id="gogo1"  onclick="gogo1()" style="width: 13%; margin-left: 30px;">
                 <img id="img1" src="/Mobile/img/Frame 9.png" style="width: 100%;"></div>
             <div  onclick="gogo2()" style="width: 40%; height: 80%; position: relative; bottom: 80px;">
@@ -34,6 +34,8 @@
     //     $('#gogo2').attr('src',"./img/wallet_yellow.png")
     // });
 
+    var changimgColor;
+
     function gogo1(){
         resetimg();
         document.location.href = "./transaction.html"
@@ -41,8 +43,11 @@
     }
     function gogo2(){
         resetimg();
-        document.location.href = "./index.html"
-        $("#img2").attr("src", "./img/Vector.png");
+        changimgColor = 1;
+        document.location.href = "./home.html"
+        if(changimgColor == 1){
+            $("#img2").attr("src", "./img/Vector.png");
+        }
     
     }
     function gogo3(){
