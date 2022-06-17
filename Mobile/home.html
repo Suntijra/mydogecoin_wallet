@@ -15,9 +15,10 @@
 </head>
 
 <style>
-    body{
+    body {
         overflow: hidden;
     }
+
     .slide_background {
         background-color: #D19C4B;
         width: 100%;
@@ -35,18 +36,19 @@
         width: 100%;
         transition-duration: 1s;
         transform: rotate(0deg);
+        margin-left: 8px;
     }
 </style>
 
 <body style="margin: 0; font-family: 'Inter'; font-weight: 200;">
     <section style="width: 100%; background-color: #20192E; color: #fff;">
         <div style="display: flex; flex-direction: column; font-size: 30px; text-align: center; height: 100vh;">
-
+            
             <div>
                 <div style="margin-top: 55px;">
-                    <span>0.0000 DOGE &nbsp;</span>
+                    <span id="doge_balance">0.0000 DOGE </span>
                     <br style="line-height: 0;">
-                    <span style="font-size: 15px;">doge ≈ <span id='dogePrice'></span> &nbsp; &nbsp; &nbsp;</span>
+                    <span style="font-size: 15px;">Doge ≈ <span id='dogePrice'></span></span>
                 </div>
             </div>
 
@@ -93,87 +95,5 @@
 
 
 </body>
-
-<script>
-    // const axios = require('axios');
-    // $.ajax({
-    //             method: 'get',
-    //             url: 'https://api.bitkub.com/api/market/ticker',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Accept': 'application/json',
-    //                 'Cookie': '__cf_bm=TiPmEUvqVTZLo2ct08wtOyYXUyhQa76CKNBCC00Z.2A-1655292882-0-AX80oOKn8uFDPRXotgCZOFJ6GMXH4tqI32+q9QXjvK/CG+AVGM3chq7aSTU05lyIil9ORO4MyagAJ6APvlikFxk='
-    //             },
-
-    //             success: function(response) {
-    //                 console.log(response)
-
-    //             }
-    //         })
-    getPriceDOGE()
-    function getPriceDOGE() {
-        axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
-                console.log(resp.data['THB_DOGE'].last)
-                document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
-                console.log('change')
-                });
-        setInterval(() => {
-            axios.get('https://api.bitkub.com/api/market/ticker').then(resp => {
-                console.log(resp.data['THB_DOGE'].last)
-                document.getElementById('dogePrice').innerHTML = resp.data['THB_DOGE'].last + ' ฿';
-                console.log('change')
-            });
-
-            // $.ajax({
-            //     method: 'get',
-            //     url: 'https://api.bitkub.com/api/market/ticker',
-            //     success: function(response) {
-            //         console.log(response)
-
-            //     }
-            // })
-
-        }, 60000)
-
-        // const api_url = "https://api.bitkub.com/api/market/ticker";
-
-        // async function get_data_from_api(api_url) {
-        //     // data
-        //     const response = await fetch(api_url);
-        //     var data = await response.json();
-        //     // song info
-        //     var track = data["recenttracks"]["track"][0]["name"]
-        //     var artist = data["recenttracks"]["track"][0]["artist"]["#text"]
-        //     console.lop("&#x1F3A7; listening to " + track + " by " + artist)
-        //     setTimeout(() => get_data_from_api(api_url), 10000)
-        // }
-
-        // get_data_from_api(api_url)
-
-    }
-
-    var change = false
-    function slide_down() {
-        if (!change) {
-            change = !change
-            $("#back_color").addClass('slide_background_active')
-            // $('#lotatelol').addClass('lotate_b_foot_active')
-            $('#lotatelol').css('transform', 'rotate(180deg)')
-
-        }
-        else {
-            change = !change
-            $("#back_color").removeClass('slide_background_active')
-            // $('lotatelol').removeClass('lotate_b_foot_activate')
-            $('#lotatelol').css('transform', 'rotate(0deg)')
-        }
-    }
-
-
-    $(function () {
-        $('#foot').load('./footer.html')
-    })
-
-</script>
-
+<script src="./js/funcHome.js"></script>
 </html>
