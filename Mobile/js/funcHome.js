@@ -2,7 +2,6 @@
 getPriceDOGE()
 function getPriceDOGE() {
     var thb;
-    var doge;
     var substr
     axios.get('https://api.apilayer.com/exchangerates_data/latest?symbols=THB&base=USD&apikey=pIpHtBZNr3pYY6yGydrqY1glOSBcbL6M')
         .then(function (response) {
@@ -30,20 +29,22 @@ function getPriceDOGE() {
 
     }, 60000)
 }
-console.log(substrfn('12.1'))
+// document.getElementById('doge_balance').innerHTML = substrfn('')
+console.log('test function => ',substrfn('1000.187800'))
 
 function substrfn(str1) {
     var index = "";
     for (i = 0; i < str1.length; i++) {
         index += str1[i]
         if (str1[i] == '.') {
-            for (j = i+1; j < i + 3; j++) {
-                if(str1[j] != 'undefined'){
+            k = i+4
+            for (j = i+1; j < k ;j++) {
+                if(typeof(str1[j]) != 'undefined' ){
                     index += str1[j]
                 }
-                // else if(str1[j] == 'undefined'){
-                //     str
-                // }
+                else{
+                    index += '0'
+                }
             }
             break;
         }
@@ -77,6 +78,8 @@ function DogeGetBalance(address = 'https://chain.so/api/v2/get_address_balance/D
             data = response.data.data.confirmed_balance
             console.log(data)
             data = substrfn(data)
+
+            // get DogeGetBalance by id
             document.getElementById('doge_balance').innerHTML = data + ' DOGE';
         }).catch(err => {
             console.log(err)
