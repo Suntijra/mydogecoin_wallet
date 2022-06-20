@@ -1,0 +1,62 @@
+.modal-container{
+    display: none;
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content{
+    background-color:white;
+    width: 250px;
+    height: 410px;
+    margin: auto;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    border-radius: 38px;
+    padding: 20px;
+    box-shadow: 0px 0px 30px #FFFFFF;
+    /* font-size: 18px; */
+    z-index: 100;
+  
+}  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .modal-content::-webkit-scrollbar {
+      display: none;
+  }
+.btn_agree{
+    text-align:center; 
+    border-radius: 20px;
+    color: white; 
+    background-color: #435566;
+    margin:20px 0;
+    padding: 5px 0;
+    font-size: 18px;
+}
+
+body{
+    overflow: hidden;
+}
+.btn_box {
+    color: #7158E2;
+    border: 1px solid;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    background-color: white;
+    padding: 13px 67px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.btn_bgcolor {
+    background: linear-gradient(to right, #CD84F1 0%, #7158E2 100%);
+    color: white;
+}
+.btn_margin{
+    margin: 5vw 0;
+}
