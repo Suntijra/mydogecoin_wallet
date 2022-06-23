@@ -13,6 +13,20 @@
 
 </head>
 <link rel="stylesheet" href="./css/import-create.css">
+<style>
+    .line{
+        border: 2px solid #435566; 
+        width: 23.8vw; 
+        border-top-left-radius: 10px; 
+        border-top-right-radius: 10px;
+        left : 8vw;
+        transition: 0.3s;
+    }
+    .line_active{
+        width: 30.8vw;
+        left : 34vw
+    }
+</style>
 
 <body style="font-family: 'Inter'; background: #20192E; margin: 0; padding: 0">
     <div style="margin-top:100px; margin-left: 40px; margin-right: 40px;">
@@ -26,7 +40,7 @@
             <span id="btn_import" style="border: 0;" class="btn_box btn_bgcolor btn_margin">import Wallet</span>
         </div>
         <div id="create-wallet" class="modal-container" onclick="modal_close(this)">
-            <div class="modal-content">ข้อตกลง  <b>CREATE</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis fuga labore
+            <div class="modal-content">ข้อตกลง  <b>CREATE</b> <br> &nbsp; &nbsp; &nbsp; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis fuga labore
                 aperiam, esse facilis expedita totam. Accusantium ducimus necessitatibus quis quibusdam, doloribus
                 explicabo quae, deserunt commodi veniam voluptas repellat aliquam. Lorem ipsum dolor sit amet,
                 consectetur adipisicing elit. Quasi ab nisi,
@@ -34,12 +48,12 @@
                 Minima, quasi quo. Eveniet in soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Asperiores assumenda deserunt ullam dolorum optio minima debitis ducimus sapiente ex error, quos
                 nulla cum officia tempora cumque magni modi, animi aliquam.
-                <div class="btn_agree">Agree</div> 
+                <div class="btn_agree" onclick="next_create()">Agree</div> 
             </div>
         </div>
 
         <div id="import-wallet" class="modal-container" onclick="modal_close(this)">
-            <div class="modal-content">ข้อตกลง  <b>IMPORT</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis fuga labore
+            <div class="modal-content">ข้อตกลง  <b>IMPORT</b> <br> &nbsp; &nbsp; &nbsp; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis fuga labore
                 aperiam, esse facilis expedita totam. Accusantium ducimus necessitatibus quis quibusdam, doloribus
                 explicabo quae, deserunt commodi veniam voluptas repellat aliquam. Lorem ipsum dolor sit amet,
                 consectetur adipisicing elit. Quasi ab nisi,
@@ -47,7 +61,48 @@
                 Minima, quasi quo. Eveniet in soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Asperiores assumenda deserunt ullam dolorum optio minima debitis ducimus sapiente ex error, quos
                 nulla cum officia tempora cumque magni modi, animi aliquam.
-                <div class="btn_agree">Agree</div> 
+                <div class="btn_agree" onclick="next_import()">Agree</div> 
+            </div>
+        </div>
+
+        <div id="nt_create" class="modal-container">
+            <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                Generate Private Key
+                <div style="display: flex; width: 100%; justify-content: center; margin-top: 30px;">
+                    <div id="chgLine1" onclick="chg_line(1)" style="width: 35%; text-align: center;">Private Key</div>
+                    <div id="chgLine2" onclick="chg_line(2)" style="width: 45%; text-align: center;">Seed Keyword</div>
+                </div>
+
+                <div style="width: 100%; position: relative;  margin-top: 10px;">
+                    <div style="display: flex; justify-content: center;">
+                        <div id="linebg" class="line" style="position: absolute;">
+                        </div>
+                        <div style="border: 1px solid rgba(128, 128, 128, 0.38); width: 76%; margin-top: 2px;">
+                        </div>
+                    </div>
+
+                    <div style="margin: 20px 0 0; border: 1px solid; width : 100%; height: 240px;"></div>
+                </div>
+                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;">ต่อไป</button>
+
+            </div>
+        </div>
+
+        <div id="nt_import" class="modal-container" onclick="modal_close(this)">
+            <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                Import Private Key
+                <div style="display: flex; width: 100%; justify-content: center; margin-top: 30px;">
+                    <div id="chgLine1" onclick="chg_line(1)" style="width: 35%; text-align: center;">Private Key</div>
+                    <div id="chgLine2" onclick="chg_line(2)" style="width: 45%; text-align: center;">Seed Keyword</div>
+                </div>
+
+                <div style="width: 100%; position: relative;  margin-top: 10px; display: flex; justify-content: center;">
+                    <div id="linebg" class="line" style="position: absolute;"></div>
+                    <div style="border: 1px solid #435566; width: 76%; margin-top: 2px;"></div>
+                </div>
+
+                <div style="margin: 20px 0 0; border: 1px solid; width : 100%; height: 240px;"></div>
+                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;">ต่อไป</button>
             </div>
         </div>
 
@@ -64,11 +119,34 @@
     document.getElementById('btn_import').addEventListener('click', function() {
        document.getElementById('import-wallet').style.display = 'flex';
     });
-
+    $(function(){
+        $('#nt_import').css('display', 'none');
+        $('#nt_create').css('display', 'none');
+    })
     function modal_close(x) {
         console.log('display: none')
       x.style.display = "none";
     }
+
+    function next_create(){
+        $('.modal-container').css('{display : none; transition: display 2s}');
+        $('#nt_create').css('display', 'flex');
+    }
+    function next_import(){
+        $('.modal-container').css('display', 'none');
+        $('#nt_import').css('display', 'flex');
+    }
+
+
+    function chg_line(id){
+        if(id == 2){
+            $("#linebg").addClass('line_active')
+        }
+        else if(id == 1){
+            $("#linebg").removeClass('line_active')
+        }
+    }
+
 </script>
 
 </html>
