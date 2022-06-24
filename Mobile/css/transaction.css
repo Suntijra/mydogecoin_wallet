@@ -1,0 +1,84 @@
+body {
+    overflow: hidden;
+    width: 100%;
+}
+
+header {
+    background-color: black;
+    padding: 2em;
+    text-align: center;
+    display: flex;
+}
+
+#coinBody {
+    width: 100%;
+    display: flex;
+    background: #20192E;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    flex-direction: column;
+
+}
+
+#transaction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 9;
+}
+
+.btnSend {
+    background-color: #514E58;
+    border-radius: 100px;
+    display: flex;
+    margin-top: 13vw;
+    width: 40%;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.flex {
+    display: flex;
+}
+
+#transacbody {
+    /* margin: 2vw; */
+    padding: 0 5vw;
+}
+
+.box_table {
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.tab-history {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    /* border-bottom: #8E8E8E80 solid; */
+}
+.active-tab{
+    border-bottom: #514E58 solid;
+}
+
+.box_in-side_bgStar {
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.p-r-10{
+    padding: 10px;
+}
+.m-10
+.line-tab{
+    border-bottom: #8E8E8E80 solid;
+}

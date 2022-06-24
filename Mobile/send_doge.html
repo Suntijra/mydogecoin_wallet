@@ -56,10 +56,13 @@
 
 <body style="margin:0;padding:0;height: 100%;">
     <header>
-        <img id="back" style="height: 14px; width: 15px;display: flex; align-items: center;padding: 6.5vw;"
+        <div style="width: 10%;">
+            <img onclick="back()" style="height: 14px;display: flex; align-items: center;padding: 6.5vw;"
             src="./img/Vector (3).png" alt="">
+        </div>
+        
 
-        <span style="color: white;width: 60%; display: flex; align-items: center; justify-content: center;">
+        <span style="color: white;width: 80%; display: flex; align-items: center; justify-content: center;">
             send doge</span>
     </header>
 
@@ -67,12 +70,16 @@
         <span style="font-weight:600;">Pay to</span>
         <div style="display: flex; width: 100%; padding: 7vw 0">
             <input class="box_txt" style="width: 58vw; border:none;" placeholder="address"></input>
-            <img src="./img/Vectorscan.png" style="height: 25px; padding:0 2vw" alt="">
+            <div onclick=""> 
+                <img src="./img/Vectorscan.png" style="height: 25px; padding:0 2vw" alt="" >
+            </div>
+           
         </div>
         <span style="font-weight: 600;">Amount to pay</span>
         <div style="display: flex;padding: 7vw 0">
             <input placeholder ='D' style="width:25.6vw; text-align: end;" class="box_txt"></input>
             <img class="img1" style="width: 3.5vw; padding: 0 5vw ;" src="./img/Vectorarrow.png" alt="">
+            
             <input placeholder ='฿' style="width:25.6vw;text-align: end;" class="box_txt"></input>
         </div>
         <div id="btnSend">
@@ -84,5 +91,11 @@
     <footer id="footer" role="contentinfo"></footer>
   
 </body>
+<script>
+
+    function back() {
+        window.history.back();
+    }
+</script>
 
 </html>
