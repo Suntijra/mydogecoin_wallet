@@ -25,6 +25,8 @@
         });
 
     </script>
+    <!-- Footer Nav -->
+    <link rel="stylesheet" href="./css/footerNav.css">
 
 </head>
 
@@ -64,10 +66,10 @@
         </div>
 
     </div>
-    <div id="transacbody" style="overflow: scroll; background-color: white; z-index: 9999; height: 60vh;">
+    <div id="transacbody" style="overflow: scroll; background-color: white; z-index: 9999; height: 61.1vh;">
         <div class="tab-history">
-            <span class = 'line-tab'>
-                <span class="p-r-10"  onclick="active_tab(this)">History</span>
+            <span class='line-tab'>
+                <span class="p-r-10" onclick="active_tab(this)">History</span>
                 <span class="p-r-10" onclick="active_tab(this)">Pendding</span>
             </span>
         </div>
@@ -114,17 +116,73 @@
             <span class="box_table">15.22 DOGE</span>
         </div>
     </div>
+    <!-- <footer id="footer" role="contentinfo"></footer> -->
+    <!-- footer -->
+    <footer
+        style="position: relative; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
 
-    <!-- <div class="tab-pendding"></div> -->
+        <span id="history" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 6.16vh; top :-5px;left: 10px;" src="./img/bonebork.png" alt="">
+            History</span>
 
+        <span id="wallet" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 5vh; bottom :30px;left: 170px;" src="./img/dogemelet.png" alt="">
+            Wallet</span>
+        <span class="footerbar" onclick="footerNav(this)">
+            <img id="account" style="position: absolute;height: 5vh; bottom :30px;left: 287px;"
+                src="./img/doge_food.png" alt="">
+            Account</span>
+    </footer>
+
+    <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
+    <div id='account_slide' class="account_slide">
+        <span onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
+            <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
+        </span>
+        <div class="scrollbar">
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 1</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 2</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 3</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 4</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 5</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 6</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 7</span>
+            </div>
+
+        </div>
+        <div class="create_account">
+            Create New Account
+        </div>
     </div>
-    <!-- <div id="transaction"> -->
-
-
-
-    </div>
-    <footer id="footer" role="contentinfo"></footer>
 </body>
+<script src="./js/footNav.js"></script>
 <script>
     $('#btnSend').click(function () {
         document.location.href = "./send_doge.html"
