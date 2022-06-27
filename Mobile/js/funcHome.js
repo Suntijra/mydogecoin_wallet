@@ -69,11 +69,11 @@ function slide_down() {
         $("#back_color").addClass('slide_background_active')
         // $('#lotatelol').addClass('lotate_b_foot_active')
         $('#lotatelol').css('transform', 'rotate(180deg)')     
-        hideHide()
+        // hideHide()
         setTimeout(() => {
             document.getElementById('get_start_text').style.display = 'none'
             document.getElementById('slide_page').style.display = 'block'
-        }, 500)
+        }, 100)
     }
     else {
         change = !change
@@ -86,7 +86,7 @@ function slide_down() {
     }
 
 }
-DogeGetBalance()
+// DogeGetBalance()
 function DogeGetBalance(address = 'https://chain.so/api/v2/get_address_balance/DOGETEST/2My1rbK7kgFahUYAqA61yCUMqojGgHRU9Le') {
     axios.get(address)
         .then((response, request) => {

@@ -1,0 +1,46 @@
+.footerbar {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 1vh;
+  color: white;
+}
+
+.account_slide {
+  height: 0;
+  width: 100%;
+  transition: height 1s;
+  position: fixed;
+  bottom: 0;
+  background-color: #20192e;
+  border-radius: 20px 20px 0 0;
+}
+
+.bg_close {
+  height: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: height 1s;
+  position: fixed;
+  bottom: 50px;
+}
+.create_account {
+  font-size: 16px;
+  font-weight: 600;
+  color: #5b7d9c;
+  height: 10.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scrollbar {
+  overflow: scroll;
+  flex-direction: column;
+  display: flex;
+  height: 33vh;
+  align-items: center;
+}
+.accgen {
+  color: white;
+  padding: 10px;
+  font-weight: 400;
+}

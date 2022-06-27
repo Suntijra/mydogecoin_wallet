@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <style>
@@ -27,7 +27,7 @@
         width: 100%;
         height: 70%;
         position: absolute;
-        bottom: 0;
+        bottom: -1vh;
         transition: height 1s;
     }
 
@@ -66,7 +66,8 @@
         flex-direction: column;
         height: 30vh;
     }
-    .animetionHide{
+
+    .animetionHide {
         animation: hideme 0.5s forwards;
     }
 
@@ -79,6 +80,7 @@
             opacity: 0;
         }
     }
+
     @keyframes showme {
         0% {
             opacity: 1;
@@ -89,9 +91,11 @@
         }
     }
 </style>
+<!-- Footer Nav -->
+<link rel="stylesheet" href="./css/footerNav.css">
 
 <body>
-    <section id="get_start_text" class="" style="background-color: #20192E; height: 100vh;">
+    <section id="get_start_text" class="" style="background-color: #20192E; height: 91.47vh;">
         <div class="get-start-text">
             <span class="get-start">To get started, send DOGE
             </span>
@@ -99,9 +103,8 @@
         </div>
 
     </section>
-    <section id="slide_page" class="section">
-        <div style="display: flex; flex-direction: column; font-size: 30px; text-align: center; height: 100vh;">
-
+    <section id="slide_page" style="display: none;" class="section">
+        <div style="display: flex; flex-direction: column; font-size: 30px; text-align: center; height: 91.47vh;">
             <div class="text01">
                 <div style="margin-top: 55px;">
                     <span id="doge_balance">0.0000 DOGE </span>
@@ -123,12 +126,12 @@
                     </div>
                 </div>
             </div>
-            <!--  -->
+
 
         </div>
     </section>
 
-    <!--  -->
+
     <div id="back_color" class="slide_background background-img">
 
         <div style="display: flex; justify-content: center;">
@@ -138,22 +141,78 @@
         </div>
 
 
-        <!-- <div style="text-align: center; color: #fff; margin-top: 50px; font-size: 25px;">
-            To get started, send DOGE <br>to your wallet
-        </div> -->
+
 
         <div style="display: flex; justify-content: center; margin-top: 50px;">
             <!-- <img src="/Mobile/img/moon.png" width="50%"> -->
         </div>
 
     </div>
-    <!--  -->
+    <div></div>
 
-    <footer id="foot"></footer>
+    <!-- <footer id="foot"></footer> -->
+    <footer
+        style="position: relative; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
+
+        <span id="history" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 3.55vh; top :10px;left: 25px;" src="./img/bone.png" alt="">
+            History</span>
+
+        <span id="wallet" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 7.5vh; bottom :30px;left: 155px;" src="./img/dogemelet.png" alt="">
+            Wallet</span>
+        <span class="footerbar" onclick="footerNav(this)">
+            <img id="account" style="position: absolute;height: 5.4vh; bottom :30px;left: 287px;"
+                src="./img/doge_food.png" alt="">
+            Account</span>
+    </footer>
+    <!-- account Nav -->
+    <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
+    <div id='account_slide' class="account_slide">
+        <span onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
+            <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
+        </span>
+        <div class="scrollbar">
+            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 1</span>
+            </div>
+            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 2</span>
+            </div>
+            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 3</span>
+            </div>
+            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 4</span>
+            </div>
+            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 5</span>
+            </div>
+            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 6</span>
+            </div>
+            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 7</span>
+            </div>
+          
+        </div>
+        <div class="create_account">
+            Create New Account
+        </div>
+    </div>
+
 
 
 
 </body>
+<script src="./js/footNav.js"></script>
 <script src="./js/funcHome.js"></script>
 
 
