@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
@@ -17,12 +17,15 @@
 <style>
     body {
         overflow: hidden;
+        margin: 0;
+        font-family: 'Inter';
+        font-weight: 200;
     }
 
     .slide_background {
-        background-color: #D19C4B;
+        /* background-color: #D19C4B; */
         width: 100%;
-        height: 80%;
+        height: 70%;
         position: absolute;
         bottom: 0;
         transition: height 1s;
@@ -36,15 +39,70 @@
         width: 100%;
         transition-duration: 1s;
         transform: rotate(0deg);
-        margin-left: 8px;
+    }
+
+    .background-img {
+        background-image: url('./img/BG_Home_QR.png');
+        background-position: bottom;
+        background-size: cover;
+    }
+
+    .section {
+        width: 100%;
+        background-color: #20192E;
+        color: #fff;
+
+    }
+
+    .get-start {
+        color: white;
+        font-size: 20px;
+    }
+
+    .get-start-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 30vh;
+    }
+    .animetionHide{
+        animation: hideme 0.5s forwards;
+    }
+
+    @keyframes hideme {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+    @keyframes showme {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
     }
 </style>
 
-<body style="margin: 0; font-family: 'Inter'; font-weight: 200;">
-    <section style="width: 100%; background-color: #20192E; color: #fff;">
+<body>
+    <section id="get_start_text" class="" style="background-color: #20192E; height: 100vh;">
+        <div class="get-start-text">
+            <span class="get-start">To get started, send DOGE
+            </span>
+            <span class="get-start">to your wallet</span>
+        </div>
+
+    </section>
+    <section id="slide_page" class="section">
         <div style="display: flex; flex-direction: column; font-size: 30px; text-align: center; height: 100vh;">
-            
-            <div>
+
+            <div class="text01">
                 <div style="margin-top: 55px;">
                     <span id="doge_balance">0.0000 DOGE </span>
                     <br style="line-height: 0;">
@@ -53,7 +111,7 @@
             </div>
 
             <!--  -->
-            <div style="display: flex; justify-content: center; margin-top: 50px;">
+            <div class="text02" style="display: flex; justify-content: center; margin-top: 50px;">
                 <div>My QR-Code<br>
                     <img src="/Mobile/img/image 2.png" style="width: 60vw; margin: 20px 0;"><br>
                     <div
@@ -71,20 +129,21 @@
     </section>
 
     <!--  -->
-    <div id="back_color" class="slide_background">
+    <div id="back_color" class="slide_background background-img">
 
         <div style="display: flex; justify-content: center;">
             <div style="position: relative; top: -30px; width: 20%; height: 7vh;">
-                <img id="lotatelol" class="lotate_b_foot" onclick="slide_down()" src="/Mobile/img/Group 7.png">
+                <img id="lotatelol" class="lotate_b_foot" onclick="slide_down()" src="/Mobile/img/doge_foot.png">
             </div>
         </div>
 
 
-        <div style="text-align: center; color: #fff; margin-top: 50px; font-size: 25px;">
+        <!-- <div style="text-align: center; color: #fff; margin-top: 50px; font-size: 25px;">
             To get started, send DOGE <br>to your wallet
-        </div>
+        </div> -->
+
         <div style="display: flex; justify-content: center; margin-top: 50px;">
-            <img src="/Mobile/img/moon.png" width="50%">
+            <!-- <img src="/Mobile/img/moon.png" width="50%"> -->
         </div>
 
     </div>
@@ -96,4 +155,6 @@
 
 </body>
 <script src="./js/funcHome.js"></script>
+
+
 </html>

@@ -55,20 +55,36 @@ function substrfn(str1) {
 }
 
 var change = false
+function hideHide(){
+    document.getElementById('get_start_text').classList.add('animetionHide')
+    document.getElementById('get_start_text').style.animationName = 'hideme'
+}
+function removeClass_show(){
+    document.getElementById('get_start_text').classList.remove('animetionHide')
+    document.getElementById('get_start_text').style.animationName = '0'
+}
 function slide_down() {
     if (!change) {
         change = !change
         $("#back_color").addClass('slide_background_active')
         // $('#lotatelol').addClass('lotate_b_foot_active')
-        $('#lotatelol').css('transform', 'rotate(180deg)')
-
+        $('#lotatelol').css('transform', 'rotate(180deg)')     
+        hideHide()
+        setTimeout(() => {
+            document.getElementById('get_start_text').style.display = 'none'
+            document.getElementById('slide_page').style.display = 'block'
+        }, 500)
     }
     else {
         change = !change
         $("#back_color").removeClass('slide_background_active')
         // $('lotatelol').removeClass('lotate_b_foot_activate')
         $('#lotatelol').css('transform', 'rotate(0deg)')
+        removeClass_show()
+        document.getElementById('get_start_text').style.display = 'block'
+        document.getElementById('slide_page').style.display = 'none'
     }
+
 }
 DogeGetBalance()
 function DogeGetBalance(address = 'https://chain.so/api/v2/get_address_balance/DOGETEST/2My1rbK7kgFahUYAqA61yCUMqojGgHRU9Le') {
