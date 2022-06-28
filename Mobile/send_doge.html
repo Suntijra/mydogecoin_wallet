@@ -1,101 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
-    <title>Send Doge</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <style>
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
-        }
-
-        .box_txt {
-            background: #ECECEC;
-            border-radius: 5px;
-            padding: 1vw;
-            border: none;
-        }
-
-        .img1 {
-            object-fit: contain;
-            height: 5vw;
-        }
-
-        #btnSend {
-            background-color: #514E58;
-            border-radius: 8px;
-            display: flex;
-            margin: 5vw 0;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-
-        header {
-            height: 17vw;
-            background: #20192E;
-            display: flex;
-            text-align: center;
-        }
-    </style>
-    <script>
-        $(function () {
-            $("#footer").load("./footer.html");
-        });
-    </script>
-</head>
-
-<body style="margin:0;padding:0;height: 100%;">
-    <header>
-        <div style="width: 10%;">
-            <img onclick="back()" style="height: 14px;display: flex; align-items: center;padding: 6.5vw;"
-            src="./img/Vector (3).png" alt="">
-        </div>
-        
-
-        <span style="color: white;width: 80%; display: flex; align-items: center; justify-content: center;">
-            send doge</span>
-    </header>
-
-    <div style="margin: 5vw;">
-        <span style="font-weight:600;">Pay to</span>
-        <div style="display: flex; width: 100%; padding: 7vw 0">
-            <input class="box_txt" style="width: 58vw; border:none;" placeholder="address"></input>
-            <div onclick=""> 
-                <img src="./img/Vectorscan.png" style="height: 25px; padding:0 2vw" alt="" >
-            </div>
-           
-        </div>
-        <span style="font-weight: 600;">Amount to pay</span>
-        <div style="display: flex;padding: 7vw 0">
-            <input placeholder ='D' style="width:25.6vw; text-align: end;" class="box_txt"></input>
-            <img class="img1" style="width: 3.5vw; padding: 0 5vw ;" src="./img/Vectorarrow.png" alt="">
-            
-            <input placeholder ='฿' style="width:25.6vw;text-align: end;" class="box_txt"></input>
-        </div>
-        <div id="btnSend">
-            <img style="width: 26px; object-fit: contain;" src="./img/moon.png" alt="">
-            <div style="padding: 2vw; font-size:20px;color: white;">send</div>
-        </div>
-    </div>
-    <!-- <object data="/Mobile/loadding.html"></object> -->
-    <footer id="footer" role="contentinfo"></footer>
-  
-</body>
-<script>
-
-    function back() {
-        window.history.back();
+<html>
+  <head>
+    <title>QR Code Scanner</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+  </head>
+  <style>
+    html {
+    height: 100%;
     }
-</script>
 
+    body {
+    font-family: sans-serif;
+    padding: 0 10px;
+    height: 100%;
+    background: black;
+    margin: 0;
+    }
+
+    h1 {
+    color: white;
+    margin: 0;
+    padding: 15px;
+    }
+
+    #container {
+    text-align: center;
+    margin: 0;
+    }
+
+    #qr-canvas {
+    margin: auto;
+    width: calc(100% - 20px);
+    max-width: 400px;
+    }
+
+    #btn-scan-qr {
+    cursor: pointer;
+    }
+
+    #btn-scan-qr img {
+    height: 10em;
+    padding: 15px;
+    margin: 15px;
+    background: white;
+    }
+
+    #qr-result {
+    font-size: 1.2em;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 700px;
+    background-color: white;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <h1>QR Code Scanner</h1>
+
+      <a id="btn-scan-qr">
+        <img src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg">
+      <a/>
+
+      <canvas hidden="" id="qr-canvas"></canvas>
+
+      <div id="qr-result" hidden="">
+        <b>Data:</b> <span id="outputData"></span>
+      </div>
+    </div>
+
+    <script src="./src/qrCodeScanner.js"></script>
+  </body>
 </html>

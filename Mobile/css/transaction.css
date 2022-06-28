@@ -85,3 +85,24 @@ header {
     justify-content: center;
     width: 80%;
 }
+
+
+
+
+
+
+.cg_line{
+    position: absolute; 
+    left: 0;
+    top: -2px;
+    border: 2px solid black;
+    width: 25vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: 500ms;
+}
+
+.active_line{
+    left: 30vw; 
+    width: 30vw;
+}

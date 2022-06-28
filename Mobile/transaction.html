@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction
+
+    </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- STAR -->
+    <link rel="stylesheet" href="./css/bg_star.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/transaction.css">
+
+    <script>
+        $(function () {
+            $("#footer").load("./footer.html");
+        });
+
+    </script>
+    <!-- Footer Nav -->
+    <link rel="stylesheet" href="./css/footerNav.css">
+
+</head>
+<style>
+    .hide_scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide_scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        position: relative;
+        width: 90%;
+        overflow: scroll;
+        margin: 20px 5% 0;
+    }
+
+    .body_content {
+        width: 100%;
+        height: 62%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<body
+    style="height: 100vh; margin: 0px; font-family: 'Inter', sans-serif; font-weight: 200; background-color: #514E58;">
+
+
+    <div id="coinBody">
+
+        <div class="box_in-side_bgStar" style="z-index:0">
+            <div style="position: fixed; left: 0;" id='stars'></div>
+            <div style="position: fixed; left: 0;" id='stars2'></div>
+            <div style="position: fixed; left: 0;" id='stars3'></div>
+            <div style="position: relative;"><img style="    width: 30px;
+                position: absolute;
+                object-fit: contain;
+                top: 15px;
+                left: 40vw;" src="./img/setting.png" alt=""></div>
+            <span style="font-weight: 400; margin-top: 8vh;">0.00 DOGE</span>
+            <span style="font-size: 11px;">Doge ≈ <span id='dogePrice'></span></span>
+            <div class="btnSend">
+                <img style="width: 30px; object-fit: contain; " src="./img/moon.png" alt="">
+                <div style="position: relative;">
+                    <div id="btnSend" style="padding: 3vw 0; font-size:20px;color: white; font-weight: 400;">Send Coin
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <script>
+                $('#btnSend').click(function () {
+                    document.location.href = "./send_doge.html"
+                });
+            </script>
+
+        </div>
+
+    </div>
+    <div class="body_content">
+
+        <div style="display: flex; ">
+            <div onclick="active_tab(1)" style="width: 50%; text-align: end; padding-right: 30px;  margin-top: 20px;">
+                History</div>
+            <div onclick="active_tab(2)" style="width: 50%; padding-left: 30px;  margin-top: 20px;">Pendding</div>
+        </div>
+
+        <div style="position: relative; width: 60%; margin-top: 10px;">
+            <div style="width: 100%; border: 1px solid gray;"></div>
+            <div id="id_cg_line" class="cg_line"></div>
+        </div>
+
+        <div class="hide_scrollbar" style="position: relative; width: 90%; overflow: scroll; margin: 20px 5% 0;">
+            <b>Today</b>
+            <!-- History -->
+
+
+
+            <div style="width: 100%;">
+                <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                    <img src="./img/dogecoin.png" style="width: 10vw; height: 10vw; margin-right: 20px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div style="font-size: 20px; font-weight: bolder;">
+                                Received
+                            </div>
+                            <div>
+                                <span style="font-size: 12px;">Dec 23</span>&nbsp;<span
+                                    style="color: gray; font-size: 12px;">form : 0x00005765</span>
+                            </div>
+                            <div style="color: greenyellow; text-shadow: 1px 1px 1px gray;">success</div>
+                        </div>
+                        <div style="font-size: 20px;">20.22 DOGE</div>
+                    </div>
+
+
+                </div>
+                <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                    <img src="./img/dogecoin.png" style="width: 10vw; height: 10vw; margin-right: 20px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div style="font-size: 20px; font-weight: bolder;">
+                                Received
+                            </div>
+                            <div>
+                                <span style="font-size: 12px;">Dec 23</span>&nbsp;<span
+                                    style="color: gray; font-size: 12px;">form : 0x00005765</span>
+                            </div>
+                            <div style="color: greenyellow; text-shadow: 1px 1px 1px gray;">success</div>
+                        </div>
+                        <div style="font-size: 20px;">20.22 DOGE</div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                    <img src="./img/dogerocket.png" style="width: 10vw; height: 10vw; margin-right: 20px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div style="font-size: 20px; font-weight: bolder;">
+                                Pendding
+                            </div>
+                            <div>
+                                <span style="font-size: 12px;">Dec 23</span>&nbsp;<span
+                                    style="color: gray; font-size: 12px;">to : 0x00006812</span>
+                            </div>
+                            <div style="color: greenyellow; text-shadow: 1px 1px 1px gray;">success</div>
+                        </div>
+                        <div style="font-size: 20px;">20.22 DOGE</div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                    <img src="./img/dogecoin.png" style="width: 10vw; height: 10vw; margin-right: 20px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div style="font-size: 20px; font-weight: bolder;">
+                                Received
+                            </div>
+                            <div>
+                                <span style="font-size: 12px;">Dec23 </span>&nbsp;<span
+                                    style="color: gray; font-size: 12px;">form : 0x00005765</span>
+                            </div>
+                            <div style="color: greenyellow; text-shadow: 1px 1px 1px gray;">success</div>
+                        </div>
+                        <div style="font-size: 20px;">20.22 DOGE</div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                    <img src="./img/dogerocket.png" style="width: 10vw; height: 10vw; margin-right: 20px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div style="font-size: 20px; font-weight: bolder;">
+                                Pendding
+                            </div>
+                            <div>
+                                <span style="font-size: 12px;">Dec 21</span>&nbsp;<span
+                                    style="color: gray; font-size: 12px;">to : 0x00007561</span>
+                            </div>
+                            <div style="color: greenyellow; text-shadow: 1px 1px 1px gray;">success</div>
+                        </div>
+                        <div style="font-size: 20px;">20.22 DOGE</div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                    <img src="./img/dogecoin.png" style="width: 10vw; height: 10vw; margin-right: 20px;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div style="font-size: 20px; font-weight: bolder;">
+                                Received
+                            </div>
+                            <div>
+                                <span style="font-size: 12px;">Dec 20</span>&nbsp;<span
+                                    style="color: gray; font-size: 12px;">form : 0x00005765</span>
+                            </div>
+                            <div style="color: greenyellow; text-shadow: 1px 1px 1px gray;">success</div>
+                        </div>
+                        <div style="font-size: 20px;">20.22 DOGE</div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+            <!-- Pending -->
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- <footer id="footer" role="contentinfo"></footer> -->
+    <!-- footer -->
+    <footer
+        style="position: fixed; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around; bottom: 0; width: 100%;">
+
+        <span id="history" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 6.16vh; top :-5px;left: 10px;" src="./img/bonebork.png" alt="">
+            History</span>
+
+        <span id="wallet" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 5vh; bottom :30px;left: 170px;" src="./img/dogemelet.png" alt="">
+            Wallet</span>
+        <span class="footerbar" onclick="footerNav(this)">
+            <img id="account" style="position: absolute;height: 5vh; bottom :30px;left: 287px;"
+                src="./img/doge_food.png" alt="">
+            Account</span>
+    </footer>
+
+    <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
+    <div id='account_slide' class="account_slide">
+        <span onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
+            <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
+        </span>
+        <div class="scrollbar">
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 1</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 2</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 3</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 4</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 5</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 6</span>
+            </div>
+            <div
+                style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 7</span>
+            </div>
+
+        </div>
+        <div class="create_account">
+            Create New Account
+        </div>
+    </div>
+</body>
+<script src="./js/footNav.js"></script>
+<script>
+    $('#btnSend').click(function () {
+        document.location.href = "./send_doge.html"
+    });
+
+
+    function active_tab(id) {
+        if (id == 2) {
+            $('#id_cg_line').addClass('active_line')
+        }
+        else if (id == 1) {
+            $('#id_cg_line').removeClass('active_line')
+        }
+    }
+</script>
+
+</html>
