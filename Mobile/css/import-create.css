@@ -6,13 +6,16 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
     justify-content: center;
     align-items: center;
 }
 
 .modal-content{
-    background-color:white;
+    background-color:rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 0px 20px #FFFFFF;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);;
     width: 290px;
     height: 450px;
     margin: auto;
@@ -21,7 +24,6 @@
     scrollbar-width: none;
     border-radius: 38px;
     padding: 20px;
-    box-shadow: 0px 0px 30px #FFFFFF;
     /* font-size: 18px; */
     z-index: 100;
   
