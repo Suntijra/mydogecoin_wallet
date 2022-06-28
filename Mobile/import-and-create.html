@@ -4,12 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>import / create wallet</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.11/sweetalert2.all.js"></script>
+
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--     
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="./slick-1.8.1/slick/slick.min.js"></script> -->
 
 </head>
 <link rel="stylesheet" href="./css/import-create.css">
@@ -26,6 +36,66 @@
         width: 30.8vw;
         left : 34vw
     }
+
+    .seed_create, .seed_import{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(240, 240, 240, 1);
+        border-radius: 3px;
+        box-shadow:0 2px 1px 2px gray;
+        display: flex;
+        align-items: center;
+    }
+
+    #tab_create_seed, #tab_import_seed{
+        display: inline-block;
+        margin: 10px 0 0;
+        border: 0px solid;
+        width : 100%;
+        height: 290px;
+        position: relative;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .tab_create_seed1, .tab_import_seed1{
+        width: 100%;
+        height: 100%;
+        background-color: none;
+        position: absolute;
+        left: 0;
+        transition: 0.4s;
+    }
+    .tab_import_seed1{
+        display: flex;
+        padding: 2px;
+    }
+
+    .tab_create_seed2, .tab_import_seed2{
+        width: 100%;
+        height: 100%;
+        background-color: none;
+        position: absolute;
+        right: -500px;
+        transition: 0.4s;
+    }
+    .tab_import_seed2{
+        display: flex;
+    }
+
+    .input_seed{
+        width: 100%; 
+        margin: 2px;
+    }
+
+    .active1{
+        left: -500px;
+    }
+    .active2{
+        right: 0;
+    }
+
+    
 </style>
 
 <body style="font-family: 'Inter'; background: #20192E; margin: 0; padding: 0">
@@ -65,44 +135,100 @@
             </div>
         </div>
 
+
         <div id="nt_create" class="modal-container">
             <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 Generate Private Key
-                <div style="display: flex; width: 100%; justify-content: center; margin-top: 30px;">
-                    <div id="chgLine1" onclick="chg_line(1)" style="width: 35%; text-align: center;">Private Key</div>
-                    <div id="chgLine2" onclick="chg_line(2)" style="width: 45%; text-align: center;">Seed Keyword</div>
+
+                <div id="select_seed1" style="display: flex; width: 100%; justify-content: center; margin-top: 15px;">
+                    <div id="chgLine" onclick="chg_line1(1)" style="width: 35%; text-align: center;">Private Key</div>
+                    <div id="chgLine" onclick="chg_line1(2)" style="width: 45%; text-align: center;">Seed Keyword</div>
                 </div>
 
                 <div style="width: 100%; position: relative;  margin-top: 10px;">
                     <div style="display: flex; justify-content: center;">
-                        <div id="linebg" class="line" style="position: absolute;">
-                        </div>
-                        <div style="border: 1px solid rgba(128, 128, 128, 0.38); width: 76%; margin-top: 2px;">
-                        </div>
+                        <div id="linebg1" class="line" style="position: absolute;"></div>
+                        <div style="border: 1px solid rgba(128, 128, 128, 1); width: 76%; margin-top: 2px;"></div>
                     </div>
 
-                    <div style="margin: 20px 0 0; border: 1px solid; width : 100%; height: 240px;"></div>
+                    <div id="tab_create_seed">
+
+                        <div id="1_1" class="tab_create_seed1" style="">
+                            <div style="width: 90%; height: 32px; background-color: rgba(240, 240, 240, 1); border-radius: 3px; box-shadow:0 2px 1px 2px gray; margin: 10px 5%;"></div>
+                        </div>
+
+                        <div id="1_2" class="tab_create_seed2" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 37px); grid-gap: 10px;">
+                            <div class="seed_create">1.<span></span></div>
+                            <div class="seed_create">2.<span></span></div>
+                            <div class="seed_create">3.<span></span></div>
+                            <div class="seed_create">4.<span></span></div>
+                            <div class="seed_create">5.<span></span></div>
+                            <div class="seed_create">6.<span></span></div>
+                            <div class="seed_create">7.<span></span></div>
+                            <div class="seed_create">8.<span></span></div>
+                            <div class="seed_create">9.<span></span></div>
+                            <div class="seed_create">10.<span></span></div>
+                            <div class="seed_create">11.<span></span></div>
+                            <div class="seed_create">12.<span></span></div>
+                        </div>
+
+                    </div>
                 </div>
-                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;">ต่อไป</button>
+
+                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;" onclick="CreateGo()">ต่อไป</button>
 
             </div>
         </div>
 
-        <div id="nt_import" class="modal-container" onclick="modal_close(this)">
+
+
+
+
+
+
+        <div id="nt_import" class="modal-container" onclick="/*modal_close(this)*/">
             <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 Import Private Key
-                <div style="display: flex; width: 100%; justify-content: center; margin-top: 30px;">
-                    <div id="chgLine1" onclick="chg_line(1)" style="width: 35%; text-align: center;">Private Key</div>
-                    <div id="chgLine2" onclick="chg_line(2)" style="width: 45%; text-align: center;">Seed Keyword</div>
+                <div id="select_seed1" style="display: flex; width: 100%; justify-content: center; margin-top: 30px;">
+                    <div id="chgLine" onclick="chg_line2(1)" style="width: 35%; text-align: center;">Private Key</div>
+                    <div id="chgLine" onclick="chg_line2(2)" style="width: 45%; text-align: center;">Seed Keyword</div>
                 </div>
 
-                <div style="width: 100%; position: relative;  margin-top: 10px; display: flex; justify-content: center;">
-                    <div id="linebg" class="line" style="position: absolute;"></div>
-                    <div style="border: 1px solid #435566; width: 76%; margin-top: 2px;"></div>
+                <div style="width: 100%; position: relative;  margin-top: 10px;">
+                    <div style="display: flex; justify-content: center;">
+                        <div id="linebg2" class="line" style="position: absolute;"></div>
+                        <div style="border: 1px solid rgba(128, 128, 128, 1); width: 76%; margin-top: 2px;"></div>
+                    </div>
                 </div>
 
-                <div style="margin: 20px 0 0; border: 1px solid; width : 100%; height: 240px;"></div>
-                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;">ต่อไป</button>
+                <div style="width: 100%; position: relative;  margin-top: 10px;">
+                    <div id="tab_import_seed">
+
+                        <div id="2_1" class="tab_import_seed1">
+                            <div style="width: 90%; height: 32px; background-color: rgba(240, 240, 240, 1); border-radius: 3px; box-shadow:0 2px 1px gray; margin: 10px 5%;"></div>
+                        </div>
+
+                        <div id="2_2" class="tab_import_seed2" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 37px); grid-gap: 10px;">
+                            <div class="seed_import">1.<input class="input_seed" placeholder="example"></div>
+                            <div class="seed_import">2.<input class="input_seed"></div>
+                            <div class="seed_import">3.<input class="input_seed"></div>
+                            <div class="seed_import">4.<input class="input_seed"></div>
+                            <div class="seed_import">5.<input class="input_seed"></div>
+                            <div class="seed_import">6.<input class="input_seed"></div>
+                            <div class="seed_import">7.<input class="input_seed"></div>
+                            <div class="seed_import">8.<input class="input_seed"></div>
+                            <div class="seed_import">9.<input class="input_seed"></div>
+                            <div class="seed_import">10.<input class="input_seed"></div>
+                            <div class="seed_import">11.<input class="input_seed"></div>
+                            <div class="seed_import">12.<input class="input_seed"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;" onclick="modal_close($('#nt_import'))">ต่อไป</button>
+
+                </div>
             </div>
         </div>
 
@@ -111,7 +237,40 @@
         <img style="position: absolute;bottom: 0;" width="100%" src="./img/10x_wood.png" alt="">
     </div>
 </body>
+
+
+
+
+
+
+
+
+
+
+
 <script>
+
+$(function(){
+        $('#nt_import').css('display', 'none');
+        $('#nt_create').css('display', 'none');
+    })
+
+    // $('#select_seed1').slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: false,
+    //     fade: true,
+    //     asNavFor: '#tab_select_seed1'
+    // });
+    // $('#tab_select_seed1').slick({
+    //     slidesToShow: 2,
+    //     slidesToScroll: 1,
+    //     asNavFor: '#select_seed1',
+    //     dots: true,
+    //     // centerMode: true,
+    //     focusOnSelect: true
+    // });
+
     document.getElementById('btn_create').addEventListener('click', function() {
        document.getElementById('create-wallet').style.display = 'flex';
     });
@@ -119,13 +278,11 @@
     document.getElementById('btn_import').addEventListener('click', function() {
        document.getElementById('import-wallet').style.display = 'flex';
     });
-    $(function(){
-        $('#nt_import').css('display', 'none');
-        $('#nt_create').css('display', 'none');
-    })
+
     function modal_close(x) {
         console.log('display: none')
-      x.style.display = "none";
+        $(x).css("display", "none")
+    //  x.style.display = "none";
     }
 
     function next_create(){
@@ -138,13 +295,50 @@
     }
 
 
-    function chg_line(id){
+    function chg_line1(id){
         if(id == 2){
-            $("#linebg").addClass('line_active')
+            $("#linebg1").addClass('line_active');
+            $("#1_1").addClass('active1');
+            $("#1_2").addClass('active2');
         }
         else if(id == 1){
-            $("#linebg").removeClass('line_active')
+            $("#linebg1").removeClass('line_active');
+            $("#1_1").removeClass('active1');
+            $("#1_2").removeClass('active2');
         }
+    }
+
+    function chg_line2(id){
+        if(id == 2){
+            $("#linebg2").addClass('line_active');
+            $("#2_1").addClass('active1');
+            $("#2_2").addClass('active2');
+        }
+        else if(id == 1){
+            $("#linebg2").removeClass('line_active');
+            $("#2_1").removeClass('active1');
+            $("#2_2").removeClass('active2');
+        }
+    }
+
+    function CreateGo(){
+            Swal.fire({
+                title: 'Are you Sure?!',
+                text: 'Do you remember Seed & Private?',
+                showCancelButton: true,
+                confirmButtonColor: '#DF7861',
+                cancleButtonColor: '#94B49F',
+                confirmButtontext: 'Yes, I remember already.'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                    'Generate Private!',
+                    'Your private key generate already.',
+                    'success'
+                    )
+                    $('#nt_create').css('display', 'none');
+                }
+            })
     }
 
 </script>
