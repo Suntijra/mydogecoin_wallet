@@ -14,88 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
 </head>
 
-<style>
-    body {
-        overflow: hidden;
-        margin: 0;
-        font-family: 'Inter';
-        font-weight: 200;
-    }
-
-    .slide_background {
-        /* background-color: #D19C4B; */
-        width: 100%;
-        height: 70%;
-        position: absolute;
-        bottom: -1vh;
-        transition: height 1s;
-    }
-
-    .slide_background_active {
-        height: 30%;
-    }
-
-    .lotate_b_foot {
-        width: 100%;
-        transition-duration: 1s;
-        transform: rotate(0deg);
-    }
-
-    .background-img {
-        background-image: url('./img/BG_Home_QR.png');
-        background-position: bottom;
-        background-size: cover;
-    }
-
-    .section {
-        width: 100%;
-        background-color: #20192E;
-        color: #fff;
-
-    }
-
-    .get-start {
-        color: white;
-        font-size: 20px;
-    }
-
-    .get-start-text {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 30vh;
-    }
-
-    .animetionHide {
-        animation: hideme 0.5s forwards;
-    }
-
-    @keyframes hideme {
-        0% {
-            opacity: 1;
-        }
-
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes showme {
-        0% {
-            opacity: 1;
-        }
-
-        100% {
-            opacity: 0;
-        }
-    }
-</style>
-
 <!-- Footer Nav -->
 <link rel="stylesheet" href="./css/footerNav.css">
  <!-- icon setting -->
- <link rel="stylesheet" href="./css/icon_setting.css">
+<link rel="stylesheet" href="./css/icon_setting.css">
+<!-- CSS HOME -->
+<link rel="stylesheet" href="./css/home.css">
+<!-- ACCOUNT FUNCTION -->
+<link rel="stylesheet" href="./css/account.css">
 
 <body>
     <div style="position: relative;">
@@ -182,31 +108,31 @@
             <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
         </span>
         <div class="scrollbar">
-            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+            <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 1</span>
             </div>
-            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+            <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 2</span>
             </div>
-            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+            <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 3</span>
             </div>
-            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+            <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 4</span>
             </div>
-            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+            <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 5</span>
             </div>
-            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+            <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 6</span>
             </div>
-            <div style="display: flex; justify-content: center;border-bottom: 1px solid rgba(255, 255, 255, 0.2);padding: 10px; width: 80%;">
+            <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 7</span>
             </div>
@@ -225,10 +151,5 @@
 </script>
 <script src="./js/footNav.js"></script>
 <script src="./js/funcHome.js"></script>
-<script>
-    function ToSetting(){
-        window.location.href = "./setting.html";
-    }
-</script>
 
 </html>

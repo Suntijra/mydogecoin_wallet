@@ -5,15 +5,7 @@
   color: white;
 }
 
-.account_slide {
-  height: 0;
-  width: 100%;
-  transition: height 1s;
-  position: fixed;
-  bottom: 0;
-  background-color: #20192e;
-  border-radius: 20px 20px 0 0;
-}
+
 
 .bg_close {
   height: 0;

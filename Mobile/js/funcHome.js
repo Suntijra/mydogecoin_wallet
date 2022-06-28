@@ -106,4 +106,7 @@ function DogeGetBalance(address = 'https://chain.so/api/v2/get_address_balance/D
 $(function () {
     $('#foot').load('./footer.html')
 })
+function ToSetting(){
+    window.location.href = "./setting.html";
+}
 
