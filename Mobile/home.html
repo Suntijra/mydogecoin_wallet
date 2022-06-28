@@ -91,12 +91,21 @@
         }
     }
 </style>
+
 <!-- Footer Nav -->
 <link rel="stylesheet" href="./css/footerNav.css">
+ <!-- icon setting -->
+ <link rel="stylesheet" href="./css/icon_setting.css">
 
 <body>
+    <div style="position: relative;">
+        <img style ='left: 88.5vw !important' onclick="ToSetting()" class="icon-img-setting" style="" src="./img/setting.png" alt="">
+    </div>
+
     <section id="get_start_text" class="" style="background-color: #20192E; height: 91.47vh;">
+        
         <div class="get-start-text">
+           
             <span class="get-start">To get started, send DOGE
             </span>
             <span class="get-start">to your wallet</span>
@@ -212,8 +221,14 @@
 
 
 </body>
+<script>
+</script>
 <script src="./js/footNav.js"></script>
 <script src="./js/funcHome.js"></script>
-
+<script>
+    function ToSetting(){
+        window.location.href = "./setting.html";
+    }
+</script>
 
 </html>
