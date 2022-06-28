@@ -21,15 +21,19 @@
         padding: 0;
         margin: 0;
     }
+
+    #search_txt::placeholder {     
+         color: #BABABA;     
+         opacity: 1;   }
 </style>
 <body >
     <div style="background-image:url(./img/bg.png); 
     width: 100%;
     height: 100vh; 
     background-size: cover; 
-    background-position: center;
+    background-position: bottom;
     " >
-        <div style="height:200px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="height:30%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div style="display: flex; justify-content: center; font-size: 48px; font-family: 'Poppins', sans-serif; color: aliceblue;">
                 Sign Up
             </div>
@@ -37,55 +41,56 @@
                 Create an Doge Wallet account!&nbsp;<a href="" style="color: aliceblue;">  Login now! </a>
             </div>
         </div>
+        <div style="height: 70%;">
         <div style="display: flex; justify-content: center;">
             <div style="border-radius:20px; background: linear-gradient(116.41deg, rgba(255, 255, 255, 0.44) 2.01%, rgba(255, 255, 255, 0) 122.69%); backdrop-filter: blur(4px); width: 80%; ">
     
             <div style="  padding: 6vw 7vw;;display: flex; justify-content: center; flex-direction: column;  ">
-                <div style="width:100%;  font-size: 20px; font-family: 'Inter', sans-serif; color: aliceblue;">
+                <div style="width:100%;  font-size: 4.2vw; font-family: 'Inter', sans-serif; color: aliceblue;">
                     Username
                 </div>
-                <div style="width:100%; height: 5vh;  display: flex; justify-content: center; padding-top: 20px;">
+                <div style="width:100%; height: 5vh;  display: flex; justify-content: center; padding-top: 10px;">
                     <div style="background-color: white; border-radius:10px; width: 100%; display: flex; justify-content: space-between;">
-                            <div style="width: 30%; display: flex; justify-content: center; align-items: center;">
+                            <div style="width: 20%; display: flex; justify-content: center; align-items: center;">
                                 <img src="img/account.png" style="object-fit: cover; height: 6vw;">
                             </div>
-                            <div style="width: 70%;  display:flex; align-items: center; font-family: 'Inter', sans-serif; font-size: 12px; color: #BABABA;">
-                                Your Account
-                            </div>
+                            <input id="search_txt" placeholder=" Your Username" style="outline:none; background:unset; border:none; width: 80%;   display:flex; align-items: center; font-family: 'Inter', sans-serif; font-size: 12px; color: #000000;">
+                               
+                        </input>
                     </div>
                     
                 </div>
             </div>
     
             <div style="  padding: 0 7vw;;display: flex; justify-content: center; flex-direction: column; ">
-                <div style="width:100%;  font-size: 20px; font-family: 'Inter', sans-serif; color: aliceblue;">
+                <div style="width:100%;  font-size: 4.2vw; font-family: 'Inter', sans-serif; color: aliceblue;">
                     Password
                 </div>
-                <div style="width:100%; height: 5vh;  display: flex; justify-content: center; padding-top: 20px;">
+                <div style="width:100%; height: 5vh;  display: flex; justify-content: center; padding-top: 10px;">
                     <div style="background-color: white; border-radius:10px; width: 100%; display: flex; justify-content: space-between;">
-                            <div style="width: 30%; display: flex; justify-content: center; align-items: center;">
+                            <div style="width: 20%; display: flex; justify-content: center; align-items: center;">
                                 <img src="img/eyeicon.png" style="object-fit: cover; height: 6vw;">
                             </div>
-                            <div style="width: 70%;  display:flex; align-items: center; font-family: 'Inter', sans-serif; font-size: 12px; color: #BABABA;">
-                                Your Password
-                            </div>
+                            <input id="search_txt" placeholder=" Your Password" style="outline:none; background:unset; border:none; width: 80%;   display:flex; align-items: center; font-family: 'Inter', sans-serif; font-size: 12px; color: #000000;">
+                               
+                        </input>
                     </div>
                     
                 </div>
             </div>
 
             <div style="  padding: 6vw 7vw;;display: flex; justify-content: center; flex-direction: column;  ">
-                <div style="width:100%;  font-size: 20px; font-family: 'Inter', sans-serif; color: aliceblue;">
+                <div style="width:100%;  font-size: 4.2vw; font-family: 'Inter', sans-serif; color: aliceblue;">
                     Confirm Password
                 </div>
-                <div style="width:100%; height: 5vh;  display: flex; justify-content: center; padding-top: 20px;">
+                <div style="width:100%; height: 5vh;  display: flex; justify-content: center; padding-top: 10px;">
                     <div style="background-color: white; border-radius:10px; width: 100%; display: flex; justify-content: space-between;">
-                            <div style="width: 30%; display: flex; justify-content: center; align-items: center;">
+                            <div style="width: 20%; display: flex; justify-content: center; align-items: center;">
                                 <img src="img/eyeicon.png" style="object-fit: cover; height: 6vw;">
                             </div>
-                            <div style="width: 70%;  display:flex; align-items: center; font-family: 'Inter', sans-serif; font-size: 12px; color: #BABABA;">
-                                Your Password
-                            </div>
+                            <input id="search_txt" placeholder=" Your Password" style="outline:none; background:unset; border:none; width: 80%;   display:flex; align-items: center; font-family: 'Inter', sans-serif; font-size: 12px; color: #000000;">
+                               
+                        </input>
                     </div>
                     
                 </div>
@@ -100,9 +105,7 @@
                 </div>
                 
             </div>
-            <div style="display:flex;">
-    
-            </div>
+        </div>
          </div>
         </div>
     </div>
