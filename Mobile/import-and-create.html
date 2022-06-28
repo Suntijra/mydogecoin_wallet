@@ -8,97 +8,17 @@
     <title>import / create wallet</title>
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.11/sweetalert2.all.js"></script>
-
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<!--     
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick-theme.css"/>
-    <script type="text/javascript" src="./slick-1.8.1/slick/slick.min.js"></script> -->
 
 </head>
 <link rel="stylesheet" href="./css/import-create.css">
-<style>
-    .line{
-        border: 2px solid #435566; 
-        width: 23.8vw; 
-        border-top-left-radius: 10px; 
-        border-top-right-radius: 10px;
-        left : 8vw;
-        transition: 0.3s;
-    }
-    .line_active{
-        width: 30.8vw;
-        left : 34vw
-    }
-
-    .seed_create, .seed_import{
-        width: 100%;
-        height: 100%;
-        background-color: rgba(240, 240, 240, 1);
-        border-radius: 3px;
-        box-shadow:0 2px 1px 2px gray;
-        display: flex;
-        align-items: center;
-    }
-
-    #tab_create_seed, #tab_import_seed{
-        display: inline-block;
-        margin: 10px 0 0;
-        border: 0px solid;
-        width : 100%;
-        height: 290px;
-        position: relative;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    .tab_create_seed1, .tab_import_seed1{
-        width: 100%;
-        height: 100%;
-        background-color: none;
-        position: absolute;
-        left: 0;
-        transition: 0.4s;
-    }
-    .tab_import_seed1{
-        display: flex;
-        padding: 2px;
-    }
-
-    .tab_create_seed2, .tab_import_seed2{
-        width: 100%;
-        height: 100%;
-        background-color: none;
-        position: absolute;
-        right: -500px;
-        transition: 0.4s;
-    }
-    .tab_import_seed2{
-        display: flex;
-    }
-
-    .input_seed{
-        width: 100%; 
-        margin: 2px;
-    }
-
-    .active1{
-        left: -500px;
-    }
-    .active2{
-        right: 0;
-    }
-
-    
-</style>
 
 <body style="font-family: 'Inter'; background: #20192E; margin: 0; padding: 0">
+    <div onclick="close_all()" id="bg_close" class="bg-close" >
+
+    </div>
     <div style="margin-top:100px; margin-left: 40px; margin-right: 40px;">
 
         <div
@@ -109,8 +29,9 @@
             <span id="btn_create" class="btn_box btn_margin">Create Wallet</span>
             <span id="btn_import" style="border: 0;" class="btn_box btn_bgcolor btn_margin">import Wallet</span>
         </div>
-        <div id="create-wallet" class="modal-container" onclick="modal_close(this)">
-            <div class="modal-content">ข้อตกลง  <b>CREATE</b> <br> &nbsp; &nbsp; &nbsp; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis fuga labore
+        <div id="create-wallet" class="modal-container" >
+            <div class="modal-content">ข้อตกลง <b>CREATE</b> <br> &nbsp; &nbsp; &nbsp; Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Officiis fuga labore
                 aperiam, esse facilis expedita totam. Accusantium ducimus necessitatibus quis quibusdam, doloribus
                 explicabo quae, deserunt commodi veniam voluptas repellat aliquam. Lorem ipsum dolor sit amet,
                 consectetur adipisicing elit. Quasi ab nisi,
@@ -118,12 +39,13 @@
                 Minima, quasi quo. Eveniet in soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Asperiores assumenda deserunt ullam dolorum optio minima debitis ducimus sapiente ex error, quos
                 nulla cum officia tempora cumque magni modi, animi aliquam.
-                <div class="btn_agree" onclick="next_create()">Agree</div> 
+                <div class="btn_agree" onclick="next_create()">Agree</div>
             </div>
         </div>
 
-        <div id="import-wallet" class="modal-container" onclick="modal_close(this)">
-            <div class="modal-content">ข้อตกลง  <b>IMPORT</b> <br> &nbsp; &nbsp; &nbsp; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis fuga labore
+        <div id="import-wallet" class="modal-container" onclick="">
+            <div class="modal-content">ข้อตกลง <b>IMPORT</b> <br> &nbsp; &nbsp; &nbsp; Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Officiis fuga labore
                 aperiam, esse facilis expedita totam. Accusantium ducimus necessitatibus quis quibusdam, doloribus
                 explicabo quae, deserunt commodi veniam voluptas repellat aliquam. Lorem ipsum dolor sit amet,
                 consectetur adipisicing elit. Quasi ab nisi,
@@ -131,13 +53,14 @@
                 Minima, quasi quo. Eveniet in soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Asperiores assumenda deserunt ullam dolorum optio minima debitis ducimus sapiente ex error, quos
                 nulla cum officia tempora cumque magni modi, animi aliquam.
-                <div class="btn_agree" onclick="next_import()">Agree</div> 
+                <div class="btn_agree" onclick="next_import()">Agree</div>
             </div>
         </div>
 
 
         <div id="nt_create" class="modal-container">
-            <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="modal-content"
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 Generate Private Key
 
                 <div id="select_seed1" style="display: flex; width: 100%; justify-content: center; margin-top: 15px;">
@@ -154,10 +77,11 @@
                     <div id="tab_create_seed">
 
                         <div id="1_1" class="tab_create_seed1" style="">
-                            <div style="width: 90%; height: 32px; background-color: rgba(240, 240, 240, 1); border-radius: 3px; box-shadow:0 2px 1px 2px gray; margin: 10px 5%;"></div>
+                            <div class="input_style"></div>
                         </div>
 
-                        <div id="1_2" class="tab_create_seed2" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 37px); grid-gap: 10px;">
+                        <div id="1_2" class="tab_create_seed2"
+                            style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 37px); grid-gap: 10px;">
                             <div class="seed_create">1.<span></span></div>
                             <div class="seed_create">2.<span></span></div>
                             <div class="seed_create">3.<span></span></div>
@@ -175,7 +99,7 @@
                     </div>
                 </div>
 
-                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;" onclick="CreateGo()">ต่อไป</button>
+                <div class="btn_done" onclick="CreateGo()">Done</div>
 
             </div>
         </div>
@@ -187,7 +111,8 @@
 
 
         <div id="nt_import" class="modal-container" onclick="/*modal_close(this)*/">
-            <div class="modal-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="modal-content"
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 Import Private Key
                 <div id="select_seed1" style="display: flex; width: 100%; justify-content: center; margin-top: 30px;">
                     <div id="chgLine" onclick="chg_line2(1)" style="width: 35%; text-align: center;">Private Key</div>
@@ -205,10 +130,12 @@
                     <div id="tab_import_seed">
 
                         <div id="2_1" class="tab_import_seed1">
-                            <div style="width: 90%; height: 32px; background-color: rgba(240, 240, 240, 1); border-radius: 3px; box-shadow:0 2px 1px gray; margin: 10px 5%;"></div>
+                            <input class="input_style">
+                            </input>
                         </div>
 
-                        <div id="2_2" class="tab_import_seed2" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 37px); grid-gap: 10px;">
+                        <div id="2_2" class="tab_import_seed2"
+                            style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 37px); grid-gap: 10px;">
                             <div class="seed_import">1.<input class="input_seed" placeholder="example"></div>
                             <div class="seed_import">2.<input class="input_seed"></div>
                             <div class="seed_import">3.<input class="input_seed"></div>
@@ -226,15 +153,15 @@
                     </div>
                 </div>
 
-                <button style="background-color: #435566; width: 60%; color: white; padding: 5px 0;" onclick="modal_close($('#nt_import'))">ต่อไป</button>
+                <div class="btn_done" onclick="CreateGo()">Done</div>
 
-                </div>
             </div>
         </div>
+    </div>
 
     </div>
     <div>
-        <img style="position: absolute;bottom: 0;" width="100%" src="./img/10x_wood.png" alt="">
+        <img width="100%" style="position: absolute; bottom: 0; z-index: -1;" src="./img/moon-bottom.png" alt="">
     </div>
 </body>
 
@@ -250,7 +177,7 @@
 
 <script>
 
-$(function(){
+    $(function () {
         $('#nt_import').css('display', 'none');
         $('#nt_create').css('display', 'none');
     })
@@ -270,75 +197,96 @@ $(function(){
     //     // centerMode: true,
     //     focusOnSelect: true
     // });
+    function close_all(){
+        // func create-wallet
+        $('.modal-container').css('{display : none; transition: display 2s}');
+        $('#nt_create').css('display', 'none');
+        $('.modal-container').css('display', 'none');
+        $('#nt_import').css('display', 'none');
+        // func import-wallet
 
-    document.getElementById('btn_create').addEventListener('click', function() {
-       document.getElementById('create-wallet').style.display = 'flex';
+        $('#bg_close').css('display', 'none');
+    }
+    document.getElementById('btn_create').addEventListener('click', function () {
+        document.getElementById('create-wallet').style.display = 'flex';
+        $('#bg_close').css({
+            'display': 'flex',
+        })
     });
 
-    document.getElementById('btn_import').addEventListener('click', function() {
-       document.getElementById('import-wallet').style.display = 'flex';
+    document.getElementById('btn_import').addEventListener('click', function () {
+        document.getElementById('import-wallet').style.display = 'flex';
+        $('#bg_close').css({
+            'display': 'flex',
+        })
     });
 
     function modal_close(x) {
         console.log('display: none')
         $(x).css("display", "none")
-    //  x.style.display = "none";
+        //  x.style.display = "none";
     }
 
-    function next_create(){
+    function next_create() {
         $('.modal-container').css('{display : none; transition: display 2s}');
         $('#nt_create').css('display', 'flex');
+        $('#bg_close').css({
+            'display': 'flex',
+        })
     }
-    function next_import(){
+    function next_import() {
         $('.modal-container').css('display', 'none');
         $('#nt_import').css('display', 'flex');
+        $('#bg_close').css({
+            'display': 'flex',
+        })
     }
 
 
-    function chg_line1(id){
-        if(id == 2){
+    function chg_line1(id) {
+        if (id == 2) {
             $("#linebg1").addClass('line_active');
             $("#1_1").addClass('active1');
             $("#1_2").addClass('active2');
         }
-        else if(id == 1){
+        else if (id == 1) {
             $("#linebg1").removeClass('line_active');
             $("#1_1").removeClass('active1');
             $("#1_2").removeClass('active2');
         }
     }
 
-    function chg_line2(id){
-        if(id == 2){
+    function chg_line2(id) {
+        if (id == 2) {
             $("#linebg2").addClass('line_active');
             $("#2_1").addClass('active1');
             $("#2_2").addClass('active2');
         }
-        else if(id == 1){
+        else if (id == 1) {
             $("#linebg2").removeClass('line_active');
             $("#2_1").removeClass('active1');
             $("#2_2").removeClass('active2');
         }
     }
 
-    function CreateGo(){
-            Swal.fire({
-                title: 'Are you Sure?!',
-                text: 'Do you remember Seed & Private?',
-                showCancelButton: true,
-                confirmButtonColor: '#DF7861',
-                cancleButtonColor: '#94B49F',
-                confirmButtontext: 'Yes, I remember already.'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
+    function CreateGo() {
+        Swal.fire({
+            title: 'Are you Sure?!',
+            text: 'Do you remember Seed & Private?',
+            showCancelButton: true,
+            confirmButtonColor: '#DF7861',
+            cancleButtonColor: '#94B49F',
+            confirmButtontext: 'Yes, I remember already.'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
                     'Generate Private!',
                     'Your private key generate already.',
                     'success'
-                    )
-                    $('#nt_create').css('display', 'none');
-                }
-            })
+                )
+                $('#nt_create').css('display', 'none');
+            }
+        })
     }
 
 </script>

@@ -27,31 +27,10 @@
     </script>
     <!-- Footer Nav -->
     <link rel="stylesheet" href="./css/footerNav.css">
+    <!-- icon setting -->
+    <link rel="stylesheet" href="./css/icon_setting.css">
 
 </head>
-<style>
-    .hide_scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-
-    .hide_scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        position: relative;
-        width: 90%;
-        overflow: scroll;
-        margin: 20px 5% 0;
-    }
-
-    .body_content {
-        width: 100%;
-        height: 62%;
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>
 
 <body
     style="height: 100vh; margin: 0px; font-family: 'Inter', sans-serif; font-weight: 200; background-color: #514E58;">
@@ -63,11 +42,10 @@
             <div style="position: fixed; left: 0;" id='stars'></div>
             <div style="position: fixed; left: 0;" id='stars2'></div>
             <div style="position: fixed; left: 0;" id='stars3'></div>
-            <div style="position: relative;"><img style="    width: 30px;
-                position: absolute;
-                object-fit: contain;
-                top: 15px;
-                left: 40vw;" src="./img/setting.png" alt=""></div>
+             <!-- icon setting -->
+            <div style="position: relative;" >
+                <img onclick="ToSetting()" class="icon-img-setting" style="" src="./img/setting.png" alt="">
+            </div>
             <span style="font-weight: 400; margin-top: 8vh;">0.00 DOGE</span>
             <span style="font-size: 11px;">Doge ≈ <span id='dogePrice'></span></span>
             <div class="btnSend">
@@ -324,6 +302,9 @@
         else if (id == 1) {
             $('#id_cg_line').removeClass('active_line')
         }
+    }
+    function ToSetting(){
+        window.location.href = "./setting.html";
     }
 </script>
 
