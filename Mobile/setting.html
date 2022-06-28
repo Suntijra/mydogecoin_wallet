@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,36 +15,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
     <title>Send Doge</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-     <!-- Footer Nav -->
-     <link rel="stylesheet" href="./css/footerNav.css">
-       <!-- ACCOUNT FUNCTION -->
+    <!-- Footer Nav -->
+    <link rel="stylesheet" href="./css/footerNav.css">
+    <!-- ACCOUNT FUNCTION -->
     <link rel="stylesheet" href="./css/account.css">
 
     <style>
-        body{
+        body {
             overflow: hidden;
         }
+
         .transacbody {
-        margin: 2vw;
-        padding: 1vw 5vw;
-    }
-    .setTxt{
-        padding:36px 0; font-weight: 600;border-bottom: 1px solid rgba(142, 142, 142, 0.5);
-    }
+            margin: 2vw;
+            padding: 1vw 5vw;
+        }
+
+        .setTxt {
+            padding: 36px 0;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(142, 142, 142, 0.5);
+        }
+
+        .bg-close {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 1;
+            display: none;
+        }
+
+        .modal {
+            position: absolute;
+            width: 60vw;
+            height: 15vh;
+            background-color: #EFEFEF;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 9px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 20px;
+            z-index: 2;
+        }
+
+        .btn_yn {
+            font-size: 12px;
+            background-color: #435566;
+            border-radius: 20px;
+            padding: 10px 30px;
+            margin: 0 20px;
+        }
     </style>
-    
+
+
 
 </head>
+
 <body style="margin: 0; font-family: 'Inter';">
+    <div id="close_id" class="bg-close" onclick="close_modal()"></div>
     <div style="display: flex; height:30vh; background:#20192E; align-items: center; justify-content: center;">
         <div style="color: white;font-size:24px">Setting</div>
     </div>
     <div style="display: flex; justify-content:center; position: absolute; top: 230px; left: 170px;">
         <img src="./img/bob.png" style="object-fit: contain; width: 50px; height: 50px;" alt="">
     </div>
-    <div class="transacbody" >
+    <div class="transacbody">
         <div onclick="btn_about()" id="btn_about_us" class="setTxt">About us</div>
-        <div onclick="" id="btn_language" class="setTxt" >Reset Account</div>
+        <div onclick="warning()" id="btn_language" class="setTxt" style="color: #E92222; border-bottom: 0;">Reset
+            Account</div>
     </div>
     <!-- FOOTER -->
     <footer
@@ -54,16 +96,24 @@
             History</span>
 
         <span id="wallet" class="footerbar" onclick="footerNav(this)">
-            <img style="position: absolute;height: 8vh; bottom :4vh;left: 40vw;" src="./img/dogemelet.png" alt="">
+            <img style="position: absolute;height: 5vh; bottom :30px;left: 43vw;" src="./img/doge_nostar.png" alt="">
             Wallet</span>
         <span class="footerbar" onclick="footerNav(this)">
             <img id="account" style="position: absolute;height: 5vh; bottom :30px;left: 73.6vw;"
                 src="./img/doge_food.png" alt="">
             Account</span>
     </footer>
+
    
-    <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
-    <div id='account_slide'class="account_slide">
+    <div id="modal_reset" class="modal" style="display:none;">
+        <div style="color: #B75252; text-align: center; font-weight: 600; margin-top: 2vh;">Are you sure you want to <br>Reset Account?</div>
+        <div style="text-align: center; color: #AAAAAA; font-size: 9px;">All your data will be lost.</div>
+        <div style="display: flex; justify-content: center; color: white; margin-top: 2vh;">
+            <span class="btn_yn">Yes</span>
+            <span class="btn_yn">No</span>
+        </div>
+    </div>
+    <div id='account_slide' class="account_slide">
         <span onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
             <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
         </span>
@@ -96,7 +146,7 @@
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 7</span>
             </div>
-          
+
         </div>
         <div class="create_account">
             Create New Account
@@ -104,15 +154,25 @@
     </div>
 </body>
 <script>
-    btn_about =()=>{
+    function close_modal() {
+        document.getElementById('close_id').style.display = 'none';
+        document.getElementById('modal_reset').style.display = 'none';
+    }
+    btn_about = () => {
         window.location.href = "./btn_aboutUs.html"
-    } 
-    btn_language =()=>{
+    }
+    btn_language = () => {
         window.location.href = "./btn_language.html"
     }
+    warning = () => {
+        document.getElementById('close_id').style.display = 'block';
+        document.getElementById('modal_reset').style.display = 'block';
+    }
+
     // $(function (){
     //     $('#foot').load('./footer.html')
     // })
 </script>
 <script src="./js/footNav.js"></script>
+
 </html>
