@@ -10,66 +10,112 @@
     <title>Send Doge</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+     <!-- Footer Nav -->
+     <link rel="stylesheet" href="./css/footerNav.css">
+     <!-- ACCOUNT FUNCTION -->
+  <link rel="stylesheet" href="./css/account.css">
 
-    <style>
-        
-      body {
-          font-family: 'Inter', sans-serif;
-          overflow: hidden;
-      }
-      .box_txt {
-            background: #ECECEC;
-            border-radius: 5px;
-            padding: 1vw;
-            border: none;
-        }
-        .img1 {
-            object-fit: contain;
-            height: 5vw;
-        }
-        #btnSend {
-            background-color: #514E58;
-            border-radius: 8px;
-            display: flex;
-            margin: 5vw 0;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-        header {
-            height: 17vw;
-            background: #20192E;
-            display: flex;
-            text-align: center;
-        }
-    </style>
-    <script>
-        $(function () {
-            $("#footer").load("./footer.html");
-        });
-    </script>
-</head>
-<body style="margin:0;padding:0;height: 100%;">
-  <header>
-      <div style="width: 10%;">
-          <img onclick="back()" style="height: 14px;display: flex; align-items: center;padding: 6.5vw;"
-          src="./img/Vector (3).png" alt="">
-      </div>
-      <span style="color: white;width: 80%; display: flex; align-items: center; justify-content: center;">send doge</span>
-  </header>
-</div>
-<div id="btnSend">
-    <img style="width: 26px; object-fit: contain;" src="./img/moon.png" alt="">
-    <div style="padding: 2vw; font-size:20px;color: white;">send</div>
-</div>
-</div>
-<!-- <object data="/Mobile/loadding.html"></object> -->
-<footer id="footer" role="contentinfo"></footer>
+  </head>
+  <body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Courier New', Courier, monospace;">
+<!-- nav -->
+    <div style="display: flex; justify-content: center; align-items: center;width: 101%; height: 70px; background-color: #20192E; color: white; font-size: 20px;">send dogecoin</div>
 
-</body>
-<script>
-  function back() {
-        window.history.back();
-    }
-</script>
+<!-- body -->
+    <div style="width: 90%; height: 100vh; background-color: none; margin: 5vw 5vw 0;">
+
+        <div style="margin: 10vw 0; font-weight: bolder;">Pay to</div>
+        <div style="width: 100%; display: flex; align-items: center;">
+            <div style="background-color: #ececec; width: 70vw; height: 9vw; border-radius: 5px; padding: 1vw; ">
+                <input type="text" placeholder="address" style="font-size: 20px; width: 69vw; height: 8vw; border: none; background: none; outline: none;">
+            </div>
+            <img src="./img/Vectorscan.png" style="height: 8vw; margin-left: 10px;">
+        </div>
+
+        <div style="margin: 10vw 0; font-weight: bolder;">Amount to pay</div>
+        <div>
+            <div style="width: 100%;">
+                <div style="background-color: #ececec; width: 88vw; height: 9vw; border-radius: 5px; padding: 1vw; ">
+                    <input type="text" placeholder="address" style="font-size: 20px; width: 87vw; height: 8vw; border: none; background: none; outline: none;">
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: end; margin: 20px 0 50px; font-size: 15px;">
+                    <span>THB : 2.57฿</span>
+                    <span>USD : 0.05$</span>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <button style="font-size: 20px; height: 9vw; width: 60vw; border-radius: 10px; color: white; box-shadow: 0 2px 2px 2px rgb(195, 195, 195); background-color: #514e58; display: flex; align-items: center; justify-content: center;"><img src="./img/moon.png" style="width: 7vw; margin-right: 10px;">send coin</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+<!-- footer -->
+    <footer
+        style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
+
+        <span id="history" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 3.55vh; top :10px;left: 6.4vw;" src="./img/bone.png" alt="">
+            History</span>
+
+        <span id="wallet" class="footerbar" onclick="footerNav(this)">
+            <img style="position: absolute;height: 8vh; bottom :4vh;left: 40vw;" src="./img/dogemelet.png" alt="">
+            Wallet</span>
+        <span class="footerbar" onclick="footerNav(this)">
+            <img id="account" style="position: absolute;height: 5vh; bottom :30px;left: 73.6vw;"
+                src="./img/doge_food.png" alt="">
+            Account</span>
+    </footer>
+   
+    <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
+    <div id='account_slide'class="account_slide">
+        <span onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
+            <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
+        </span>
+        <div class="scrollbar">
+            <div class="scroll-inside-contant">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 1</span>
+            </div>
+            <div class="scroll-inside-contant">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 2</span>
+            </div>
+            <div class="scroll-inside-contant">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 3</span>
+            </div>
+            <div class="scroll-inside-contant">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 4</span>
+            </div>
+            <div class="scroll-inside-contant">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 5</span>
+            </div>
+            <div class="scroll-inside-contant">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 6</span>
+            </div>
+            <div class="scroll-inside-contant">
+                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+                <span class="accgen"> Account 7</span>
+            </div>
+          
+        </div>
+        <div class="create_account">
+            Create New Account
+        </div>
+
+    <script src="./js/footNav.js"></script>
+    </div>
+  </body>
 </html>
