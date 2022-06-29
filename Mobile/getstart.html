@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bg_star_getstart.css">
 </head>
 
 <style>
@@ -32,7 +34,7 @@ body{
   border-radius: 100px;
   transition: 500ms;
   overflow: hidden;
-  box-shadow: 0 0 0px 0px rgb(107, 107, 107);
+  box-shadow: 0 0 2px 0px rgb(107, 107, 107);
 }
 
 .toggle-button {
@@ -186,6 +188,10 @@ body{
   animation-delay: -4s;
 }
 
+.minidoge{
+  position: absolute;
+}
+
 @keyframes travel {
   0% {
     transform: rotate(-45deg) translateX(45px);
@@ -335,77 +341,9 @@ body{
 }
 /* ----------star main background------------ */
 
-@keyframes star {
-  0% {
-    transform: rotate(-45deg) translateX(180px);
-  }
 
-  50% {
-    transform: rotate(-45deg) translateX(-40px);
-    box-shadow: 10px 0px 12px 2px #FFF;
-  }
 
-  100% {
-    transform: rotate(-45deg) translateX(-60px);
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    box-shadow: none;
-  }
-}
-
-.starmain-1, .starmain-2, .starmain-3, .starmain-4, .starmain-5, .starmain-6 {
-  position: absolute;
-  display: inline-block;
-  border-radius: 50%;
-  background: #FFF;
-  box-shadow: 2px 0 4px 2px rgba(255, 255, 255);
-  width: 7px;
-  height: 7px;
-  border-radius: 10px;
-  transform: rotate(-45deg);
-  box-shadow: 10px 0px 8px 2px #FFF;
-  animation-name: star;
-  animation-duration: 3s;
-  animation-timing-function: ease-out;
-  animation-iteration-count: infinite;
-}
-
-.starmain-1{
-  left: 90px;
-  top: 80px;
-  animation-delay: 0;
-}
-
-.starmain-2{
-  left: 300px;
-  top: 175px;
-  animation-delay: -2s;
-}
-
-.starmain-3{
-  left: 89px;
-  top: 500px;
-  animation-delay: -4s;
-}
-
-.starmain-4{
-  right: 50px;
-  bottom: 250px;
-  animation-delay: -5s;
-}
-
-.starmain-5{
-  right: 30px;
-  bottom: 300px;
-  animation-delay: -3s;
-}
-
-.starmain-6{
-  right: 30px;
-  bottom: 200px;
-  animation-delay: -1s;
-}
+/* -------------------------------------------- */
 
 
 /* ---------------slide right---------------- */
@@ -413,51 +351,81 @@ body{
     position: absolute;
     right: 0;
     width: 100%;
+    height: 100vh;
     background-color: #20192E;
     z-index: 3;
 }
 
-#second{
-    position: absolute;
-    right: 100vw;
-    width: 100%;
-    background-color: #20192E;
-    z-index: 1;
+
+
+.circle{
+  position: relative;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 80vw; 
+  width: 80vw;
+  border-radius: 50%;
+  margin: 20vw 10vw;
+}
+.circle #dogerocket{
+  position: absolute;
+  width: 20vw;
+  /* transform: rotate3d(-100, 0, 0, 180deg) translate(-165px); */
+  animation: gogo_rocket 25s linear infinite;
+}
+.circle #moon{
+  position: absolute;
+  background-color: #ffe8a6;
+  border-radius: 50%;
+  width: 80%;
+  box-shadow: 0 0 20px yellow;
+  animation: gogo_moon 100s linear infinite;
 }
 
-#hide-checkbox:checked + #first{
-    transition-delay: 2s;
-    transition-duration: 2s;
-    left: 100vw;
+@keyframes gogo_rocket {
+  0%{
+    transform:rotate(0deg)
+              translate(-40vw)
+              rotate(270deg);
+  }100%{
+    transform:rotate(-360deg)
+              translate(-40vw)
+              rotate(270deg);
+  }
+}
+@keyframes gogo_moon{
+  0%{
+    transform: rotate(0deg);
+  }100%{
+    transform: rotate(360deg);
+  }
 }
 
-#hide-checkbox:checked + #second{
-    transition-delay: 2s;
-    transition-duration: 2s;
-    left: 0;
-}
+
 
 </style>
 
-<body style="margin: 0;">
+<body style="margin: 0; font-family: 'inter'; font-weight: 400;">
 
     <div style="display: flex; position: relative;">
 
         <div id="first" style="overflow: hidden;">
 
-            <span class="starmain-1"></span>
-            <span class="starmain-2"></span>
-            <span class="starmain-3"></span>
-            <span class="starmain-4"></span>
-            <span class="starmain-5"></span>
-            <span class="starmain-6"></span>
+            <div style="position: fixed; left: 0;"id="stars"></div>
+            <div style="position: fixed; left: 0;"id="stars2"></div>
+            <div style="position: fixed; left: 0;"id="stars3"></div>
+            <div style="position: fixed; left: 0;"id="stars4"></div>
 
-            <div style="display: flex; justify-content: center; align-items: center; height: 60vh;">
-                <img src="/Mobile/img/emojione_full-moonmoonx10.png" style="width: 80%;">
+            <!-- <div></div> -->
+
+            <div class="circle">
+                <img id="dogerocket" src="./img/dogerocket.png">
+                <img id="moon" src="/Mobile/img/emojione_full-moonmoonx10.png">
             </div>
 
             <div>
-                <div style="display: flex; flex-direction: column; align-items: center; height: 40vh; color: #fff;">
+                <div style="display: flex; flex-direction: column; align-items: center; height: 40vh; color: #fff; margin-top: 30vh;">
                     <div>get start</div>
                     <div style="display: flex; justify-content: center; margin-right: 15px;">
                         <input type="checkbox" id="hide-checkbox">
@@ -482,6 +450,7 @@ body{
                             <span class="star star-6"></span>
                             <span class="star star-7"></span>
                             <span class="star star-8"></span>
+                            <img class="minidoge" src="./img/dogerocket.png">
                         </label>
                     </div>
                 </div>
