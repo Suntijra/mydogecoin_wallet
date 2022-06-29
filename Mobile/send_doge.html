@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
     <title>Send Doge</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
 
      <!-- Footer Nav -->
      <link rel="stylesheet" href="./css/footerNav.css">
@@ -16,7 +18,7 @@
   <link rel="stylesheet" href="./css/account.css">
 
   </head>
-  <body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Courier New', Courier, monospace;">
+  <body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Inter' ";>
 <!-- nav -->
     <div style="display: flex; justify-content: center; align-items: center;width: 101%; height: 70px; background-color: #20192E; color: white; font-size: 20px;">send dogecoin</div>
 
@@ -25,7 +27,7 @@
 
         <div style="margin: 10vw 0; font-weight: bolder;">Pay to</div>
         <div style="width: 100%; display: flex; align-items: center;">
-            <div style="background-color: #ececec; width: 70vw; height: 9vw; border-radius: 5px; padding: 1vw; ">
+            <div style="background-color: #ececec; width: 77vw; height: 9vw; border-radius: 5px; padding: 1vw; ">
                 <input type="text" placeholder="address" style="font-size: 20px; width: 69vw; height: 8vw; border: none; background: none; outline: none;">
             </div>
             <img src="./img/Vectorscan.png" style="height: 8vw; margin-left: 10px;">
@@ -42,7 +44,7 @@
                     <span>USD : 0.05$</span>
                 </div>
                 <div style="display: flex; justify-content: center;">
-                    <button style="font-size: 20px; height: 9vw; width: 60vw; border-radius: 10px; color: white; box-shadow: 0 2px 2px 2px rgb(195, 195, 195); background-color: #514e58; display: flex; align-items: center; justify-content: center;"><img src="./img/moon.png" style="width: 7vw; margin-right: 10px;">send coin</button>
+                    <button style="font-size: 20px; height: 12vw; width: 60vw; border-radius: 10px; color: white; box-shadow: 0 2px 2px 2px rgb(195, 195, 195); background-color: #514e58; display: flex; align-items: center; justify-content: center;"><img src="./img/moon.png" style="width: 7vw; margin-right: 10px;">send coin</button>
                 </div>
             </div>
         </div>
@@ -62,17 +64,20 @@
     <footer
         style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
 
-        <span id="history" class="footerbar" onclick="footerNav(this)">
-            <img style="position: absolute;height: 3.55vh; top :10px;left: 6.4vw;" src="./img/bone.png" alt="">
-            History</span>
+        <div id="history" onclick="footerNav(this)" style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 80%; height: 60%; object-fit: contain;"src="./img/bone.png" >
+            <span class="footerbar" >History</span>
+         </div>
 
-        <span id="wallet" class="footerbar" onclick="footerNav(this)">
-            <img style="position: absolute;height: 8vh; bottom :4vh;left: 40vw;" src="./img/dogemelet.png" alt="">
-            Wallet</span>
-        <span class="footerbar" onclick="footerNav(this)">
-            <img id="account" style="position: absolute;height: 5vh; bottom :30px;left: 73.6vw;"
-                src="./img/doge_food.png" alt="">
-            Account</span>
+         <div id="wallet" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png" >
+            <span class="footerbar" >Wallet</span>    
+        </div>
+
+        <div id="account" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img  style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png" >
+            <span class="footerbar" >Account</span>   
+        </div>
     </footer>
    
     <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
