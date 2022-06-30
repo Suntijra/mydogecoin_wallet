@@ -1,15 +1,15 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://santi:Santi!12321@157.245.59.56:27018/?authSource=admin&readPreference=primary&directConnection=true&ssl=false";
-
-function Registerdb(user,pass,S_reset,S_login){
+function querytest(){
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydogecoin-wallet");
-        var myobj = { username: `${user}`, password: `${pass}`, status_reset: `${S_reset}`, status_login: `${S_login}` };
-        dbo.collection("register").insertOne(myobj, function(err, res) {
+        var query = { username : 'lek' };
+        dbo.collection("register").find(query).toArray(function(err, result) {
           if (err) throw err;
-          console.log("1 document inserted");
+          console.log(result);
           db.close();
         });
       });
 }
+querytest()
