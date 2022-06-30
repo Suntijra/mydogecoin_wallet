@@ -14,19 +14,38 @@
 </head>
 
 <style>
-body{
+
+@media only screen and (orientation:portrait) {
+  body {
+    height: 100vw;
+    transform: rotate(0deg);
+    transform: rotate(0deg);
   overflow: hidden;
+  box-sizing: border-box;
+  }
+}
+
+* {
+  box-sizing: inherit;
+}
+
+
+body{
+  transform: rotate(0deg);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 #hide-checkbox {
+  display: none;
   opacity: 0;
   height: 0;
   width: 0;
+  background-color: none;
 }
 
 .toggle {
   position: relative;
-  cursor: pointer;
   display: inline-block;
   width: 150px;
   height: 65px;
@@ -166,7 +185,7 @@ body{
   transform: rotate(-45deg);
   box-shadow: 5px 0px 4px 1px #FFF;
   animation-name: travel;
-  animation-duration: 1.5s;
+  animation-duration: 3s;
   animation-timing-function: ease-out;
   animation-iteration-count: infinite;
 }
@@ -190,6 +209,23 @@ body{
 
 .minidoge{
   position: absolute;
+  width: 7vw;
+  right: 5vw;
+  top: 4vw;
+  animation: minirocket 3s linear infinite;
+}
+@keyframes minirocket {
+  0%{
+    transform: rotate(0deg) translateX(0px);
+  }25%{
+    transform: rotate(-12.5deg) translateX(-10px);
+  }50%{
+    transform: rotate(12.5deg) translateX(-20px);
+  }75%{
+    transform: rotate(-12.5deg) translateX(-10px);
+  }100%{
+    transform: rotate(0deg) translatex(0px);
+  }
 }
 
 @keyframes travel {
@@ -339,6 +375,10 @@ body{
   top: 5px;
   animation-delay: -2s;
 }
+#hide-checkbox:checked + .toggle .minidoge{
+  right: 40vw;
+  transition: 2s;
+}
 /* ----------star main background------------ */
 
 
@@ -408,7 +448,7 @@ body{
 
 <body style="margin: 0; font-family: 'inter'; font-weight: 400;">
 
-    <div style="display: flex; position: relative;">
+    <div style="position: relative;">
 
         <div id="first" style="overflow: hidden;">
 
@@ -426,10 +466,10 @@ body{
 
             <div>
                 <div style="display: flex; flex-direction: column; align-items: center; height: 40vh; color: #fff; margin-top: 30vh;">
-                    <div>get start</div>
-                    <div style="display: flex; justify-content: center; margin-right: 15px;">
+                    <div style="padding-bottom: 10px;">get start</div>
+                    <div style="display: flex; justify-content: center;">
                         <input type="checkbox" id="hide-checkbox">
-                        <label for="hide-checkbox" class="toggle" onchange="opensignin()">
+                        <label for="hide-checkbox" class="toggle" onclick="setTimeout(opensignin, 1000)">
 
                             <span class="toggle-button">
                                 <span class="crater crater-1"></span>
@@ -458,12 +498,6 @@ body{
 
         </div>
 
-
-        <div id="second" style="display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; width: 100%;">
-            <span>MoonDoge</span>
-            <img src="/Mobile/img/emojione_full-moonmoonx10.png" style="width: 80%;">
-        </div>
-
     </div>
 </body>
 
@@ -471,16 +505,7 @@ body{
 
 
 function opensignin(){
-    console.log("hello")
-    alert('asdsadasdas')
-    if($('#hide-checkbox').is(':checked')){
-        alert('asdsadsa')
-        $('#first').addClass('first-active')
-        $('#second').addClass('second-active')
-    }
-    else{
-        alert('sdasdas')
-    }
+  window.location.href = "./import-and-create.html"
 }
 
 </script>
