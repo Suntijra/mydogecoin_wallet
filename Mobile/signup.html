@@ -151,16 +151,16 @@
                     // footer: '<a href="">Why do I have this issue?</a>'
                 })
             } else {
-                for (let i = 0; i < data.length; i++) {
-                    if (user == data[i].username || (user == data[i].username && data[i].username == true) ) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'This username is already used',
-                        })
-                        console.log('chek')
-                        break
-                    }
-                }
+                axios.post('http://192.168.1.18:8000/api/insert/register', {
+                    username: user,
+                    password: pwd
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         });
     }).catch(err => {
