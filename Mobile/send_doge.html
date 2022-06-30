@@ -20,8 +20,11 @@
   </head>
   <body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Inter' ";>
 <!-- nav -->
-    <div style="display: flex; justify-content: center; align-items: center;width: 101%; height: 70px; background-color: #20192E; color: white; font-size: 20px;">send dogecoin</div>
-
+<div style="display: flex;  background:#20192E;">
+    <img id="back" style="height: 14px; width: 15px;display: flex; align-items: center;padding: 6.5vw;"
+        src="./img/Vector (3).png" alt="">
+    <div style="display: flex; justify-content: center; align-items: center;width: 68%; background-color: #20192E; color: white; font-size: 20px;">send dogecoin</div>
+</div>
 <!-- body -->
     <div style="width: 90%; height: 100vh; background-color: none; margin: 5vw 5vw 0;">
 
@@ -123,4 +126,17 @@
     <script src="./js/footNav.js"></script>
     </div>
   </body>
+
+  <script src="./js/footNav.js"></script>
+<script>
+    $('#back').click(function (e) {
+        document.location.href = './transaction.html'
+    });
+
+    $(function () {
+        $('#foot').load('./footer.html')
+    })
+</script>
+<script src="./js/footNav.js"></script>
+
 </html>
