@@ -4,14 +4,14 @@ const _ = require('lodash')
 // const router = require('./router/Router')
 const app = express()
 const axios = require('axios').default;
-
+const MD5 = require('js-md5');
 
 
 
 const port = 8000
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://santi:Santi!12321@157.245.59.56:27018/?authSource=admin&readPreference=primary&directConnection=true&ssl=false";
-md5 = require('js-md5');
+
 
 
 app.use(bodyParser.json());
@@ -53,77 +53,121 @@ app.get("/api/get/register", async (req, res) => {
     })
 });
 app.get('/', (req, res) => {
-    res.json({ message: 'Ahoy!' });
+    res.json({ message: 'enjoy mydogecoin wallet' });
 });
 
-app.post('/api/insert/register', (req, res) => {
+app.post('/api/insert/register', async (req, res) => {
     // let body = req.body;
-    var username = _.get(req, ["body", "username"]); // phoneno
-    var password = _.get(req, ["body", "password"]); // phoneno
-    if ((username != '' || password != '')
-        || (username != undefined
-            || password != undefined)
-        || (username != null || password != null)
-        || (username != 'null' || password != 'null')
-        || (username != 'undefined'
-            || password != 'undefined')
-        || (username != ' '
-            || password != ' ')) {
-        username = md5(username)
-        password = md5(password)
-        heckuser()
-        // Registerdb(username, password)
 
-        return res.status(200).json({ err: false, message: 'insert completed' })
-    } else {
-        return res.status(400).send({ err: true, message: 'error' })
+    try {
+        let username = _.get(req, ["body", "username"]); // phoneno
+        let password = _.get(req, ["body", "password"]); // phoneno
+        if ((username != '' || password != '')
+            || (username != undefined
+                || password != undefined)
+            || (username != null || password != null)
+            || (username != 'null' || password != 'null')
+            || (username != 'undefined'
+                || password != 'undefined')
+            || (username != ' '
+                || password != ' ')) {
+            username = MD5(username)
+            password = MD5(password)
+            const check_length = await queryUser(username)
+            // let reset_check = await get_all_register()
+            console.log('username ===>',username)
+            // console.log('count',check_length[0], 'object :',check_length[1][0].username)
+
+
+            console.log('position :',0)
+            // console.log('length ==', check_length[0][1].username)
+            if (check_length[0] == 0) {
+                console.log('position :',1)
+                Registerdb(username, password)
+                return res.status(200).json({
+                    Result: 'Register Success',
+                    Code: 200,
+                    status: true
+                })
+            } else if (check_length[1][0].username == username) {
+                console.log('position :',2)
+                if (check_length[1][0].status_reset == true) {
+                    console.log('position :',3)
+                    Registerdb(username, password)
+                    return res.status(200).json({
+                        Result: 'Register Success',
+                        Code: 200,
+                        status: true
+                    })
+                } else {
+                    console.log('position :',4)
+                    return res.status(200).json({
+                        Result: 'Username already exists',
+                        status: false
+                    })
+                }
+
+            }
+            else {
+                console.log('position :',5)
+                return res.status(400).json({
+                    Result: 'Server cannot connect to database',
+                    Code: 404,
+                    status: false,
+                    Log: 1
+                })
+            }
+            // Registerdb(username, password)
+
+            // return res.status(200).json({ err: false, message: 'insert completed' })
+        } else {
+            console.log(5)
+            return res.status(400).json({
+                Result: 'Server cannot connect to database',
+                Code: 404,
+                status: false
+            })
+        }
     }
+    catch (err) {
+        console.log(err)
+        return res.status(400).json({
+            Result: 'Server cannot connect to database',
+            Code: 404,
+            Log: 0
+        })
+    }
+
+
 
 })
 
 
-
+// app.get("/test", async (req, res) => {
+//     data = await  querytest()
+//     return res.status(200).json({
+//         Code: 200,
+//         Result: data
+//     })
+// });
 
 
 app.listen(port, () => {
     console.log('listening on port ' + port)
 })
+async function queryUser(user) {
+    var client = await MongoClient.connect(url)
+    var dbo = await client.db("mydogecoin-wallet");
+    var query = { username: user };
+    var result = await dbo.collection("register").find(query).toArray();
+    return [result.length, result];
 
-function querytest() {
-    MongoClient.connect(url, function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("mydogecoin-wallet");
-        var query = { username: 'lek' };
-        dbo.collection("register").find(query).toArray(function (err, result) {
-            if (err) throw err;
-            console.log(result);
-            db.close();
-        });
-    });
 }
-function checkuser() {
-    axios('http://192.168.1.18:8000/api/get/register').then(res => {
-        console.log(res.data.Result);
-        data = res.data.Result
-        console.log(checkuser())
-    }).catch(err => {
-        console.log(err);
-    }
-    )
-}
+
+
+
 
 async function get_all_register() {
-    // var a;
-    // MongoClient.connect(url, function (err, db) {
-    //     if (err) throw err;
-    //     var dbo = db.db("mydogecoin-wallet");
-    //     dbo.collection("register").find({}).toArray(function (err, result) {
-    //         if (err) throw err;
-    //         console.log(result);
-    //         db.close();
-
-    //     });
-    // });
     var a = await MongoClient.connect(url)
     var dbo = await a.db("mydogecoin-wallet");
     var result = await dbo.collection("register").find({}).toArray();

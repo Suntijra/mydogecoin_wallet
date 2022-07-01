@@ -19,6 +19,8 @@
 <!-- swal2 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<link rel="stylesheet" href="./css/loading.css">
+
 <!-- <link rel="stylesheet" href="./aim.css" > -->
 <style>
     body {
@@ -33,6 +35,14 @@
 </style>
 
 <body>
+    <div id="id_loading" class="loading" onclick="display_close()">
+        <div class="center">
+            <img style="width: 50%; margin: auto;" src="/Mobile/img/coin.gif" alt="">
+            <span style="font-size:30px;color: white;">loading
+                 <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </span>
+        </div>
+    </div>
     <div style="background-image:url(./img/bg.png); 
     width: 100%;
     height: 100vh; 
@@ -133,39 +143,4 @@
 
 </html>
 
-<script>
-
-    axios('http://192.168.1.18:8000/api/get/register').then(res => {
-        console.log(res.data.Result);
-        data = res.data.Result
-
-        document.getElementById('sign_up').addEventListener("click", function () {
-            user = document.getElementById('id_username').value
-            pwd = document.getElementById('id_password').value
-            pwd_cf = document.getElementById('id_password_cf').value
-            if (pwd != pwd_cf) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Password not Match!',
-                    // footer: '<a href="">Why do I have this issue?</a>'
-                })
-            } else {
-                axios.post('http://192.168.1.18:8000/api/insert/register', {
-                    username: user,
-                    password: pwd
-                })
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            }
-        });
-    }).catch(err => {
-        console.log(err);
-    });
-
-
-</script>
+<script src="./js/signup_bn.js"></script>
