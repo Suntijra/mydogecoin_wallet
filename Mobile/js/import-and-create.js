@@ -1,3 +1,14 @@
+const { default: axios } = require("axios");
+JWTToken = localStorage.getItem('token')
+axios.post('http://192.168.1.18:8000/api/post/authen',{
+    headers: {
+        Authorization: "Bearer " + JWTToken
+     }
+}).then(function (response) {
+    console.log(response)
+}).catch(function (error) {
+    console.log(error)
+})
 $(function () {
     $('#nt_import').css('display', 'none');
     $('#nt_create').css('display', 'none');

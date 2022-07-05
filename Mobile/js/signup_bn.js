@@ -1,12 +1,14 @@
 axios('http://192.168.1.18:8000/api/get/register').then(res => {
     // console.log(res.data.Result);
     data = res.data.Result
-
     document.getElementById('sign_up').addEventListener("click", function () {
         user = document.getElementById('id_username').value
         pwd = document.getElementById('id_password').value
         pwd_cf = document.getElementById('id_password_cf').value
-        if (pwd != pwd_cf) {
+        if (user == '' || pwd == '' || pwd_cf == '') {
+            Swal2Alert('error', 'Error', 'Please fill all field')
+        }
+        else if (pwd != pwd_cf) {
             console.log('worng')
             Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
         } else {
@@ -18,17 +20,17 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
                     console.log(response.data.status);
                     let status = response.data.status
                     let result_title = response.data.Result
-                    if(status == true){
-                        // Swal2Alert(title = result_title,icon = 'success')
-                        document.getElementById('id_loading').style.display = 'flex'
-                       setTimeout(() => {
-                        window.location.href = 'login.html'
-                       }, 1000);
-                       
-                    }else{
+                    if (status == true) {
+                        Swal2Alert('success',result_title,'Success')
+                        // document.getElementById('id_loading').style.display = 'flex'
+                        setTimeout(() => {
+                            window.location.href = 'login.html'
+                        }, 1500);
+
+                    } else {
                         Swal2Alert(icon = 'error', title = result_title, text = 'Plase try again')
                     }
-                    
+
                 })
                 .catch(function (error) {
                     console.log(error);

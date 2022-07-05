@@ -5,6 +5,9 @@ const _ = require('lodash')
 const app = express()
 const axios = require('axios').default;
 const MD5 = require('js-md5');
+var jwt = require('jsonwebtoken');
+const jwtsecret = 'Unitdogecoin-wallet';
+var token;
 
 
 
@@ -61,8 +64,8 @@ app.post('/api/insert/register', async (req, res) => {
     // let body = req.body;
 
     try {
-        let username = _.get(req, ["body", "username"]); // phoneno
-        let password = _.get(req, ["body", "password"]); // phoneno
+        let username = _.get(req, ["body", "username"]);
+        let password = _.get(req, ["body", "password"]);
         if ((username != '' || password != '')
             || (username != undefined
                 || password != undefined)
@@ -76,14 +79,14 @@ app.post('/api/insert/register', async (req, res) => {
             password = MD5(password)
             const check_length = await queryUser(username)
             // let reset_check = await get_all_register()
-            console.log('username ===>',username)
+            console.log('username ===>', username)
             // console.log('count',check_length[0], 'object :',check_length[1][0].username)
 
 
-            console.log('position :',0)
+            console.log('position :', 0)
             // console.log('length ==', check_length[0][1].username)
             if (check_length[0] == 0) {
-                console.log('position :',1)
+                console.log('position :', 1)
                 Registerdb(username, password)
                 return res.status(200).json({
                     Result: 'Register Success',
@@ -91,9 +94,9 @@ app.post('/api/insert/register', async (req, res) => {
                     status: true
                 })
             } else if (check_length[1][0].username == username) {
-                console.log('position :',2)
+                console.log('position :', 2)
                 if (check_length[1][0].status_reset == true) {
-                    console.log('position :',3)
+                    console.log('position :', 3)
                     Registerdb(username, password)
                     return res.status(200).json({
                         Result: 'Register Success',
@@ -101,7 +104,7 @@ app.post('/api/insert/register', async (req, res) => {
                         status: true
                     })
                 } else {
-                    console.log('position :',4)
+                    console.log('position :', 4)
                     return res.status(200).json({
                         Result: 'Username already exists',
                         status: false
@@ -110,7 +113,7 @@ app.post('/api/insert/register', async (req, res) => {
 
             }
             else {
-                console.log('position :',5)
+                console.log('position :', 5)
                 return res.status(400).json({
                     Result: 'Server cannot connect to database',
                     Code: 404,
@@ -142,20 +145,78 @@ app.post('/api/insert/register', async (req, res) => {
 
 
 })
+app.post('/api/post/login', async (req, res) => {
+    console.log(1)
+    try {
+        console.log(2)
+        let user = _.get(req, ["body", "username"]);
+        let pwd = _.get(req, ["body", "password"]);
+        user = MD5(user)
+        pwd = MD5(pwd)
+        data = await queryLogin(user, pwd)
+        if (data[0] != 0) {
+            token = jwt.sign({ user: data[1] }, jwtsecret);
+            return res.status(200).json({
+                Result: 'Login Success',
+                status: 'success',
+                token: token
+            })
+        } else {
+            return res.status(200).json({
+                Result: 'Login Failed',
+                status: 'error'
+            })
+        }
+    } catch {
+        console.log(3)
+        return res.status(400).json({
+            Result: 'Server cannot connect to database',
+            Code: 404,
+            status: false
+        })
+    }
 
-
-// app.get("/test", async (req, res) => {
-//     data = await  querytest()
-//     return res.status(200).json({
-//         Code: 200,
-//         Result: data
-//     })
-// });
+})
+app.post('/api/post/authen', async (req, resp) => {
+    try {
+        let token = req.headers.authorization.split(' ')[1];
+        var decoded = jwt.verify(token, jwtsecret);
+        let user = decoded.user[0].username
+        let pwd = decoded.user[0].password
+        let data = await queryLogin(user, pwd)
+        if (data[0] != 0) {
+            return resp.status(200).json({
+                status: 'ok', 
+                msg: "authen success"
+            })
+        }else{
+            return resp.status(400).json({
+                status: 'error',
+                msg: "authen failed"
+            })
+        }
+    } catch {
+        return resp.status(400).json({
+            Result: 'Server cannot connect to database',
+            Code: 404,
+            status: false
+        })
+    }
+})
 
 
 app.listen(port, () => {
     console.log('listening on port ' + port)
 })
+
+async function queryLogin(user, pass) {
+    var client = await MongoClient.connect(url)
+    var dbo = await client.db("mydogecoin-wallet");
+    var query = { username: user, password: pass };
+    var result = await dbo.collection("register").find(query).toArray();
+    return [result.length, result];
+
+}
 async function queryUser(user) {
     var client = await MongoClient.connect(url)
     var dbo = await client.db("mydogecoin-wallet");
