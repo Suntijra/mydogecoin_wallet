@@ -6,6 +6,8 @@ const app = express()
 const axios = require('axios').default;
 const MD5 = require('js-md5');
 var jwt = require('jsonwebtoken');
+var cors = require('cors')
+app.use(cors())
 const jwtsecret = 'Unitdogecoin-wallet';
 var token;
 
@@ -179,7 +181,15 @@ app.post('/api/post/login', async (req, res) => {
 })
 app.post('/api/post/authen', async (req, resp) => {
     try {
-        let token = req.headers.authorization.split(' ')[1];
+
+        // var  authen = _.get(req, ["headers", "authorization"]);
+        var bearerHeader =  JSON.stringify(req.headers);
+            bearerHeader =  JSON.parse(bearerHeader);
+            console.log('bearerHeader',bearerHeader);
+
+
+        // var header = bearerHeader.authorization;
+        let token = req.headers.authorization.split('Bearer ')[1];
         var decoded = jwt.verify(token, jwtsecret);
         let user = decoded.user[0].username
         let pwd = decoded.user[0].password
@@ -190,12 +200,13 @@ app.post('/api/post/authen', async (req, resp) => {
                 msg: "authen success"
             })
         }else{
-            return resp.status(400).json({
+            return resp.status(200).json({
                 status: 'error',
                 msg: "authen failed"
             })
         }
-    } catch {
+    } catch(err) {
+        console.log(err)
         return resp.status(400).json({
             Result: 'Server cannot connect to database',
             Code: 404,
