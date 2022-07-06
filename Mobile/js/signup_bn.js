@@ -7,10 +7,27 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
         pwd_cf = document.getElementById('id_password_cf').value
         if (user == '' || pwd == '' || pwd_cf == '') {
             Swal2Alert('error', 'Error', 'Please fill all field')
+              Swal.fire({
+                title: 'Error !',
+                text: 'Please fill all field',
+                 imageUrl:'./img/dogehead.png',
+                 imageWidth: 200,
+                 imageHeight: 200,
+                 imageAlt: 'Custom image',
+               })
         }
         else if (pwd != pwd_cf) {
             console.log('worng')
             Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
+            Swal.fire({
+                title: 'Oops..., color',
+                text: 'Password not match',
+                 imageUrl:'./img/moon.png',
+                 imageWidth: 200,
+                 imageHeight: 200,
+                 imageAlt: 'Custom image',
+               })
+            
         } else {
             axios.post('http://192.168.1.18:8000/api/insert/register', {
                 username: user,
@@ -42,16 +59,7 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
     console.log(err);
 });
 
-// Swal2Alert('error','aim','aim2')
-// Swal.fire({
-//     title: 'Sweet!',
-//     text: 'Modal with a custom image.',
-//     imageUrl: 'https://unsplash.it/400/200',
-//     imageWidth: 400,
-//     imageHeight: 200,
-//     imageAlt: 'Custom image',
-//   })
-
+ 
 
 function Swal2Alert(icon = 'success', title = 'Success', text = 'Success') {
     Swal.fire({
