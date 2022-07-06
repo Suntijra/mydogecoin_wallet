@@ -7,22 +7,22 @@ const axios = require('axios').default;
 const MD5 = require('js-md5');
 var jwt = require('jsonwebtoken');
 var cors = require('cors')
-app.use(cors())
 const jwtsecret = 'Unitdogecoin-wallet';
 var token;
-
-
-
 const port = 8000
-var MongoClient = require('mongodb').MongoClient;
+const WAValidator = require('wallet-address-validator');
+const jwt_secretPk = 'mydogecoin-private-key';
+
+
 // server Unit
+var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://dom:dom123@167.99.71.116:27017/?directConnection=true&appName=mongosh+1.5.0&authMechanism=DEFAULT";
 
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors())
 
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
@@ -62,8 +62,8 @@ app.get('/', (req, res) => {
     res.json({ message: 'enjoy mydogecoin wallet' });
 });
 
+// singup ===> insertOne Data
 app.post('/api/insert/register', async (req, res) => {
-    // let body = req.body;
 
     try {
         let username = _.get(req, ["body", "username"]);
@@ -80,13 +80,9 @@ app.post('/api/insert/register', async (req, res) => {
             username = MD5(username)
             password = MD5(password)
             const check_length = await queryUser(username)
-            // let reset_check = await get_all_register()
             console.log('username ===>', username)
-            // console.log('count',check_length[0], 'object :',check_length[1][0].username)
-
 
             console.log('position :', 0)
-            // console.log('length ==', check_length[0][1].username)
             if (check_length[0] == 0) {
                 console.log('position :', 1)
                 Registerdb(username, password)
@@ -123,9 +119,6 @@ app.post('/api/insert/register', async (req, res) => {
                     Log: 1
                 })
             }
-            // Registerdb(username, password)
-
-            // return res.status(200).json({ err: false, message: 'insert completed' })
         } else {
             console.log(5)
             return res.status(400).json({
@@ -147,6 +140,7 @@ app.post('/api/insert/register', async (req, res) => {
 
 
 })
+// login
 app.post('/api/post/login', async (req, res) => {
     console.log(1)
     try {
@@ -179,33 +173,53 @@ app.post('/api/post/login', async (req, res) => {
     }
 
 })
+app.post('/api/post/import-wallet', async (req, res) => {
+    let pk_token = '';
+    try {
+        let pk = _.get(req, ["body", "pk"]);
+        if (pk != '' || pk != undefined || pk != null || pk != 'null' || pk != 'undefined' || pk != ' ') {
+            pk_token = jwt.sign({ pk: pk }, jwt_secretPk);
+            let valid = WAValidator.validate(pk, 'DOGE');
+            if (valid){
+                console.log('This is a valid address');
+                return res.status(200).json({ status: 'ok', pk: pk_token })
+            }
+            else{
+                console.log('Address INVALID');
+                return res.status(200).json({ status: 'fail', pk: pk_token })
+            }       
+            
+        } else {
+            return res.status(200).json({ status: 'Not found pk', pk: pk })
+        }
+    } catch (err) {
+        console.log(err)
+        return res.status(400).json({
+            status: 'fail'
+        })
+    }
+
+})
+// check authorization
 app.post('/api/post/authen', async (req, resp) => {
     try {
-
-        // var  authen = _.get(req, ["headers", "authorization"]);
-        var bearerHeader =  JSON.stringify(req.headers);
-            bearerHeader =  JSON.parse(bearerHeader);
-            console.log('bearerHeader',bearerHeader);
-
-
-        // var header = bearerHeader.authorization;
         let token = req.headers.authorization.split('Bearer ')[1];
-        var decoded = jwt.verify(token, jwtsecret);
+        let decoded = jwt.verify(token, jwtsecret);
         let user = decoded.user[0].username
         let pwd = decoded.user[0].password
         let data = await queryLogin(user, pwd)
         if (data[0] != 0) {
             return resp.status(200).json({
-                status: 'ok', 
+                status: 'ok',
                 msg: "authen success"
             })
-        }else{
+        } else {
             return resp.status(200).json({
                 status: 'error',
-                msg: "authen failed"
+                msg: "not found authen"
             })
         }
-    } catch(err) {
+    } catch (err) {
         console.log(err)
         return resp.status(400).json({
             Result: 'Server cannot connect to database',
