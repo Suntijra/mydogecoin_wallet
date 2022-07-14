@@ -52,11 +52,21 @@ app.use(function (req, res, next) {
 
 //api rounting
 app.get("/api/get/register", async (req, res) => {
-    data = await get_all_register()
-    return res.status(200).json({
-        Result: data,
-        Code: 200
-    })
+    console.log("-------------------------------")
+    console.log('Use API:','/api/get/register')
+    try{
+        data = await get_all_register()
+        return res.status(200).json({
+            Result: data,
+            Code: 200
+        })
+    }
+    catch(err){
+        return res.status(500).json({
+            Result: err,
+            Code: 500
+        })
+    }
 });
 app.get('/', (req, res) => {
     res.json({ message: 'enjoy mydogecoin wallet' });
@@ -64,45 +74,41 @@ app.get('/', (req, res) => {
 
 // singup ===> insertOne Data
 app.post('/api/insert/register', async (req, res) => {
-
+    console.log("-------------------------------")
+    console.log('Use API:','/api/insert/register')
     try {
         let username = _.get(req, ["body", "username"]);
         let password = _.get(req, ["body", "password"]);
-        if ((username != '' || password != '')
-            || (username != undefined
-                || password != undefined)
-            || (username != null || password != null)
-            || (username != 'null' || password != 'null')
-            || (username != 'undefined'
-                || password != 'undefined')
-            || (username != ' '
-                || password != ' ')) {
+        console.log('user pass=====>',username, password.length)
+        if (username.length > 0 && password.length > 0 && typeof(username) === 'string' && typeof(password) === 'string')
+            {
             username = MD5(username)
             password = MD5(password)
             const check_length = await queryUser(username)
-            console.log('username ===>', username)
+            console.log(username)
 
-            console.log('position :', 0)
             if (check_length[0] == 0) {
-                console.log('position :', 1)
+                console.log(0)
                 Registerdb(username, password)
+                console.log('Success')
                 return res.status(200).json({
                     Result: 'Register Success',
                     Code: 200,
                     status: true
                 })
             } else if (check_length[1][0].username == username) {
-                console.log('position :', 2)
-                if (check_length[1][0].status_reset == true) {
-                    console.log('position :', 3)
+                console.log('Check User count :', check_length[1].length)
+                if (check_length[1][check_length[1].length-1].status_reset == true) {
+                    console.log(1)
                     Registerdb(username, password)
+                    console.log('Success')
                     return res.status(200).json({
                         Result: 'Register Success',
                         Code: 200,
                         status: true
                     })
                 } else {
-                    console.log('position :', 4)
+                    console.log('Username already exists')
                     return res.status(200).json({
                         Result: 'Username already exists',
                         status: false
@@ -111,7 +117,6 @@ app.post('/api/insert/register', async (req, res) => {
 
             }
             else {
-                console.log('position :', 5)
                 return res.status(400).json({
                     Result: 'Server cannot connect to database',
                     Code: 404,
@@ -180,15 +185,15 @@ app.post('/api/post/import-wallet', async (req, res) => {
         if (pk != '' || pk != undefined || pk != null || pk != 'null' || pk != 'undefined' || pk != ' ') {
             pk_token = jwt.sign({ pk: pk }, jwt_secretPk);
             let valid = WAValidator.validate(pk, 'DOGE');
-            if (valid){
+            if (valid) {
                 console.log('This is a valid address');
                 return res.status(200).json({ status: 'ok', pk: pk_token })
             }
-            else{
+            else {
                 console.log('Address INVALID');
                 return res.status(200).json({ status: 'fail', pk: pk_token })
-            }       
-            
+            }
+
         } else {
             return res.status(200).json({ status: 'Not found pk', pk: pk })
         }
@@ -265,7 +270,7 @@ function Registerdb(user, pass, S_reset = false, S_login = true) {
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("mydogecoin-wallet");
-        var myobj = { username: `${user}`, password: `${pass}`, status_reset: `${S_reset}`, status_login: `${S_login}` };
+        var myobj = { username: user, password: pass, status_reset: S_reset, status_login: S_login };
         dbo.collection("register").insertOne(myobj, function (err, res) {
             if (err) throw err;
             console.log("1 document inserted");
