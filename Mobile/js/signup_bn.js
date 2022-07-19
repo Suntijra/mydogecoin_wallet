@@ -2,11 +2,12 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
     // console.log(res.data.Result);
     data = res.data.Result
     document.getElementById('sign_up').addEventListener("click", function () {
-        user = document.getElementById('id_username').value
-        pwd = document.getElementById('id_password').value
-        pwd_cf = document.getElementById('id_password_cf').value
-        if (user == '' || pwd == '' || pwd_cf == '') {
-            Swal2Alert('error', 'Error', 'Please fill all field')
+        user = $('#id_username').value();
+        pwd = $('#id_password').value();
+        pwd_cf = $('#id_password_cf').value();
+        var pattern = /^[0-9a-zA-Z]{8,}$/;
+        if (user.match(pattern) && pwd.match(pattern) && pwd_cf.match(pattern)) {
+            // Swal2Alert('error', 'Error', 'Please fill all field')
               Swal.fire({
                 title: 'Error !',
                 text: 'Please fill all field',
@@ -18,7 +19,7 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
         }
         else if (pwd != pwd_cf) {
             console.log('worng')
-            Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
+            // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
             Swal.fire({
                 title: 'Oops..., color',
                 text: 'Password not match',
@@ -38,14 +39,14 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
                     let status = response.data.status
                     let result_title = response.data.Result
                     if (status == true) {
-                        Swal2Alert('success',result_title,'Success')
+                        // Swal2Alert('success',result_title,'Success')
                         // document.getElementById('id_loading').style.display = 'flex'
                         setTimeout(() => {
                             window.location.href = 'login.html'
                         }, 1500);
 
                     } else {
-                        Swal2Alert(icon = 'error', title = result_title, text = 'Plase try again')
+                        // Swal2Alert(icon = 'error', title = result_title, text = 'Plase try again')
                     }
 
                 })

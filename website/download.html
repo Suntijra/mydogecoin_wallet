@@ -137,6 +137,28 @@ font-family: 'Orbitron', sans-serif;}
   }
 }
 
+#download{
+    animation: borderdown 0.5s ease-in-out forwards;
+}
+#about:hover{
+    animation: borderdown 0.5s ease-in-out forwards;
+}
+#contact:hover{
+    animation: borderdown 0.5s ease-in-out forwards;
+}
+#faq:hover{
+    animation: borderdown 0.5s ease-in-out forwards;
+}
+
+@keyframes borderdown {
+    0%{
+        border-bottom: 0px solid rgba(255,255,255,0);
+    }
+    100%{
+        border-bottom: 4px solid rgba(255,255,255,1);
+    }
+}
+
 </style>
 
 <body>
@@ -148,24 +170,24 @@ font-family: 'Orbitron', sans-serif;}
 
             <div style=" width: 100%; display: flex; height: 20vh; align-items: center;     padding: 0 5vw; justify-content: space-between; ">
                 <div style="width: 10%; display: flex; justify-content: start;">
-                <div onclick="window.location.href ='./website.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif;  font-family: 'Press Start 2P', cursive;" >
-                    MOONDOGE
+                    <div onclick="window.location.href ='./website.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif;  font-family: 'Press Start 2P', cursive;" >
+                        MOONDOGE
+                    </div>
                 </div>
-            </div>
-            <div style="display: flex; width:70%; justify-content: end;">
-                <div onclick="window.location.href ='./download.html' " style=" cursor:pointer; color:  white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw;">
-                 Download
+                <div style="display: flex; width:70%; height: 16vh; justify-content: start;">
+                    <div id="download" onclick="window.location.href ='./download.html' " style=" cursor:pointer; color:  white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw 4vw 0;">
+                    Download
+                    </div>
+                    <div id="about" onclick="window.location.href ='./about.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw 4vw 0;">
+                        About
+                    </div>
+                    <div id="contact" onclick="window.location.href ='./contact.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw 4vw 0;">
+                        Contact
+                    </div>
+                    <div id="faq" onclick="window.location.href ='./faq.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw 4vw 0;">
+                        FAQ
+                    </div>
                 </div>
-                <div onclick="window.location.href ='./about.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw;">
-                    About
-                </div>
-                <div onclick="window.location.href ='./contact.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw;">
-                    Contact
-                </div>
-                <div onclick="window.location.href ='./faq.html' " style=" cursor:pointer; color: white; font-family: 'Aclonica', sans-serif; font-family: 'Press Start 2P', cursive; padding: 4vw;">
-                    FAQ
-                </div>
-            </div>
             </div>
             
         
