@@ -54,17 +54,20 @@
     <footer
         style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
 
-        <span id="history" class="footerbar" onclick="footerNav(this)">
-            <img style="position: absolute;height: 3.55vh; top :10px;left: 6.4vw;" src="./img/bone.png" alt="">
-            History</span>
+        <div id="history" onclick="footerNav(this)" style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 80%; height: 60%; object-fit: contain;"src="./img/bone.png" >
+            <span class="footerbar" >History</span>
+         </div>
 
-        <span id="wallet" class="footerbar" onclick="footerNav(this)">
-            <img style="position: absolute;height: 8vh; bottom :4vh;left: 40vw;" src="./img/dogemelet.png" alt="">
-            Wallet</span>
-        <span class="footerbar" onclick="footerNav(this)">
-            <img id="account" style="position: absolute;height: 5vh; bottom :30px;left: 73.6vw;"
-                src="./img/doge_food.png" alt="">
-            Account</span>
+         <div id="wallet" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png" >
+            <span class="footerbar" >Wallet</span>    
+        </div>
+
+        <div id="account" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img  style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png" >
+            <span class="footerbar" >Account</span>   
+        </div>
     </footer>
 
     <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
