@@ -1,4 +1,3 @@
-
 $(function () {
     $('#nt_import').css('display', 'none');
     $('#nt_create').css('display', 'none');
@@ -93,4 +92,21 @@ function CreateGo() {
             $('#nt_create').css('display', 'none');
         }
     })
+}
+createWalet()
+if (localStorage.getItem('token') == null||localStorage.getItem('token').length!=0){
+    window.location.href = "./home.html"
+}
+function createWalet() {
+    document.getElementById("btn_create").addEventListener("click", () => {
+        axios.post("http://192.168.1.18:8000/api/post/create-wallet", {
+            token: localStorage.getItem('token')
+        }).then(function (response) {
+            console.log(response.data)
+            window.location.href = "./home.html"
+        }).catch(function (error) {
+            console.log(error)
+        })
+    })
+
 }

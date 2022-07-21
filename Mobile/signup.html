@@ -8,7 +8,8 @@
     <title>signup</title>
 </head>
 
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +42,12 @@
         <div class="center">
             <img style="width: 50%; margin: auto;" src="/Mobile/img/coin.gif" alt="">
             <span style="font-size:30px;color: white;">loading
-                 <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </span>
         </div>
     </div>
@@ -150,32 +156,32 @@
 
 
 
-    function inp_user(){
+    function inp_user() {
         var user = $('#id_username').val();
-        console.log("word : ",user)
-        console.log("length : ",user.length)
-        if(user.match(pattern)){
-            $('#border_username').css('border','2px solid green');
+        console.log("word : ", user)
+        console.log("length : ", user.length)
+        if (user.match(pattern)) {
+            $('#border_username').css('border', '2px solid green');
             //$('#border_username').css('border-style','solid solid solid none')
             red1 = false;
-            if(user.length >= 8){
+            if (user.length >= 8) {
                 console.info("success")
-            }else{}
+            } else { }
         }
-        else if(!user.match(pattern)){
-            $('#border_username').css('border','2px solid red');
+        else if (!user.match(pattern)) {
+            $('#border_username').css('border', '2px solid red');
             red1 = true;
         }
     }
 
 
-    function inp_pass(){
+    function inp_pass() {
     }
 
 
-    function inp_pas2(){
+    function inp_pas2() {
     }
-    
+
 </script>
 
 </html>

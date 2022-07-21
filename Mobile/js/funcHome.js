@@ -1,4 +1,3 @@
-
 getPriceDOGE()
 function getPriceDOGE() {
     var thb;
@@ -30,19 +29,19 @@ function getPriceDOGE() {
     }, 60000)
 }
 // document.getElementById('doge_balance').innerHTML = substrfn('')
-console.log('test function => ',substrfn('1000.187800'))
+console.log('test function => ', substrfn('1000.187800'))
 
 function substrfn(str1) {
     var index = "";
     for (i = 0; i < str1.length; i++) {
         index += str1[i]
         if (str1[i] == '.') {
-            k = i+4
-            for (j = i+1; j < k ;j++) {
-                if(typeof(str1[j]) != 'undefined' ){
+            k = i + 4
+            for (j = i + 1; j < k; j++) {
+                if (typeof (str1[j]) != 'undefined') {
                     index += str1[j]
                 }
-                else{
+                else {
                     index += '0'
                 }
             }
@@ -55,11 +54,11 @@ function substrfn(str1) {
 }
 
 var change = false
-function hideHide(){
+function hideHide() {
     document.getElementById('get_start_text').classList.add('animetionHide')
     document.getElementById('get_start_text').style.animationName = 'hideme'
 }
-function removeClass_show(){
+function removeClass_show() {
     document.getElementById('get_start_text').classList.remove('animetionHide')
     document.getElementById('get_start_text').style.animationName = '0'
 }
@@ -68,7 +67,7 @@ function slide_down() {
         change = !change
         $("#back_color").addClass('slide_background_active')
         // $('#lotatelol').addClass('lotate_b_foot_active')
-        $('#lotatelol').css('transform', 'rotate(180deg)')     
+        $('#lotatelol').css('transform', 'rotate(180deg)')
         // hideHide()
         setTimeout(() => {
             document.getElementById('get_start_text').style.display = 'none'
@@ -86,19 +85,20 @@ function slide_down() {
     }
 
 }
-// DogeGetBalance()
-function DogeGetBalance(address = 'https://chain.so/api/v2/get_address_balance/DOGETEST/2My1rbK7kgFahUYAqA61yCUMqojGgHRU9Le') {
-    axios.get(address)
-        .then((response, request) => {
-            // response.data.confirmed_balance
-            data = response.data.data.confirmed_balance
-            console.log(data)
-            data = substrfn(data)
-
-            // get DogeGetBalance by id
-            document.getElementById('doge_balance').innerHTML = data + ' DOGE';
-        }).catch(err => {
-            console.log(err)
+console.log('+++++++++++')
+DogeGetBalance()
+async function DogeGetBalance() {
+    console.log("hello balances")
+    await axios.post("http://192.168.1.18:8000/api/post/getbalance", {
+        token: localStorage.getItem('token')
+    }).then
+        ( async function (response) {
+            console.log(response.data)
+            // document.getElementById('doge_balance').innerHTML = response.data.balances + ' DOGE'
+            console.log("response.data>>>",response.data)
+            $('#doge_balance').html(response.data.balance.balances + ' DOGE')
+        }).catch(function (error) {
+            console.log(error);
         })
 }
 
@@ -106,7 +106,7 @@ function DogeGetBalance(address = 'https://chain.so/api/v2/get_address_balance/D
 $(function () {
     $('#foot').load('./footer.html')
 })
-function ToSetting(){
+function ToSetting() {
     window.location.href = "./setting.html";
 }
 

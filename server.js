@@ -207,6 +207,50 @@ app.post('/api/post/import-wallet', async (req, res) => {
     }
 
 })
+app.post('/api/post/create-wallet', async (req, res) => {
+    try {
+        let token = req.body.token;
+        console.log("create wallet:", token)
+        let decoded = jwt.verify(token, jwtsecret);
+        console.log("decoded username:", decoded.username)
+        axios.post("http://167.99.71.116:3000/api/createAddressByUser", {
+            "username": decoded.username
+        }).then((response) => {
+            console.log(response.data)
+            return res.status(200).json({ status: 'ok' })
+        }).catch((error) => {
+            console.log(error)
+            return res.status(400).json({ msg: "cannot connect to server" })
+        })
+        // return res.status(200).json({ msg: '???????????????????' })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ status: 'fail', error: error, msg: 'Server cannot connect to database' })
+    }
+
+
+})
+app.post('/api/post/getbalance', async (req, res) => {
+    try {
+        let token = req.body.token;
+        console.log("token", token)
+        let decoded = jwt.verify(token, jwtsecret);
+        console.log("decoded username:", decoded.username)
+        await axios.post("http://167.99.71.116:3000/api/getbalanceByUser", { "username": decoded.username })
+        .then((response) => {
+            console.log(response.data)
+            return res.status(200).json({ status: 'ok',  balance: response.data })
+        }).catch(error => {
+            console.log(error)
+            return res.status(400).json({ msg: "cannot connect to server" })
+        })
+
+    }
+    catch (error) {
+        console.log(error)
+        return res.status(500).json({ status: 'fail', error: error, msg: 'Server cannot connect to database' })
+    }
+})
 // check authorization
 app.post('/api/post/authen', async (req, resp) => {
     try {
@@ -302,16 +346,16 @@ async function queryToken(token) {
     return [result.length, result];
 }
 var countPreDel = 0;
-setInterval(() =>{
+setInterval(() => {
     countPreDel++
-    console.log("pre reset :",countPreDel)
+    console.log("pre reset :", countPreDel)
     dropTokendb()
-},3600000)
+}, 3600000)
 var ckdropTk = dropTokendb()
 function dropTokendb() {
-    let setday = { h: 0}
+    let setday = { h: 0 }
     let date = new Date()
-    if (setday.h == 0) {
+    if (setday.h == date.getHours()) {
         MongoClient.connect(url, function (err, db) {
             if (err) throw err;
             var dbo = db.db("mydogecoin-wallet");
@@ -326,7 +370,7 @@ function dropTokendb() {
             });
         });
     }
-    else{
+    else {
         console.log("not drop token")
     }
 }
