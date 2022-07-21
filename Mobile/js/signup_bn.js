@@ -2,9 +2,9 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
     // console.log(res.data.Result);
     data = res.data.Result
     document.getElementById('sign_up').addEventListener("click", function () {
-        user = $('#id_username').value();
-        pwd = $('#id_password').value();
-        pwd_cf = $('#id_password_cf').value();
+        user = $('#id_username').val();
+        pwd = $('#id_password').val();
+        pwd_cf = $('#id_password_cf').val();
         var pattern = /^[0-9a-zA-Z]{8,}$/;
         if (user.match(pattern) && pwd.match(pattern) && pwd_cf.match(pattern)) {
             // Swal2Alert('error', 'Error', 'Please fill all field')
@@ -46,7 +46,7 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
                         }, 1500);
 
                     } else {
-                        // Swal2Alert(icon = 'error', title = result_title, text = 'Plase try again')
+                        Swal2Alert(icon = 'error', title = result_title, text = 'Plase try again')
                     }
 
                 })

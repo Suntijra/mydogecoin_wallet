@@ -8,9 +8,9 @@ const MD5 = require('js-md5');
 var jwt = require('jsonwebtoken');
 var cors = require('cors')
 const jwtsecret = 'Unitdogecoin-wallet';
-var token;
 const port = 8000
 const WAValidator = require('wallet-address-validator');
+const { request } = require('express');
 const jwt_secretPk = 'mydogecoin-private-key';
 
 
@@ -53,15 +53,16 @@ app.use(function (req, res, next) {
 //api rounting
 app.get("/api/get/register", async (req, res) => {
     console.log("-------------------------------")
-    console.log('Use API:','/api/get/register')
-    try{
+    console.log('Use API:', '/api/get/register')
+    try {
         data = await get_all_register()
+
         return res.status(200).json({
             Result: data,
             Code: 200
         })
     }
-    catch(err){
+    catch (err) {
         return res.status(500).json({
             Result: err,
             Code: 500
@@ -75,20 +76,18 @@ app.get('/', (req, res) => {
 // singup ===> insertOne Data
 app.post('/api/insert/register', async (req, res) => {
     console.log("-------------------------------")
-    console.log('Use API:','/api/insert/register')
+    console.log('Use API:', '/api/insert/register')
     try {
         let username = _.get(req, ["body", "username"]);
         let password = _.get(req, ["body", "password"]);
-        console.log('user pass=====>',username, password.length)
-        if (username.length > 0 && password.length > 0 && typeof(username) === 'string' && typeof(password) === 'string')
-            {
+        console.log('user pass=====>', username, password.length)
+        if (username.length > 0 && password.length > 0 && typeof (username) === 'string' && typeof (password) === 'string') {
             username = MD5(username)
             password = MD5(password)
             const check_length = await queryUser(username)
             console.log(username)
 
             if (check_length[0] == 0) {
-                console.log(0)
                 Registerdb(username, password)
                 console.log('Success')
                 return res.status(200).json({
@@ -98,8 +97,7 @@ app.post('/api/insert/register', async (req, res) => {
                 })
             } else if (check_length[1][0].username == username) {
                 console.log('Check User count :', check_length[1].length)
-                if (check_length[1][check_length[1].length-1].status_reset == true) {
-                    console.log(1)
+                if (check_length[1][check_length[1].length - 1].status_reset == true) {
                     Registerdb(username, password)
                     console.log('Success')
                     return res.status(200).json({
@@ -145,18 +143,23 @@ app.post('/api/insert/register', async (req, res) => {
 
 
 })
-// login
+// login ===> findOne Database
 app.post('/api/post/login', async (req, res) => {
-    console.log(1)
     try {
-        console.log(2)
         let user = _.get(req, ["body", "username"]);
         let pwd = _.get(req, ["body", "password"]);
         user = MD5(user)
         pwd = MD5(pwd)
-        data = await queryLogin(user, pwd)
+        let date = new Date()
+        let token = pwd + user + "mydogecoin-wallet" + date.getTime() + "Unitdogecoin";
+        let data = await queryLogin(user, pwd)
         if (data[0] != 0) {
-            token = jwt.sign({ user: data[1] }, jwtsecret);
+            // มี username && pass อยู่ในฐานข้อมูล
+            console.log("token:", token)
+            token = jwt.sign({ 'username': user, token: token }, jwtsecret);
+            console.log("token: " + token)
+            insertToken(token)
+            console.log("Insert Token Success")
             return res.status(200).json({
                 Result: 'Login Success',
                 status: 'success',
@@ -169,7 +172,6 @@ app.post('/api/post/login', async (req, res) => {
             })
         }
     } catch {
-        console.log(3)
         return res.status(400).json({
             Result: 'Server cannot connect to database',
             Code: 404,
@@ -209,16 +211,15 @@ app.post('/api/post/import-wallet', async (req, res) => {
 app.post('/api/post/authen', async (req, resp) => {
     try {
         let token = req.headers.authorization.split('Bearer ')[1];
-        let decoded = jwt.verify(token, jwtsecret);
-        let user = decoded.user[0].username
-        let pwd = decoded.user[0].password
-        let data = await queryLogin(user, pwd)
-        if (data[0] != 0) {
+        token = await queryToken(token)
+        // console.log("====>",token[1][0].token)
+        if (token[0] != 0) {
             return resp.status(200).json({
                 status: 'ok',
                 msg: "authen success"
             })
-        } else {
+        }
+        else {
             return resp.status(200).json({
                 status: 'error',
                 msg: "not found authen"
@@ -278,3 +279,56 @@ function Registerdb(user, pass, S_reset = false, S_login = true) {
         });
     });
 }
+
+function insertToken(token) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydogecoin-wallet");
+        var myobj = { token: token };
+        dbo.collection("token").insertOne(myobj, function (err, res) {
+            if (err) throw err;
+            console.log("1 token inserted");
+            db.close();
+        });
+    });
+}
+
+async function queryToken(token) {
+
+    let client = await MongoClient.connect(url)
+    let dbo = await client.db("mydogecoin-wallet");
+    let query = { 'token': token };
+    let result = await dbo.collection("token").find(query).toArray();
+    return [result.length, result];
+}
+var countPreDel = 0;
+setInterval(() =>{
+    countPreDel++
+    console.log("pre reset :",countPreDel)
+    dropTokendb()
+},3600000)
+var ckdropTk = dropTokendb()
+function dropTokendb() {
+    let setday = { h: 0}
+    let date = new Date()
+    if (setday.h == 0) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) throw err;
+            var dbo = db.db("mydogecoin-wallet");
+            dbo.collection("token").drop(function (err, delOK) {
+                if (err) {
+                    console.log('err');
+                    db.close();
+                } else if (delOK) {
+                    console.log("Token collection deleted");
+                    db.close();
+                }
+            });
+        });
+    }
+    else{
+        console.log("not drop token")
+    }
+}
+
+
