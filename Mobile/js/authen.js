@@ -16,18 +16,19 @@ let headersList = {
    }
    
    axios.request(reqOptions).then(function (response) {
-     console.log("authentication :>>>>",response.data.msg);
+    
      if(response.data.status == 'ok'){
-         alert('authen success')
-        
+        //  alert('authen success')
+        console.log("authentication :>>>>",response.data.msg);
      }else{
-        alert('authen failed')
-        // window.location.href = './login.html'
+        // alert('authen failed')
+        console.log("authentication :>>>>",response.data.msg);
+        window.location.href = './login.html'
      }
 
    }).catch(function (error) {
         alert('authen failed')
-        // window.location.href = './login.html'
+        window.location.href = './login.html'
         console.log(error);
    })
 

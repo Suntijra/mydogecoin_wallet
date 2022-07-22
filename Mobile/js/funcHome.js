@@ -29,7 +29,6 @@ function getPriceDOGE() {
     }, 60000)
 }
 // document.getElementById('doge_balance').innerHTML = substrfn('')
-console.log('test function => ', substrfn('1000.187800'))
 
 function substrfn(str1) {
     var index = "";

@@ -93,10 +93,16 @@ function CreateGo() {
         }
     })
 }
+
 createWalet()
-if (localStorage.getItem('token') == null||localStorage.getItem('token').length!=0){
+if (localStorage.getItem('addr_count') == 0){
+    console.log("createWalet first")
+    // window.location.href = "./import-and-create.html"
+}else{
+    alert("go to home")
     window.location.href = "./home.html"
 }
+
 function createWalet() {
     document.getElementById("btn_create").addEventListener("click", () => {
         axios.post("http://167.99.71.116:3000/api/post/create-wallet", {
