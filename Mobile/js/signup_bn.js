@@ -1,4 +1,4 @@
-axios('http://192.168.1.18:8000/api/get/register').then(res => {
+axios('http://167.99.71.116:3000/api/get/register').then(res => {
     // console.log(res.data.Result);
     data = res.data.Result
     document.getElementById('sign_up').addEventListener("click", function () {
@@ -30,7 +30,7 @@ axios('http://192.168.1.18:8000/api/get/register').then(res => {
                })
             
         } else {
-            axios.post('http://192.168.1.18:8000/api/insert/register', {
+            axios.post('http://167.99.71.116:3000/api/insert/register', {
                 username: user,
                 password: pwd
             })

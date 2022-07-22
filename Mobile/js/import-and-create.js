@@ -99,7 +99,7 @@ if (localStorage.getItem('token') == null||localStorage.getItem('token').length!
 }
 function createWalet() {
     document.getElementById("btn_create").addEventListener("click", () => {
-        axios.post("http://192.168.1.18:8000/api/post/create-wallet", {
+        axios.post("http://167.99.71.116:3000/api/post/create-wallet", {
             token: localStorage.getItem('token')
         }).then(function (response) {
             console.log(response.data)

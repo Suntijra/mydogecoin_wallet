@@ -24,6 +24,7 @@
     "express": "^4.18.1",
     "js-md5": "^0.7.3",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
     "mongodb": "^4.7.0",
     "nodemon": "^2.0.19",
     "wallet-address-validator": "^0.2.4"

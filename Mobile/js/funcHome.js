@@ -89,7 +89,7 @@ console.log('+++++++++++')
 DogeGetBalance()
 async function DogeGetBalance() {
     console.log("hello balances")
-    await axios.post("http://192.168.1.18:8000/api/post/getbalance", {
+    await axios.post("http://167.99.71.116:3000/api/post/getbalance", {
         token: localStorage.getItem('token')
     }).then
         ( async function (response) {

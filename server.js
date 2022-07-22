@@ -47,6 +47,9 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+app.listen(port, () => {
+    console.log('listening on port ' + port)
+})
 // app.use(router)
 
 
@@ -154,9 +157,9 @@ app.post('/api/post/login', async (req, res) => {
         let token = pwd + user + "mydogecoin-wallet" + date.getTime() + "Unitdogecoin";
         let data = await queryLogin(user, pwd)
         if (data[0] != 0) {
-            // มี username && pass อยู่ในฐานข้อมูล
-            console.log("token:", token)
-            token = jwt.sign({ 'username': user, token: token }, jwtsecret);
+            // check มี username && pass อยู่ในฐานข้อมูล
+            // console.log("token:", token)
+            token = jwt.sign({ 'username': user, token: token }, jwtsecret, { expiresIn: '1D' });
             console.log("token: " + token)
             insertToken(token)
             console.log("Insert Token Success")
@@ -279,11 +282,9 @@ app.post('/api/post/authen', async (req, resp) => {
     }
 })
 
+// =========================
 
-app.listen(port, () => {
-    console.log('listening on port ' + port)
-})
-
+// ======================
 async function queryLogin(user, pass) {
     var client = await MongoClient.connect(url)
     var dbo = await client.db("mydogecoin-wallet");
@@ -345,34 +346,34 @@ async function queryToken(token) {
     let result = await dbo.collection("token").find(query).toArray();
     return [result.length, result];
 }
-var countPreDel = 0;
-setInterval(() => {
-    countPreDel++
-    console.log("pre reset :", countPreDel)
-    dropTokendb()
-}, 3600000)
-var ckdropTk = dropTokendb()
-function dropTokendb() {
-    let setday = { h: 0 }
-    let date = new Date()
-    if (setday.h == date.getHours()) {
-        MongoClient.connect(url, function (err, db) {
-            if (err) throw err;
-            var dbo = db.db("mydogecoin-wallet");
-            dbo.collection("token").drop(function (err, delOK) {
-                if (err) {
-                    console.log('err');
-                    db.close();
-                } else if (delOK) {
-                    console.log("Token collection deleted");
-                    db.close();
-                }
-            });
-        });
-    }
-    else {
-        console.log("not drop token")
-    }
-}
+// var countPreDel = 0;
+// setInterval(() => {
+//     countPreDel++
+//     console.log("pre reset :", countPreDel)
+//     dropTokendb()
+// }, 3600000)
+// var ckdropTk = dropTokendb()
+// function dropTokendb() {
+//     let setday = { h: 0 }
+//     let date = new Date()
+//     if (setday.h == date.getHours()) {
+//         MongoClient.connect(url, function (err, db) {
+//             if (err) throw err;
+//             var dbo = db.db("mydogecoin-wallet");
+//             dbo.collection("token").drop(function (err, delOK) {
+//                 if (err) {
+//                     console.log('err');
+//                     db.close();
+//                 } else if (delOK) {
+//                     console.log("Token collection deleted");
+//                     db.close();
+//                 }
+//             });
+//         });
+//     }
+//     else {
+//         console.log("not drop token")
+//     }
+// }
 
 
