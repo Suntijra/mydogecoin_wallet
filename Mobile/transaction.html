@@ -29,7 +29,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
         $(function () {
             $("#footer").load("./footer.html");
@@ -54,34 +56,38 @@
         margin: 20px 5% 0;
     }
 
-    .fa-check{
-        background-color: #4ECB71; 
+    .fa-check {
+        background-color: #4ECB71;
         color: white;
-        border-radius: 50%; 
-        padding: 0.3vh; 
+        border-radius: 50%;
+        padding: 0.3vh;
         align-items: center;
         margin-right: 10px;
     }
 
-    .pending{
-        width: 100%; 
-        position: absolute; 
+    .pending {
+        width: 100%;
+        position: absolute;
         right: -100vw;
         transition: 0.5s;
     }
-    .history{
-        width: 100%; 
-        position: absolute; 
+
+    .history {
+        width: 100%;
+        position: absolute;
         left: 0vw;
         transition: 0.5s;
     }
-    .active1{
+
+    .active1 {
         left: -100vw;
     }
-    .active2{
+
+    .active2 {
         right: 0vw;
     }
 </style>
+
 <body
     style="height: 100vh; margin: 0px; font-family: 'Inter', sans-serif; font-weight: 200; background-color: #514E58;">
 
@@ -92,25 +98,28 @@
             <div style="position: fixed; left: 0;" id='stars'></div>
             <div style="position: fixed; left: 0;" id='stars2'></div>
             <div style="position: fixed; left: 0;" id='stars3'></div>
-             <!-- icon setting -->
-            <div style="position: relative;" >
+            <!-- icon setting -->
+            <div style="position: relative;">
                 <img onclick="ToSetting()" class="icon-img-setting" style="" src="./img/setting.png" alt="">
             </div>
 
-            
-            <div style= " display: flex; flex-direction: column; width: 100%; height: 100%; align-items: center; justify-content: center;" >
-            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; height: 60%;">
-            <span style="font-weight: 400; ">0.00 DOGE</span>
-            <span style="font-size: 11px;">Doge ≈ <span id='dogePrice'></span></span>
-        </div>
 
-            <div class="btnSend">
-                <img style="width: 30px; object-fit: contain; " src="./img/moon.png" alt="">
-                <div style="position: relative;">
-                    <div id="btnSend" style="padding: 3vw 1.5vw; font-size:20px;color: white; font-weight: 400;">Send Coin</div>
+            <div
+                style=" display: flex; flex-direction: column; width: 100%; height: 100%; align-items: center; justify-content: center;">
+                <div
+                    style="display: flex; align-items: center; justify-content: center; flex-direction: column; height: 60%;">
+                    <span id="doge_balance" style="font-weight: 400; ">0.00 DOGE</span>
+                    <span style="font-size: 11px;">Doge ≈ <span id='dogePrice'></span></span>
+                </div>
+
+                <div class="btnSend">
+                    <img style="width: 30px; object-fit: contain; " src="./img/moon.png" alt="">
+                    <div style="position: relative;">
+                        <div id="btnSend" style="padding: 3vw 1.5vw; font-size:20px;color: white; font-weight: 400;">
+                            Send Coin</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
 
@@ -284,7 +293,10 @@
                                 <span style="font-size: 12px;">Dec 23</span>&nbsp;<span
                                     style="color: gray; font-size: 12px;">to : 0x00003365</span>
                             </div>
-                            <div style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;"><img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending</div>
+                            <div
+                                style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                            </div>
                         </div>
                         <div style="font-size: 20px; font-weight: bolder;">7.92 DOGE</div>
                     </div>
@@ -303,7 +315,10 @@
                                 <span style="font-size: 12px;">Dec 23</span>&nbsp;<span
                                     style="color: gray; font-size: 12px;">from : 0x00005767</span>
                             </div>
-                            <div style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;"><img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending</div>
+                            <div
+                                style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                            </div>
                         </div>
                         <div style="font-size: 20px; font-weight: bolder;">12.22 DOGE</div>
                     </div>
@@ -323,7 +338,9 @@
                                 <span style="font-size: 12px;">Dec 23</span>&nbsp;<span
                                     style="color: gray; font-size: 12px;">form : 0x00006812</span>
                             </div>
-                            <div style="color: rgb(244, 180, 63); font-weight: 600;display: flex; align-items: center;"><img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending</div>
+                            <div style="color: rgb(244, 180, 63); font-weight: 600;display: flex; align-items: center;">
+                                <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                            </div>
                         </div>
                         <div style="font-size: 20px; font-weight: bolder;">5.04 DOGE</div>
                     </div>
@@ -343,7 +360,10 @@
                                 <span style="font-size: 12px;">Dec23 </span>&nbsp;<span
                                     style="color: gray; font-size: 12px;">to : 0x00005675</span>
                             </div>
-                            <div style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;"><img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending</div>
+                            <div
+                                style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                            </div>
                         </div>
                         <div style="font-size: 20px; font-weight: bolder;">6.31 DOGE</div>
                     </div>
@@ -363,7 +383,10 @@
                                 <span style="font-size: 12px;">Dec 21</span>&nbsp;<span
                                     style="color: gray; font-size: 12px;">to : 0x00007871</span>
                             </div>
-                            <div style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;"><img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending</div>
+                            <div
+                                style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                            </div>
                         </div>
                         <div style="font-size: 20px; font-weight: bolder;">2.20 DOGE</div>
                     </div>
@@ -383,7 +406,10 @@
                                 <span style="font-size: 12px;">Dec 20</span>&nbsp;<span
                                     style="color: gray; font-size: 12px;">form : 0x00009965</span>
                             </div>
-                            <div style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;"><img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending</div>
+                            <div
+                                style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                            </div>
                         </div>
                         <div style="font-size: 20px; font-weight: bolder;">0.82 DOGE</div>
                     </div>
@@ -399,20 +425,23 @@
     <footer
         style="position: fixed; background-color: #20192E; height: 9vh;display: flex; align-items: end; justify-content: space-around; bottom: 0; width: 100%;">
 
-        <div id="history" onclick="footerNav(this)" style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-                <img style="width: 121%; height: 77%; object-fit: contain; margin-top: -13px; "src="./img/bonebork.png" >
-                <span class="footerbar" >History</span>
-             </div>
-    
-             <div id="wallet" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-                <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png" >
-                <span class="footerbar" >Wallet</span>    
-            </div>
-    
-            <div id="account" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-                <img  style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png" >
-                <span class="footerbar" >Account</span>   
-            </div>
+        <div id="history" onclick="footerNav(this)"
+            style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 121%; height: 77%; object-fit: contain; margin-top: -13px; " src="./img/bonebork.png">
+            <span class="footerbar">History</span>
+        </div>
+
+        <div id="wallet" onclick="footerNav(this)"
+            style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png">
+            <span class="footerbar">Wallet</span>
+        </div>
+
+        <div id="account" onclick="footerNav(this)"
+            style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png">
+            <span class="footerbar">Account</span>
+        </div>
 
 
 
@@ -452,7 +481,7 @@
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 7</span>
             </div>
-          
+
         </div>
         <div class="create_account">
             Create New Account
@@ -478,7 +507,7 @@
             $('#history').removeClass('active1')
         }
     }
-    function ToSetting(){
+    function ToSetting() {
         window.location.href = "./setting.html";
     }
 </script>
@@ -486,3 +515,23 @@
 </html>
 <!-- authentication -->
 <script src="./js/authen.js"></script>
+
+<script>
+    // DogeGetBalance
+    DogeGetBalance()
+    async function DogeGetBalance() {
+        await axios.post("http://167.99.71.116:3000/api/post/getbalance", {
+            token: localStorage.getItem('token')
+        }).then
+            (async function (response) {
+                console.log(response.data)
+                // document.getElementById('doge_balance').innerHTML = response.data.balances + ' DOGE'
+                console.log("response.data>>>", response.data)
+                $('#doge_balance').html(response.data.balance.balances + ' DOGE')
+            }).catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    
+</script>

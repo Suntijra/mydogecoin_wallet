@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -12,26 +13,30 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
 
-     <!-- Footer Nav -->
-     <link rel="stylesheet" href="./css/footerNav.css">
-     <!-- ACCOUNT FUNCTION -->
-  <link rel="stylesheet" href="./css/account.css">
+    <!-- Footer Nav -->
+    <link rel="stylesheet" href="./css/footerNav.css">
+    <!-- ACCOUNT FUNCTION -->
+    <link rel="stylesheet" href="./css/account.css">
 
-  </head>
-  <body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Inter' ";>
-<!-- nav -->
-<div style="display: flex;  background:#20192E;">
-    <img id="back" style="height: 14px; width: 15px;display: flex; align-items: center;padding: 6.5vw;"
-        src="./img/Vector (3).png" alt="">
-    <div style="display: flex; justify-content: center; align-items: center;width: 68%; background-color: #20192E; color: white; font-size: 20px;">send dogecoin</div>
-</div>
-<!-- body -->
+</head>
+
+<body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Inter' " ;>
+    <!-- nav -->
+    <div style="display: flex;  background:#20192E;">
+        <img id="back" style="height: 14px; width: 15px;display: flex; align-items: center;padding: 6.5vw;"
+            src="./img/Vector (3).png" alt="">
+        <div
+            style="display: flex; justify-content: center; align-items: center;width: 68%; background-color: #20192E; color: white; font-size: 20px;">
+            send dogecoin</div>
+    </div>
+    <!-- body -->
     <div style="width: 90%; height: 100vh; background-color: none; margin: 5vw 5vw 0;">
 
         <div style="margin: 10vw 0; font-weight: bolder;">Pay to</div>
         <div style="width: 100%; display: flex; align-items: center;">
             <div style="background-color: #ececec; width: 77vw; height: 9vw; border-radius: 5px; padding: 1vw; ">
-                <input type="text" placeholder="address" style="font-size: 20px; width: 69vw; height: 8vw; border: none; background: none; outline: none;">
+                <input id="address_tx" type="text" placeholder="address"
+                    style="font-size: 20px; width: 69vw; height: 8vw; border: none; background: none; outline: none;">
             </div>
             <img src="./img/Vectorscan.png" style="height: 8vw; margin-left: 10px;">
         </div>
@@ -40,14 +45,18 @@
         <div>
             <div style="width: 100%;">
                 <div style="background-color: #ececec; width: 88vw; height: 9vw; border-radius: 5px; padding: 1vw; ">
-                    <input type="text" placeholder="address" style="font-size: 20px; width: 87vw; height: 8vw; border: none; background: none; outline: none;">
+                    <input id="amount_tx" type="text" placeholder="amount"
+                        style="font-size: 20px; width: 87vw; height: 8vw; border: none; background: none; outline: none;">
                 </div>
-                <div style="display: flex; flex-direction: column; align-items: end; margin: 20px 0 50px; font-size: 15px;">
+                <div
+                    style="display: flex; flex-direction: column; align-items: end; margin: 20px 0 50px; font-size: 15px;">
                     <span>THB : 2.57฿</span>
                     <span>USD : 0.05$</span>
                 </div>
                 <div style="display: flex; justify-content: center;">
-                    <button style="font-size: 20px; height: 12vw; width: 60vw; border-radius: 10px; color: white; box-shadow: 0 2px 2px 2px rgb(195, 195, 195); background-color: #514e58; display: flex; align-items: center; justify-content: center;"><img src="./img/moon.png" style="width: 7vw; margin-right: 10px;">send coin</button>
+                    <button id="send_tx"
+                        style="font-size: 20px; height: 12vw; width: 60vw; border-radius: 10px; color: white; box-shadow: 0 2px 2px 2px rgb(195, 195, 195); background-color: #514e58; display: flex; align-items: center; justify-content: center;"><img
+                            src="./img/moon.png" style="width: 7vw; margin-right: 10px;">send coin</button>
                 </div>
             </div>
         </div>
@@ -63,28 +72,31 @@
 
 
 
-<!-- footer -->
+    <!-- footer -->
     <footer
         style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
 
-        <div id="history" onclick="footerNav(this)" style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-            <img style="width: 80%; height: 60%; object-fit: contain;"src="./img/bone.png" >
-            <span class="footerbar" >History</span>
-         </div>
-
-         <div id="wallet" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png" >
-            <span class="footerbar" >Wallet</span>    
+        <div id="history" onclick="footerNav(this)"
+            style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 80%; height: 60%; object-fit: contain;" src="./img/bone.png">
+            <span class="footerbar">History</span>
         </div>
 
-        <div id="account" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-            <img  style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png" >
-            <span class="footerbar" >Account</span>   
+        <div id="wallet" onclick="footerNav(this)"
+            style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png">
+            <span class="footerbar">Wallet</span>
+        </div>
+
+        <div id="account" onclick="footerNav(this)"
+            style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png">
+            <span class="footerbar">Account</span>
         </div>
     </footer>
-   
+
     <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
-    <div id='account_slide'class="account_slide">
+    <div id='account_slide' class="account_slide">
         <span onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
             <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
         </span>
@@ -117,17 +129,17 @@
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 7</span>
             </div>
-          
+
         </div>
         <div class="create_account">
             Create New Account
         </div>
 
-    <script src="./js/footNav.js"></script>
+        <script src="./js/footNav.js"></script>
     </div>
-  </body>
+</body>
 
-  <script src="./js/footNav.js"></script>
+<script src="./js/footNav.js"></script>
 <script>
     $('#back').click(function (e) {
         document.location.href = './transaction.html'
@@ -142,3 +154,16 @@
 </html>
 <!-- authentication -->
 <script src="./js/authen.js"></script>
+<script>
+    document.getElementById("send_tx").addEventListener("click", () => {
+        axios.post("http://167.99.71.116:3000/api/sendFrom", {
+            "token": localStorage.getItem("token"),
+            "address": document.getElementById("address_tx").value,
+            "amount": document.getElementById("amount_tx").value
+        }).then((result) => {
+            console.log(result.data)
+        }).catch((err) => {
+            console.log(err)
+        });
+    })
+</script>
