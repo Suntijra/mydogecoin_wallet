@@ -118,6 +118,25 @@
             <span onclick="close_modal()" class="btn_yn">No</span>
         </div>
     </div>
+    <footer
+        style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
+
+        <div id="history" onclick="footerNav(this)" style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 80%; height: 60%; object-fit: contain;"src="./img/bone.png" >
+            <span class="footerbar" >History</span>
+         </div>
+
+         <div id="wallet" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png" >
+            <span class="footerbar" >Wallet</span>    
+        </div>
+
+        <div id="account" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img  style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png" >
+            <span class="footerbar" >Account</span>   
+        </div>
+    </footer>
+
     <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
     <div id='account_slide' class="account_slide">
         <span id="" onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
@@ -152,6 +171,8 @@
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 7</span>
             </div> -->
+
+     
 
         </div>
         <div class="create_account">
