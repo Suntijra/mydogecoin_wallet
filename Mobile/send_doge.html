@@ -17,7 +17,11 @@
     <link rel="stylesheet" href="./css/footerNav.css">
     <!-- ACCOUNT FUNCTION -->
     <link rel="stylesheet" href="./css/account.css">
-
+    <style>
+        .modalScan{
+            display: none;
+        }
+    </style>
 </head>
 
 <body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Inter' " ;>
@@ -38,7 +42,7 @@
                 <input id="address_tx" type="text" placeholder="address"
                     style="font-size: 20px; width: 69vw; height: 8vw; border: none; background: none; outline: none;">
             </div>
-            <img src="./img/Vectorscan.png" style="height: 8vw; margin-left: 10px;">
+            <img id="btn-scan-qr" class="modalScan" onclick="" src="./img/Vectorscan.png" style="height: 8vw; margin-left: 10px;">
         </div>
 
         <div style="margin: 10vw 0; font-weight: bolder;">Amount to pay</div>
@@ -100,8 +104,8 @@
         <span onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
             <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
         </span>
-        <div class="scrollbar">
-            <div class="scroll-inside-contant">
+        <div id="account_list" class="scrollbar">
+            <!-- <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 1</span>
             </div>
@@ -128,7 +132,7 @@
             <div class="scroll-inside-contant">
                 <img style="height: 38px;" src="./img/profilemoon.png" alt="">
                 <span class="accgen"> Account 7</span>
-            </div>
+            </div> -->
 
         </div>
         <div class="create_account">
@@ -141,6 +145,11 @@
 
 <script src="./js/footNav.js"></script>
 <script>
+    
+
+    $('.modalScan').click
+
+
     $('#back').click(function (e) {
         document.location.href = './transaction.html'
     });
@@ -150,6 +159,8 @@
     })
 </script>
 <script src="./js/footNav.js"></script>
+<!--listAccount-->
+<script src="./js/listaccount.js"></script>
 
 </html>
 <!-- authentication -->
