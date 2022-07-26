@@ -1,4 +1,15 @@
 getlistaddr()
+document.getElementById("new_addr").addEventListener("click", () => {
+    axios.post("http://167.99.71.116:3000/api/getnewaddress", {
+        "token": localStorage.getItem("token")
+    }).then((response) => {
+        console.log(response.data)
+        getlistaddr()
+    }).catch((err)=>{
+        console.log(err)
+    })
+})
+
 function getlistaddr() {
     axios.post("http://167.99.71.116:3000/api/listaddress", {
         "token": localStorage.getItem("token")
