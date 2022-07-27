@@ -1,11 +1,11 @@
 
-JWTToken = localStorage.getItem('token')
-
+Token = localStorage.getItem('token')
+User = localStorage.getItem('user')
 let headersList = {
 
         "Access-Control-Allow-Origin" : "*",
         "Content-type": "Application/json",
-        "Authorization": "Bearer " + JWTToken 
+        "Authorization": "Bearer " + Token 
 }
    
    
