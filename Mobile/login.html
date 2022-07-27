@@ -132,6 +132,7 @@
                 let data = result.data
                 console.log(data)
                 if (data.status == "success") {
+                    localStorage.setItem("user", id_user);
                     localStorage.setItem('token', data.token),
                         localStorage.setItem('addr_count', data.addr_count),
                         Swal2Alert('success', data.Result, 'success')

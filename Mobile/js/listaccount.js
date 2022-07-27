@@ -5,7 +5,7 @@ document.getElementById("new_addr").addEventListener("click", () => {
     }).then((response) => {
         console.log(response.data)
         getlistaddr()
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log(err)
     })
 })
