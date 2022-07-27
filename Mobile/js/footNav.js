@@ -8,7 +8,8 @@
         } else if (x.id == "wallet") {
             window.location.href = "./home.html";
         } else {
-            document.getElementById('bg_close').style.height = '100vh';
-            document.getElementById('account_slide').style.height = '50vh';
+            window.location.href = "./setting.html"
+            // document.getElementById('bg_close').style.height = '100vh';
+            // document.getElementById('account_slide').style.height = '50vh';
         }
     }
