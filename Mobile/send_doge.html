@@ -4,36 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Send Doge</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
-    <!--Qrcode-->
-    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
-    <link rel="stylesheet" href="./css/styles.css" />
-    <!-- Footer Nav -->
-    <link rel="stylesheet" href="./css/footerNav.css">
-    <!-- ACCOUNT FUNCTION -->
-    <link rel="stylesheet" href="./css/account.css">
-    <!--swall arert-->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css">
-
-    <style>
-        .modalScan{
-            display: none;
-        }
-    </style>
 </head>
+<link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+<!--Qrcode-->
+<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+<link rel="stylesheet" href="./css/styles.css" />
+<!-- Footer Nav -->
+<link rel="stylesheet" href="./css/footerNav.css">
+<!-- ACCOUNT FUNCTION -->
+<link rel="stylesheet" href="./css/account.css">
+<!--swall arert-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    .modalScan {
+        display: none;
+    }
+</style>
 
 <body style="margin: 0; overflow: hidden;       font-size: 20px;    font-family: 'Inter' " ;>
 
-    
+
 
     <!-- nav -->
     <div style="display: flex;  background:#20192E;">
@@ -45,7 +43,8 @@
     </div>
 
     <!--modalScan-->
-    <div class="modalScan" style="background-color: rgba(0, 0, 0, 0.855); width: 100%; height: 84vh; overflow: hidden; position: fixed;">
+    <div class="modalScan"
+        style="background-color: rgba(0, 0, 0, 0.855); width: 100%; height: 84vh; overflow: hidden; position: fixed;">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <canvas hidden="" id="qr-canvas"></canvas>
         </div>
@@ -60,7 +59,8 @@
                 <input id="address_tx" class="outputData" type="text" placeholder="address"
                     style="font-size: 20px; width: 69vw; height: 8vw; border: none; background: none; outline: none;">
             </div>
-            <img id="btn-scan-qr" class="Scanbtn" onclick="modalScan()" src="./img/Vectorscan.png" style="height: 8vw; margin-left: 10px;">
+            <img id="btn-scan-qr" class="Scanbtn" onclick="modalScan()" src="./img/Vectorscan.png"
+                style="height: 8vw; margin-left: 10px;">
         </div>
 
         <div style="margin: 10vw 0; font-weight: bolder;">Amount to pay</div>
@@ -123,34 +123,6 @@
             <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
         </span>
         <div id="account_list" class="scrollbar">
-            <!-- <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 1</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 2</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 3</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 4</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 5</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 6</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 7</span>
-            </div> -->
 
         </div>
         <div class="create_account">
@@ -161,10 +133,10 @@
 </body>
 <script src="js/qrCodeReader.js"></script>
 <script>
-    
-    function modalScan(){
+
+    function modalScan() {
         console.log("เข้ามาแล้ว")
-        $('.modalScan').css('display','flex')
+        $('.modalScan').css('display', 'flex')
     }
 
     $('#back').click(function (e) {
@@ -183,6 +155,7 @@
 <!-- authentication -->
 <script src="./js/authen.js"></script>
 <script>
+
     document.getElementById("send_tx").addEventListener("click", () => {
 
         swal.fire({
@@ -193,44 +166,53 @@
             confirmButtonText: 'Confirm',
             showLoaderOnConfirm: true,
         }).then((result) => {
-            if(result.isConfirmed){
+            if (result.isConfirmed) {
                 pwd = $('.swal2-input').val();
                 console.log(!!pwd)
-                if(!!pwd == false){
+                if (!!pwd == false) {
                     swal.fire({
                         title: "please input password!",
                         icon: "warning",
                         timer: 1500
                     })
                 }
-                else{
-                        axios.post("http://167.99.71.116:3000/api/sendFrom", {
+                else {
+                    console.log("================>>>>test sendFrom")
+                    axios.post("http://167.99.71.116:3000/api/sendFrom", {
                         "token": localStorage.getItem("token"),
                         "address": document.getElementById("address_tx").value,
                         "amount": document.getElementById("amount_tx").value,
                         "password": pwd
-                        }).then((result) => {
-                            console.log("result =====>",result.data)
-                            swal({
+                    }).then((result) => {
+                        try {
+                            console.log("result =====>", result.data)
+                            swal.fire({
                                 title: 'Success',
                                 icon: 'success',
                             })
-                        }).catch((err) => {
-                            console.log("err ===>",err)
-                            swal.fire({
-                                title: 'Error',
+                        } catch (e) {
+                            swal({
+                                title: 'Fail',
                                 icon: 'error',
-                                text: err.response.data.msg,
-                                timer: 2500
                             })
-                        });
-                    
+                        }
+
+                    }).catch((err) => {
+                        console.log("err ===>", err.data)
+                        swal.fire({
+                            title: 'Error',
+                            icon: 'error',
+                            text: err.data.msg,
+                            timer: 2500
+                        })
+                    });
+
                 }
             }
-                
+
         });
 
 
-        
+
     })
 </script>
