@@ -22,9 +22,16 @@ function getlistaddr() {
         <span class="accgen">${element}</span>
     </div>`
         })
-        document.getElementById("account_list").innerHTML = innerhtml
-        document.getElementById("addrForSend").value = listaccouunt[0]
-        // console.log(innerhtml)
+        if(listaccouunt[0].lenght != 0){
+            $("#addrForSend").append(listaccouunt[0])
+            // document.getElementById("addrForSend").value = listaccouunt[0]
+            console.log("address :",listaccouunt[0])
+        }else{
+            $("#addrForSend").append("NaN")
+            alert("Error")
+            console.error("Error")
+            window.location.href("./login.html")
+        }
     }).catch((err) => {
         console.log(err)
     });

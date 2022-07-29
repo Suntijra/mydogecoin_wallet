@@ -55,9 +55,10 @@
                     <div
                         style="border-radius: 5px; background-color: #f5f5f5; text-align: center; color: #000; padding: 5px 20px; font-size: medium;">
                         
-                        <input id="addrForSend" type="text" value="">
+                        <!-- <input id="addrForSend" type="text" style="outline:none; background:unset;border: none;"> -->
+                        <span id="addrForSend"></span>
                         <div style="float: right;">
-                            <img id="b_foot" src="/Mobile/img/Group.png" style="height: 15px;">
+                            <img id="b_foot" onclick="copyKey()" src="/Mobile/img/Group.png" style="height: 15px;">
                         </div>
                     </div>
                 </div>
@@ -177,4 +178,19 @@
 <!-- listaccount -->
 <script src="./js/listaccount.js"></script>
 
+<script>
+
+function copyKey() {
+    var copyText = document.getElementById("addrForSend");
+    var textArea = document.createElement("textarea");
+    textArea.value = copyText.textContent;
+    console.log("Text Copy type:'",typeof(textArea.value),"'")
+    console.log("Text Copy :'",textArea.value,"'")
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    textArea.remove();
+}
+
+</script>
 </html>
