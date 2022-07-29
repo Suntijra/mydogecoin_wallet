@@ -12,6 +12,8 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <!-- Swal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <!-- Footer Nav -->
@@ -178,6 +180,18 @@
 <!-- listaccount -->
 <script src="./js/listaccount.js"></script>
 
+
+<style>
+    #addrForSend{
+overflow: hidden;
+white-space: nowrap;
+-o-text-overflow: ellipsis;
+-ms-text-overflow: ellipsis;
+text-overflow: ellipsis;
+width: 91px;
+ }
+
+</style>
 <script>
 
 function copyKey() {
@@ -190,6 +204,18 @@ function copyKey() {
     textArea.select();
     document.execCommand("copy");
     textArea.remove();
+    swal.fire({
+        html: `<span style="font-size: 5vw;">Already Copied!</span>`,
+        // timer: 500,
+        position: "bottom",
+        showConfirmButton: false,
+        toast: true,
+        heightAuto: false,
+        background: "#000",
+        color: "#fff",
+        width: '100vw'
+        
+    })
 }
 
 </script>

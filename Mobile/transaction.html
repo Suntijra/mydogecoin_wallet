@@ -532,7 +532,33 @@
                 console.log(error);
             })
     }
+    var data;
+    $(function(){
+        axios.post("http://167.99.71.116:3000/api/listtransactions",{
+            token: localStorage.getItem('token')
+        }).then(async function (response){
+            var html = ``;
+            console.log("DATA HISTORY ======>",response.data)
+            data = await response.data.data
+            // var yao = Object.keys(data);
+            console.log("======>",data.lenght)
+            for(var i = 0; i < data.lenght; i++){
 
-    
+                console.log("index :",data[i])
+            }
+        })
+    })
+
+    // $.ajax({
+    //     data:{
+    //         "token": localStorage.getItem("token")
+    //     },
+    //     type : "Post",
+    //     url: "http://167.99.71.116:3000/api/listtransactions",
+    //     success((response)=>{
+
+    //     })
+
+    // })
 </script>
 <script src="./js/listaccount.js"></script>
