@@ -23,6 +23,7 @@ function getlistaddr() {
     </div>`
         })
         document.getElementById("account_list").innerHTML = innerhtml
+        document.getElementById("addrForSend").value = listaccouunt[0]
         // console.log(innerhtml)
     }).catch((err) => {
         console.log(err)
