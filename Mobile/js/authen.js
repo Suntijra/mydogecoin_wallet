@@ -1,6 +1,6 @@
 
 Token = localStorage.getItem('token')
-User = localStorage.getItem('user')
+// User = localStorage.getItem('user')
 let headersList = {
 
         "Access-Control-Allow-Origin" : "*",
