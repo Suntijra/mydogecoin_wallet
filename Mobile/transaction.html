@@ -586,6 +586,7 @@ function getlistaddr() {
         axios.post("http://167.99.71.116:3000/api/listtransactions",{
             token: localStorage.getItem('token')
         }).then(async function (response){
+            try{
             var sendding = ``;
             var pending = ``;
 
@@ -605,9 +606,7 @@ function getlistaddr() {
 
                 console.log("another address=====>",addressbyuser)
 
-                // Less Word
-                AddReadLess(listtxid[i].txdetail.details[0].address)
-                AddReadLess(listtxid[i].txdetail.details[1].address)
+                
 
 
                 // Check Time
@@ -620,27 +619,34 @@ function getlistaddr() {
                 var year = split_time[3].split("")
                 var newTime = split_time[1]+" "+split_time[2]+" "+year[2]+""+year[3];
                 console.log("new time :",newTime)
+
+                var txAddrDeatils = listtxid[i].txdetail.details;
+                // Less Word
+                AddReadLess(listtxid[i].txdetail.details[0].address)
+                if(txAddrDeatils.lenght > 1)
+                AddReadLess(listtxid[i].txdetail.details[1].address)
+
                 if(listtxid[i].cf == 0){
 
 
                     pending +=`
                         <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                            <img src=${listtxid[i].txdetail.details[0].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                            <img src=${txAddrDeatils[0].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
                                 <div style="display: flex; flex-direction: column; justify-content: space-between;">
                                     <div style="font-size: 20px; font-weight: bolder;">
-                                        ${listtxid[i].txdetail.details[0].category == 'send' ? "Sending" : "Received"}
+                                        ${txAddrDeatils[0].category == 'send' ? "Sending" : "Received"}
                                     </div>
                                     <div>
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;
-                                        <span style="color: gray; font-size: 12px;">${listtxid[i].txdetail.details[0].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                        <span style="color: gray; font-size: 12px;">${txAddrDeatils[0].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
                                     </div>
                                     <div
                                         style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
                                         <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
                                     </div>
                                 </div>
-                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].txdetail.details[0].amount} DOGE</div>
+                                <div style="font-size: 16px; font-weight: bolder;">${txAddrDeatils[0].amount} DOGE</div>
                             </div>
                         </div>`;
                         
@@ -654,19 +660,19 @@ function getlistaddr() {
 
                     sendding +=`
                         <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                            <img src=${listtxid[i].txdetail.details[0].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                            <img src=${txAddrDeatils[0].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
                                 <div style="display: flex; flex-direction: column; justify-content: space-between;">
                                     <div style="font-size: 20px; font-weight: bolder;">
-                                        ${listtxid[i].txdetail.details[0].category == 'send' ? "Sending" : "Received"}
+                                        ${txAddrDeatils[0].category == 'send' ? "Sending" : "Received"}
                                     </div>
                                     <div>
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
-                                            style="color: gray; font-size: 12px;">${listtxid[i].txdetail.details[0].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                            style="color: gray; font-size: 12px;">${txAddrDeatils[0].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
                                     </div>
                                     <div style="color: #4ECB71; font-weight: 600;"><i class="fas fa-check"></i>success</div>
                                 </div>
-                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].txdetail.details[0].amount} DOGE</div>
+                                <div style="font-size: 16px; font-weight: bolder;">${txAddrDeatils[0].amount} DOGE</div>
                             </div>
                         </div>`;
 
@@ -674,61 +680,72 @@ function getlistaddr() {
                 }
 
 
-                console.log("True or False",i,":",(listtxid[i].txdetail.details[1].address == addressbyuser))
+                for(var j = 1; j < txAddrDeatils.lenght; j++){
 
 
-                if(listtxid[i].txdetail.details[1].address == addressbyuser && listtxid[i].cf == 0){
+                console.log("True or False",i,":",(txAddrDeatils[j].address == addressbyuser))
+
+                if(!txAddrDeatils[j].addres){
+                    continue
+                }
+
+
+                if(txAddrDeatils[j].address == addressbyuser && listtxid[i].cf == 0){
 
 
                     pending +=`
                     <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                        <img src=${listtxid[i].txdetail.details[1].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                        <img src=${txAddrDeatils[j].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                         <div style="display: flex; justify-content: space-between; width: 100%;">
                             <div style="display: flex; flex-direction: column; justify-content: space-between;">
                                 <div style="font-size: 20px; font-weight: bolder;">
-                                    ${listtxid[i].txdetail.details[1].category == 'send' ? "Sending" : "Received"}
+                                    ${txAddrDeatils[j].category == 'send' ? "Sending" : "Received"}
                                 </div>
                                 <div>
                                     <span style="font-size: 12px;">${newTime}</span>&nbsp;
-                                    <span style="color: gray; font-size: 12px;">${listtxid[i].txdetail.details[1].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                    <span style="color: gray; font-size: 12px;">${txAddrDeatils[j].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
                                 </div>
                                 <div
                                     style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
                                     <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
                                 </div>
                             </div>
-                            <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].txdetail.details[1].amount} DOGE</div>
+                            <div style="font-size: 16px; font-weight: bolder;">${txAddrDeatils[j].amount} DOGE</div>
                         </div>
                     </div>`;
 
 
-                }else if(listtxid[i].txdetail.details[1].address == addressbyuser && listtxid[i].cf > 0){
+                }else if(txAddrDeatils[j].address == addressbyuser && listtxid[i].cf > 0){
 
 
                     sendding +=`
                         <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                            <img src=${listtxid[i].txdetail.details[1].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                            <img src=${txAddrDeatils[j].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
                                 <div style="display: flex; flex-direction: column; justify-content: space-between;">
                                     <div style="font-size: 20px; font-weight: bolder;">
-                                        ${listtxid[i].txdetail.details[1].category == 'send' ? "Sending" : "Received"}
+                                        ${txAddrDeatils[j].category == 'send' ? "Sending" : "Received"}
                                     </div>
                                     <div>
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
-                                            style="color: gray; font-size: 12px;">${listtxid[i].txdetail.details[1].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                            style="color: gray; font-size: 12px;">${txAddrDeatils[j].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
                                     </div>
                                     <div style="color: #4ECB71; font-weight: 600;"><i class="fas fa-check"></i>success</div>
                                 </div>
-                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].txdetail.details[1].amount} DOGE</div>
+                                <div style="font-size: 16px; font-weight: bolder;">${txAddrDeatils[j].amount} DOGE</div>
                             </div>
                         </div>`;
 
 
                 }
+            }
 
             }
             $('#pending').html(pending);
             $('#history').html(sendding);
+        }catch(err){
+            console.log("Something Error in API :",err)
+        }
         })
 
 
