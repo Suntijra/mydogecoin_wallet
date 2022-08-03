@@ -192,13 +192,13 @@
 
 <style>
     #addrForSend{
-overflow: hidden;
-white-space: nowrap;
--o-text-overflow: ellipsis;
--ms-text-overflow: ellipsis;
-text-overflow: ellipsis;
-width: 91px;
- }
+        overflow: hidden;
+        white-space: nowrap;
+        -o-text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        width: 91px;
+    }
 
 </style>
 <script>
@@ -233,15 +233,20 @@ $(function(){
 
 
 function generateQRCode() {
-    let website = document.getElementById("addrForSend");
-    if (website) {
-        let qrcodeContainer = document.getElementById("qrcode");
-        qrcodeContainer.innerHTML = "";
-        new QRCode(qrcodeContainer, website);
-        document.getElementById("qrcode-container").style.display = "block";
-    } else {
-        alert("Please enter a valid URL");
-    }
+    setTimeout(()=>{
+        let QrTXT = document.getElementById("addrForSend").textContent;
+        if (QrTXT) {
+            let qrcodeContainer = document.getElementById("qrcode");
+            qrcodeContainer.innerHTML = "";
+            new QRCode(qrcodeContainer, QrTXT);
+            $("#qrcode-container").css({'display':'flex','justify-content':'center'})
+            $("#qrcode").css({'padding':'4vw','background':'white','border-radius':'10%'})
+            // document.getElementById("qrcode-container").style.display = "block";
+        } else {
+            alert("Please enter a valid URL");
+        }
+    },1000)
+    
 }
 
 
