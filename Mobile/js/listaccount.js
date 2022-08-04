@@ -9,6 +9,7 @@ getlistaddr()
 //         console.log(err)
 //     })
 // })
+var addressbyuser
 
 function getlistaddr() {
     axios.post("http://167.99.71.116:3000/api/listaddress", {
@@ -26,6 +27,7 @@ function getlistaddr() {
             $("#addrForSend").append(listaccouunt[0])
             // document.getElementById("addrForSend").value = listaccouunt[0]
             console.log("address :",listaccouunt[0])
+            addressbyuser = listaccouunt[0]
         }else{
             $("#addrForSend").append("NaN")
             alert("Error")

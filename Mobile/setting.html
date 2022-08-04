@@ -17,6 +17,8 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Send Doge</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Swal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Footer Nav -->
     <link rel="stylesheet" href="./css/footerNav.css">
     <!-- ACCOUNT FUNCTION -->
@@ -77,7 +79,6 @@
 </head>
 
 <body style="margin: 0; font-family: 'Inter';">
-    <div id="close_id" class="bg-close" onclick="close_modal()"></div>
     <div style="display: flex; height:30vh; background:#20192E; align-items: center; justify-content: center;">
         <div style="color: white;font-size:24px">Setting</div>
     </div>
@@ -86,38 +87,20 @@
     </div>
     <div class="transacbody">
         <div onclick="btn_about()" id="btn_about_us" class="setTxt">About us</div>
-        <div onclick="warning()" id="btn_language" class="setTxt" style="color: #E92222; border-bottom: 0;">Reset
+        <div onclick="removeAcc()" id="btn_language" class="setTxt" style="color: #E92222; border-bottom: 0;">Reset
             Account</div>
     </div>
     <!-- FOOTER -->
-    <footer
-        style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 9vh;display: flex; align-items: end; justify-content: space-around;">
-
-        <div id="history" onclick="footerNav(this)" style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-            <img style="width: 80%; height: 60%; object-fit: contain;"src="./img/bone.png" >
-            <span class="footerbar" >History</span>
-         </div>
-
-         <div id="wallet" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png" >
-            <span class="footerbar" >Wallet</span>    
-        </div>
-
-        <div id="account" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
-            <img  style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png" >
-            <span class="footerbar" >Account</span>   
-        </div>
-    </footer>
 
    
-    <div id="modal_reset" class="modal" style="display:none;">
+    <!-- <div id="modal_reset" class="modal" style="display:none;">
         <div style="color: #B75252; text-align: center; font-weight: 600; margin-top: 2vh;">Are you sure you want to <br>Reset Account?</div>
         <div style="text-align: center; color: #AAAAAA; font-size: 9px;">All your data will be lost.</div>
         <div style="display: flex; justify-content: center; color: white; margin-top: 2vh;">
             <span class="btn_yn">Yes</span>
             <span onclick="close_modal()" class="btn_yn">No</span>
         </div>
-    </div>
+    </div> -->
     <footer
         style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
 
@@ -142,63 +125,69 @@
         <span id="" onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
             <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
         </span>
-        <div id="account_list" class="scrollbar">
-            <!-- <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 1</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 2</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 3</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 4</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 5</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 6</span>
-            </div>
-            <div class="scroll-inside-contant">
-                <img style="height: 38px;" src="./img/profilemoon.png" alt="">
-                <span class="accgen"> Account 7</span>
-            </div> -->
-
-     
-
-        </div>
-        <div class="create_account">
-            Create New Account
-        </div>
     </div>
 </body>
-<script>
-    function close_modal() {
-        document.getElementById('close_id').style.display = 'none';
-        document.getElementById('modal_reset').style.display = 'none';
-    }
-    btn_about = () => {
-        window.location.href = "./btn_aboutUs.html"
-    }
-    btn_language = () => {
-        window.location.href = "./btn_language.html"
-    }
-    warning = () => {
-        document.getElementById('close_id').style.display = 'block';
-        document.getElementById('modal_reset').style.display = 'block';
-    }
 
-    // $(function (){
-    //     $('#foot').load('./footer.html')
-    // })
+
+<script>
+    function removeAcc(){
+        swal.fire({
+            title: "Please, fill password",
+            text: "",
+            input: "password",
+            showCancelButton: true,
+            cancelButtonText: "Cancel",
+            cancelButtonColor: "red",
+            confirmButtonColor: "#59CE8F",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                pwd = $('.swal2-input').val();
+                console.log(!!pwd)
+                if (!!pwd == false) {
+                    swal.fire({
+                        title: "please input password!",
+                        icon: "warning",
+                        timer: 1500,
+                        toast: true
+                    })
+                }
+                else {
+                    console.log("================>>>>test sendFrom")
+                    axios.post("http://167.99.71.116:3000/api/sendFrom", {
+                        "token": localStorage.getItem("token"),
+                        "address": document.getElementById("address_tx").value,
+                        "amount": document.getElementById("amount_tx").value,
+                        "password": pwd
+                    }).then((result) => {
+                        try {
+                            console.log("result =====>", result.data)
+                            swal.fire({
+                                title: 'Success',
+                                icon: 'success',
+                            })
+                        } catch (e) {
+                            swal.fire({
+                                title: 'Fail',
+                                icon: 'error',
+                            })
+                        }
+
+                    }).catch((err) => {
+                        console.log("err ===>", err.data)
+                        swal.fire({
+                            title: 'Error',
+                            icon: 'error',
+                            text: err.data.msg,
+                            timer: 2500
+                        })
+                    });
+
+                }
+            }
+
+        });
+    }
+    
 </script>
 <script src="./js/footNav.js"></script>
 

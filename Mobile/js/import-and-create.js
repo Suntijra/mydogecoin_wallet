@@ -99,7 +99,7 @@ if (localStorage.getItem('addr_count') == 0){
     console.log("createWalet first")
     // window.location.href = "./import-and-create.html"
 }else{
-    alert("go to home")
+    // alert("go to home")
     window.location.href = "./home.html"
 }
 
