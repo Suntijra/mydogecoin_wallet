@@ -104,8 +104,60 @@ async function DogeGetBalance() {
 
 $(function () {
     $('#foot').load('./footer.html')
+    var i = 0;
+    var refresh = setInterval(()=>{
+        i++
+        console.log(i)
+        generateQRCode();
+        
+        if(!!document.getElementById("addrForSend").textContent){
+            clearInterval(refresh)
+        }
+    },1000);
+    refresh
 })
 function ToSetting() {
     window.location.href = "./setting.html";
 }
 
+function copyKey() {
+    var copyText = document.getElementById("addrForSend");
+    var textArea = document.createElement("textarea");
+    textArea.value = copyText.textContent;
+    console.log("Text Copy type:'",typeof(textArea.value),"'")
+    console.log("Text Copy :'",textArea.value,"'")
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    textArea.remove();
+    swal.fire({
+        html: `<span style="font-size: 5vw;">Already Copied!</span>`,
+        // timer: 500,
+        position: "bottom",
+        showConfirmButton: false,
+        toast: true,
+        heightAuto: false,
+        background: "#000",
+        color: "#fff",
+        width: '100vw'
+        
+    })
+}
+
+
+function generateQRCode() {
+    setTimeout(()=>{
+        let QrTXT = document.getElementById("addrForSend").textContent;
+        if (QrTXT) {
+            let qrcodeContainer = document.getElementById("qrcode");
+            qrcodeContainer.innerHTML = "";
+            new QRCode(qrcodeContainer, QrTXT);
+            $("#qrcode-container").css({'display':'flex','justify-content':'center'})
+            $("#qrcode").css({'padding':'4vw','background':'white','border-radius':'10%'})
+            // document.getElementById("qrcode-container").style.display = "block";
+        } else {
+            alert("Please enter a valid URL");
+        }
+    },1000)
+    
+}
