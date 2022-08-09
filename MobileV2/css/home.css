@@ -1,0 +1,75 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  font-family: "Inter";
+  font-weight: 200;
+}
+
+.slide_background {
+  /* background-color: #D19C4B; */
+  width: 100%;
+  height: 70%;
+  position: absolute;
+  bottom: -1vh;
+  transition: height 1s;
+}
+
+.slide_background_active {
+  height: 30%;
+}
+
+.lotate_b_foot {
+  width: 100%;
+  transition-duration: 1s;
+  transform: rotate(0deg);
+}
+
+.background-img {
+  background-image: url("../img/spacebg.png");
+  background-position: bottom;
+  background-size: cover;
+}
+
+.section {
+  width: 100%;
+  background-color: #20192e;
+  color: #fff;
+}
+
+.get-start {
+  color: white;
+  font-size: 20px;
+}
+
+.get-start-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 30vh;
+}
+
+.animetionHide {
+  animation: hideme 0.5s forwards;
+}
+
+@keyframes hideme {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes showme {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+

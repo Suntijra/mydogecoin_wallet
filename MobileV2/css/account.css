@@ -1,0 +1,17 @@
+.scroll-inside-contant {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    width: 80%;
+  }
+  .account_slide {
+    height: 0;
+    width: 100%;
+    transition: height 0.3s;
+    position: fixed;
+    bottom: 0;
+    background-color: #20192e;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -10px 65px white;
+  }

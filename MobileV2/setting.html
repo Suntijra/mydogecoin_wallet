@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>setting</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Send Doge</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Swal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Footer Nav -->
+    <link rel="stylesheet" href="./css/footerNav.css">
+    <!-- ACCOUNT FUNCTION -->
+    <link rel="stylesheet" href="./css/account.css">
+
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .transacbody {
+            margin: 2vw;
+            padding: 1vw 5vw;
+        }
+
+        .setTxt {
+            padding: 36px 0;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(142, 142, 142, 0.5);
+        }
+
+        .bg-close {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 1;
+            display: none;
+        }
+
+        .modal {
+            position: absolute;
+            width: 60vw;
+            height: 17%;
+            background-color: #EFEFEF;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 9px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 20px;
+            z-index: 2;
+        }
+
+        .btn_yn {
+            font-size: 12px;
+            background-color: #435566;
+            border-radius: 20px;
+            padding: 10px 30px;
+            margin: 0 20px;
+        }
+    </style>
+
+
+
+</head>
+
+<body style="margin: 0; font-family: 'Inter';">
+    <div style="display: flex; height:30vh; background:#20192E; align-items: center; justify-content: center;">
+        <div style="color: white;font-size:24px">Setting</div>
+    </div>
+    <div style="display: flex; justify-content:center; ">
+        <img src="./img/bob.png" style="object-fit: contain; width: 50px; height: 50px; margin-top: -25px;" alt="">
+    </div>
+    <div class="transacbody">
+        <div onclick="btn_about()" id="btn_about_us" class="setTxt">About us</div>
+        <div onclick="removeAcc()" id="btn_language" class="setTxt" style="color: #E92222; border-bottom: 0;">Reset
+            Account</div>
+    </div>
+    <!-- FOOTER -->
+
+   
+    <!-- <div id="modal_reset" class="modal" style="display:none;">
+        <div style="color: #B75252; text-align: center; font-weight: 600; margin-top: 2vh;">Are you sure you want to <br>Reset Account?</div>
+        <div style="text-align: center; color: #AAAAAA; font-size: 9px;">All your data will be lost.</div>
+        <div style="display: flex; justify-content: center; color: white; margin-top: 2vh;">
+            <span class="btn_yn">Yes</span>
+            <span onclick="close_modal()" class="btn_yn">No</span>
+        </div>
+    </div> -->
+    <footer
+        style="position: absolute; bottom: 0; width: 100%; background-color: #20192E; height: 8.53vh;display: flex; align-items: end; justify-content: space-around;">
+
+        <div id="history" onclick="footerNav(this)" style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 80%; height: 60%; object-fit: contain;"src="./img/bone.png" >
+            <span class="footerbar" >History</span>
+         </div>
+
+         <div id="wallet" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img style="width: 100%; height: 60%; object-fit: contain; " src="./img/doge_nostar.png" >
+            <span class="footerbar" >Wallet</span>    
+        </div>
+
+        <div id="account" onclick="footerNav(this)"  style="width: 20%; height: 100%; display: flex; justify-content: center; align-items: center;flex-direction: column;">
+            <img  style="width: 90%; height: 60%; object-fit: contain;" src="./img/doge_food.png" >
+            <span class="footerbar" >Setting</span>   
+        </div>
+    </footer>
+
+    <div id="bg_close" class="bg_close" onclick="bg_closeJs()"></div>
+    <div id='account_slide' class="account_slide">
+        <span id="" onclick="bg_closeJs()" style="display: flex; padding: 10px; justify-content: end;">
+            <img style="width: 8vw;" src="./img/bx_xxxxxxxx.png" alt="">
+        </span>
+    </div>
+</body>
+
+
+<script>
+    function removeAcc(){
+        swal.fire({
+            title: "Please, fill password",
+            text: "",
+            input: "password",
+            showCancelButton: true,
+            cancelButtonText: "Cancel",
+            cancelButtonColor: "red",
+            confirmButtonColor: "#59CE8F",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                pwd = $('.swal2-input').val();
+                console.log(!!pwd)
+                if (!!pwd == false) {
+                    swal.fire({
+                        title: "please input password!",
+                        icon: "warning",
+                        timer: 1500,
+                        toast: true
+                    })
+                }
+                else {
+                    console.log("================>>>>test sendFrom")
+                    axios.post("http://167.99.71.116:3000/api/sendFrom", {
+                        "token": localStorage.getItem("token"),
+                        "address": document.getElementById("address_tx").value,
+                        "amount": document.getElementById("amount_tx").value,
+                        "password": pwd
+                    }).then((result) => {
+                        try {
+                            console.log("result =====>", result.data)
+                            swal.fire({
+                                title: 'Success',
+                                icon: 'success',
+                            })
+                        } catch (e) {
+                            swal.fire({
+                                title: 'Fail',
+                                icon: 'error',
+                            })
+                        }
+
+                    }).catch((err) => {
+                        console.log("err ===>", err.data)
+                        swal.fire({
+                            title: 'Error',
+                            icon: 'error',
+                            text: err.data.msg,
+                            timer: 2500
+                        })
+                    });
+
+                }
+            }
+
+        });
+    }
+    
+</script>
+<script src="./js/footNav.js"></script>
+
+</html>
+<!-- authentication -->
+<script src="./js/authen.js"></script>
+<!--listAccount-->
+<script src="./js/listaccount.js"></script>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sign in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bg_star_getstart.css">
+</head>
+
+<style>
+
+@media only screen and (orientation:portrait) {
+  body {
+    height: 100vw;
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  overflow: hidden;
+  box-sizing: border-box;
+  }
+}
+
+* {
+  box-sizing: inherit;
+}
+
+
+body{
+  transform: rotate(0deg);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#hide-checkbox {
+  display: none;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  background-color: none;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 65px;
+  background: #211042;
+  border-radius: 100px;
+  transition: 500ms;
+  overflow: hidden;
+  box-shadow: 0 0 2px 0px rgb(107, 107, 107);
+}
+
+.toggle-button {
+  position: absolute;
+  display: inline-block;
+  top: 5px;
+  left: 3px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #F4DC9F;
+  overflow: hidden;
+  box-shadow: 0 0 35px 4px #F4DC9F;
+  transition: all 500ms ease-out;
+  z-index: 1;
+}
+.crater {
+  position: absolute;
+  display: inline-block;
+  background: #F4DC9F;
+  border-radius: 50%;
+  transition: 500ms;
+}
+
+.crater-1 {
+  background: #FFE8A6;
+  width: 43px;
+  height: 43px;
+  left: 5px;
+  bottom: 5px;
+}
+
+.crater-2 {
+  width: 10px;
+  height: 10px;
+  top: -3.5px;
+  left: 22px;
+}
+
+.crater-3 {
+  width: 8px;
+  height: 8px;
+  top: 10px;
+  right: -2px;
+}
+
+.crater-4 {
+  width: 5px;
+  height: 5px;
+  top: 12px;
+  left: 15px;
+}
+
+.crater-5 {
+  width: 7.5px;
+  height: 7.5px;
+  top: 20px;
+  left: 24px;
+}
+
+.crater-6 {
+  width: 5px;
+  height: 5px;
+  top: 24px;
+  left: 10px;
+}
+
+.crater-7 {
+  width: 12px;
+  height: 12px;
+  bottom: 5px;
+  left: 35px;
+}
+
+.img-back{
+  position: absolute;
+  transition-duration: 2ms;
+  right: 170px;
+  top: 65px;
+}
+
+.star {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+  background: #FFF;
+  box-shadow: 1px 0 2px 1px rgba(255, 255, 255);
+}
+
+.star-1 {
+  width: 1px;
+  height: 1px;
+  right: 80px;
+  bottom: 30px;
+}
+
+.star-2 {
+  width: 1px;
+  height: 1px;
+  right: 55px;
+  top: 15px;
+}
+
+.star-3 {
+  width: 1px;
+  height: 1px;
+  right: 30px;
+  bottom: 7.5px;
+}
+
+.star-4 {
+  width: 1px;
+  height: 1px;
+  right: 70px;
+  bottom: 25px;
+}
+
+.star-5 {
+  width: 1px;
+  height: 1px;
+  right: 15px;
+  bottom: 31px;
+}
+
+.star-6, .star-7, .star-8 {
+  width: 5px;
+  height: 1px;
+  border-radius: 1px;
+  transform: rotate(-45deg);
+  box-shadow: 5px 0px 4px 1px #FFF;
+  animation-name: travel;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+.star-6 {
+  right: 20px;
+  bottom: 20px;
+  animation-delay: -2s;
+}
+
+.star-7 {
+  right: 50px;
+  bottom: 30px;
+}
+
+.star-8 {
+  right: 70px;
+  top: 15px;
+  animation-delay: -4s;
+}
+
+.minidoge{
+  position: absolute;
+  width: 7vw;
+  right: 5vw;
+  top: 4vw;
+  animation: minirocket 3s linear infinite;
+}
+@keyframes minirocket {
+  0%{
+    transform: rotate(0deg) translateX(0px);
+  }25%{
+    transform: rotate(-12.5deg) translateX(-10px);
+  }50%{
+    transform: rotate(12.5deg) translateX(-20px);
+  }75%{
+    transform: rotate(-12.5deg) translateX(-10px);
+  }100%{
+    transform: rotate(0deg) translatex(0px);
+  }
+}
+
+@keyframes travel {
+  0% {
+    transform: rotate(-45deg) translateX(45px);
+  }
+
+  50% {
+    transform: rotate(-45deg) translateX(-10px);
+    box-shadow: 5px 0px 6px 1px #FFF;
+  }
+
+  100% {
+    transform: rotate(-45deg) translateX(-15px);
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+#hide-checkbox:checked + .toggle {
+  background: #211042;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button {
+    position: absolute;
+  display: inline-block;
+  background: #FAEAF1;
+  transform: translateX(89px);
+  box-shadow: 0 0 35px 5px rgba(255, 255, 255);
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater {
+  background: #FAEAF1;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater-1 {
+  background: #FFFFF9;
+  width: 43px;
+  height: 43px;
+  left: -5px;
+  bottom: 5px;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater-2 {
+  width: 10px;
+  height: 10px;
+  top: 3.5px;
+  left: 22px;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater-3 {
+  width: 8px;
+  height: 8px;
+  top: 10px;
+  left: 2px;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater-4 {
+  width: 5px;
+  height: 5px;
+  top: 12px;
+  left: 15px;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater-5 {
+  width: 7.5px;
+  height: 7.5px;
+  top: 20px;
+  left: 24px;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater-6 {
+  width: 5px;
+  height: 5px;
+  top: 24px;
+  left: 10px;
+}
+
+#hide-checkbox:checked + .toggle .toggle-button .crater-7 {
+  width: 12px;
+  height: 12px;
+  bottom: 7px;
+  left: 2px;
+}
+
+#hide-checkbox:checked + .toggle .img-back{
+    transition-duration: 1s;
+    right: 0;
+    top: 0;
+}
+
+#hide-checkbox:checked + .toggle .star{
+  /* animation: move 2s infinite; */
+  transform: none;
+  box-shadow: none;
+}
+
+#hide-checkbox:checked + .toggle .star-1{
+    display: none;
+}
+
+#hide-checkbox:checked + .toggle .star-2{
+    display: none;
+}
+
+#hide-checkbox:checked + .toggle .star-3{
+    display: none;
+}
+
+#hide-checkbox:checked + .toggle .star-4{
+    display: none;
+}
+
+#hide-checkbox:checked + .toggle .star-5{
+    display: none;
+}
+
+
+#hide-checkbox:checked + .toggle .star-6, .toggle .star-7, .toggle .star-8 {
+  width: 5px;
+  height: 1px;
+  border-radius: 1px;
+  transform: rotate(-45deg);
+  box-shadow: 5px 0px 4px 1px #FFF;
+  animation-name: travel;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+#hide-checkbox:checked + .toggle .star-6 {
+  left: 30px;
+  bottom: 40px;
+  animation-delay: -5s;
+}
+
+#hide-checkbox:checked + .toggle .star-7 {
+  left: 10px;
+  bottom: 35px;
+  animation-delay: -9s;
+}
+
+#hide-checkbox:checked + .toggle .star-8 {
+  left: 55px;
+  top: 5px;
+  animation-delay: -2s;
+}
+#hide-checkbox:checked + .toggle .minidoge{
+  right: 40vw;
+  transition: 2s;
+}
+/* ----------star main background------------ */
+
+
+
+/* -------------------------------------------- */
+
+
+/* ---------------slide right---------------- */
+#first{
+    position: absolute;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #20192E;
+    z-index: 3;
+}
+
+
+
+.circle{
+  position: relative;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 80vw; 
+  width: 80vw;
+  border-radius: 50%;
+  margin: 20vw 10vw;
+}
+.circle #dogerocket{
+  position: absolute;
+  width: 20vw;
+  /* transform: rotate3d(-100, 0, 0, 180deg) translate(-165px); */
+  animation: gogo_rocket 25s linear infinite;
+}
+.circle #moon{
+  position: absolute;
+  background-color: #ffe8a6;
+  border-radius: 50%;
+  width: 80%;
+  box-shadow: 0 0 20px yellow;
+  animation: gogo_moon 100s linear infinite;
+}
+
+@keyframes gogo_rocket {
+  0%{
+    transform:rotate(0deg)
+              translate(-40vw)
+              rotate(270deg);
+  }100%{
+    transform:rotate(-360deg)
+              translate(-40vw)
+              rotate(270deg);
+  }
+}
+@keyframes gogo_moon{
+  0%{
+    transform: rotate(0deg);
+  }100%{
+    transform: rotate(360deg);
+  }
+}
+
+
+
+</style>
+
+<body style="margin: 0; font-family: 'inter'; font-weight: 400;">
+
+    <div style="position: relative;">
+
+        <div id="first" style="overflow: hidden;">
+
+            <div style="position: fixed; left: 0;"id="stars"></div>
+            <div style="position: fixed; left: 0;"id="stars2"></div>
+            <div style="position: fixed; left: 0;"id="stars3"></div>
+            <div style="position: fixed; left: 0;"id="stars4"></div>
+
+            <!-- <div></div> -->
+
+            <div class="circle">
+                <img id="dogerocket" src="./img/dogerocket.png">
+                <img id="moon" src="/Mobile/img/emojione_full-moonmoonx10.png">
+            </div>
+
+            <div>
+                <div style="display: flex; flex-direction: column; align-items: center; height: 40vh; color: #fff; margin-top: 30vh;">
+                    <div style="padding-bottom: 10px;">get start</div>
+                    <div style="display: flex; justify-content: center;">
+                        <input type="checkbox" id="hide-checkbox">
+                        <label for="hide-checkbox" class="toggle" onclick="setTimeout(opensignin, 1000).reload(true)">
+
+                            <span class="toggle-button">
+                                <span class="crater crater-1"></span>
+                                <span class="crater crater-2"></span>
+                                <span class="crater crater-3"></span>   
+                                <span class="crater crater-4"></span>
+                                <span class="crater crater-5"></span>
+                                <span class="crater crater-6"></span>
+                                <span class="crater crater-7"></span>
+                            </span>
+
+                            <span class="img-back"> <img src="/Mobile/img/Group 11.png" width="100%"> </span>
+                            <span class="star star-1"></span>
+                            <span class="star star-2"></span>
+                            <span class="star star-3"></span>
+                            <span class="star star-4"></span>
+                            <span class="star star-5"></span>
+                            <span class="star star-6"></span>
+                            <span class="star star-7"></span>
+                            <span class="star star-8"></span>
+                            <img class="minidoge" src="./img/dogerocket.png">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+<script>
+
+
+function opensignin(){
+  window.location.href = "./import-and-create.html"
+}
+
+</script>
+
+</html>
