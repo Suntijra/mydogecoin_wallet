@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign in & sign up</title>
+    <!-- bootstrap5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    @font-face {
+        font-family: 'mydogefont';
+        src: url('./font/strawberry_muffins/Strawberry\ Muffins\ Demo.ttf');
+    }
+
+    .sg {
+        margin-top: 1.5rem;
+    }
+
+    .input-img {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .input-s {
+        width: 45vw;
+        outline: none;
+        border: none;
+        background: none;
+    }
+
+    .input-s::placeholder {
+        color: #fff;
+        text-align: center;
+    }
+
+    .input-s:focus::placeholder {
+        color: transparent;
+    }
+
+    img {
+        width: 80%;
+    }
+
+
+    .sign_btn {
+        background: #F8CF5F;
+        border-radius: 16px;
+        width: 80%;
+    }
+
+    .footerbg {
+        background-color: #E9A700;
+        height: 65vh;
+        border-radius: 36px 36px 0 0;
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+        overflow-x: scroll;
+    }
+</style>
+
+
+
+<body style="background-color: black;font-family:mydogefont;">
+
+    <div class="container-fluid d-flex justify-content-center align-items-center flex-column"
+        style="font-size: 3rem ; height: 35vh;">
+        <span style="font-family:mydogefont;color: #E9A700;">
+            Welcome
+        </span>
+        <span style="font-family:mydogefont;color: #E9A700; font-size: 1rem;"> moondoge dogecoin wallet apps</span>
+    </div>
+    <div id="container" class="container-fluid footerbg">
+        <div class=" d-flex justify-content-around" style="font-size: 1.2rem ">
+            <span id="signin" class="sg">SIGN IN</span>
+            <span id="signup" class="sg">SIGN UP</span>
+        </div>
+
+        <div id="signin_detail" class="d-flex justify-content-center mt-5 flex-column">
+            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                <img src="./img/Groupuserinput.png" alt="">
+                <input class="input-s" type="text" value="" placeholder="username" required
+                    style="position:absolute; left: 35vw;">
+            </div>
+            <br>
+            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                <img src="./img/pass.png" alt="">
+                <input class="input-s" type="text" value="" placeholder="password" required
+                    style="position:absolute;left: 35vw;">
+            </div>
+            <br>
+            <sign-in class="d-flex justify-content-center align-items-center">
+                <btn class="sign_btn d-flex justify-content-center align-items-center fs-4" style="height: 5vh;">Sign in
+                </btn>
+            </sign-in>
+            <br>
+            <div class="text-center">or</div>
+            <br>
+            <div class="text-center text-decoration-underline">sign in with mnemonic</div>
+        </div>
+
+        <div id="signup_detail" class="d-flex d-none justify-content mt-5 flex-column align-items-center"
+            style="height: 40%">
+            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                <img src="./img/Groupuserinput.png" alt="">
+                <input class="input-s" type="text" value="" placeholder="username" required
+                    style="position:absolute; left: 35vw;">
+            </div>
+            <br>
+            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                <img src="./img/pass.png" alt="">
+                <input class="input-s" type="text" value="" placeholder="password" required
+                    style="position:absolute;left: 35vw;">
+            </div>
+            <br>
+            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                <img src="./img/pass.png" alt="">
+                <input class="input-s" type="text" value="" placeholder="confirm password" required
+                    style="position:absolute;left: 35vw;">
+            </div>
+            <br>
+            <label style="justify-self: start;">
+                <input type="checkbox" checked="checked">
+                agree to terms and conditions
+            </label>
+            <br>
+            <sign-up class="d-flex justify-content-center align-items-center">
+                <btn class="sign_btn d-flex justify-content-center align-items-center fs-4"
+                    style="height: 5vh; width: 80vw;">Sign up
+                </btn>
+
+            </sign-up>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+<script>
+    var signin = document.getElementById('signin');
+    var signup = document.getElementById('signup');
+    signin.addEventListener("click", function () {
+        console.log("signin");
+        document.querySelector('#signin_detail').classList.remove("d-none");
+        document.querySelector('#signup_detail').classList.add("d-none");
+    });
+    signup.onclick = function () {
+        console.log("signup");
+        document.querySelector('#signup_detail').classList.remove("d-none");
+        document.querySelector('#signin_detail').classList.add("d-none");
+    }
+</script>
