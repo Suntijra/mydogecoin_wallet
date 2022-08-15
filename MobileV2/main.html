@@ -13,14 +13,177 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
     <style>
-        body{
+        @font-face {
+            font-family: 'mydogefont';
+            src: url('./font/strawberry_muffins/Strawberry\ Muffins\ Demo.ttf');
+        }
+
+        body {
             background-color: black;
+            margin: 0;
+            padding: 0;
+            font-family: 'mydogefont';
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .footer-tm {
+            background-color: #E9A700;
+            border-radius: 12px 12px 0px 0px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .main-top {
+            background-color: #E9A700;
+            border-radius: 0px 0px 36px 36px;
+            transition: height 0.5s;
+            height: 30vh;
+            box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+        }
+
+        img {
+            object-fit: contain;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
     </style>
+
 </head>
-    <main></main>
+
 <body>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements
+            here.
+        </div>
+    </div>
+    <main class="container-fluid">
+        <div class="row" style="height: 40%;">
+            <div id="home_slide_top"
+                class="d-flex main-top flex-column justify-content-center align-items-center position-relative">
+                <div>
+                    <balance class=" d-flex flex-column" style="font-size: 48px;">0.00 DOGE
+                        <span class="text-center" style="font-size: 16px;">doge ~ 2.122</span>
+                    </balance>
+                </div>
+                <div id="optionqr" class="d-none d-block" style="text-align: center; margin-top: 3vh;">
+                    <span style="font-size: 32px;">My QR-Code</span>
+                    <img class="p-2" width="80%" src="./img/qrcode.svg" alt="">
+                    <input class="qrinput" type="text">
+                </div>
+                <span id="qr_btn" onclick="switch_toggle()" class="text-center position-absolute"
+                    style="bottom:-4vh ;z-index: 1;">
+                    <img src="./img/btn_qr.svg" alt="qr-code">
+                </span>
+            </div>
+            <history-page id="history_page_id"
+                class="d-flex d-none main-top flex-column justify-content-center align-items-center position-relative">
+                <div>
+                    <balance class="d-flex flex-column" style="font-size: 48px;">0.00 DOGE
+                        <span class="text-center" style="font-size: 16px;">doge ~ 2.122</span>
+                    </balance>
+                </div>
+                <div id="btn_send" class="p-3">
+                    <img id="send_coin" src="./img/sendDoge.svg" alt="">
+                </div>
+            </history-page>
+
+        </div>
+        <div class="row">
+            <history-page id="history_page2_id" class="text-center border-info pt-3" style="width: 100vh;">
+                <div class="text-bg-danger">
+                    ทำใน element นี้นะ
+                </div>
+                <div class="">
+                    <span>history</span>
+                    <span>Pending</span>
+                </div>
+            </history-page>
+        </div>
+    </main>
+    <div id="home_bg_doge" class="position-absolute start-0" style="bottom: 10vh;z-index: -1;">
+        <img style="width: 100%;" src="./img/bbdoge.svg" alt="">
+    </div>
+    <footer class=" d-flex p-1 justify-content-around align-content-end footer-tm">
+        <div onclick="history_page()" class=" d-flex flex-column justify-content-center">
+            <img class="" width="100%" src="./img/Groupmenu1svg.svg" alt="">
+            <div class="text-center" style="font-size: 20px;">
+                History
+            </div>
+        </div>
+        <div class=" d-flex flex-column justify-content-center" onclick="wallet_page()">
+            <img class="" width="100%" src="./img/Group 84838menu2.svg" alt="">
+            <div class="text-center" style="font-size: 20px;">
+                Wallet
+            </div>
+        </div>
+        <div class=" d-flex flex-column justify-content-center">
+            <img class="" width="90%" src="./img/menu3.svg" alt="">
+            <div class="text-center " style="font-size: 20px;">
+                Setting
+            </div>
+        </div>
+    </footer>
 
 </body>
 
 </html>
+
+<script>
+    document.getElementById("btn_send").addEventListener("click", function (e) {
+        document.getElementById("offcanvas").classList.add("show")
+    });
+    async function switch_toggle() {
+        let btn_qr = document.querySelector("#qr_btn")
+
+        console.log("ok", document.querySelector("#home_slide_top").style.height)
+        let slide = document.querySelector("#home_slide_top")
+
+        // console.log("check",slide.style.height)
+        if (slide.style.height == '') {
+            document.querySelector("#home_slide_top").style.height = "30vh";
+        }
+        if (slide.style.height == '30vh') {
+            document.querySelector("#home_slide_top").style.height = "80vh";
+            document.querySelector("#optionqr").classList.remove("d-none");
+        } else if (slide.style.height == '80vh') {
+            document.querySelector("#home_slide_top").style.height = "30vh";
+            document.querySelector("#optionqr").classList.add("d-none");
+        }
+
+    }
+    history_page()
+    function history_page() {
+        const removeClass = () => {
+            document.querySelector('#history_page_id').classList.remove("d-none");
+            document.querySelector('#history_page2_id').classList.remove("d-none");
+        }
+        const open_history = () => {
+            document.querySelector('body').style.background = "#F5F5F5"
+            document.querySelector('#home_bg_doge').classList.add("d-none");
+            document.querySelector('#home_slide_top').classList.add("d-none");
+        }
+        removeClass()
+        open_history()
+    }
+    // wallet_page()
+    function wallet_page() {
+        const removeClass = () => {
+            document.querySelector('#history_page_id').classList.add("d-none");
+            document.querySelector('#history_page2_id').classList.add("d-none");
+            document.querySelector('#home_bg_doge').classList.remove("d-none");
+            document.querySelector('body').style.background = "black"
+        }
+        const open_wallet = () => {
+            document.querySelector('#home_slide_top').classList.remove("d-none");
+        }
+        removeClass()
+        open_wallet()
+    }
+</script>
