@@ -53,10 +53,10 @@
 </head>
 
 <body>
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasex" aria-labelledby="offcanvasLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
             Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements
@@ -136,9 +136,11 @@
 </html>
 
 <script>
-    document.getElementById("btn_send").addEventListener("click", function (e) {
-        document.getElementById("offcanvas").classList.add("show")
-    });
+    // document.getElementById("btn_send").addEventListener("click", function (e) {
+    //     console.log("click")
+    //     const offcanvas = document.getElementById("offcanvasex")
+    //     new bootstrap.offcanvas(offcanvas).show()
+    // });
     async function switch_toggle() {
         let btn_qr = document.querySelector("#qr_btn")
 
