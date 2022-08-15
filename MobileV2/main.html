@@ -136,8 +136,8 @@
 </html>
 
 <script>
-    document.getElementById("offcanvas").addEventListener("click", function (e) {
-        
+    document.getElementById("btn_send").addEventListener("click", function (e) {
+        document.getElementById("offcanvas").classList.add("show")
     });
     async function switch_toggle() {
         let btn_qr = document.querySelector("#qr_btn")
