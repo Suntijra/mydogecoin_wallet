@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+    <!-- AJAX -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <link rel="stylesheet" href="./css/fontv2.css">
 <style>
@@ -61,7 +63,39 @@
         height: 65vh;
         border-radius: 36px 36px 0 0;
         box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-        overflow-x: scroll;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    .line{
+        border: 3px solid #956934;
+        width: 40vw;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        left: 8.5vw;
+        transition: 375ms;
+    }
+    .line_active{
+        width: 40vw;
+        left: 45vw;
+    }
+    .signin_detail{
+        position: absolute;
+        width: 100%;
+        transition: all 250ms linear;
+        left: 0;
+    }
+    .signup_detail{
+        position: absolute;
+        width: 100%;
+        transition: all 250ms linear;
+        right: -100vw;
+    }
+
+    .signin_active{
+        left: -100vw;
+    }
+    .signup_active{
+        right: 0;
     }
 </style>
 
@@ -81,62 +115,77 @@
             <span id="signin" class="sg">SIGN IN</span>
             <span id="signup" class="sg">SIGN UP</span>
         </div>
-
-        <div id="signin_detail" class="d-flex justify-content-center mt-5 flex-column">
-            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
-                <img src="./img/Groupuserinput.png" alt="">
-                <input class="input-s" type="text" value="" placeholder="username" required
-                    style="position:absolute; left: 35vw;">
+        <div class="position-relative mt-2">
+            <div class="container-fluid d-flex justify-content-center">
+                <div style="border: 1px solid #000000; width: 87%; margin-top: 4px; z-index: 1;"></div>
+                <div id="animate_line" class="position-absolute line"></div>
             </div>
-            <br>
-            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
-                <img src="./img/pass.png" alt="">
-                <input class="input-s" type="text" value="" placeholder="password" required
-                    style="position:absolute;left: 35vw;">
-            </div>
-            <br>
-            <sign-in class="d-flex justify-content-center align-items-center">
-                <btn class="sign_btn d-flex justify-content-center align-items-center fs-4" style="height: 5vh;">Sign in
-                </btn>
-            </sign-in>
-            <br>
-            <div class="text-center">or</div>
-            <br>
-            <div class="text-center text-decoration-underline">sign in with mnemonic</div>
         </div>
 
-        <div id="signup_detail" class="d-flex d-none justify-content mt-5 flex-column align-items-center"
-            style="height: 40%">
-            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
-                <img src="./img/Groupuserinput.png" alt="">
-                <input class="input-s" type="text" value="" placeholder="username" required
-                    style="position:absolute; left: 35vw;">
-            </div>
-            <br>
-            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
-                <img src="./img/pass.png" alt="">
-                <input class="input-s" type="text" value="" placeholder="password" required
-                    style="position:absolute;left: 35vw;">
-            </div>
-            <br>
-            <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
-                <img src="./img/pass.png" alt="">
-                <input class="input-s" type="text" value="" placeholder="confirm password" required
-                    style="position:absolute;left: 35vw;">
-            </div>
-            <br>
-            <label style="justify-self: start;">
-                <input type="checkbox" checked="checked">
-                agree to terms and conditions
-            </label>
-            <br>
-            <sign-up class="d-flex justify-content-center align-items-center">
-                <btn class="sign_btn d-flex justify-content-center align-items-center fs-4"
-                    style="height: 5vh; width: 80vw;">Sign up
-                </btn>
+        <div style="position: relative; width: 100%;">
 
-            </sign-up>
+            <div  id="signin_detail" class="signin_detail">
+                <div class="d-flex justify-content-center mt-4 flex-column">
+                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                        <img src="./img/Groupuserinput.png" alt="">
+                        <input class="input-s" type="text" value="" placeholder="username" required
+                            style="position:absolute; left: 35vw; text-align: center;">
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                        <img src="./img/pass.png" alt="">
+                        <input class="input-s" type="text" value="" placeholder="password" required
+                            style="position:absolute;left: 35vw; text-align: center;">
+                    </div>
+                    <br>
+                    <sign-in class="d-flex justify-content-center align-items-center">
+                        <button class="sign_btn d-flex justify-content-center align-items-center fs-4" style="height: 8vh;">Sign in
+                        </button>
+                    </sign-in>
+                    <br>
+                    <div class="text-center mt-1">or</div>
+                    <br>
+                    <div class="text-center text-decoration-underline">sign in with mnemonic</div>
+                </div>
+            </div>
+
+            <div id="signup_detail" class="signup_detail">
+                <div class="d-flex justify-content mt-4 flex-column"
+                    style="height: 40%">
+                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                        <img src="./img/Groupuserinput.png" alt="">
+                        <input class="input-s" type="text" value="" placeholder="username" required
+                            style="position:absolute; left: 35vw; text-align: center;">
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                        <img src="./img/pass.png" alt="">
+                        <input class="input-s" type="text" value="" placeholder="password" required
+                            style="position:absolute;left: 35vw; text-align: center;">
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                        <img src="./img/pass.png" alt="">
+                        <input class="input-s" type="text" value="" placeholder="confirm password" required
+                            style="position:absolute;left: 35vw; text-align: center;">
+                    </div>
+                    <br>
+                    <label style="text-align: center;">
+                        <input type="checkbox" checked="checked">
+                        agree to terms and conditions
+                    </label>
+                    <br>
+                    <sign-up class="d-flex justify-content-center align-items-center">
+                        <button class="sign_btn d-flex justify-content-center align-items-center fs-4"
+                            style="height: 8vh; width: 80vw;">Sign up
+                        </button>
+
+                    </sign-up>
+                </div>
+            </div>
+
         </div>
+
     </div>
 
 
@@ -149,12 +198,14 @@
     var signup = document.getElementById('signup');
     signin.addEventListener("click", function () {
         console.log("signin");
-        document.querySelector('#signin_detail').classList.remove("d-none");
-        document.querySelector('#signup_detail').classList.add("d-none");
+        $('.signin_detail').removeClass("signin_active");
+        $('.signup_detail').removeClass("signup_active");
+        document.querySelector('#animate_line').classList.remove("line_active");
     });
     signup.onclick = function () {
         console.log("signup");
-        document.querySelector('#signup_detail').classList.remove("d-none");
-        document.querySelector('#signin_detail').classList.add("d-none");
+        $('.signup_detail').addClass("signup_active");
+        $('.signin_detail').addClass("signin_active");
+        document.querySelector('#animate_line').classList.add("line_active");
     }
 </script>
