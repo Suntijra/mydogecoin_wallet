@@ -48,20 +48,98 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+
+        .my-modal {
+            display: block;
+            position: fixed;
+            background-color: #F5F5F5;
+            z-index: 5;
+            height: 90%;
+            width: 100%;
+        }
+
+        .my-modal-nav {
+            background-color: #E9A700;
+            height: 10%;
+        }
+
+        html {
+            background-color: black;
+            height: 100%;
+        }
+
+        input {
+            bottom: 2vh;
+            left: 5vh;
+            /* width: 40vw; */
+            outline: none;
+            border: none;
+            background: none;
+            color: white;
+        }
     </style>
+
 
 </head>
 
 <body>
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasex" aria-labelledby="offcanvasLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    <div id="senddoge_page" class="my-modal">
+        <div class="my-modal-nav container d-flex align-items-center justify-content-center">
+            <span id="btn_back_arrow" class="position-fixed px-3" style="left: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                </svg>
+            </span>
+            <div class="">
+                Send dogecoin
+            </div>
         </div>
-        <div class="offcanvas-body">
-            Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements
-            here.
+        <div class="container">
+            <div class="row">
+                <div class="m-3 fs-6">
+                    Pay to
+                </div>
+                <div style="position: relative;" class="">
+                    <img src="./img/Groupinpurs1.svg" alt="" srcset="">
+                    <img src="./img/Vectorscan.svg" class="ps-2 " alt="">
+                    <input class="position-absolute" style="width: 50vw;" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <div class="m-3 fs-6">
+                    Amount to pay
+                </div>
+                <div class="position-relative">
+                    <span class="position-relative">
+                        <img src="./img/Groupinputs2.svg" alt="">
+                        <input id="amountid" style="left: 4vw;bottom:-0.5vh ; width: 28vw;" class="position-absolute"
+                            type="text">
+                    </span>
+
+                    <span class="mx-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
+                        </svg>
+                    </span>
+                    <span class="position-relative">
+                        <input id="thbid" class="position-absolute" style="left: 3vw;bottom:-0.5vh ; width: 18vw;"
+                            type=" text">
+                        <img width="" src="./img/Groupinputs3.svg" alt="">
+                    </span>
+                </div>
+            </div>
+            <div class="row mt-5 mx-2">
+                <button class="text-white py-3 px-3"
+                    style="background-color: #514E58 ;border-radius: 228px ;font: size 18px;box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);">
+                    <img src="./img/rockket.svg" alt="">
+                    Send Coin</button>
+            </div>
         </div>
+
     </div>
     <main class="container-fluid">
         <div class="row" style="height: 40%;">
@@ -75,7 +153,10 @@
                 <div id="optionqr" class="d-none d-block" style="text-align: center; margin-top: 3vh;">
                     <span style="font-size: 32px;">My QR-Code</span>
                     <img class="p-2" width="80%" src="./img/qrcode.svg" alt="">
-                    <input class="qrinput" type="text">
+                    <!-- <input class="qrinput" type="text"> -->
+                   <div>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, magni.
+                   </div>
                 </div>
                 <span id="qr_btn" onclick="switch_toggle()" class="text-center position-absolute"
                     style="bottom:-4vh ;z-index: 1;">
@@ -89,9 +170,16 @@
                         <span class="text-center" style="font-size: 16px;">doge ~ 2.122</span>
                     </balance>
                 </div>
-                <div id="btn_send" class="p-3">
-                    <img id="send_coin" src="./img/sendDoge.svg" alt="">
+                <div class="p-3 ">
+                    <button id="btn_send" class="text-white py-2 px-3"
+                        style="background-color: #514E58 ;border-radius: 228px ;font: size 18px;box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);">
+                        <img src="./img/rockket.svg" alt="">
+                        Send Coin</button>
+                    <!-- <img id="send_coin" onclick="" src="./img/sendDoge.svg" alt=""> -->
                 </div>
+                <script>
+
+                </script>
             </history-page>
 
         </div>
@@ -104,46 +192,86 @@
                     <span>history</span>
                     <span>Pending</span>
                 </div>
+                <div style="overflow: scroll; height: 60vh; background-color: #F5F5F5;">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta omnis libero dolorem, totam
+                    commodi cumque harum nihil veniam tempore aliquid dolorum inventore atque autem ad deleniti neque
+                    enim quos!
+                </div>
             </history-page>
         </div>
     </main>
     <div id="home_bg_doge" class="position-absolute start-0" style="bottom: 10vh;z-index: -1;">
         <img style="width: 100%;" src="./img/bbdoge.svg" alt="">
     </div>
-    <footer class=" d-flex p-1 justify-content-around align-content-end footer-tm">
-        <div onclick="history_page()" class=" d-flex flex-column justify-content-center">
-            <img class="" width="100%" src="./img/Groupmenu1svg.svg" alt="">
-            <div class="text-center" style="font-size: 20px;">
-                History
+    <div class=" position-absolute bottom-0" style="width: 100%; z-index: 9999;">
+        <footer class=" d-flex p-1 justify-content-around align-content-end footer-tm">
+            <div onclick="history_page()" class=" d-flex flex-column justify-content-center">
+                <img class="" width="100%" src="./img/Groupmenu1svg.svg" alt="">
+                <div class="text-center" style="font-size: 20px;">
+                    History
+                </div>
             </div>
-        </div>
-        <div class=" d-flex flex-column justify-content-center" onclick="wallet_page()">
-            <img class="" width="100%" src="./img/Group 84838menu2.svg" alt="">
-            <div class="text-center" style="font-size: 20px;">
-                Wallet
+            <div class=" d-flex flex-column justify-content-center" onclick="wallet_page()">
+                <img class="" width="100%" src="./img/Group 84838menu2.svg" alt="">
+                <div class="text-center" style="font-size: 20px;">
+                    Wallet
+                </div>
             </div>
-        </div>
-        <div class=" d-flex flex-column justify-content-center">
-            <img class="" width="90%" src="./img/menu3.svg" alt="">
-            <div class="text-center " style="font-size: 20px;">
-                Setting
+            <div class=" d-flex flex-column justify-content-center">
+                <img class="" width="90%" src="./img/menu3.svg" alt="">
+                <div class="text-center " style="font-size: 20px;">
+                    Setting
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
 
 </body>
 
 </html>
 
 <script>
-    // document.getElementById("btn_send").addEventListener("click", function (e) {
-    //     console.log("click")
-    //     const offcanvas = document.getElementById("offcanvasex")
-    //     new bootstrap.offcanvas(offcanvas).show()
-    // });
+    document.getElementById("senddoge_page").style.display = "none";
+    document.querySelector('#history_page_id').classList.add("d-none");
+    document.querySelector('#history_page2_id').classList.add("d-none");
+    btn_send.onclick = () => {
+        document.getElementById("senddoge_page").style.display = "block";
+    }
+    btn_back_arrow.onclick = function () {
+        document.getElementById("senddoge_page").style.display = "none";
+        history_page()
+    }
     async function switch_toggle() {
         let btn_qr = document.querySelector("#qr_btn")
-
         console.log("ok", document.querySelector("#home_slide_top").style.height)
         let slide = document.querySelector("#home_slide_top")
 
@@ -160,7 +288,7 @@
         }
 
     }
-    history_page()
+    // history_page()
     function history_page() {
         const removeClass = () => {
             document.querySelector('#history_page_id').classList.remove("d-none");
@@ -173,6 +301,9 @@
         }
         removeClass()
         open_history()
+
+        document.getElementById("senddoge_page").style.display = "none";
+
     }
     // wallet_page()
     function wallet_page() {
@@ -187,5 +318,6 @@
         }
         removeClass()
         open_wallet()
+        document.getElementById("senddoge_page").style.display = "none";
     }
 </script>
