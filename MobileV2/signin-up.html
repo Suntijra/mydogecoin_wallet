@@ -14,6 +14,10 @@
         crossorigin="anonymous"></script>
     <!-- AJAX -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- swal2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <!-- <link rel="stylesheet" href="./css/fontv2.css"> -->
 <style>
@@ -21,6 +25,7 @@
         font-family: 'mydogefont';
         src: url('./font/strawberry_muffins/Strawberry\ Muffins\ Demo.ttf');
     }
+
     .sg {
         margin-top: 1.5rem;
     }
@@ -66,7 +71,8 @@
         /* overflow-x: hidden;
         overflow-y: scroll; */
     }
-    .line{
+
+    .line {
         border: 3px solid #956934;
         width: 40vw;
         border-top-left-radius: 10px;
@@ -74,27 +80,31 @@
         left: 8.5vw;
         transition: 375ms;
     }
-    .line_active{
+
+    .line_active {
         width: 40vw;
         left: 45vw;
     }
-    .signin_detail{
+
+    .signin_detail {
         position: absolute;
         width: 100%;
         transition: all 250ms linear;
         left: 0;
     }
-    .signup_detail{
+
+    .signup_detail {
         position: absolute;
         width: 100%;
         transition: all 250ms linear;
         right: -100vw;
     }
 
-    .signin_active{
+    .signin_active {
         left: -100vw;
     }
-    .signup_active{
+
+    .signup_active {
         right: 0;
     }
 
@@ -105,79 +115,92 @@
 
     /* Hide scrollbar for IE, Edge and Firefox */
     .hideScrollBar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
     }
 
 
 
     /* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
 
-/* Modal Content */
-.modal-content {
-  background-color: #E9A700;
-;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 90%;
-}
+    /* Modal Content */
+    .modal-content {
+        background-color: #E9A700;
+        ;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+    }
 
-/* The Close Button */
-.close {
-  color: #000;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  text-align: end;
-}
+    /* The Close Button */
+    .close {
+        color: #000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: end;
+    }
 
-.close:hover,
-.close:focus {
-  color: #aaa;
-  text-decoration: none;
-  cursor: pointer;
-}
+    .close:hover,
+    .close:focus {
+        color: #aaa;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 
-.mne1{
-    position: absolute;
-    padding: 5vh 0;
-    width: 100%;
-    transition: all 300ms linear;
-    /* display: block; */
-    bottom: 0vh;
-}
-.mne2{
-    position: absolute;
-    padding: 5vh 0 5vh;
-    width: 100%;
-    transition: all 300ms linear;
-    /* display: none; */
-    top: 60vh;
-}
-.mne1Active{
-    /* display: none; */
-    bottom: 60vh;
-}
-.mne2Active{
-    /* display: block; */
-    top: 0vh;
-}
+    .mne1 {
+        position: absolute;
+        padding: 5vh 0;
+        width: 100%;
+        transition: all 300ms linear;
+        /* display: block; */
+        bottom: 0vh;
+    }
 
+    .mne2 {
+        position: absolute;
+        padding: 5vh 0 5vh;
+        width: 100%;
+        transition: all 300ms linear;
+        /* display: none; */
+        top: 60vh;
+    }
+
+    .mne1Active {
+        /* display: none; */
+        bottom: 60vh;
+    }
+
+    .mne2Active {
+        /* display: block; */
+        top: 0vh;
+    }
 </style>
 
 
@@ -203,49 +226,56 @@
             </div>
         </div>
 
-        <div class="hideScrollBar" style="position: relative; width: 100%; height: 55vh; overflow-y: scroll; overflow-x: hidden;">
+        <div class="hideScrollBar"
+            style="position: relative; width: 100%; height: 55vh; overflow-y: scroll; overflow-x: hidden;">
 
-            <div  id="signin_detail" class="signin_detail">
+            <div id="signin_detail" class="signin_detail">
                 <div class="d-flex justify-content-center mt-4 flex-column">
-                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                    <div class="d-flex justify-content-center align-items-center flex-column"
+                        style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
-                        <input class="input-s" type="text" value="" placeholder="username" required
+                        <input id="id_user" class="input-s" type="text" value="" placeholder="username" required
                             style="position:absolute; left: 35vw; text-align: center;">
                     </div>
                     <br>
-                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                    <div class="d-flex justify-content-center align-items-center flex-column"
+                        style="position: relative;">
                         <img src="./img/pass.png" alt="">
-                        <input class="input-s" type="text" value="" placeholder="password" required
+                        <input id="id_pwd" class="input-s" type="text" value="" placeholder="password" required
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <sign-in class="d-flex justify-content-center align-items-center">
-                        <button class="sign_btn d-flex justify-content-center align-items-center fs-4" style="height: 8vh;">Sign in
+                        <button id="login_btn" class="sign_btn d-flex justify-content-center align-items-center fs-4"
+                            style="height: 8vh;">Sign in
                         </button>
                     </sign-in>
                     <br>
                     <div class="text-center mt-1">or</div>
                     <br>
-                    <div id="MyBtn" onclick="mnemonicModal()" class="text-center text-decoration-underline">sign in with mnemonic</div>
+                    <div id="MyBtn" onclick="mnemonicModal()" class="text-center text-decoration-underline">sign in with
+                        mnemonic</div>
                 </div>
             </div>
 
             <div id="signup_detail" class="signup_detail">
-                <div class="d-flex justify-content mt-4 flex-column"
-                    style="height: 40%">
-                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                <div class="d-flex justify-content mt-4 flex-column" style="height: 40%">
+                    <div class="d-flex justify-content-center align-items-center flex-column"
+                        style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
                         <input class="input-s" type="text" value="" placeholder="username" required
                             style="position:absolute; left: 35vw; text-align: center;">
                     </div>
                     <br>
-                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                    <div class="d-flex justify-content-center align-items-center flex-column"
+                        style="position: relative;">
                         <img src="./img/pass.png" alt="">
                         <input class="input-s" type="text" value="" placeholder="password" required
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
-                    <div class="d-flex justify-content-center align-items-center flex-column" style="position: relative;">
+                    <div class="d-flex justify-content-center align-items-center flex-column"
+                        style="position: relative;">
                         <img src="./img/pass.png" alt="">
                         <input class="input-s" type="text" value="" placeholder="confirm password" required
                             style="position:absolute;left: 35vw; text-align: center;">
@@ -257,8 +287,8 @@
                     </label>
                     <br>
                     <sign-up class="d-flex justify-content-center align-items-center">
-                        <button class="sign_btn d-flex justify-content-center align-items-center fs-4"
-                            id="signupGo" onclick="signupGo()" style="height: 8vh; width: 80vw;">Sign up
+                        <button class="sign_btn d-flex justify-content-center align-items-center fs-4" id="signupGo"
+                            onclick="signupGo()" style="height: 8vh; width: 80vw;">Sign up
                         </button>
 
                     </sign-up>
@@ -276,46 +306,122 @@
             <span class="close">&times;</span>
             <div style="display: flex; flex-direction: column; text-align: center;">
                 <span style="font-size: 2rem;">Your Recovery Phrase</span>
-                <span>your recovery phrase gives you access to your wallet and all the private keys in the wallet.</span>
+                <span>your recovery phrase gives you access to your wallet and all the private keys in the
+                    wallet.</span>
                 <div style="width: 100%; position: relative; height: 46vh; z-index: 2; overflow-y: hidden;">
                     <div id="mne1" class="mne1">
                         <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">1. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">2. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">3. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">4. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">5. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">6. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">7. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">8. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">9. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">10. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">11. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">12. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                1. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                2. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                3. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                4. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                5. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                6. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                7. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                8. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                9. <input type="text" style="width: 75%; border: none; background: none;outline: none;">
+                            </div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                10. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                11. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                12. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
                         </div>
                     </div>
                     <div id="mne2" class="mne2">
                         <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">13. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">14. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">15. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">16. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">17. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">18. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">19. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">20. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">21. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">22. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">23. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">24. <input type="text" style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                13. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                14. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                15. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                16. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                17. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                18. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                19. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                20. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                21. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                22. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                23. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                24. <input type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></div>
                         </div>
                     </div>
                 </div>
 
-                <div id="mneNext" style="display: flex; justify-content: space-between; font-size: 1.4rem; padding-top: 1vh;">
+                <div id="mneNext"
+                    style="display: flex; justify-content: space-between; font-size: 1.4rem; padding-top: 1vh;">
                     <button style="border-radius: 10vw; padding: 1vw 4vw; visibility: hidden;">Done</button>
-                    <button id="mneNext1" onclick="MneNext()" style="border-radius: 8vw; padding: 1vw 10vw; background-color: rgba(255, 255, 255, 0.4);">Next</button>
-                    <button id="mneSuccess" onclick="mnemonicSuscess()" style="border-radius: 10vw; padding: 1vw 4vw; background: #adff2f6b; transition-duration: 200ms;">Done</button>
+                    <button id="mneNext1" onclick="MneNext()"
+                        style="border-radius: 8vw; padding: 1vw 10vw; background-color: rgba(255, 255, 255, 0.4);">Next</button>
+                    <button id="mneSuccess" onclick="mnemonicSuscess()"
+                        style="border-radius: 10vw; padding: 1vw 4vw; background: #adff2f6b; transition-duration: 200ms;">Done</button>
                 </div>
             </div>
         </div>
@@ -327,46 +433,122 @@
             <span class="close">&times;</span>
             <div style="display: flex; flex-direction: column; text-align: center;">
                 <span style="font-size: 2rem;">Your Recovery Phrase</span>
-                <span>your recovery phrase gives you access to your wallet and all the private keys in the wallet.</span>
+                <span>your recovery phrase gives you access to your wallet and all the private keys in the
+                    wallet.</span>
                 <div style="width: 100%; position: relative; height: 46vh; z-index: 2; overflow-y: hidden;">
                     <div id="showMne1" class="mne1">
                         <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">1. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">2. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">3. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">4. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">5. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">6. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">7. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">8. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">9. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">10. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">11. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">12. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                1. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                2. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                3. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                4. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                5. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                6. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                7. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                8. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                9. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                10. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                11. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                12. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
                         </div>
                     </div>
                     <div id="showMne2" class="mne2">
                         <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">13. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">14. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">15. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">16. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">17. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">18. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">19. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">20. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">21. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">22. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">23. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
-                            <div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">24. <span type="text" style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                13. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                14. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                15. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                16. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                17. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                18. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                19. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                20. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                21. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                22. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                23. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
+                            <div
+                                style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                24. <span type="text"
+                                    style="width: 75%; border: none; background: none;outline: none;"></span></div>
                         </div>
                     </div>
                 </div>
 
-                <div id="showMneNext" style="display: flex; justify-content: space-between; font-size: 1.4rem; padding-top: 1vh;">
+                <div id="showMneNext"
+                    style="display: flex; justify-content: space-between; font-size: 1.4rem; padding-top: 1vh;">
                     <button style="border-radius: 10vw; padding: 1vw 4vw; visibility: hidden;">Done</button>
-                    <button id="showMneNext1" onclick="showMneNext()" style="border-radius: 8vw; padding: 1vw 10vw; background-color: rgba(255, 255, 255, 0.4);">Next</button>
-                    <button id="showMneSuccess" onclick="mnemonicSuscess()" style="border-radius: 10vw; padding: 1vw 4vw; background: #adff2f6b; transition-duration: 200ms;">Done</button>
+                    <button id="showMneNext1" onclick="showMneNext()"
+                        style="border-radius: 8vw; padding: 1vw 10vw; background-color: rgba(255, 255, 255, 0.4);">Next</button>
+                    <button id="showMneSuccess" onclick="mnemonicSuscess()"
+                        style="border-radius: 10vw; padding: 1vw 4vw; background: #adff2f6b; transition-duration: 200ms;">Done</button>
                 </div>
             </div>
         </div>
@@ -376,7 +558,10 @@
 </body>
 
 </html>
+<!-- Login.js -->
+<script src="./js/login.js"></script>
 <script>
+
     var signin = document.getElementById('signintab');
     var signup = document.getElementById('signuptab');
     signin.addEventListener("click", function () {
@@ -402,9 +587,9 @@
     var span1 = document.getElementsByClassName("close")[0];
     var span2 = document.getElementsByClassName("close")[1];
 
-    function mnemonicModal(){
-        modal.css("display","block");
-        $("#mneSuccess").css("opacity","0");
+    function mnemonicModal() {
+        modal.css("display", "block");
+        $("#mneSuccess").css("opacity", "0");
         // $(window).click(function(e) {
         //     console.log(e.target == modal);
         //     if (e.target == modal) {
@@ -414,84 +599,84 @@
     }
 
     // When the user clicks on <span> (x), close the modal
-    span1.onclick = function() {
-        modal.css("display","none");
+    span1.onclick = function () {
+        modal.css("display", "none");
         console.log("close")
     }
 
-    span2.onclick = function() {
+    span2.onclick = function () {
         console.log("close")
-        $("#showMnemonicModal").css("display","none");
+        $("#showMnemonicModal").css("display", "none");
     }
 
     var checkNext = 1;
     var getMneObj = [];
     var showNext = 1;
-    function MneNext(){
+    function MneNext() {
         var next = $("#mneNext1");
-        var html =``;
-        console.log("หน้าปัจจุบัน:",checkNext);
-        if(checkNext == 1){
+        var html = ``;
+        console.log("หน้าปัจจุบัน:", checkNext);
+        if (checkNext == 1) {
             checkNext = 2;
-            console.log("หน้าถัดไป หน้าที่ :",checkNext);
+            console.log("หน้าถัดไป หน้าที่ :", checkNext);
             $("#mne1").addClass("mne1Active");
             $("#mne2").addClass("mne2Active");
-            $("#mneSuccess").css("opacity","1");
+            $("#mneSuccess").css("opacity", "1");
             next.html(`Back`)
-        }else if(checkNext == 2){
+        } else if (checkNext == 2) {
             checkNext = 1;
-            console.log("กลับมา หน้าที่ :",checkNext);
+            console.log("กลับมา หน้าที่ :", checkNext);
             $("#mne1").removeClass("mne1Active");
             $("#mne2").removeClass("mne2Active");
-            $("#mneSuccess").css("opacity","0");
+            $("#mneSuccess").css("opacity", "0");
             next.html(`Next`)
-        }else{
+        } else {
             checkNext = 1;
-            console.log("เกิดปัญหา วิ่งไปที่หน้า",checkNext);
+            console.log("เกิดปัญหา วิ่งไปที่หน้า", checkNext);
             alert("Error! Please fill mnemonic again");
-            $("#mneSuccess").css("opacity","0");
+            $("#mneSuccess").css("opacity", "0");
             next.html(`Next`)
         }
     }
 
     // show
 
-    function signupGo(){
+    function signupGo() {
         console.log("aloy")
-       $("#showMnemonicModal").css("display","block");
-       $("#showMneSuccess").css("opacity","0");
+        $("#showMnemonicModal").css("display", "block");
+        $("#showMneSuccess").css("opacity", "0");
     }
 
-    function showMneNext(){
+    function showMneNext() {
         var next = $("#showMneNext1");
-        var html =``;
-        console.log("หน้าปัจจุบัน:",showNext);
-        if(showNext == 1){
+        var html = ``;
+        console.log("หน้าปัจจุบัน:", showNext);
+        if (showNext == 1) {
             showNext = 2;
-            console.log("หน้าถัดไป หน้าที่ :",showNext);
+            console.log("หน้าถัดไป หน้าที่ :", showNext);
             $("#showMne1").addClass("mne1Active");
             $("#showMne2").addClass("mne2Active");
-            $("#showMneSuccess").css("opacity","1");
+            $("#showMneSuccess").css("opacity", "1");
             next.html(`Back`)
-        }else if(showNext == 2){
+        } else if (showNext == 2) {
             showNext = 1;
-            console.log("กลับมา หน้าที่ :",showNext);
+            console.log("กลับมา หน้าที่ :", showNext);
             $("#showMne1").removeClass("mne1Active");
             $("#showMne2").removeClass("mne2Active");
-            $("#showMneSuccess").css("opacity","0");
+            $("#showMneSuccess").css("opacity", "0");
             next.html(`Next`)
-        }else{
+        } else {
             showNext = 1;
-            console.log("เกิดปัญหา วิ่งไปที่หน้า",showNext);
+            console.log("เกิดปัญหา วิ่งไปที่หน้า", showNext);
             alert("Error! Please fill mnemonic again");
-            $("#showMneSuccess").css("opacity","0");
+            $("#showMneSuccess").css("opacity", "0");
             next.html(`Next`)
         }
     }
 
-    
 
-    
+
+
 
 
 </script>

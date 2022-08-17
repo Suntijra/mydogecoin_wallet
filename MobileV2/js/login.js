@@ -17,7 +17,7 @@ document.getElementById("login_btn").addEventListener("click", function () {
                     localStorage.setItem('addr_count', data.addr_count),
                     Swal2Alert('success', data.Result, 'success')
                 setInterval(() => {
-                    window.location.href = "./import-and-create.html";
+                    window.location.href = "./main.html";
                 }, 1000);
 
             }

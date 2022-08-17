@@ -28,7 +28,7 @@ let headersList = {
 
    }).catch(function (error) {
         alert('authen failed')
-        window.location.href = './login.html'
+        window.location.href = './signin-up.html'
         console.log(error);
    })
 

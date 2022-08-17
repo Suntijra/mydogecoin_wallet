@@ -12,12 +12,22 @@
     <meta name="apple-mobile-web-app-title" content="Mobile rules">
     <meta name="apple-mobile-web-app-status-bar-style" content="red">
     <title>Main</title>
+    <!-- AJAX -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- swal2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+    <!-- Gen QR Pub Key -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <style>
         @font-face {
             font-family: 'mydogefont';
@@ -230,10 +240,24 @@
         <span>history</span>
         <span>Pending</span>
         <div style="overflow: scroll;height: 45vh;">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam culpa sunt quod nisi delectus, facere corrupti earum amet eveniet unde esse. Odio aliquid perspiciatis temporibus doloribus. Voluptatem, iure quae reiciendis repellat ipsum nesciunt? Repellat tenetur sunt dignissimos aut ratione consectetur suscipit voluptate aliquid perspiciatis? In deserunt nemo aperiam quia ducimus commodi asperiores voluptatem quod excepturi veniam amet sed, porro magni minima autem expedita officia dolorum voluptatibus sapiente consectetur tempora obcaecati, recusandae ex. Voluptatum ea omnis temporibus non velit, et, deleniti dolorem quaerat, facilis eum a consectetur iste? Id velit aliquam fugiat necessitatibus magnam, odio sit quisquam sunt omnis vero labore?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quasi necessitatibus eos laboriosam tenetur illum fugiat! Voluptatem rerum repellendus sit est quasi ut ducimus. Nulla enim dignissimos sint eveniet molestias, ab, illum aliquid corporis fugit commodi unde quam, obcaecati sapiente exercitationem? Totam labore ipsum harum esse pariatur inventore itaque dicta non provident, voluptas cumque explicabo quas fugiat consequuntur dolorem similique eos vel libero quos facere saepe. Officiis molestias magnam eveniet cupiditate ipsam ullam. Accusantium minus accusamus non possimus, maiores nostrum itaque quia facere unde, repellat dolor vitae ea quasi sit eius facilis quibusdam tempore? Ratione, aperiam? Impedit, dolorem saepe. Tenetur.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam culpa sunt quod nisi delectus, facere
+            corrupti earum amet eveniet unde esse. Odio aliquid perspiciatis temporibus doloribus. Voluptatem, iure quae
+            reiciendis repellat ipsum nesciunt? Repellat tenetur sunt dignissimos aut ratione consectetur suscipit
+            voluptate aliquid perspiciatis? In deserunt nemo aperiam quia ducimus commodi asperiores voluptatem quod
+            excepturi veniam amet sed, porro magni minima autem expedita officia dolorum voluptatibus sapiente
+            consectetur tempora obcaecati, recusandae ex. Voluptatum ea omnis temporibus non velit, et, deleniti dolorem
+            quaerat, facilis eum a consectetur iste? Id velit aliquam fugiat necessitatibus magnam, odio sit quisquam
+            sunt omnis vero labore?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quasi necessitatibus eos laboriosam tenetur
+            illum fugiat! Voluptatem rerum repellendus sit est quasi ut ducimus. Nulla enim dignissimos sint eveniet
+            molestias, ab, illum aliquid corporis fugit commodi unde quam, obcaecati sapiente exercitationem? Totam
+            labore ipsum harum esse pariatur inventore itaque dicta non provident, voluptas cumque explicabo quas fugiat
+            consequuntur dolorem similique eos vel libero quos facere saepe. Officiis molestias magnam eveniet
+            cupiditate ipsam ullam. Accusantium minus accusamus non possimus, maiores nostrum itaque quia facere unde,
+            repellat dolor vitae ea quasi sit eius facilis quibusdam tempore? Ratione, aperiam? Impedit, dolorem saepe.
+            Tenetur.
         </div>
-       
+
     </div>
     <div>
 
@@ -268,6 +292,10 @@
 </body>
 
 </html>
+<!-- main fuc -->
+<script src="./js/funcHome.js"></script>
+<!-- authentication -->
+<script src="./js/authen.js"></script>
 
 <script>
     document.getElementById("senddoge_page").style.display = "none";
@@ -326,7 +354,7 @@
         open_history()
         document.getElementById("senddoge_page").style.display = "none";
     }
-
+    wallet_page()
     function wallet_page() {
         const removeClass = () => {
             document.querySelector('#history_page_id').classList.add("d-none");
