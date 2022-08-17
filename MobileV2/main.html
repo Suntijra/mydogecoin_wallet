@@ -242,8 +242,8 @@
                 </div>
                 <div style="position: relative;" class="">
                     <img src="./img/Groupinpurs1.svg" alt="" srcset="">
-                    <img src="./img/Vectorscan.svg" class="ps-2 " alt="">
-                    <input class="position-absolute" style="width: 50vw;" type="text">
+                    <img id="btn-scan-qr" onclick="modalScan()" src="./img/Vectorscan.svg" class="ps-2 " alt="">
+                    <input id="address_tx" class="position-absolute" style="width: 50vw;" type="text">
                 </div>
             </div>
             <div class="row">
@@ -253,7 +253,7 @@
                 <div class="position-relative">
                     <span class="position-relative">
                         <img src="./img/Groupinputs2.svg" alt="">
-                        <input id="amountid" style="left: 4vw;bottom:-0.5vh ; width: 28vw;" class="position-absolute"
+                        <input id="amount_tx" style="left: 4vw;bottom:-0.5vh ; width: 28vw;" class="position-absolute"
                             type="text">
                     </span>
 
@@ -272,7 +272,7 @@
                 </div>
             </div>
             <div class="row mt-5 mx-2">
-                <button class="text-white py-3 px-3"
+                <button id="send_tx" class="text-white py-3 px-3"
                     style="background-color: #514E58 ;border-radius: 228px ;font: size 18px;box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);">
                     <img src="./img/rockket.svg" alt="">
                     Send Coin</button>
@@ -323,7 +323,7 @@
             </history-page>
         </div>
     </main>
-    <div id="history_page2_id" class="text-center border-info pt-3 border" style="width: 100vw; height: 70vh; ">
+    <div id="history_page2_id" class="text-center pt-3 " style="width: 100vw; height: 70vh; ">
         <div class="body_content">
 
             <div style="display: flex; ">
@@ -393,6 +393,8 @@
 <script src="./js/funcHome.js"></script>
 <!-- authentication -->
 <script src="./js/authen.js"></script>
+<!-- function senddoge_page() -->
+<script src="./js/senddoge.js"></script>
 
 <script>
     document.getElementById("senddoge_page").style.display = "none";

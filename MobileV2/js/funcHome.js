@@ -104,9 +104,7 @@ async function DogeGetBalance() {
 }
 
 
-<<<<<<< Updated upstream
 
-=======
 // $(function () {
 //     $('#foot').load('./footer.html')
 //     var i = 0;
@@ -121,7 +119,7 @@ async function DogeGetBalance() {
 //     },1000);
 //     refresh
 // })
->>>>>>> Stashed changes
+
 function ToSetting() {
     window.location.href = "./setting.html";
 }
