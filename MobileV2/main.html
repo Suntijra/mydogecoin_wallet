@@ -28,6 +28,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @font-face {
             font-family: 'mydogefont';
@@ -105,6 +109,92 @@
             order: 1;
             flex-grow: 0;
         }
+
+
+        /* xcxcxcxcxcxcxcxcx History Page xcxcxcxcxcxcxcxcx */
+        .hide_scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide_scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            position: relative;
+            width: 90%;
+            height: 100vh;
+            overflow: scroll;
+            overflow-x: hidden;
+            margin: 20px 5% 0;
+        }
+
+        .fa-check {
+            background-color: #4ECB71;
+            color: white;
+            border-radius: 50%;
+            padding: 0.3vh;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .pending {
+            width: 100%;
+            position: absolute;
+            right: -100vw;
+            transition: 0.5s;
+        }
+
+        .history {
+            width: 100%;
+            position: absolute;
+            left: 0vw;
+            transition: 0.5s;
+        }
+
+        .active1 {
+            left: -100vw;
+        }
+
+        .active2 {
+            right: 0vw;
+        }
+
+        .cg_line{
+            position: absolute; 
+            left: 0;
+            top: -2px;
+            border: 2px solid black;
+            width: 30vw;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            transition: 500ms;
+        }
+
+        .active_line{
+            left: 30vw; 
+            width: 30vw;
+        }
+        .hide_scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide_scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            position: relative;
+            width: 90%;
+            overflow: scroll;
+            margin: 20px 5% 0;
+        }
+
+        .body_content {
+            width: 100%;
+            height: 56vh;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
     </style>
 
 
@@ -233,29 +323,35 @@
         </div>
     </main>
     <div id="history_page2_id" class="text-center border-info pt-3 border" style="width: 100vw; height: 70vh; ">
-        <div class="text-bg-danger">
-            ทำใน element นี้นะ
-        </div>
+        <div class="body_content">
 
-        <span>history</span>
-        <span>Pending</span>
-        <div style="overflow: scroll;height: 45vh;">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam culpa sunt quod nisi delectus, facere
-            corrupti earum amet eveniet unde esse. Odio aliquid perspiciatis temporibus doloribus. Voluptatem, iure quae
-            reiciendis repellat ipsum nesciunt? Repellat tenetur sunt dignissimos aut ratione consectetur suscipit
-            voluptate aliquid perspiciatis? In deserunt nemo aperiam quia ducimus commodi asperiores voluptatem quod
-            excepturi veniam amet sed, porro magni minima autem expedita officia dolorum voluptatibus sapiente
-            consectetur tempora obcaecati, recusandae ex. Voluptatum ea omnis temporibus non velit, et, deleniti dolorem
-            quaerat, facilis eum a consectetur iste? Id velit aliquam fugiat necessitatibus magnam, odio sit quisquam
-            sunt omnis vero labore?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quasi necessitatibus eos laboriosam tenetur
-            illum fugiat! Voluptatem rerum repellendus sit est quasi ut ducimus. Nulla enim dignissimos sint eveniet
-            molestias, ab, illum aliquid corporis fugit commodi unde quam, obcaecati sapiente exercitationem? Totam
-            labore ipsum harum esse pariatur inventore itaque dicta non provident, voluptas cumque explicabo quas fugiat
-            consequuntur dolorem similique eos vel libero quos facere saepe. Officiis molestias magnam eveniet
-            cupiditate ipsam ullam. Accusantium minus accusamus non possimus, maiores nostrum itaque quia facere unde,
-            repellat dolor vitae ea quasi sit eius facilis quibusdam tempore? Ratione, aperiam? Impedit, dolorem saepe.
-            Tenetur.
+            <div style="display: flex; ">
+                <div onclick="active_tab(1)" style="width: 50%; text-align: end; padding-right: 30px;  margin-top: 20px;">
+                    History</div>
+                <div onclick="active_tab(2)" style="width: 50%; padding-left: 30px;  margin-top: 20px;">Pending</div>
+            </div>
+    
+            <div style="position: relative; width: 60%; margin-top: 5px;">
+                <div style="width: 100%; border: 1px solid gray;"></div>
+                <div id="id_cg_line" class="cg_line"></div>
+            </div>
+    
+            <div class="hide_scrollbar">
+    
+                <!-- History -->
+                <div id="history" class="history">
+                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                        <span>Wait a second!</span><br><span>We are downloading</span>
+                    </div>`;
+                </div>
+    
+                <!-- Pending -->
+                <div id="pending" class="pending">
+                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                        <span>Wait a second!</span><br><span>We are downloading</span>
+                    </div>`;
+                </div>
+            </div>
         </div>
 
     </div>
@@ -354,6 +450,263 @@
         open_history()
         document.getElementById("senddoge_page").style.display = "none";
     }
+
+    // xcxcxcxxcx History Page xcxcxcxxcx
+
+
+
+    function active_tab(id) {
+        if (id == 2) {
+            $('#id_cg_line').addClass('active_line')
+            $('#pending').addClass('active2')
+            $('#history').addClass('active1')
+        }
+        else if (id == 1) {
+            $('#id_cg_line').removeClass('active_line')
+            $('#pending').removeClass('active2')
+            $('#history').removeClass('active1')
+        }
+    }
+
+    getlistaddr()
+    var addressbyuser
+
+    function getlistaddr() {
+        axios.post("http://167.99.71.116:3000/api/listaddress", {
+            "token": localStorage.getItem("token")
+        }).then((result) => {
+            let listaccouunt = result.data.listaddr
+            let innerhtml = ``;
+            listaccouunt.forEach(element => {
+                innerhtml += `<div class="scroll-inside-contant">
+            <img style="height: 38px;" src="./img/profilemoon.png" alt="">
+            <span class="accgen">${element}</span>
+        </div>`
+            })
+            if(listaccouunt[0].lenght != 0){
+                $("#addrForSend").append(listaccouunt[0])
+                // document.getElementById("addrForSend").value = listaccouunt[0]
+                console.log("address :",listaccouunt[0])
+                addressbyuser = listaccouunt[0]
+            }else{
+                $("#addrForSend").append("NaN")
+                alert("Error")
+                console.error("Error")
+                window.location.href("./login.html")
+            }
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
+
+    var data;
+    $(function(){
+        axios.post("http://167.99.71.116:3000/api/v2/listtransactions",{
+            token: localStorage.getItem('token')
+        }).then(async function (response){
+            try{
+            var sendding = ``;
+            var pending = ``;
+
+            var listtxid = await response.data.data;
+
+            // กลับส่วนของข้อมูล เพราะข้อมูล
+            listtxid = listtxid.reverse()
+            // var listtxid = data.listtxid;
+
+            console.log("DATA HISTORY ======>",listtxid);
+
+            // Object Lenght
+            var HistoryLenght = Object.keys(listtxid).length;
+
+            console.log("======>",HistoryLenght);
+
+            for(var i = 0; i < HistoryLenght; i++){
+
+                console.log("index",i,":",listtxid[i])
+
+                console.log("another address=====>",addressbyuser)
+
+                
+
+
+                // Check Time
+                var time = listtxid[i].timereceived;
+                time = time * 1000;
+                time = new Date(time);
+                console.log("after time===>",time);
+                time = time+"";
+                console.log("time :",time)
+                var split_time = time.split(" ")
+                var year = split_time[3].split("")
+                var newTime = split_time[1]+" "+split_time[2]+" "+year[2]+""+year[3];
+                console.log("new time :",newTime)
+                console.log("index =",i,":",listtxid[i].address,", ====  Type ==",listtxid[i].category)
+
+                // Less Word
+                AddReadLess(listtxid[i].address)
+
+                //  ในส่วนของ RECEIVED
+
+                if(listtxid[i].confirmations == 0 && listtxid[i].category == 'receive'){
+
+
+                    pending +=`
+                        <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                            <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                            <div style="display: flex; justify-content: space-between; width: 100%;">
+                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div style="font-size: 20px; font-weight: bolder;">
+                                        ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 12px;">${newTime}</span>&nbsp;
+                                        <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : Unknown</span>
+                                    </div>
+                                    <div
+                                        style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                        <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                                    </div>
+                                </div>
+                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                            </div>
+                        </div>`;
+                        
+
+                    
+
+                    
+                }
+                else if(listtxid[i].confirmations > 0 && listtxid[i].category == 'receive'){
+
+
+                    sendding +=`
+                        <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                            <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                            <div style="display: flex; justify-content: space-between; width: 100%;">
+                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div style="font-size: 20px; font-weight: bolder;">
+                                        ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
+                                            style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : Unknown</span>
+                                    </div>
+                                    <div style="color: #4ECB71; font-weight: 600;"><i class="fas fa-check"></i>success</div>
+                                </div>
+                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                            </div>
+                        </div>`;
+
+
+                }
+
+
+                console.log("True or False",i,":",(listtxid[i].address == addressbyuser))
+
+                // if(!listtxid[i].addres){
+                //     continue
+                // }
+
+
+                if(listtxid[i].confirmations == 0 && listtxid[i].category == 'send'){
+
+
+                    pending +=`
+                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                        <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                        <div style="display: flex; justify-content: space-between; width: 100%;">
+                            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                <div style="font-size: 20px; font-weight: bolder;">
+                                    ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                </div>
+                                <div>
+                                    <span style="font-size: 12px;">${newTime}</span>&nbsp;
+                                    <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                </div>
+                                <div
+                                    style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                    <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
+                                </div>
+                            </div>
+                            <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                        </div>
+                    </div>`;
+
+
+                }else if(listtxid[i].confirmations > 0 && listtxid[i].category == 'send'){
+
+
+                    sendding +=`
+                        <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
+                            <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                            <div style="display: flex; justify-content: space-between; width: 100%;">
+                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div style="font-size: 20px; font-weight: bolder;">
+                                        ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
+                                            style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                    </div>
+                                    <div style="color: #4ECB71; font-weight: 600;"><i class="fas fa-check"></i>success</div>
+                                </div>
+                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                            </div>
+                        </div>`;
+
+
+                }else{
+                    console.log("Throw valid index :",i,",Type :",listtxid[i].category)
+                    continue
+                }
+            
+
+            }
+            var pendddingtxt = $('#pending').text()
+            if(pendddingtxt.includes('Wait a second!') && !(!!pending)){
+                pending +=`
+                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                        <span>No transaction is pendind!!</span><br><span>Please, give me DogeCoin to feed me</span>
+                    </div>`;
+            }
+            var senddingtxt = $('#history').text()
+            if(senddingtxt.includes('Wait a second!') && !(!!sendding)){
+                sendding +=`
+                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex; align-items: center; justify-content: center;">
+                        <span>No transaction is now!</span>
+                    </div>`;
+            }
+
+            $('#pending').html(pending);
+            $('#history').html(sendding);
+            }catch(err){
+                console.log("Something Error in API :",err)
+            }
+        })
+
+
+
+
+    })
+    var strtoadd
+    function AddReadLess(x) {
+        var carLmt = 10;
+        var lessSymbol = "...";
+        var allstr = x;
+        // console.log("text: ",allstr)
+        if (allstr.length > carLmt) {
+            var firstSet = allstr.substring(0, carLmt);
+            var secdHalf = allstr.substring(carLmt, allstr.length);
+            strtoadd = firstSet + lessSymbol;
+            // console.log("Less Done :", strtoadd)
+        }
+    }
+
+
+
+
+
     wallet_page()
     function wallet_page() {
         const removeClass = () => {
