@@ -11,7 +11,8 @@ function getPriceDOGE() {
                 result = thb * res.data.price + ''
                 substr = substrfn(result)
                 document.getElementById('dogePrice').innerHTML = substr + ' ฿';
-
+                document.getElementById('htr_price').innerHTML = substr + ' ฿';
+               
             })
         }).catch(err => {
             console.log(err)
@@ -19,14 +20,14 @@ function getPriceDOGE() {
 
     setInterval(() => {
         axios.get('https://www.binance.com/api/v3/ticker/price?symbol=DOGEUSDT').then(resp => {
-            // console.log(resp.data.price)
+            console.log(resp.data.price)
             result = thb * resp.data.price + ''
             substr = substrfn(result)
             console.log(substr)
             document.getElementById('dogePrice').innerHTML = substr + ' ฿';
         });
 
-    }, 60000)
+    }, 600000)
 }
 // document.getElementById('doge_balance').innerHTML = substrfn('')
 
@@ -91,18 +92,36 @@ async function DogeGetBalance() {
     await axios.post("http://167.99.71.116:3000/api/post/getbalance", {
         token: localStorage.getItem('token')
     }).then
-        ( async function (response) {
+        (async function (response) {
             console.log(response.data)
             // document.getElementById('doge_balance').innerHTML = response.data.balances + ' DOGE'
-            console.log("response.data>>>",response.data)
+            console.log("response.data>>>", response.data)
             $('#doge_balance').html(response.data.balance.balances + ' DOGE')
+            document.getElementById("history_balance").innerHTML = response.data.balance.balances + ' DOGE'
         }).catch(function (error) {
             console.log(error);
         })
 }
 
 
+<<<<<<< Updated upstream
 
+=======
+// $(function () {
+//     $('#foot').load('./footer.html')
+//     var i = 0;
+//     var refresh = setInterval(()=>{
+//         i++
+//         console.log(i)
+//         generateQRCode();
+
+//         if(!!document.getElementById("addrForSend").textContent){
+//             clearInterval(refresh)
+//         }
+//     },1000);
+//     refresh
+// })
+>>>>>>> Stashed changes
 function ToSetting() {
     window.location.href = "./setting.html";
 }
@@ -111,8 +130,8 @@ function copyKey() {
     var copyText = document.getElementById("addrForSend");
     var textArea = document.createElement("textarea");
     textArea.value = copyText.textContent;
-    console.log("Text Copy type:'",typeof(textArea.value),"'")
-    console.log("Text Copy :'",textArea.value,"'")
+    console.log("Text Copy type:'", typeof (textArea.value), "'")
+    console.log("Text Copy :'", textArea.value, "'")
     document.body.appendChild(textArea);
     textArea.select();
     document.execCommand("copy");
@@ -127,24 +146,24 @@ function copyKey() {
         background: "#000",
         color: "#fff",
         width: '100vw'
-        
+
     })
 }
 
 
 function generateQRCode() {
-    setTimeout(()=>{
+    setTimeout(() => {
         let QrTXT = document.getElementById("addrForSend").textContent;
         if (QrTXT) {
             let qrcodeContainer = document.getElementById("qrcode");
             qrcodeContainer.innerHTML = "";
             new QRCode(qrcodeContainer, QrTXT);
-            $("#qrcode-container").css({'display':'flex','justify-content':'center'})
-            $("#qrcode").css({'padding':'4vw','background':'white','border-radius':'10%'})
+            $("#qrcode-container").css({ 'display': 'flex', 'justify-content': 'center' })
+            $("#qrcode").css({ 'padding': '4vw', 'background': 'white', 'border-radius': '10%' })
             // document.getElementById("qrcode-container").style.display = "block";
         } else {
             alert("Please enter a valid URL");
         }
-    },1000)
-    
+    }, 1000)
+
 }
