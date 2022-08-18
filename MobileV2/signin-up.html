@@ -291,7 +291,7 @@
                     <br>
                     <sign-up class="d-flex justify-content-center align-items-center">
                         <button id="sign_up" class="sign_btn d-flex justify-content-center align-items-center fs-4" id="signupGo"
-                            onclick="//signupGo()" style="height: 8vh; width: 80vw;">Sign up
+                            onclick="signupGo()" style="height: 8vh; width: 80vw;">Sign up
                         </button>
 
                     </sign-up>
@@ -358,9 +358,9 @@
                                 style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
                                 11. <input type="text"
                                     style="width: 75%; border: none; background: none;outline: none;"></div>
-                            <div
+                            <div 
                                 style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                12. <input type="text"
+                                12. <input class="showinputnext" type="text"
                                     style="width: 75%; border: none; background: none;outline: none;"></div>
                         </div>
                     </div>
@@ -564,7 +564,7 @@
 <!-- Login.js -->
 <script src="./js/login.js"></script>
 <!-- signup -->
-<script src="./js/signup_bn.js"></script>
+<!-- <script src="./js/signup_bn.js"></script> -->
 
 <script>
 
@@ -624,7 +624,7 @@
         var next = $("#mneNext1");
         var html = ``;
         console.log("หน้าปัจจุบัน:", checkNext);
-        if (checkNext == 1) {
+        if (checkNext == 1  || $(".showinputnext").is(":focus") && event.key == "Enter") {
             checkNext = 2;
             console.log("หน้าถัดไป หน้าที่ :", checkNext);
             $("#mne1").addClass("mne1Active");
@@ -652,39 +652,18 @@
 
     // signup
 
+    var mnKeys;
+
     function signupGo() {
         axios('http://167.99.71.116:3000/api/get/register').then(res => {
             // console.log(res.data.Result);
             data = res.data.Result
                 user = $('#sign_user').val();
                 pwd = $('#sign_pwd').val();
-                pwd_cf = $('sign_pwdAg').val();
+                pwd_cf = $('#sign_pwdAg').val();
                 var pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
-                if (user.match(pattern) && pwd.match(pattern) && pwd_cf.match(pattern)) {
-                    $("#showMnemonicModal").css("display", "block");
-                    $("#showMneSuccess").css("opacity", "0");
-                    axios.post('http://167.99.71.116:3000/api/insert/register', {
-                        username: user,
-                        password: pwd
-                    }).then(function (response) {
-                        console.log(response.data.status);
-                        let status = response.data.status
-                        let result_title = response.data.Result
-                        if (status == true) {
-                            // Swal2Alert('success',result_title,'Success')
-                            // document.getElementById('id_loading').style.display = 'flex'
-                            // setTimeout(gonext(2), 1500);
-
-                        } else {
-                            Swal.fire({icon: 'error', title: result_title, text: 'Plase try again'});
-                        }
-
-                    }).catch(function (error) {
-                        console.log(error);
-                        Swal.fire({icon: 'error', title: 'Server catch!', text: 'Error'});
-                    });
-                }
-                else if (pwd != pwd_cf) {
+                if (pwd != pwd_cf) {
+                    console.log(pwd," | ",pwd_cf)
                     console.log('worng')
                     // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
                     Swal.fire({
@@ -697,15 +676,43 @@
                     })
                     
                 } else {
-                    // Swal2Alert('error', 'Error', 'Please fill all field')
-                    Swal.fire({
-                        title: 'Error !',
-                        text: 'Please fill all field',
-                        imageUrl:'./img/dogehead.png',
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                    })
+                    if (user.match(pattern) /*&& pwd.match(pattern) && pwd_cf.match(pattern)*/) {
+                        $("#showMnemonicModal").css("display", "block");
+                        $("#showMneSuccess").css("opacity", "0");
+                        axios.post('http://167.99.71.116:3000/api/insert/register', {
+                            username: user,
+                            password: pwd
+                        }).then(function (response) {
+                            console.log(response.data.status);
+                            let status = response.data.status
+                            let result_title = response.data.Result
+                            if (status == true) {
+                            
+                                Swal.fire({icon: 'success',text: result_title,title: 'Success'})
+                                // document.getElementById('id_loading').style.display = 'flex'
+                                setTimeout(mnemonicModal_Show(), 1500);
+                                
+
+                            } else {
+                                Swal.fire({icon: 'error', title: result_title, text: 'Plase try again'});
+                            }
+
+                        }).catch(function (error) {
+                            console.log(error);
+                            Swal.fire({icon: 'error', title: 'Server catch!', text: 'Error'});
+                        });
+                    }
+                    else{
+                        // Swal2Alert('error', 'Error', 'Please fill all field')
+                        Swal.fire({
+                            title: 'Error !',
+                            text: 'Please fill all field',
+                            imageUrl:'./img/dogehead.png',
+                            imageWidth: 200,
+                            imageHeight: 200,
+                            imageAlt: 'Custom image',
+                        })}
+
                 }
         }).catch(err => {
             console.log(err);
@@ -713,13 +720,60 @@
     }
 
 
+        // show Mnemonic
+
+                                
+
+        axios.post('http://167.99.71.116:3000/api/post/create-wallet', {
+            token: localStorage.getItem('token')
+        }).then((result)=>{
+            let data = result.data.mnemonic;
+            console.log(data,":: typeof ::",typeof(data));
+            mnKeys = data.split(' ');
+            console.log(mnKeys)
+            let txt1 = ``;
+            let txt2 = ``;
+            let keyLength = Object.keys(mnKeys);
+            console.log('object :',typeof(mnKeys) == 'object'?true:false,'lenght :',keyLength.length);
+            console.log('array :',typeof(mnKeys) == 'array'?true:false,'lenght :',mnKeys.lenght);
+
+
+            txt1 += `<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">`;
+            txt2 += `<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">`;
+
+            for(let i = 0; i < keyLength.length/2; i++){
+                txt1 += `<div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                ${i+1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[i]}</span></div>`;
+            }
+            for(let j = keyLength.length/2; j < keyLength.length; j++){
+                txt2 += `<div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
+                                ${j+1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[j]}</span></div>`;
+            }
+            txt1 += `</div>`;
+            txt2 += `</div>`;
+            $('#showMne1').append(txt1);
+            $('#showMne2').append(txt2);
+        }).catch((err)=>{
+            console.log('error create Mnemonic ====>',err)
+        })
+
+
+
+    function mnemonicModal_Show(){
+        $("#showMnemonicModal").css("display", "block");
+        $("#showMneSuccess").css("opacity", "0");
+
+    }
+
+
 
 
     function showMneNext() {
+
         var next = $("#showMneNext1");
         var html = ``;
         console.log("หน้าปัจจุบัน:", showNext);
-        if (showNext == 1 || $(".input1").is(":focus") && event.key == "Enter") {
+        if (showNext == 1) {
             showNext = 2;
             console.log("หน้าถัดไป หน้าที่ :", showNext);
             $("#showMne1").addClass("mne1Active");
@@ -741,7 +795,35 @@
             next.html(`Next`)
         }
     }
-
+    $(document).keydown( function(event) {
+        console.log()
+        var next = $("#showMneNext1");
+        if ($(".showinputnext").focus() && event.keyCode == 13 || event.keyCode == 9) {
+            if (showNext == 1) {
+                showNext = 2;
+                console.log("หน้าถัดไป หน้าที่ :", showNext);
+                $("#showMne1").addClass("mne1Active");
+                $("#showMne2").addClass("mne2Active");
+                $("#showMneSuccess").css("opacity", "1");
+                next.html(`Back`)
+            } else if (showNext == 2) {
+                showNext = 1;
+                console.log("กลับมา หน้าที่ :", showNext);
+                $("#showMne1").removeClass("mne1Active");
+                $("#showMne2").removeClass("mne2Active");
+                $("#showMneSuccess").css("opacity", "0");
+                next.html(`Next`)
+            } else {
+                showNext = 1;
+                console.log("เกิดปัญหา วิ่งไปที่หน้า", showNext);
+                alert("Error! Please fill mnemonic again");
+                $("#showMneSuccess").css("opacity", "0");
+                next.html(`Next`)
+            }
+            event.preventDefault();
+            return false;
+        }
+    });
 
 
 
