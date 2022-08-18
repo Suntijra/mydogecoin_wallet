@@ -47,7 +47,6 @@ function substrfn(str1) {
             }
             break;
         }
-
     }
     let substr = index
     return substr
