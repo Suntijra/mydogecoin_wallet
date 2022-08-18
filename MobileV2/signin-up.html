@@ -227,21 +227,21 @@
         </div>
 
         <div class="hideScrollBar"
-            style="position: relative; width: 100%; height: 55vh; overflow-y: scroll; overflow-x: hidden;">
+            style="position: relative; width: 100%; height: 60vh; overflow-y: scroll; overflow-x: hidden;">
 
             <div id="signin_detail" class="signin_detail">
                 <div class="d-flex justify-content-center mt-4 flex-column">
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
-                        <input id="id_user" class="input-s" type="text" value="" placeholder="username" required
+                        <input id="log_user" class="input-s" type="text" placeholder="username"
                             style="position:absolute; left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
-                        <input id="id_pwd" class="input-s" type="text" value="" placeholder="password" required
+                        <input id="log_pwd" class="input-s" type="password" placeholder="password"
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
@@ -263,21 +263,33 @@
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
+<<<<<<< Updated upstream
                         <input id="id_username" class="input-s" type="text" value="" placeholder="username" required
+=======
+                        <input id="sign_user" class="input-s" type="text" placeholder="username"
+>>>>>>> Stashed changes
                             style="position:absolute; left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
+<<<<<<< Updated upstream
                         <input id="id_password" class="input-s" type="text" value="" placeholder="password" required
+=======
+                        <input id="sign_pwd" class="input-s" type="password" placeholder="password"
+>>>>>>> Stashed changes
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
+<<<<<<< Updated upstream
                         <input id="id_password_cf" class="input-s" type="text" value="" placeholder="confirm password" required
+=======
+                        <input id="sign_pwdAg" class="input-s" type="password" placeholder="confirm password"
+>>>>>>> Stashed changes
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
@@ -645,9 +657,63 @@
     // show
 
     function signupGo() {
-        console.log("aloy")
-        $("#showMnemonicModal").css("display", "block");
-        $("#showMneSuccess").css("opacity", "0");
+        axios('http://167.99.71.116:3000/api/get/register').then(res => {
+            // console.log(res.data.Result);
+            data = res.data.Result
+                user = $('#sign_user').val();
+                pwd = $('#sign_pwd').val();
+                pwd_cf = $('sign_pwdAg').val();
+                var pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
+                if (user.match(pattern) && pwd.match(pattern) && pwd_cf.match(pattern)) {
+                    $("#showMnemonicModal").css("display", "block");
+                    $("#showMneSuccess").css("opacity", "0");
+                    axios.post('http://167.99.71.116:3000/api/insert/register', {
+                        username: user,
+                        password: pwd
+                    }).then(function (response) {
+                        console.log(response.data.status);
+                        let status = response.data.status
+                        let result_title = response.data.Result
+                        if (status == true) {
+                            // Swal2Alert('success',result_title,'Success')
+                            // document.getElementById('id_loading').style.display = 'flex'
+                            // setTimeout(gonext(2), 1500);
+
+                        } else {
+                            Swal.fire({icon: 'error', title: result_title, text: 'Plase try again'});
+                        }
+
+                    }).catch(function (error) {
+                        console.log(error);
+                        Swal.fire({icon: 'error', title: 'Server catch!', text: 'Error'});
+                    });
+                }
+                else if (pwd != pwd_cf) {
+                    console.log('worng')
+                    // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
+                    Swal.fire({
+                        title: 'Oops..., color',
+                        text: 'Password not match',
+                        imageUrl:'./img/moon.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                    
+                } else {
+                    // Swal2Alert('error', 'Error', 'Please fill all field')
+                    Swal.fire({
+                        title: 'Error !',
+                        text: 'Please fill all field',
+                        imageUrl:'./img/dogehead.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     function showMneNext() {
