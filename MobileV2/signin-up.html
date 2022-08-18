@@ -263,33 +263,24 @@
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
-<<<<<<< Updated upstream
-                        <input id="id_username" class="input-s" type="text" value="" placeholder="username" required
-=======
+
                         <input id="sign_user" class="input-s" type="text" placeholder="username"
->>>>>>> Stashed changes
                             style="position:absolute; left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
-<<<<<<< Updated upstream
-                        <input id="id_password" class="input-s" type="text" value="" placeholder="password" required
-=======
+
                         <input id="sign_pwd" class="input-s" type="password" placeholder="password"
->>>>>>> Stashed changes
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
-<<<<<<< Updated upstream
-                        <input id="id_password_cf" class="input-s" type="text" value="" placeholder="confirm password" required
-=======
+
                         <input id="sign_pwdAg" class="input-s" type="password" placeholder="confirm password"
->>>>>>> Stashed changes
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
@@ -627,6 +618,8 @@
     var checkNext = 1;
     var getMneObj = [];
     var showNext = 1;
+
+
     function MneNext() {
         var next = $("#mneNext1");
         var html = ``;
@@ -654,7 +647,10 @@
         }
     }
 
-    // show
+
+
+
+    // signup
 
     function signupGo() {
         axios('http://167.99.71.116:3000/api/get/register').then(res => {
@@ -716,11 +712,14 @@
         });
     }
 
+
+
+
     function showMneNext() {
         var next = $("#showMneNext1");
         var html = ``;
         console.log("หน้าปัจจุบัน:", showNext);
-        if (showNext == 1) {
+        if (showNext == 1 || $(".input1").is(":focus") && event.key == "Enter") {
             showNext = 2;
             console.log("หน้าถัดไป หน้าที่ :", showNext);
             $("#showMne1").addClass("mne1Active");
