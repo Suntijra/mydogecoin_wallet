@@ -272,7 +272,7 @@
                 </div>
             </div>
             <div class="row mt-5 mx-2">
-                <button id="send_tx" class="text-white py-3 px-3"
+                <button id="send_tx" onclick="listtxid_history()" class="text-white py-3 px-3"
                     style="background-color: #514E58 ;border-radius: 228px ;font: size 18px;box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);">
                     <img src="./img/rockket.svg" alt="">
                     Send Coin</button>
@@ -285,7 +285,7 @@
             <div id="home_slide_top"
                 class="d-flex main-top flex-column justify-content-center align-items-center position-relative">
                 <div>
-                    <balance id="doge_balance" class=" d-flex flex-column" style="font-size: 48px;">0.00 DOGE
+                    <balance id="doge_balance" class=" d-flex flex-column" style="font-size: 36px;">0.00 DOGE
                        
                     </balance>
                     <div id="dogePrice" class="text-center" style="font-size: 16px;">doge ~ err</div>
@@ -306,7 +306,7 @@
             <history-page id="history_page_id"
                 class="d-flex d-none main-top flex-column justify-content-center align-items-center position-relative">
                 <div>
-                    <balance id="history_balance" class="d-flex flex-column" style="font-size: 48px;">0.00 DOGE
+                    <balance id="history_balance" class="d-flex flex-column" style="font-size: 36px;">0.00 DOGE
                     </balance>
                     <div id="htr_price" class="text-center" style="font-size: 16px;">doge ~ err</div>
                 </div>
@@ -460,7 +460,6 @@
     }
     history_page()
     function history_page() {
-        console.log("aysdysdy")
         const removeClass = () => {
             document.querySelector('#history_page_id').classList.remove("d-none");
             document.querySelector('#history_page2_id').classList.remove("d-none");
@@ -474,6 +473,7 @@
         open_history()
         hide_setting()
         document.getElementById("senddoge_page").style.display = "none";
+        listtxid_history()
     }
 
 
@@ -528,7 +528,7 @@
     }
 
     var data;
-    $(function(){
+    function listtxid_history(){
         axios.post("http://167.99.71.116:3000/api/v2/listtransactions",{
             token: localStorage.getItem('token')
         }).then(async function (response){
@@ -712,11 +712,8 @@
                 console.log("Something Error in API :",err)
             }
         })
+    }
 
-
-
-
-    })
     var strtoadd
     function AddReadLess(x) {
         var carLmt = 10;
@@ -730,11 +727,6 @@
             // console.log("Less Done :", strtoadd)
         }
     }
-
-
-
-
-
     wallet_page()
     function wallet_page() {
         const removeClass = () => {

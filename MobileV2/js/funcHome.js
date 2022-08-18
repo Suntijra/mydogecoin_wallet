@@ -103,23 +103,6 @@ async function DogeGetBalance() {
         })
 }
 
-
-
-// $(function () {
-//     $('#foot').load('./footer.html')
-//     var i = 0;
-//     var refresh = setInterval(()=>{
-//         i++
-//         console.log(i)
-//         generateQRCode();
-
-//         if(!!document.getElementById("addrForSend").textContent){
-//             clearInterval(refresh)
-//         }
-//     },1000);
-//     refresh
-// })
-
 function ToSetting() {
     window.location.href = "./setting.html";
 }
