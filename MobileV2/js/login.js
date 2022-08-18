@@ -1,7 +1,7 @@
 localStorage.clear()
 document.getElementById("login_btn").addEventListener("click", function () {
-    let id_user = document.getElementById("id_user").value;
-    let id_pwd = document.getElementById("id_pwd").value;
+    let id_user = document.getElementById("log_user").value;
+    let id_pwd = document.getElementById("log_pwd").value;
     if (id_user == "" || id_pwd == "") {
         alert("Please fill in all the fields");
     }
