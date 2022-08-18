@@ -1,3 +1,28 @@
+
+var pass = $('#id_password').val();
+var pas2 = $('#id_password_cf').val();
+var pattern = /^[0-9a-zA-Z]{8,}$/;
+var red1 = false, red2 = false, red3 = false;
+
+
+
+function inp_user() {
+    var user = $('#id_username').val();
+    console.log("word : ", user)
+    console.log("length : ", user.length)
+    if (user.match(pattern)) {
+        $('#border_username').css('border', '2px solid green');
+        //$('#border_username').css('border-style','solid solid solid none')
+        red1 = false;
+        if (user.length >= 8) {
+            console.info("success")
+        } else { }
+    }
+    else if (!user.match(pattern)) {
+        $('#border_username').css('border', '2px solid red');
+        red1 = true;
+    }
+}
 axios('http://167.99.71.116:3000/api/get/register').then(res => {
     // console.log(res.data.Result);
     data = res.data.Result
@@ -8,14 +33,14 @@ axios('http://167.99.71.116:3000/api/get/register').then(res => {
         var pattern = /^[0-9a-zA-Z]{8,}$/;
         if (user.match(pattern) && pwd.match(pattern) && pwd_cf.match(pattern)) {
             // Swal2Alert('error', 'Error', 'Please fill all field')
-              Swal.fire({
+            Swal.fire({
                 title: 'Error !',
                 text: 'Please fill all field',
-                 imageUrl:'./img/dogehead.png',
-                 imageWidth: 200,
-                 imageHeight: 200,
-                 imageAlt: 'Custom image',
-               })
+                imageUrl: './img/dogehead.png',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+            })
         }
         else if (pwd != pwd_cf) {
             console.log('worng')
@@ -23,12 +48,12 @@ axios('http://167.99.71.116:3000/api/get/register').then(res => {
             Swal.fire({
                 title: 'Oops..., color',
                 text: 'Password not match',
-                 imageUrl:'./img/moon.png',
-                 imageWidth: 200,
-                 imageHeight: 200,
-                 imageAlt: 'Custom image',
-               })
-            
+                imageUrl: './img/moon.png',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+            })
+
         } else {
             axios.post('http://167.99.71.116:3000/api/insert/register', {
                 username: user,
@@ -60,7 +85,7 @@ axios('http://167.99.71.116:3000/api/get/register').then(res => {
     console.log(err);
 });
 
- 
+
 
 function Swal2Alert(icon = 'success', title = 'Success', text = 'Success') {
     Swal.fire({

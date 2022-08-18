@@ -148,41 +148,6 @@
         </div>
     </div>
 </body>
-<script>
-    var pass = $('#id_password').val();
-    var pas2 = $('#id_password_cf').val();
-    var pattern = /^[0-9a-zA-Z]{8,}$/;
-    var red1 = false, red2 = false, red3 = false;
-
-
-
-    function inp_user() {
-        var user = $('#id_username').val();
-        console.log("word : ", user)
-        console.log("length : ", user.length)
-        if (user.match(pattern)) {
-            $('#border_username').css('border', '2px solid green');
-            //$('#border_username').css('border-style','solid solid solid none')
-            red1 = false;
-            if (user.length >= 8) {
-                console.info("success")
-            } else { }
-        }
-        else if (!user.match(pattern)) {
-            $('#border_username').css('border', '2px solid red');
-            red1 = true;
-        }
-    }
-
-
-    function inp_pass() {
-    }
-
-
-    function inp_pas2() {
-    }
-
-</script>
 
 </html>
 

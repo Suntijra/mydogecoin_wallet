@@ -33,13 +33,21 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* #addrForSend {
+            overflow: hidden;
+            white-space: nowrap;
+            -o-text-overflow: ellipsis;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            width: 91px;
+        } */
+
         @font-face {
             font-family: 'mydogefont';
             src: url('./font/strawberry_muffins/Strawberry\ Muffins\ Demo.ttf');
         }
 
         body {
-            background-color: black;
             margin: 0;
             padding: 0;
             font-family: 'mydogefont';
@@ -59,7 +67,7 @@
         .main-top {
             background-color: #E9A700;
             border-radius: 0px 0px 36px 36px;
-            transition: height 0.5s;
+            transition: height 0.3s;
             height: 30vh;
             box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
         }
@@ -85,7 +93,6 @@
         }
 
         html {
-            background-color: black;
             height: 100%;
         }
 
@@ -158,8 +165,8 @@
             right: 0vw;
         }
 
-        .cg_line{
-            position: absolute; 
+        .cg_line {
+            position: absolute;
             left: 0;
             top: -2px;
             border: 2px solid black;
@@ -169,10 +176,11 @@
             transition: 500ms;
         }
 
-        .active_line{
-            left: 30vw; 
+        .active_line {
+            left: 30vw;
             width: 30vw;
         }
+
         .hide_scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -194,7 +202,6 @@
             flex-direction: column;
             align-items: center;
         }
-
     </style>
 
 
@@ -217,7 +224,7 @@
                 About us
             </div>
             <div class="line"></div>
-            <div class="p-3" style="color: #BA3635;">
+            <div onclick="removeAcc()" class="p-3" style="color: #BA3635;">
                 Remove account
             </div>
         </div>
@@ -277,16 +284,18 @@
                     <img src="./img/rockket.svg" alt="">
                     Send Coin</button>
             </div>
+            <div class = "position-fixed bottom-0" style="height:40vw; margin-bottom: 12vh; right: 0; ">
+                <img height="100%" src="./img/Groupกล้อง.svg" alt="">
+            </div>
         </div>
 
     </div>
     <main class="container-fluid">
-        <div class="row" style="height: 40%;">
+        <div id="row_top_id" class="row" style="height: 40%;">
             <div id="home_slide_top"
                 class="d-flex main-top flex-column justify-content-center align-items-center position-relative">
                 <div>
                     <balance id="doge_balance" class=" d-flex flex-column" style="font-size: 36px;">0.00 DOGE
-                       
                     </balance>
                     <div id="dogePrice" class="text-center" style="font-size: 16px;">doge ~ err</div>
                 </div>
@@ -294,8 +303,9 @@
                     <span style="font-size: 32px;">My QR-Code</span>
                     <img class="p-2" width="80%" src="./img/qrcode.svg" alt="">
                     <!-- <input class="qrinput" type="text"> -->
-                    <div>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, magni.
+                    <span id="addrForSend"></span>
+                    <div style="float: right;">
+                        <img id="b_foot" onclick="copyKey()" src="/Mobile/img/Group.png" style="height: 15px;">
                     </div>
                 </div>
                 <span id="qr_btn" onclick="switch_toggle()" class="text-center position-absolute"
@@ -303,7 +313,7 @@
                     <img src="./img/btn_qr.svg" alt="qr-code">
                 </span>
             </div>
-            <history-page id="history_page_id"
+            <history-page id="history_page_id" 
                 class="d-flex d-none main-top flex-column justify-content-center align-items-center position-relative">
                 <div>
                     <balance id="history_balance" class="d-flex flex-column" style="font-size: 36px;">0.00 DOGE
@@ -317,38 +327,38 @@
                         Send Coin</button>
                     <!-- <img id="send_coin" onclick="" src="./img/sendDoge.svg" alt=""> -->
                 </div>
-                <script>
-
-                </script>
             </history-page>
         </div>
     </main>
-    <div id="history_page2_id" class="text-center pt-3 " style="width: 100vw; height: 70vh; ">
+    <div id="history_page2_id" class="text-center pt-3 bg-body" style="width: 100vw; height: 70vh; ">
         <div class="body_content">
 
             <div style="display: flex; ">
-                <div onclick="active_tab(1)" style="width: 50%; text-align: end; padding-right: 30px;  margin-top: 20px;">
+                <div onclick="active_tab(1)"
+                    style="width: 50%; text-align: end; padding-right: 30px;  margin-top: 20px;">
                     History</div>
                 <div onclick="active_tab(2)" style="width: 50%; padding-left: 30px;  margin-top: 20px;">Pending</div>
             </div>
-    
+
             <div style="position: relative; width: 60%; margin-top: 5px;">
                 <div style="width: 100%; border: 1px solid gray;"></div>
                 <div id="id_cg_line" class="cg_line"></div>
             </div>
-    
+
             <div class="hide_scrollbar">
-    
+
                 <!-- History -->
                 <div id="history" class="history">
-                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                    <div
+                        style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>Wait a second!</span><br><span>We are downloading</span>
                     </div>`;
                 </div>
-    
+
                 <!-- Pending -->
                 <div id="pending" class="pending">
-                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                    <div
+                        style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>Wait a second!</span><br><span>We are downloading</span>
                     </div>`;
                 </div>
@@ -395,91 +405,9 @@
 <script src="./js/authen.js"></script>
 <!-- function senddoge_page() -->
 <script src="./js/senddoge.js"></script>
+<script src="./js/removeAcc.js"></script>
 
 <script>
-
-
-
-
-
-    document.getElementById("senddoge_page").style.display = "none";
-    document.querySelector('#history_page_id').classList.add("d-none");
-    document.querySelector('#history_page2_id').classList.add("d-none");
-    btn_send.onclick = () => {
-        document.getElementById("senddoge_page").style.display = "block";
-    }
-    btn_back_arrow.onclick = function () {
-        document.getElementById("senddoge_page").style.display = "none";
-        history_page()
-    }
-
-
-
-
-
-    const hide_setting = () => { document.querySelector("#setting_main_id").style.display = "none"; }
-    function setting_about() {
-        console.log("About")
-        document.querySelector("#setting_id").textContent = "About us"
-        document.querySelector("#settingimg").src = "./img/settingv2.svg"
-        document.querySelector("#setting_contentid").classList.add("d-none");
-    }
-
-
-
-
-    function settingPage() {
-        document.querySelector("#setting_contentid").classList.remove("d-none");
-        document.querySelector("#setting_id").textContent = "Setting"
-        document.querySelector("#settingimg").src = "./img/setting1.svg"
-        document.querySelector("#setting_main_id").style.display = "block"
-    }
-
-
-
-
-
-
-    async function switch_toggle() {
-        let btn_qr = document.querySelector("#qr_btn")
-        console.log("ok", document.querySelector("#home_slide_top").style.height)
-        let slide = document.querySelector("#home_slide_top")
-
-        // console.log("check",slide.style.height)
-        if (slide.style.height == '') {
-            document.querySelector("#home_slide_top").style.height = "30vh";
-        }
-        if (slide.style.height == '30vh') {
-            document.querySelector("#home_slide_top").style.height = "70vh";
-            document.querySelector("#optionqr").classList.remove("d-none");
-        } else if (slide.style.height == '70vh') {
-            document.querySelector("#home_slide_top").style.height = "30vh";
-            document.querySelector("#optionqr").classList.add("d-none");
-        }
-
-    }
-    history_page()
-    function history_page() {
-        const removeClass = () => {
-            document.querySelector('#history_page_id').classList.remove("d-none");
-            document.querySelector('#history_page2_id').classList.remove("d-none");
-        }
-        const open_history = () => {
-            document.querySelector('body').style.background = "#F5F5F5"
-            document.querySelector('#home_bg_doge').classList.add("d-none");
-            document.querySelector('#home_slide_top').classList.add("d-none");
-        }
-        removeClass()
-        open_history()
-        hide_setting()
-        document.getElementById("senddoge_page").style.display = "none";
-        listtxid_history()
-    }
-
-
-
-
-
 
     // xcxcxcxxcx History Page xcxcxcxxcx
 
@@ -511,12 +439,12 @@
             <span class="accgen">${element}</span>
         </div>`
             })
-            if(listaccouunt[0].lenght != 0){
+            if (listaccouunt[0].lenght != 0) {
                 $("#addrForSend").append(listaccouunt[0])
                 // document.getElementById("addrForSend").value = listaccouunt[0]
-                console.log("address :",listaccouunt[0])
+                console.log("address :", listaccouunt[0])
                 addressbyuser = listaccouunt[0]
-            }else{
+            } else {
                 $("#addrForSend").append("NaN")
                 alert("Error")
                 console.error("Error")
@@ -528,58 +456,58 @@
     }
 
     var data;
-    function listtxid_history(){
-        axios.post("http://167.99.71.116:3000/api/v2/listtransactions",{
+    function listtxid_history() {
+        axios.post("http://167.99.71.116:3000/api/v2/listtransactions", {
             token: localStorage.getItem('token')
-        }).then(async function (response){
-            try{
-            var sendding = ``;
-            var pending = ``;
+        }).then(async function (response) {
+            try {
+                var sendding = ``;
+                var pending = ``;
 
-            var listtxid = await response.data.data;
+                var listtxid = await response.data.data;
 
-            // กลับส่วนของข้อมูล เพราะข้อมูล
-            listtxid = listtxid.reverse()
-            // var listtxid = data.listtxid;
+                // กลับส่วนของข้อมูล เพราะข้อมูล
+                listtxid = listtxid.reverse()
+                // var listtxid = data.listtxid;
 
-            console.log("DATA HISTORY ======>",listtxid);
+                console.log("DATA HISTORY ======>", listtxid);
 
-            // Object Lenght
-            var HistoryLenght = Object.keys(listtxid).length;
+                // Object Lenght
+                var HistoryLenght = Object.keys(listtxid).length;
 
-            console.log("======>",HistoryLenght);
+                console.log("======>", HistoryLenght);
 
-            for(var i = 0; i < HistoryLenght; i++){
+                for (var i = 0; i < HistoryLenght; i++) {
 
-                console.log("index",i,":",listtxid[i])
+                    console.log("index", i, ":", listtxid[i])
 
-                console.log("another address=====>",addressbyuser)
-
-                
+                    console.log("another address=====>", addressbyuser)
 
 
-                // Check Time
-                var time = listtxid[i].timereceived;
-                time = time * 1000;
-                time = new Date(time);
-                console.log("after time===>",time);
-                time = time+"";
-                console.log("time :",time)
-                var split_time = time.split(" ")
-                var year = split_time[3].split("")
-                var newTime = split_time[1]+" "+split_time[2]+" "+year[2]+""+year[3];
-                console.log("new time :",newTime)
-                console.log("index =",i,":",listtxid[i].address,", ====  Type ==",listtxid[i].category)
-
-                // Less Word
-                AddReadLess(listtxid[i].address)
-
-                //  ในส่วนของ RECEIVED
-
-                if(listtxid[i].confirmations == 0 && listtxid[i].category == 'receive'){
 
 
-                    pending +=`
+                    // Check Time
+                    var time = listtxid[i].timereceived;
+                    time = time * 1000;
+                    time = new Date(time);
+                    console.log("after time===>", time);
+                    time = time + "";
+                    console.log("time :", time)
+                    var split_time = time.split(" ")
+                    var year = split_time[3].split("")
+                    var newTime = split_time[1] + " " + split_time[2] + " " + year[2] + "" + year[3];
+                    console.log("new time :", newTime)
+                    console.log("index =", i, ":", listtxid[i].address, ", ====  Type ==", listtxid[i].category)
+
+                    // Less Word
+                    AddReadLess(listtxid[i].address)
+
+                    //  ในส่วนของ RECEIVED
+
+                    if (listtxid[i].confirmations == 0 && listtxid[i].category == 'receive') {
+
+
+                        pending += `
                         <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
                             <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -599,16 +527,16 @@
                                 <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
                             </div>
                         </div>`;
-                        
-
-                    
-
-                    
-                }
-                else if(listtxid[i].confirmations > 0 && listtxid[i].category == 'receive'){
 
 
-                    sendding +=`
+
+
+
+                    }
+                    else if (listtxid[i].confirmations > 0 && listtxid[i].category == 'receive') {
+
+
+                        sendding += `
                         <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
                             <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -627,20 +555,20 @@
                         </div>`;
 
 
-                }
+                    }
 
 
-                console.log("True or False",i,":",(listtxid[i].address == addressbyuser))
+                    console.log("True or False", i, ":", (listtxid[i].address == addressbyuser))
 
-                // if(!listtxid[i].addres){
-                //     continue
-                // }
-
-
-                if(listtxid[i].confirmations == 0 && listtxid[i].category == 'send'){
+                    // if(!listtxid[i].addres){
+                    //     continue
+                    // }
 
 
-                    pending +=`
+                    if (listtxid[i].confirmations == 0 && listtxid[i].category == 'send') {
+
+
+                        pending += `
                     <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
                         <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                         <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -662,10 +590,10 @@
                     </div>`;
 
 
-                }else if(listtxid[i].confirmations > 0 && listtxid[i].category == 'send'){
+                    } else if (listtxid[i].confirmations > 0 && listtxid[i].category == 'send') {
 
 
-                    sendding +=`
+                        sendding += `
                         <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
                             <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -684,32 +612,32 @@
                         </div>`;
 
 
-                }else{
-                    console.log("Throw valid index :",i,",Type :",listtxid[i].category)
-                    continue
-                }
-            
+                    } else {
+                        console.log("Throw valid index :", i, ",Type :", listtxid[i].category)
+                        continue
+                    }
 
-            }
-            var pendddingtxt = $('#pending').text()
-            if(pendddingtxt.includes('Wait a second!') && !(!!pending)){
-                pending +=`
+
+                }
+                var pendddingtxt = $('#pending').text()
+                if (pendddingtxt.includes('Wait a second!') && !(!!pending)) {
+                    pending += `
                     <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>No transaction is pendind!!</span><br><span>Please, give me DogeCoin to feed me</span>
                     </div>`;
-            }
-            var senddingtxt = $('#history').text()
-            if(senddingtxt.includes('Wait a second!') && !(!!sendding)){
-                sendding +=`
+                }
+                var senddingtxt = $('#history').text()
+                if (senddingtxt.includes('Wait a second!') && !(!!sendding)) {
+                    sendding += `
                     <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex; align-items: center; justify-content: center;">
                         <span>No transaction is now!</span>
                     </div>`;
-            }
+                }
 
-            $('#pending').html(pending);
-            $('#history').html(sendding);
-            }catch(err){
-                console.log("Something Error in API :",err)
+                $('#pending').html(pending);
+                $('#history').html(sendding);
+            } catch (err) {
+                console.log("Something Error in API :", err)
             }
         })
     }
@@ -727,20 +655,7 @@
             // console.log("Less Done :", strtoadd)
         }
     }
-    wallet_page()
-    function wallet_page() {
-        const removeClass = () => {
-            document.querySelector('#history_page_id').classList.add("d-none");
-            document.querySelector('#history_page2_id').classList.add("d-none");
-            document.querySelector('#home_bg_doge').classList.remove("d-none");
-            document.querySelector('body').style.background = "black"
-        }
-        const open_wallet = () => {
-            document.querySelector('#home_slide_top').classList.remove("d-none");
-        }
-        removeClass()
-        open_wallet()
-        hide_setting()
-        document.getElementById("senddoge_page").style.display = "none";
-    }
+
 </script>
+<!-- page -->
+<script src="./js/page.js"></script>

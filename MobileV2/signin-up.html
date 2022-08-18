@@ -263,21 +263,21 @@
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
-                        <input class="input-s" type="text" value="" placeholder="username" required
+                        <input id="id_username" class="input-s" type="text" value="" placeholder="username" required
                             style="position:absolute; left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
-                        <input class="input-s" type="text" value="" placeholder="password" required
+                        <input id="id_password" class="input-s" type="text" value="" placeholder="password" required
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
-                        <input class="input-s" type="text" value="" placeholder="confirm password" required
+                        <input id="id_password_cf" class="input-s" type="text" value="" placeholder="confirm password" required
                             style="position:absolute;left: 35vw; text-align: center;">
                     </div>
                     <br>
@@ -287,8 +287,8 @@
                     </label>
                     <br>
                     <sign-up class="d-flex justify-content-center align-items-center">
-                        <button class="sign_btn d-flex justify-content-center align-items-center fs-4" id="signupGo"
-                            onclick="signupGo()" style="height: 8vh; width: 80vw;">Sign up
+                        <button id="sign_up" class="sign_btn d-flex justify-content-center align-items-center fs-4" id="signupGo"
+                            onclick="//signupGo()" style="height: 8vh; width: 80vw;">Sign up
                         </button>
 
                     </sign-up>
@@ -560,6 +560,9 @@
 </html>
 <!-- Login.js -->
 <script src="./js/login.js"></script>
+<!-- signup -->
+<script src="./js/signup_bn.js"></script>
+
 <script>
 
     var signin = document.getElementById('signintab');
