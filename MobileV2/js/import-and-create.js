@@ -12,19 +12,19 @@ function close_all() {
 
     $('#bg_close').css('display', 'none');
 }
-document.getElementById('btn_create').addEventListener('click', function () {
-    document.getElementById('create-wallet').style.display = 'flex';
-    $('#bg_close').css({
-        'display': 'flex',
-    })
-});
+// document.getElementById('btn_create').addEventListener('click', function () {
+//     document.getElementById('create-wallet').style.display = 'flex';
+//     $('#bg_close').css({
+//         'display': 'flex',
+//     })
+// });
 
-document.getElementById('btn_import').addEventListener('click', function () {
-    document.getElementById('import-wallet').style.display = 'flex';
-    $('#bg_close').css({
-        'display': 'flex',
-    })
-});
+// document.getElementById('btn_import').addEventListener('click', function () {
+//     document.getElementById('import-wallet').style.display = 'flex';
+//     $('#bg_close').css({
+//         'display': 'flex',
+//     })
+// });
 
 function modal_close(x) {
     console.log('display: none')
@@ -94,17 +94,17 @@ function CreateGo() {
     })
 }
 
-createWalet()
-if (localStorage.getItem('addr_count') == 0){
-    console.log("createWalet first")
-    // window.location.href = "./import-and-create.html"
-}else{
-    // alert("go to home")
-    window.location.href = "./home.html"
-}
 
+// if (localStorage.getItem('addr_count') == 0){
+//     console.log("createWalet first")
+//     // window.location.href = "./import-and-create.html"
+// }else{
+//     // alert("go to home")
+//     window.location.href = "./home.html"
+// }
+createWalet()
 function createWalet() {
-    document.getElementById("btn_create").addEventListener("click", () => {
+    document.getElementById("sign_up").addEventListener("click", () => {
         axios.post("http://167.99.71.116:3000/api/post/create-wallet", {
             token: localStorage.getItem('token')
         }).then(function (response) {

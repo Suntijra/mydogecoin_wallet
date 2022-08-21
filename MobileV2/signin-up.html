@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>sign in & sign up</title>
     <!-- bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -290,8 +292,8 @@
                     </label>
                     <br>
                     <sign-up class="d-flex justify-content-center align-items-center">
-                        <button id="sign_up" class="sign_btn d-flex justify-content-center align-items-center fs-4" id="signupGo"
-                            onclick="signupGo()" style="height: 8vh; width: 80vw;">Sign up
+                        <button id="sign_up" class="sign_btn d-flex justify-content-center align-items-center fs-4"
+                            id="signupGo" onclick="signupGo()" style="height: 8vh; width: 80vw;">Sign up
                         </button>
 
                     </sign-up>
@@ -362,9 +364,9 @@
 <!-- <script src="./js/login.js"></script> -->
 <!-- signup -->
 <!-- <script src="./js/signup_bn.js"></script> -->
-
+<!-- create wallet -->
+<!-- <script src="./js/import-and-create.js"></script> -->
 <script>
-
     var signin = document.getElementById('signintab');
     var signup = document.getElementById('signuptab');
     signin.onclick = function () {
@@ -454,101 +456,105 @@
     function signupGo() {
         axios('http://167.99.71.116:3000/api/get/register').then(res => {
             // console.log(res.data.Result);
-            data = res.data.Result
-                user = $('#sign_user').val();
-                pwd = $('#sign_pwd').val();
-                pwd_cf = $('#sign_pwdAg').val();
-                var pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
-                if (pwd != pwd_cf) {
-                    console.log(pwd," | ",pwd_cf)
-                    console.log('worng')
-                    // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
+            let data = res.data.Result
+            let user = $('#sign_user').val();
+            let pwd = $('#sign_pwd').val();
+            let pwd_cf = $('#sign_pwdAg').val();
+            // "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
+            let pattern = /^[0-9a-zA-Z]{8,}$/;
+            if (pwd != pwd_cf) {
+                console.log(pwd, " | ", pwd_cf)
+                console.log('worng')
+                // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
+                Swal.fire({
+                    title: 'Oops..., color',
+                    text: 'Password not match',
+                    imageUrl: './img/moon.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+
+            } else {
+                console.log("user: ",user,user.match(pattern))
+
+                if (user.match(pattern) /*&& pwd.match(pattern) && pwd_cf.match(pattern)*/) {
+                    axios.post('http://167.99.71.116:3000/api/insert/register', {
+                        username: user,
+                        password: pwd
+                    }).then(function (response) {
+                        console.log(response.data);
+                        let status = response.data.status
+                        let result_title = response.data.Result
+                        if (status == true) {
+
+                            Swal.fire({ icon: 'success', text: result_title, title: 'Success' })
+                            // document.getElementById('id_loading').style.display = 'flex'
+                            setTimeout(signin.onclick, 1500)
+
+
+
+                        } else {
+                            Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
+                        }
+
+                    }).catch(function (error) {
+                        console.log(error);
+                        Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
+                    });
+                }
+                else {
+                    // Swal2Alert('error', 'Error', 'Please fill all field')
                     Swal.fire({
-                        title: 'Oops..., color',
-                        text: 'Password not match',
-                        imageUrl:'./img/moon.png',
+                        title: 'Error !',
+                        text: 'Please fill all field',
+                        imageUrl: './img/dogehead.png',
                         imageWidth: 200,
                         imageHeight: 200,
                         imageAlt: 'Custom image',
                     })
-                    
-                } else {
-                    if (user.match(pattern) /*&& pwd.match(pattern) && pwd_cf.match(pattern)*/) {
-                        axios.post('http://167.99.71.116:3000/api/insert/register', {
-                            username: user,
-                            password: pwd
-                        }).then(function (response) {
-                            console.log(response.data);
-                            let status = response.data.status
-                            let result_title = response.data.Result
-                            if (status == true) {
-                            
-                                Swal.fire({icon: 'success',text: result_title,title: 'Success'})
-                                // document.getElementById('id_loading').style.display = 'flex'
-                                setTimeout(signin.onclick,1500)
-                            
-                                
-
-                            } else {
-                                Swal.fire({icon: 'error', title: result_title, text: 'Plase try again'});
-                            }
-
-                        }).catch(function (error) {
-                            console.log(error);
-                            Swal.fire({icon: 'error', title: 'Server catch!', text: 'Error'});
-                        });
-                    }
-                    else{
-                        // Swal2Alert('error', 'Error', 'Please fill all field')
-                        Swal.fire({
-                            title: 'Error !',
-                            text: 'Please fill all field',
-                            imageUrl:'./img/dogehead.png',
-                            imageWidth: 200,
-                            imageHeight: 200,
-                            imageAlt: 'Custom image',
-                        })}
-
                 }
+
+            }
         }).catch(err => {
             console.log(err);
         });
     }
 
 
-        // show Mnemonic
-
-                                
-
-        
+    // show Mnemonic
 
 
-    function mnemonicModal_Show(){
+
+
+
+
+    function mnemonicModal_Show() {
         $("#showMnemonicModal").css("display", "block");
         $("#showMneSuccess").css("opacity", "0");
 
     }
 
-    $(function(){
+    $(function () {
         localStorage.clear()
         let putMnemonic1 = ``;
         let putMnemonic2 = ``;
         putMnemonic1 += `<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">`;
         putMnemonic2 += `<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">`;
-        for(let i = 0; i < 12; i++){
+        for (let i = 0; i < 12; i++) {
             putMnemonic1 += `
             <div
                                 style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${i+1} <input id="chkMneKey${i}" type="text" style="width: 75%; border: none; background: none;outline: none;">
+                                ${i + 1} <input id="chkMneKey${i}" type="text" style="width: 75%; border: none; background: none;outline: none;">
                             </div>
             `;
         }
         // chkMneKey${j}
-        for(let j = 12; j < 24; j++){
+        for (let j = 12; j < 24; j++) {
             putMnemonic2 += `
             <div
                                 style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${j+1} <input id="chkMneKey${j}" type="text" style="width: 75%; border: none; background: none;outline: none;">
+                                ${j + 1} <input id="chkMneKey${j}" type="text" style="width: 75%; border: none; background: none;outline: none;">
                             </div>
             `;
         }
@@ -588,7 +594,7 @@
             next.html(`Next`)
         }
     }
-    $(".showinputnext").keydown( function(event) {
+    $(".showinputnext").keydown(function (event) {
         console.log()
         var next = $("#mneNext1");
         if (event.keyCode == 13 || event.keyCode == 9) {
@@ -623,123 +629,123 @@
                 if (data.status == "success") {
                     localStorage.setItem('token', data.token),
                         localStorage.setItem('addr_count', data.addr_count),
-                        Swal.fire({icon: 'success', text: data.Result, title: 'success'})
+                        Swal.fire({ icon: 'success', text: data.Result, title: 'success' })
 
-                        if(data.addr_count == 0){
-                            startmnemonic();
-                            setTimeout(mnemonicModal_Show(),1000);
-                        }
-                        else{
-                            window.location.href = "./main.html";
-                        }
-                        
-                        
+                    if (data.addr_count == 0) {
+                        startmnemonic();
+                        setTimeout(mnemonicModal_Show(), 1000);
+                    }
+                    else {
+                        window.location.href = "./main.html";
+                    }
+
+
                 }
                 else {
-                    Swal.fire({icon: 'error',title: 'Wrong username or password'})
+                    Swal.fire({ icon: 'error', title: 'Wrong username or password' })
                     // alert("Wrong username or password");
                 }
 
             }).catch((err) => {
                 console.log(err)
-                Swal.fire({icon :'error',text: 'server catch!!',title: 'error'})
+                Swal.fire({ icon: 'error', text: 'server catch!!', title: 'error' })
             });
         }
     });
 
     var mnKeys;
-    function startmnemonic(){
+    function startmnemonic() {
         axios.post('http://167.99.71.116:3000/api/post/create-wallet', {
             token: localStorage.getItem('token')
-        }).then((result)=>{
+        }).then((result) => {
             let data = result.data.mnemonic;
-            console.log(data,":: typeof ::",typeof(data));
+            console.log(data, ":: typeof ::", typeof (data));
             mnKeys = data.split(' ');
             console.log(mnKeys)
             let txt1 = ``;
             let txt2 = ``;
             let keyLength = Object.keys(mnKeys);
-            console.log('object :',typeof(mnKeys) == 'object'?true:false,'lenght :',keyLength.length);
-            console.log('array :',typeof(mnKeys) == 'array'?true:false,'lenght :',mnKeys.lenght);
+            console.log('object :', typeof (mnKeys) == 'object' ? true : false, 'lenght :', keyLength.length);
+            console.log('array :', typeof (mnKeys) == 'array' ? true : false, 'lenght :', mnKeys.lenght);
 
 
             txt1 += `<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">`;
             txt2 += `<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">`;
 
-            for(let i = 0; i < keyLength.length/2; i++){
+            for (let i = 0; i < keyLength.length / 2; i++) {
                 txt1 += `<div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${i+1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[i]}</span></div>`;
+                                ${i + 1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[i]}</span></div>`;
             }
-            for(let j = keyLength.length/2; j < keyLength.length; j++){
+            for (let j = keyLength.length / 2; j < keyLength.length; j++) {
                 txt2 += `<div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${j+1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[j]}</span></div>`;
+                                ${j + 1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[j]}</span></div>`;
             }
             txt1 += `</div>`;
             txt2 += `</div>`;
             $('#showMne1').append(txt1);
             $('#showMne2').append(txt2);
-        }).catch((err)=>{
-            console.log('error create Mnemonic ====>',err)
+        }).catch((err) => {
+            console.log('error create Mnemonic ====>', err)
         })
 
     }
 
 
-    function gotofillmnemonic(){
+    function gotofillmnemonic() {
         $("#showMnemonicModal").css("display", "none");
         mnemonicModal();
     }
 
 
-    function checkMnemonic(){
+    function checkMnemonic() {
         let chkMneKey = [];
         // console.log('type of(ตัวจริง) :',mnKeys)
-        console.log('type of(สิ่งที่เขียน) :',chkMneKey)
-        for(let i = 0; i < 24; i++){
-            chkMneKey.push($('#chkMneKey'+i).val());
+        console.log('type of(สิ่งที่เขียน) :', chkMneKey)
+        for (let i = 0; i < 24; i++) {
+            chkMneKey.push($('#chkMneKey' + i).val());
         }
 
-        if(!chkMneKey.includes('')){
+        if (!chkMneKey.includes('')) {
             var chkMneKey_txt = chkMneKey.join(' ')
             // var mnKeys_txt = mnKeys.join(' ')
             // if(chkMneKey_txt == mnKeys_txt){
 
-                // console.log('txt     :',mnKeys_txt)
-                console.log('checktxt:',chkMneKey_txt)
-                
-                axios.post('http://167.99.71.116:3000/api/login/mnemonic', {
-                    mnemonic: chkMneKey_txt,
-                }).then((result)=>{
-                    result = result.data;
-                    console.log("result ==>", result);
-                    localStorage.setItem("token",result.token);
-                    localStorage.setItem("addr_count",result.addr_count);
-                    if(result.status == 'success'){
+            // console.log('txt     :',mnKeys_txt)
+            console.log('checktxt:', chkMneKey_txt)
 
-                        swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: "Complete! Let's go Home."
-                        });
+            axios.post('http://167.99.71.116:3000/api/login/mnemonic', {
+                mnemonic: chkMneKey_txt,
+            }).then((result) => {
+                result = result.data;
+                console.log("result ==>", result);
+                localStorage.setItem("token", result.token);
+                localStorage.setItem("addr_count", result.addr_count);
+                if (result.status == 'success') {
 
-                        setTimeout(()=>{window.location.href = "./main.html";},1500)
-
-                    }
-                    else{
-
-                        swal.fire({
-                            icon: 'warning',
-                            title: 'Your input Wrong',
-                        });
-
-                    }
-                }).catch((err)=>{
                     swal.fire({
-                            icon: 'warning',
-                            title: 'Error',
-                            text: err
-                        });
-                })
+                        icon: 'success',
+                        title: 'Success',
+                        text: "Complete! Let's go Home."
+                    });
+
+                    setTimeout(() => { window.location.href = "./main.html"; }, 1500)
+
+                }
+                else {
+
+                    swal.fire({
+                        icon: 'warning',
+                        title: 'Your input Wrong',
+                    });
+
+                }
+            }).catch((err) => {
+                swal.fire({
+                    icon: 'warning',
+                    title: 'Error',
+                    text: err
+                });
+            })
             // }
             // else{
             //     swal.fire({
@@ -750,15 +756,15 @@
             //     });
             // }
         }
-        else{
+        else {
             swal.fire({
-                    icon: 'warning',
-                    title: 'Input not fully',
-                    text: "PLease try again."
+                icon: 'warning',
+                title: 'Input not fully',
+                text: "PLease try again."
 
-                });
+            });
         }
-        
+
     }
 
 
