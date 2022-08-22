@@ -99,16 +99,19 @@ async function DogeGetBalance() {
         (async function (response) {
             
             var balance = response.data.balance.balances+"";
-            var balanceSplit = balance.split('.');
-            balance = balanceSplit[0];
-            balance = balance+".";
-            var backsplit = balanceSplit[1];
-            var backbalanceSplit = backsplit.split('');
-            
-            for(let i = 0; i < 3; i++){
-                balance += backbalanceSplit[i];
-                console.log("xexexeexexexex",balance);
+            if(balance.includes('.')){
+                var balanceSplit = balance.split('.');
+                balance = balanceSplit[0];
+                balance = balance+".";
+                var backsplit = balanceSplit[1];
+                var backbalanceSplit = backsplit.split('');
+                
+                for(let i = 0; i < 3; i++){
+                    balance += backbalanceSplit[i];
+                    console.log("xexexeexexexex",balance);
+                }
             }
+            
 
             console.log(response.data)
             // document.getElementById('doge_balance').innerHTML = response.data.balances + ' DOGE'
