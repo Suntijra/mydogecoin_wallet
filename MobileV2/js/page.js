@@ -21,6 +21,7 @@ function setting_about() {
 
 
 function settingPage() {
+    DogeGetBalance()
     document.querySelector("#setting_contentid").classList.remove("d-none");
     document.querySelector("#setting_id").textContent = "Setting"
     document.querySelector("#settingimg").src = "./img/setting1.svg"
@@ -45,6 +46,7 @@ async function switch_toggle() {
 
 }
 function history_page() {
+    DogeGetBalance()
     const removeClass = () => {
         document.querySelector('#history_page_id').classList.remove("d-none");
         document.querySelector('#history_page2_id').classList.remove("d-none");
@@ -63,6 +65,8 @@ function history_page() {
 }
 wallet_page()
 function wallet_page() {
+    DogeGetBalance()
+    console.log("balance fn in orther js",DogeGetBalance())
     const removeClass = () => {
         document.querySelector('#history_page_id').classList.add("d-none");
         document.querySelector('#history_page2_id').classList.add("d-none");

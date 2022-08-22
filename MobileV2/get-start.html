@@ -40,7 +40,7 @@
         align-items: center;
     }
 
-    .btn-get-start {
+    /* .btn-get-start {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -49,16 +49,66 @@
         height: 5.3rem;
         background: linear-gradient(114.33deg, #FFFFFF -29.15%, #E9A700 28.04%, #D69931 75.83%);
         box-shadow: 0px 0px 20px #362756;
+    } */
+
+
+    #hide-checkbox {
+        display: none;
+        opacity: 0;
+        height: 0;
+        width: 0;
+        background-color: none;
+        }
+
+    .toggle {
+        position: relative;
+        display: inline-block;
+        width: 14.5rem;
+        height: 5.3rem;
+        border-radius: 100px;
+        transition: 500ms;
+        overflow: hidden;
+        background: linear-gradient(114.33deg, #FFFFFF -29.15%, #E9A700 28.04%, #D69931 75.83%);
+        box-shadow: 0 0 2px 0px rgb(107, 107, 107);
+    }
+
+    .toggle-button {
+        position: absolute;
+        display: inline-block;
+        top: 0.6rem;
+        left: 0.4rem;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background: linear-gradient(114.33deg, #FFE485 -29.15%, #ECD498 28.04%, #E4CBA5 75.83%);
+        overflow: hidden;
+        box-shadow: 5px 10px 20px 5px #473300;
+        transition: all 500ms ease-out;
+        z-index: 1;
+    }
+
+    #hide-checkbox:checked + .toggle .toggle-button {
+        position: absolute;
+        display: inline-block;
+        transform: translateX(9.6rem);
+        /* box-shadow: 0 0 35px 5px rgba(0, 0, 0); */
     }
 </style>
 
 <body>
     <div class="top">
-        <img style="width: 90%; object-fit: contain; background-repeat: no-repeat;" src="./img/logo_moondoge.png"
+        <img style="width: 90%; object-fit: contain; background-repeat: no-repeat;" src="./img/Logo_MOONDOGE.svg"
             alt="">
     </div>
     <footer>
-        <span id = "get_start" class="btn-get-start" style="color:aliceblue;margin-bottom: 15vh;">Get start</span>
+
+        <div id = "get_start" class="btn-get-start" style="color:aliceblue;margin-bottom: 15vh;">
+            <input type="checkbox" id="hide-checkbox">
+            <label for="hide-checkbox" class="toggle" onclick="setTimeout(opensignin, 1000).reload(true)">
+                <span class="toggle-button"></span><div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><span>Get start</span></div>
+            </label>
+        </div>
+        <!-- <span id = "get_start" class="btn-get-start" style="color:aliceblue;margin-bottom: 15vh;">Get start</span> -->
     </footer>
 </body>
 
@@ -66,6 +116,6 @@
 <script>
     const btn = document.querySelector("#get_start");
     btn.onclick = () => {
-        window.location.href = "./signin-up.html";
+        setTimeout(()=>{window.location.href = "./signin-up.html";},1500)
     }
 </script>

@@ -545,7 +545,7 @@
             putMnemonic1 += `
             <div
                                 style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${i + 1} <input id="chkMneKey${i}" type="text" style="width: 75%; border: none; background: none;outline: none;">
+                                ${i + 1} <input id="chkMneKey${i+1}" type="text" style="width: 75%; border: none; background: none;outline: none; text-align: center;">
                             </div>
             `;
         }
@@ -554,7 +554,7 @@
             putMnemonic2 += `
             <div
                                 style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${j + 1} <input id="chkMneKey${j}" type="text" style="width: 75%; border: none; background: none;outline: none;">
+                                ${j + 1} <input id="chkMneKey${j+1}" type="text" style="width: 75%; border: none; background: none;outline: none; text-align: center;">
                             </div>
             `;
         }
@@ -572,7 +572,7 @@
         var next = $("#showMneNext1");
         var html = ``;
         console.log("หน้าปัจจุบัน:", showNext);
-        if (showNext == 1) {
+        if (showNext == 1 || showNext == undefined) {
             showNext = 2;
             console.log("หน้าถัดไป หน้าที่ :", showNext);
             $("#showMne1").addClass("mne1Active");
@@ -674,11 +674,11 @@
 
             for (let i = 0; i < keyLength.length / 2; i++) {
                 txt1 += `<div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${i + 1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[i]}</span></div>`;
+                                ${i + 1}. <span id="shwMne${i+1}" type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[i]}</span></div>`;
             }
             for (let j = keyLength.length / 2; j < keyLength.length; j++) {
                 txt2 += `<div style="height: 10vw; border-radius: 50px; box-shadow: 1xp 1px 5px #000; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7);">
-                                ${j + 1}. <span type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[j]}</span></div>`;
+                                ${j + 1}. <span id="shwMne${j+1}" type="text" style="width: 75%; border: none; background: none;outline: none;">${mnKeys[j]}</span></div>`;
             }
             txt1 += `</div>`;
             txt2 += `</div>`;

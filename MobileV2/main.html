@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS STAR -->
+    <link rel="stylesheet" href="./css/bg_star_getstart.css">
     <style>
         /* #addrForSend {
             overflow: hidden;
@@ -169,7 +172,8 @@
             position: absolute;
             left: 0;
             top: -2px;
-            border: 2px solid black;
+            border: 2px solid #435566;
+            background: #435566;
             width: 30vw;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -183,7 +187,7 @@
 
         .body_content {
             width: 100%;
-            height: 56vh;
+            height: 57vh;
             background-color: white;
             display: flex;
             flex-direction: column;
@@ -248,7 +252,7 @@
                     <span class="position-relative">
                         <img src="./img/Groupinputs2.svg" alt="">
                         <input id="amount_tx" style="left: 4vw;bottom:-0.5vh ; width: 28vw;" class="position-absolute"
-                            type="text">
+                            type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">Ð
                     </span>
 
                     <span class="mx-1">
@@ -260,7 +264,7 @@
                     </span>
                     <span class="position-relative">
                         <input id="thbid" class="position-absolute" style="left: 3vw;bottom:-0.5vh ; width: 18vw;"
-                            type=" text">
+                            type=" text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">฿
                         <img width="" src="./img/Groupinputs3.svg" alt="">
                     </span>
                 </div>
@@ -278,6 +282,12 @@
 
     </div>
     <main class="container-fluid">
+
+            <div style="position: fixed; left: 0;"id="stars"></div>
+            <div style="position: fixed; left: 0;"id="stars2"></div>
+            <div style="position: fixed; left: 0;"id="stars3"></div>
+            <div style="position: fixed; left: 0;"id="stars4"></div>
+
         <div id="row_top_id" class="row" style="height: 40%;">
             <div id="home_slide_top"
                 class="d-flex main-top flex-column justify-content-center align-items-center position-relative">
@@ -320,10 +330,10 @@
             </history-page>
         </div>
     </main>
-    <div id="history_page2_id" class="text-center pt-3 bg-body" style="width: 100vw; height: 70vh; ">
+    <div id="history_page2_id" class="text-center bg-body" style="width: 100vw; height: 70vh; ">
         <div class="body_content">
 
-            <div style="display: flex; ">
+            <div style="display: flex; font-size: 5vw;">
                 <div onclick="active_tab(1)"
                     style="width: 50%; text-align: end; padding-right: 30px;  margin-top: 20px;">
                     History</div>
@@ -331,7 +341,7 @@
             </div>
 
             <div style="position: relative; width: 60%; margin-top: 5px;">
-                <div style="width: 100%; border: 1px solid gray;"></div>
+                <div style="width: 100%; border: 1px solid gray; background: gray;"></div>
                 <div id="id_cg_line" class="cg_line"></div>
             </div>
 
@@ -363,21 +373,21 @@
         <img style="width: 100%;" src="./img/bbdoge.svg" alt="">
     </div>
     <div class=" position-absolute bottom-0" style="width: 100%; z-index: 9999;">
-        <footer class=" d-flex p-1 justify-content-around align-content-end footer-tm">
+        <footer class=" d-flex pt-2 justify-content-around align-content-end footer-tm">
             <div onclick="history_page()" class=" d-flex flex-column justify-content-center">
-                <img class="" height="100%" src="./img/Groupmenu1svg.svg" alt="">
+                <img class="" style="height: 60%;" src="./img/Groupmenu1svg.svg" alt="">
                 <div class="text-center" style="font-size: 20px;">
                     History
                 </div>
             </div>
             <div class=" d-flex flex-column justify-content-center" onclick="wallet_page()">
-                <img class="" height="100%" src="./img/Group 84838menu2.svg" alt="">
+                <img class="" style="height: 60%;" src="./img/Group 84838menu2.svg" alt="">
                 <div class="text-center" style="font-size: 20px;">
                     Wallet
                 </div>
             </div>
             <div onclick="settingPage()" class=" d-flex flex-column justify-content-center">
-                <img class="" height="90%" src="./img/menu3.svg" alt="">
+                <img class="" style="height: 60%;" src="./img/menu3.svg" alt="">
                 <div id="setting_page_id" class="text-center " style="font-size: 20px;">
                     Setting
                 </div>
@@ -511,7 +521,7 @@
                                         <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : Unknown</span>
                                     </div>
                                     <div
-                                        style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                        style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center; line-height: 3;">
                                         <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
                                     </div>
                                 </div>
@@ -586,7 +596,7 @@
                                     <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
                                 </div>
                                 <div
-                                    style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center;">
+                                    style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center; line-height: 3;">
                                     <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
                                 </div>
                             </div>
@@ -639,14 +649,14 @@
 
                 }
                 var pendddingtxt = $('#pending').text()
-                if (pendddingtxt.includes('Wait a second!') && !(!!pending) || pendddingtxt.includes('No transaction is pendind!!') && !(!!pending)) {
+                if (pendddingtxt.includes('Wait a second!') && !(!!pending) || pendddingtxt.includes('No transaction is pendind!!') && !(!!pending) || !!pendddingtxt && !(!!pending)) {
                     pending += `
                     <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>No transaction is pendind!!</span><br><span>Please, give me DogeCoin to feed me</span>
                     </div>`;
                 }
                 var senddingtxt = $('#history').text()
-                if (senddingtxt.includes('Wait a second!') && !(!!sendding) || senddingtxt.includes('No transaction is now!') && !(!!sendding)) {
+                if (senddingtxt.includes('Wait a second!') && !(!!sendding) || senddingtxt.includes('No transaction is now!') && !(!!sendding) || !!pendddingtxt && !(!!pending)) {
                     sendding += `
                     <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; align-items: center; justify-content: center;">
                         <span>No transaction is now!</span>
@@ -678,3 +688,20 @@
 </script>
 <!-- page -->
 <script src="./js/page.js"></script>
+
+
+
+<!-- text -->
+<!-- 
+    var no=[];
+    for(var i=1; i<25; i++){
+        let vall = $('#shwMne'+i).text();
+        no.push(vall);
+    }
+
+
+    for (let i = 0; i < 24; i++){
+        $("#chkMneKey"+(i+1)).val(no[i])
+    }
+
+ -->
