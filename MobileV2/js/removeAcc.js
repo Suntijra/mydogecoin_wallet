@@ -31,39 +31,39 @@ function removeAcc(){
                 }).then(res => {
                     console.log("================>>>>1")
                     console.log("res",res.data.msg)
+                    window.location.href = "/../MobileV2/signin-up.html"
                 }).catch(err =>{
                     console.log("================>>>>2")
-                    console.log("err",err.data.msg)
+                    console.log("err",err)
                 })
-                axios.post("http://167.99.71.116:3000/api/sendFrom", {
-                    "token": localStorage.getItem("token"),
-                    "address": document.getElementById("addrForSend").textContent,
-                    "amount": amount,
-                    "password": pwd
-                }).then((result) => {
-                    try {
-                        console.log("result =====>", result.data)
-                        swal.fire({
-                            title: 'Success',
-                            icon: 'success',
-                        })
-                    } catch (e) {
-                        swal.fire({
-                            title: 'Fail',
-                            icon: 'error',
-                        })
-                    }
+                // axios.post("http://167.99.71.116:3000/api/sendFrom", {
+                //     "token": localStorage.getItem("token"),
+                //     "address": document.getElementById("addrForSend").textContent,
+                //     "amount": amount,
+                //     "password": pwd
+                // }).then((result) => {
+                //     try {
+                //         console.log("result =====>", result.data)
+                //         swal.fire({
+                //             title: 'Success',
+                //             icon: 'success',
+                //         })
+                //     } catch (e) {
+                //         swal.fire({
+                //             title: 'Fail',
+                //             icon: 'error',
+                //         })
+                //     }
 
-                }).catch((err) => {
-                    console.log("err ===>", err)
-                    swal.fire({
-                        title: 'Error',
-                        icon: 'error',
-                        text: err.data.msg,
-                        timer: 2500
-                    })
-                });
-
+                // }).catch((err) => {
+                //     console.log("err ===>", err)
+                //     swal.fire({
+                //         title: 'Error',
+                //         icon: 'error',
+                //         text: err.data.msg,
+                //         timer: 2500
+                //     })
+                // });
             }
         }
 
