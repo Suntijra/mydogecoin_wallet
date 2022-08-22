@@ -1,3 +1,5 @@
+//const { split } = require("lodash");
+
 getPriceDOGE()
 function getPriceDOGE() {
     var thb;
@@ -8,8 +10,10 @@ function getPriceDOGE() {
             // console.log(data)
             thb = data
             axios.get('https://www.binance.com/api/v3/ticker/price?symbol=DOGEUSDT').then(res => {
-                result = thb * res.data.price + ''
+                result = thb * res.data.price + '';
+                console.log("result :", result)
                 substr = substrfn(result)
+                console.log(substr)
                 document.getElementById('dogePrice').innerHTML = substr + ' ฿';
                 document.getElementById('htr_price').innerHTML = substr + ' ฿';
                
@@ -32,7 +36,8 @@ function getPriceDOGE() {
 // document.getElementById('doge_balance').innerHTML = substrfn('')
 
 function substrfn(str1) {
-    var index = "";
+    var index = str1+"";
+        console.log("text :",index)
     for (i = 0; i < str1.length; i++) {
         index += str1[i]
         if (str1[i] == '.') {
@@ -92,11 +97,24 @@ async function DogeGetBalance() {
         token: localStorage.getItem('token')
     }).then
         (async function (response) {
+            
+            var balance = response.data.balance.balances+"";
+            var balanceSplit = balance.split('.');
+            balance = balanceSplit[0];
+            balance = balance+".";
+            var backsplit = balanceSplit[1];
+            var backbalanceSplit = backsplit.split('');
+            
+            for(let i = 0; i < 3; i++){
+                balance += backbalanceSplit[i];
+                console.log("xexexeexexexex",balance);
+            }
+
             console.log(response.data)
             // document.getElementById('doge_balance').innerHTML = response.data.balances + ' DOGE'
             console.log("response.data>>>", response.data)
-            $('#doge_balance').html(response.data.balance.balances + ' DOGE')
-            document.getElementById("history_balance").innerHTML = response.data.balance.balances + ' DOGE'
+            $('#doge_balance').html(balance + ' DOGE')
+            document.getElementById("history_balance").innerHTML = balance + ' DOGE'
         }).catch(function (error) {
             console.log(error);
         })
@@ -147,3 +165,16 @@ function generateQRCode() {
     }, 1000)
 
 }
+$(function(){
+    var i = 0;
+    var refresh = setInterval(()=>{
+        i++
+        console.log(i)
+        generateQRCode();
+        
+        if(!!document.getElementById("addrForSend").textContent){
+            clearInterval(refresh)
+        }
+    },1000);
+    refresh
+})

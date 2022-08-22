@@ -28,7 +28,7 @@ function settingPage() {
 }
 async function switch_toggle() {
     let btn_qr = document.querySelector("#qr_btn")
-    console.log("ok", document.querySelector("#home_slide_top").style.height)
+    // console.log("ok", document.querySelector("#home_slide_top").style.height)
     let slide = document.querySelector("#home_slide_top")
 
     // console.log("check",slide.style.height)

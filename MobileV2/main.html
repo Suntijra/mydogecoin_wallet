@@ -129,7 +129,7 @@
             position: relative;
             width: 90%;
             height: 48vh;
-            overflow: scroll;
+            overflow-y: scroll;
             overflow-x: hidden;
             margin: 20px 5% 0;
         }
@@ -179,19 +179,6 @@
         .active_line {
             left: 30vw;
             width: 30vw;
-        }
-
-        .hide_scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .hide_scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            position: relative;
-            width: 90%;
-            overflow: scroll;
-            margin: 20px 5% 0;
         }
 
         .body_content {
@@ -301,11 +288,14 @@
                 </div>
                 <div id="optionqr" class="d-none d-block" style="text-align: center; margin-top: 3vh;">
                     <span style="font-size: 32px;">My QR-Code</span>
-                    <img class="p-2" width="80%" src="./img/qrcode.svg" alt="">
-                    <!-- <input class="qrinput" type="text"> -->
-                    <span id="addrForSend"></span>
-                    <div style="float: right;">
-                        <img id="b_foot" onclick="copyKey()" src="/Mobile/img/Group.png" style="height: 15px;">
+                    <div id="qrcode-container" style="margin: 20px 0;">
+                        <div id="qrcode" class="qrcode"></div>
+                    </div>
+                    <div style="background: white; padding: 2px 20px;">
+                        <span id="addrForSend" style="margin-right: 10px;" onclick="copyKey()"></span>
+                        <div style="float: right;">
+                            <img id="b_foot" onclick="copyKey()" src="/Mobile/img/Group.png" style="height: 15px;">
+                        </div>
                     </div>
                 </div>
                 <span id="qr_btn" onclick="switch_toggle()" class="text-center position-absolute"
@@ -350,17 +340,17 @@
                 <!-- History -->
                 <div id="history" class="history">
                     <div
-                        style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                        style="width: 100%; border-bottom: 3px solid #bbb; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>Wait a second!</span><br><span>We are downloading</span>
-                    </div>`;
+                    </div>
                 </div>
 
                 <!-- Pending -->
                 <div id="pending" class="pending">
                     <div
-                        style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                        style="width: 100%; border-bottom: 3px solid #bbb; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>Wait a second!</span><br><span>We are downloading</span>
-                    </div>`;
+                    </div>
                 </div>
             </div>
         </div>
@@ -509,14 +499,14 @@
 
 
                         pending += `
-                        <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                            <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                        <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
+                            <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
-                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                     <div style="font-size: 20px; font-weight: bolder;">
                                         ${listtxid[i].category == 'send' ? "Sending" : "Received"}
                                     </div>
-                                    <div>
+                                    <div style="line-height: 0.5;">
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;
                                         <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : Unknown</span>
                                     </div>
@@ -525,7 +515,14 @@
                                         <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
                                     </div>
                                 </div>
-                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div style="font-size: 16px; font-weight: bolder;">
+                                        ${listtxid[i].amount} DOGE
+                                    </div>
+                                    <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                        more info
+                                    </a>
+                                </div>
                             </div>
                         </div>`;
 
@@ -536,22 +533,29 @@
                     }
                     else if (listtxid[i].confirmations > 0 && listtxid[i].category == 'receive') {
 
-
+                        console.log("web index",i," ==> https://chain.so/tx/DOGETEST/",listtxid[i].txid)
                         sendding += `
-                        <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                            <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                        <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
+                            <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
-                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                     <div style="font-size: 20px; font-weight: bolder;">
                                         ${listtxid[i].category == 'send' ? "Sending" : "Received"}
                                     </div>
-                                    <div>
+                                    <div style="line-height: 0.5;">
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
                                             style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : Unknown</span>
                                     </div>
-                                    <div style="color: #4ECB71; font-weight: 600;"><i class="fas fa-check"></i>success</div>
+                                    <div style="color: #4ECB71; font-weight: 600; line-height: 3;"><i class="fas fa-check"></i>success</div>
                                 </div>
-                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div style="font-size: 16px; font-weight: bolder;">
+                                        ${listtxid[i].amount} DOGE
+                                    </div>
+                                    <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                        more info
+                                    </a>
+                                </div>
                             </div>
                         </div>`;
 
@@ -570,14 +574,14 @@
 
 
                         pending += `
-                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                        <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                    <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
+                        <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
                         <div style="display: flex; justify-content: space-between; width: 100%;">
-                            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                 <div style="font-size: 20px; font-weight: bolder;">
                                     ${listtxid[i].category == 'send' ? "Sending" : "Received"}
                                 </div>
-                                <div>
+                                <div style="line-height: 0.5;">
                                     <span style="font-size: 12px;">${newTime}</span>&nbsp;
                                     <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
                                 </div>
@@ -586,7 +590,14 @@
                                     <img src="./img/Vectorpendding.png" style="height: 3vh; margin-right: 10px;">pending
                                 </div>
                             </div>
-                            <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                <div style="font-size: 16px; font-weight: bolder;">
+                                    ${listtxid[i].amount} DOGE
+                                </div>
+                                <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                    more info
+                                </a>
+                            </div>
                         </div>
                     </div>`;
 
@@ -595,20 +606,27 @@
 
 
                         sendding += `
-                        <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;">
-                            <img src=${listtxid[i].category == 'send' ? "./img/dogerocket.png" : "./img/dogecoin.png"} style="width: 10vw; height: 10vw; margin-right: 20px;">
+                        <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
+                            <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
-                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                     <div style="font-size: 20px; font-weight: bolder;">
                                         ${listtxid[i].category == 'send' ? "Sending" : "Received"}
                                     </div>
-                                    <div>
+                                    <div style="line-height: 0.5;">
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
                                             style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
                                     </div>
-                                    <div style="color: #4ECB71; font-weight: 600;"><i class="fas fa-check"></i>success</div>
+                                    <div style="color: #4ECB71; font-weight: 600; line-height: 3;"><i class="fas fa-check"></i>success</div>
                                 </div>
-                                <div style="font-size: 16px; font-weight: bolder;">${listtxid[i].amount} DOGE</div>
+                                <div style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div style="font-size: 16px; font-weight: bolder;">
+                                        ${listtxid[i].amount} DOGE
+                                    </div>
+                                    <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                        more info
+                                    </a>
+                                </div>
                             </div>
                         </div>`;
 
@@ -621,16 +639,16 @@
 
                 }
                 var pendddingtxt = $('#pending').text()
-                if (pendddingtxt.includes('Wait a second!') && !(!!pending)) {
+                if (pendddingtxt.includes('Wait a second!') && !(!!pending) || pendddingtxt.includes('No transaction is pendind!!') && !(!!pending)) {
                     pending += `
-                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
+                    <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>No transaction is pendind!!</span><br><span>Please, give me DogeCoin to feed me</span>
                     </div>`;
                 }
                 var senddingtxt = $('#history').text()
-                if (senddingtxt.includes('Wait a second!') && !(!!sendding)) {
+                if (senddingtxt.includes('Wait a second!') && !(!!sendding) || senddingtxt.includes('No transaction is now!') && !(!!sendding)) {
                     sendding += `
-                    <div style="width: 100%; height: 70px; border-bottom: 1px solid gray;padding: 20px 0; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; align-items: center; justify-content: center;">
                         <span>No transaction is now!</span>
                     </div>`;
                 }
