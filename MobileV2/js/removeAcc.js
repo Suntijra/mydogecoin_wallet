@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 function removeAcc(){
     swal.fire({
         title: "Please, fill password",
@@ -10,7 +12,7 @@ function removeAcc(){
     }).then((result) => {
         if (result.isConfirmed) {
             pwd = $('.swal2-input').val();
-            console.log(!!pwd)
+            console.log("pwd",pwd)
             if (!!pwd == false) {
                 swal.fire({
                     title: "please input password!",
@@ -21,10 +23,22 @@ function removeAcc(){
             }
             else {
                 // console.log("================>>>>test sendFrom")
+                let amount = document.getElementById("doge_balance").textContent.split(" ");
+                amount = parseFloat(amount[0]);
+                axios.post("http://167.99.71.116:3000/api/removeaccount",{
+                    "token": localStorage.getItem("token"),
+                    "password": pwd
+                }).then(res => {
+                    console.log("================>>>>1")
+                    console.log("res",res.data.msg)
+                }).catch(err =>{
+                    console.log("================>>>>2")
+                    console.log("err",err.data.msg)
+                })
                 axios.post("http://167.99.71.116:3000/api/sendFrom", {
                     "token": localStorage.getItem("token"),
-                    "address": document.getElementById("address_tx").value,
-                    "amount": document.getElementById("amount_tx").value,
+                    "address": document.getElementById("addrForSend").textContent,
+                    "amount": amount,
                     "password": pwd
                 }).then((result) => {
                     try {
@@ -41,7 +55,7 @@ function removeAcc(){
                     }
 
                 }).catch((err) => {
-                    console.log("err ===>", err.data)
+                    console.log("err ===>", err)
                     swal.fire({
                         title: 'Error',
                         icon: 'error',
