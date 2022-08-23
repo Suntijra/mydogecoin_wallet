@@ -26,6 +26,8 @@ function settingPage() {
     document.querySelector("#setting_id").textContent = "Setting"
     document.querySelector("#settingimg").src = "./img/setting1.svg"
     document.querySelector("#setting_main_id").style.display = "block"
+    document.querySelector("#home_slide_top").style.height = "30vh";
+    document.querySelector("#optionqr").classList.add("d-none");
 }
 async function switch_toggle() {
     let btn_qr = document.querySelector("#qr_btn")
@@ -58,6 +60,8 @@ function history_page() {
     }
     document.getElementById("senddoge_page").style.display = "none";
     document.querySelector("#row_top_id").classList.add("bg-body")
+    document.querySelector("#home_slide_top").style.height = "30vh";
+    document.querySelector("#optionqr").classList.add("d-none");
     removeClass()
     open_history()
     hide_setting()

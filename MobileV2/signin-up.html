@@ -478,36 +478,48 @@
             } else {
                 console.log("user: ",user,user.match(pattern))
 
-                if (user.match(pattern) /*&& pwd.match(pattern) && pwd_cf.match(pattern)*/) {
-                    axios.post('http://167.99.71.116:3000/api/insert/register', {
-                        username: user,
-                        password: pwd
-                    }).then(function (response) {
-                        console.log(response.data);
-                        let status = response.data.status
-                        let result_title = response.data.Result
-                        if (status == true) {
+                if (user.match(pattern)) {
+                    if(pwd.match(pattern) && pwd_cf.match(pattern)){
+                        axios.post('http://167.99.71.116:3000/api/insert/register', {
+                            username: user,
+                            password: pwd
+                        }).then(function (response) {
+                            console.log(response.data);
+                            let status = response.data.status
+                            let result_title = response.data.Result
+                            if (status == true) {
 
-                            Swal.fire({ icon: 'success', text: result_title, title: 'Success' })
-                            // document.getElementById('id_loading').style.display = 'flex'
-                            setTimeout(signin.onclick, 1500)
+                                Swal.fire({ icon: 'success', text: result_title, title: 'Success' })
+                                // document.getElementById('id_loading').style.display = 'flex'
+                                setTimeout(signin.onclick, 1500)
 
 
 
-                        } else {
-                            Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
-                        }
+                            } else {
+                                Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
+                            }
 
-                    }).catch(function (error) {
-                        console.log(error);
-                        Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
-                    });
+                        }).catch(function (error) {
+                            console.log(error);
+                            Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
+                        });
+                    }
+                    else{
+                        Swal.fire({
+                        title: 'Username incorrect !',
+                        text: 'Please fill Alphabet and Numeric least 1! 8 characters or more!!',
+                        imageUrl: './img/dogehead.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                    }
                 }
                 else {
                     // Swal2Alert('error', 'Error', 'Please fill all field')
                     Swal.fire({
-                        title: 'Error !',
-                        text: 'Please fill all field',
+                        title: 'Password incorrect !',
+                        text: 'Please fill Alphabet and numeric least 1! 8 characters or more!!',
                         imageUrl: './img/dogehead.png',
                         imageWidth: 200,
                         imageHeight: 200,

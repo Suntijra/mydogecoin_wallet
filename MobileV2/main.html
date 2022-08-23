@@ -109,6 +109,17 @@
             color: white;
         }
 
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        input:-webkit-autofill{
+            -webkit-text-fill-color: white !important;
+        }
+
         .line {
             opacity: 0.5;
             height: 0px;
@@ -251,7 +262,7 @@
                 <div class="position-relative">
                     <span class="position-relative">
                         <img src="./img/Groupinputs2.svg" alt="">
-                        <input id="amount_tx" style="left: 4vw;bottom:-0.5vh ; width: 28vw;" class="position-absolute"
+                        <input id="amount_tx" style="left: 4vw;bottom:-0.5vh ; width: 28vw; text-align: right;" class="position-absolute"
                             type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">Ð
                     </span>
 
@@ -263,7 +274,7 @@
                         </svg>
                     </span>
                     <span class="position-relative">
-                        <input id="thbid" class="position-absolute" style="left: 3vw;bottom:-0.5vh ; width: 18vw;"
+                        <input id="thbid" class="position-absolute" style="left: 8vw;bottom:-0.5vh ; width: 18vw;"
                             type=" text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">฿
                         <img width="" src="./img/Groupinputs3.svg" alt="">
                     </span>
@@ -290,7 +301,7 @@
 
         <div id="row_top_id" class="row" style="height: 40%;">
             <div id="home_slide_top"
-                class="d-flex main-top flex-column justify-content-center align-items-center position-relative">
+                class="d-flex main-top flex-column justify-content-center align-items-center position-relative" style="z-index: 2;">
                 <div>
                     <balance id="doge_balance" class=" d-flex flex-column" style="font-size: 36px;">0.00 DOGE
                     </balance>
