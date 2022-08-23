@@ -8,17 +8,18 @@ const MD5 = require('js-md5');
 var jwt = require('jsonwebtoken');
 var cors = require('cors')
 const jwtsecret = 'Unitdogecoin-wallet';
-const port = 8000
+const port = 3000
 const WAValidator = require('wallet-address-validator');
 const { request } = require('express');
 const jwt_secretPk = 'mydogecoin-private-key';
+const path = require('path');
 
 
 // server Unit
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://dom:dom123@167.99.71.116:27017/?directConnection=true&appName=mongosh+1.5.0&authMechanism=DEFAULT";
 
-
+console.log("=====>",path.join(__dirname))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,7 +53,9 @@ app.listen(port, () => {
 })
 // app.use(router)
 
-
+app.get("/testpage",(req,res) =>{
+    res.sendFile(path.join(__dirname)+"/MobileV2/signin-up.html");
+})
 //api rounting
 app.get("/api/get/register", async (req, res) => {
     console.log("-------------------------------")

@@ -461,7 +461,16 @@
             let pwd = $('#sign_pwd').val();
             let pwd_cf = $('#sign_pwdAg').val();
             // "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
-            let pattern = /^[0-9a-zA-Z]{8,}$/;
+            let pattern = /(?=[0-9]+){8,}/;
+            let pattern1 = /(?=[a-z]+){8,}/;
+            let pattern2 = /(?=[A-Z]+){8,}/;
+
+            // console.log("user :",user,"====>",user.match(pattern),"====>",user.match(pattern1),"====>",user.match(pattern2));
+            // if(user.match(pattern) && user.match(pattern1) && user.match(pattern2)){
+            //     console.log("in")
+            // }
+            // console.log("password :",pwd,"====>",pwd.match(pattern));
+            // console.log("cf password :",pwd_cf,"====>",pwd_cf.match(pattern));
             if (pwd != pwd_cf) {
                 console.log(pwd, " | ", pwd_cf)
                 console.log('worng')
@@ -476,10 +485,8 @@
                 })
 
             } else {
-                console.log("user: ",user,user.match(pattern))
-
-                if (user.match(pattern)) {
-                    if(pwd.match(pattern) && pwd_cf.match(pattern)){
+                if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
+                    if(pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)){
                         axios.post('http://167.99.71.116:3000/api/insert/register', {
                             username: user,
                             password: pwd
@@ -489,9 +496,18 @@
                             let result_title = response.data.Result
                             if (status == true) {
 
-                                Swal.fire({ icon: 'success', text: result_title, title: 'Success' })
+                                Swal.fire({ icon: 'success', text: result_title, title: 'Success', toast: 'true'})
+                                .then((result) => {
+                                    if (result.isConfirmed) {
+                                        // setTimeout(()=>{
+                                            $('.signin_detail').removeClass("signin_active");
+                                            $('.signup_detail').removeClass("signup_active");
+                                            document.querySelector('#animate_line').classList.remove("line_active");
+                                        // }, 1500)
+                                    }
+                                })
                                 // document.getElementById('id_loading').style.display = 'flex'
-                                setTimeout(signin.onclick, 1500)
+                                
 
 
 
@@ -506,7 +522,7 @@
                     }
                     else{
                         Swal.fire({
-                        title: 'Username incorrect !',
+                        title: 'Password incorrect !',
                         text: 'Please fill Alphabet and Numeric least 1! 8 characters or more!!',
                         imageUrl: './img/dogehead.png',
                         imageWidth: 200,
@@ -518,8 +534,8 @@
                 else {
                     // Swal2Alert('error', 'Error', 'Please fill all field')
                     Swal.fire({
-                        title: 'Password incorrect !',
-                        text: 'Please fill Alphabet and numeric least 1! 8 characters or more!!',
+                        title: 'Username incorrect !',
+                        text: 'Please fill Alphabet and numeric least 1! and 8 characters or more!!',
                         imageUrl: './img/dogehead.png',
                         imageWidth: 200,
                         imageHeight: 200,
@@ -714,7 +730,7 @@
         // console.log('type of(ตัวจริง) :',mnKeys)
         console.log('type of(สิ่งที่เขียน) :', chkMneKey)
         for (let i = 0; i < 24; i++) {
-            chkMneKey.push($('#chkMneKey' + i).val());
+            chkMneKey.push($('#chkMneKey' + (i+1)).val());
         }
 
         if (!chkMneKey.includes('')) {
