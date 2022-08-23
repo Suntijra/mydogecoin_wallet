@@ -155,6 +155,19 @@ function copyKey() {
 function generateQRCode() {
     setTimeout(() => {
         let QrTXT = document.getElementById("addrForSend").textContent;
+        // var short=``;
+        // var shortText = QrTXT.split('');
+        // console.log(shortText)
+        // for(var i=0; i<10; i++){
+        //     short += `${shortText[i]}`
+        // }
+        // short += `...`
+        // for(var i=shortText.length-10; i<shortText.length; i++){
+        //     short += `${shortText[i]}`
+        // }
+        // console.log("get ===>",short)
+
+
         if (QrTXT) {
             let qrcodeContainer = document.getElementById("qrcode");
             qrcodeContainer.innerHTML = "";
@@ -166,6 +179,7 @@ function generateQRCode() {
             alert("Please enter a valid URL");
         }
     }, 1000)
+    
 
 }
 $(function(){
