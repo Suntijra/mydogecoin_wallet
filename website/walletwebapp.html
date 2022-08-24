@@ -72,6 +72,7 @@
                         <td style="width: 30vw;">Transactions ID</td>
                         <td>Catagories</td>
                         <td>Amount</td>
+                        <td>Fee</td>
                         <td>Time</td>
                         <td>Confirmations</td>
                         <td>Status</td>
@@ -300,6 +301,7 @@
                                 <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
                                 <td>${catagory}</td>
                                 <td>${txid[i].amount} Ð</td>
+                                <td>${!!txid[i].fee ? txid[i].fee : 0} Ð</td>
                                 <td>${newTime}</td>
                                 <td>${txid[i].confirmations}</td>
                                 <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
@@ -312,6 +314,7 @@
                                 <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
                                 <td>${catagory}</td>
                                 <td>${txid[i].amount} Ð</td>
+                                <td>${!!txid[i].fee ? txid[i].fee : 0} Ð</td>
                                 <td>${newTime}</td>
                                 <td>${txid[i].confirmations}</td>
                                 <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
@@ -327,6 +330,7 @@
                                 <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
                                 <td>${catagory}</td>
                                 <td>${txid[i].amount} Ð</td>
+                                <td>${!!txid[i].fee ? txid[i].fee : 0} Ð</td>
                                 <td>${newTime}</td>
                                 <td>${txid[i].confirmations}</td>
                                 <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
@@ -339,6 +343,7 @@
                                 <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
                                 <td>${catagory}</td>
                                 <td>${txid[i].amount} Ð</td>
+                                <td>${!!txid[i].fee ? txid[i].fee : 0} Ð</td>
                                 <td>${newTime}</td>
                                 <td>${txid[i].confirmations}</td>
                                 <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
