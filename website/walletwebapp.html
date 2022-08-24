@@ -35,7 +35,7 @@
     <div class="tab-content">
         <div class="tab-pane active text-center m-3 p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="m-4">
-                <span id = "balanceid">0</span>
+                <span id="balanceid">0</span>
                 Dogecoin
             </div>
             <div class="d-flex justify-content-center">
@@ -53,8 +53,9 @@
                 </div>
             </div>
             <br>
-            <button class="btn btn-warning text-center" data-bs-toggle="modal" data-bs-target="#modelId">Create Dogecoin
+            <button class="btn btn-primary text-center mx-2" data-bs-toggle="modal" data-bs-target="#modelId">Create Dogecoin
                 wallet</button>
+                <button class="btn btn-warning text-center mx-2" data-bs-toggle="modal" data-bs-target="#modalsend">Send Dogecoin</button>
         </div>
         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"> profile </div>
         <div class="tab-pane" id="Transfer" role="tabpanel" aria-labelledby="profile-tab"> transfer </div>
@@ -76,6 +77,25 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <Yes id="btncreate" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal send dogecoin -->
+     <div class="modal fade" id="modalsend" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Transfer ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    senddoge
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <Yes id="senddoge" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
                 </div>
             </div>
         </div>
@@ -113,20 +133,24 @@
     })
     document.querySelector("#checkkey").addEventListener("click", function (e) {
         let keys = document.querySelector("#your_key").value
-        fetch("http://167.99.71.116:3000/get/publickey", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ "keys": keys })
-        }).then((res) => { return res.json() }).then(data => {
-            let publickey = data.publickey
-            let balance = data.balance
-            console.log(data)
-            document.querySelector("#publicaddr").value = publickey
-            document.querySelector("#balanceid").textContent = balance
-            // alert(data)
-        })
+        if (keys.length == 32) {
+            fetch("http://167.99.71.116:3000/get/publickey", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ "keys": keys })
+            }).then((res) => { return res.json() }).then(data => {
+                let publickey = data.publickey
+                let balance = data.balance
+                console.log(data)
+                document.querySelector("#publicaddr").value = publickey
+                document.querySelector("#balanceid").textContent = balance
+                // alert(data)
+            })
+        }else{
+            alert("Please input a key or your key incorrect")
+        }
     });
 </script>
