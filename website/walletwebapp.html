@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dogecoin wallet app</title>
+    <!-- bootstrap5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                role="tab" aria-controls="home" aria-selected="true">Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                role="tab" aria-controls="profile" aria-selected="false">My transactions</button>
+        </li>
+        <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button"
+                role="tab" aria-controls="messages" aria-selected="false">Messages</button>
+        </li> -->
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active text-center m-3 p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="m-4">
+                <span id = "balanceid">0</span>
+                Dogecoin
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="input-group flex-nowrap" style="width:60%">
+                    <span class="input-group-text" id="addon-wrapping">Public address</span>
+                    <input id="publicaddr" type="text" class="form-control" placeholder="address" aria-label="Username"
+                        aria-describedby="addon-wrapping">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="input-group mt-3 " style="width: 50%;">
+                    <input id="your_key" type="text" class="form-control" placeholder="Your key"
+                        aria-label="Recipient's username" aria-describedby="checkkey">
+                    <button class="btn btn-outline-secondary" type="button" id="checkkey">Click</button>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-warning text-center" data-bs-toggle="modal" data-bs-target="#modelId">Create Dogecoin
+                wallet</button>
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"> profile </div>
+        <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab"> messages </div> -->
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">create wallet ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    you want to create a new wallet !
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <Yes id="btncreate" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    document.querySelector("#btncreate").addEventListener("click", function (e) {
+        fetch("http://167.99.71.116:3000/api/access/token/web", {
+            method: "POST"
+        }).then(function (response) {
+            return response.json()
+        }).then(data => {
+            let token = data.token
+            localStorage.setItem("token", token)
+            document.querySelector("#your_key").value = localStorage.getItem("token")
+            console.log(localStorage.getItem("token"));
+            fetch("http://167.99.71.116:3000/api/post/createwallet/wab", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: localStorage.getItem("token")
+                })
+            }).then(res => res.json()).then(data => {
+                alert(data.msg)
+            }).catch(err => {
+                console.log(err)
+            })
+
+        }).catch(err => alert(err))
+    })
+    document.querySelector("#checkkey").addEventListener("click", function (e) {
+        let keys = document.querySelector("#your_key").value
+        fetch("http://167.99.71.116:3000/get/publickey", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ "keys": keys })
+        }).then((res) => { return res.json() }).then(data => {
+            let publickey = data.publickey
+            let balance = data.balance
+            console.log(data)
+            document.querySelector("#publicaddr").value = publickey
+            document.querySelector("#balanceid").textContent = balance
+            // alert(data)
+        })
+    });
+</script>

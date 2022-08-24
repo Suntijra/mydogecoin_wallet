@@ -39,11 +39,11 @@ document.getElementById("send_tx").addEventListener("click", () => {
                     }
 
                 }).catch((err) => {
-                    console.log("err ===>", err.data)
+                    // console.log("err ===>", err)
                     swal.fire({
                         title: 'Error',
                         icon: 'error',
-                        text: err.data.msg,
+                        text: 'err',
                         timer: 2500
                     })
                 });
