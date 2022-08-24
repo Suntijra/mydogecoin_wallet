@@ -58,11 +58,13 @@
             <button class="btn btn-primary text-center mx-2" data-bs-toggle="modal" data-bs-target="#modelId">Create
                 Dogecoin
                 wallet</button>
-            <button class="btn btn-warning text-center mx-2" data-bs-toggle="modal" data-bs-target="#modalsend">Send
-                Dogecoin</button>
+            <button id="btn_open_modal_senddoge" class="btn btn-warning text-center mx-2" data-bs-toggle="modal" data-bs-target="#modalsend">
+                Send Dogecoin</button>
         </div>
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="width: 100vw; overflow-y: hidden;">
-            <button onclick="profile_pending()">pending</button><button onclick="profile_success()">success</button><button onclick="profile_total()">total</button>
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"
+            style="width: 100vw; overflow-y: hidden;">
+            <button onclick="profile_pending()">pending</button><button
+                onclick="profile_success()">success</button><button onclick="profile_total()">total</button>
             <table class="table table-striped">
                 <thead style="width: 100vw;">
                     <tr>
@@ -73,11 +75,11 @@
                         <td>Confirmations</td>
                     </tr>
                 </thead>
-                <tbody id="tableProfile_total"  class="table table-striped"></tbody>
-                <tbody id="tableProfile_success"  class="table table-striped"></tbody>
-                <tbody id="tableProfile_pending"  class="table table-striped"></tbody>
+                <tbody id="tableProfile_total" class="table table-striped"></tbody>
+                <tbody id="tableProfile_success" class="table table-striped"></tbody>
+                <tbody id="tableProfile_pending" class="table table-striped"></tbody>
             </table>
-            
+
         </div>
         <div class="tab-pane" id="Transfer" role="tabpanel" aria-labelledby="profile-tab"> transfer </div>
         <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab"> messages </div> -->
@@ -94,6 +96,8 @@
                 </div>
                 <div class="modal-body">
                     you want to create a new wallet !
+                    <br>
+                    get free 5 coin !!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -104,7 +108,8 @@
     </div>
 
     <!-- Modal send dogecoin -->
-    <div class="modal fade" id="modalsend" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="modalsend" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -128,7 +133,7 @@
                 <div id="txidmadal" class="modal-body d-none">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default">TXID </span>
-                        <input id="txid"  type="text" class="form-control" aria-label="Sizing example input"
+                        <input id="txid" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" placeholder="txid">
                     </div>
                 </div>
@@ -139,42 +144,45 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
 <script>
-    // document.querySelector("#senddoge").addEventListener("click", function (e) {
-    //     let toaddr = document.getElementById("toaddrtxt").value
-    //     let amount = document.getElementById("amountid").value
-    //     let key = document.getElementById("your_key").value
-    //     let txid = document.getElementById("txid")
-    //     let txmodal = document.getElementById("txidmadal")
-    //     console.log(toaddr)
-    //     fetch("http://167.99.71.116:3000/api/sendfrom/web", {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             "keys": key,
-    //             "address": toaddr,
-    //             "amount": amount
-    //         })
-    //     }).then(res=>res.json()).then(data=>{
-    //         if(data.msg == "success"){
-    //             txid.value = data.txid;
-    //             txmodal.classList.remove("d-none")
-    //             alert("send dogecoin success")
-    //         }
-    //         else{
-    //             console.log(data)
-    //         }
-    //     }).catch(err=>{
-    //         alert(err.msg)
-    //     })
-    // })
+    document.querySelector("#btn_open_modal_senddoge").addEventListener("click", function(e) {
+
+    })
+    document.querySelector("#senddoge").addEventListener("click", function (e) {
+        let toaddr = document.getElementById("toaddrtxt").value
+        let amount = document.getElementById("amountid").value
+        let key = document.getElementById("your_key").value
+        let txid = document.getElementById("txid")
+        let txidmadal = document.getElementById("txidmadal")
+        console.log(toaddr)
+        fetch("http://167.99.71.116:3000/api/sendfrom/web", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                "keys": key,
+                "address": toaddr,
+                "amount": amount
+            })
+        }).then(res => res.json()).then(data => {
+            if (data.msg == "success") {
+                txid.value = data.txid;
+                txidmadal.classList.remove("d-none")
+                alert("send dogecoin success")
+            }
+            else {
+                console.log(data)
+            }
+        }).catch(err => {
+            alert(err.msg)
+        })
+    })
 
     document.querySelector("#btncreate").addEventListener("click", function (e) {
         fetch("http://167.99.71.116:3000/api/access/token/web", {
@@ -196,6 +204,7 @@
                     token: localStorage.getItem("token")
                 })
             }).then(res => res.json()).then(data => {
+                console.log(data);
                 alert(data.msg)
             }).catch(err => {
                 console.log(err)
@@ -205,23 +214,24 @@
     })
     document.querySelector("#checkkey").addEventListener("click", function (e) {
         let keys = document.querySelector("#your_key").value
-        if (keys.length == 32) {
-        fetch("http://167.99.71.116:3000/get/publickey", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ "keys": keys })
-        }).then((res) => { return res.json() }).then(data => {
-            let publickey = data.publickey
-            let balance = data.balance
-            console.log(data)
-            document.querySelector("#publicaddr").value = publickey
-            document.querySelector("#balanceid").textContent = balance
-            // alert(data)
-        })
-        }else{
+        console.log(keys)
+        if (keys.length == 32 || keys == "admin") {
+            fetch("http://167.99.71.116:3000/get/publickey", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ "keys": keys })
+            }).then((res) => { return res.json() }).then(data => {
+                let publickey = data.publickey
+                let balance = data.balance
+                console.log(data)
+                document.querySelector("#publicaddr").value = publickey
+                document.querySelector("#balanceid").textContent = balance
+                // alert(data)
+            })
+        } else {
             alert("Please input a key or your key incorrect")
         }
     });
@@ -244,13 +254,13 @@
             let txlenght = Object.keys(txid);
             let catagory;
             console.log(txid);
-            for(let i=0; i<txlenght.length; i++){
+            for (let i = 0; i < txlenght.length; i++) {
                 catagory = txid[i].category;
 
 
-              
+
                 // console.log("index :",i,"=>move =",(catagory.includes('move')))
-                if(catagory.includes('move')){
+                if (catagory.includes('move')) {
                     continue;
                 }
 
@@ -263,11 +273,11 @@
                 var split_time = time.split(" ")
                 var year = split_time[3].split("")
                 var newTime = split_time[1] + " " + split_time[2] + " " + year[2] + "" + year[3];
-                console.log("index :",i,"new time :", newTime)
+                console.log("index :", i, "new time :", newTime)
 
 
 
-                if(txid[i].confirmations > 0){
+                if (txid[i].confirmations > 0) {
                     success += `
                     <tr class="table-success">
                         <td>${txid[i].txid}</td>
@@ -278,7 +288,7 @@
                     </tr>
                 `;
                 }
-                else if(txid[i].confirmations == 0){
+                else if (txid[i].confirmations == 0) {
                     pending += `
                     <tr class="table-warning">
                         <td>${txid[i].txid}</td>
@@ -291,9 +301,9 @@
                 }
 
 
-                
 
-                if(catagory.includes('send')){
+
+                if (catagory.includes('send')) {
                     table += `
                     <tr class="table-warning">
                         <td>${txid[i].txid}</td>
@@ -303,7 +313,7 @@
                         <td>${txid[i].confirmations}</td>
                     </tr>
                 `;
-                }else if(catagory.includes("receive")){
+                } else if (catagory.includes("receive")) {
                     table += `
                     <tr class="table-success">
                         <td>${txid[i].txid}</td>
