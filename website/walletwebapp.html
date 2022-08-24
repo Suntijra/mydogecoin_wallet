@@ -240,107 +240,113 @@
     });
 
     document.querySelector("#profile-tab").addEventListener("click", function (e) {
+
         let keys = document.querySelector("#your_key").value
-        fetch("http://167.99.71.116:3000/api/listtransactions/web", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ "keys": 'admin' })
-        }).then((res) => { return res.json() }).then(data => {
-            // console.log(data);
-            table = ``;
-            success = ``;
-            pending = ``;
-            let txid = data.list;
-            let txlenght = Object.keys(txid);
-            let catagory;
-            console.log(txid);
-            for (let i = 0; i < txlenght.length; i++) {
-                catagory = txid[i].category;
+        if(!!keys){
+            fetch("http://167.99.71.116:3000/api/listtransactions/web", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ "keys": keys })
+            }).then((res) => { return res.json() }).then(data => {
+                // console.log(data);
+                table = ``;
+                success = ``;
+                pending = ``;
+                let txid = data.list;
+                let txlenght = Object.keys(txid);
+                let catagory;
+                console.log(txid);
+                for (let i = 0; i < txlenght.length; i++) {
+                    catagory = txid[i].category;
 
 
 
-                // console.log("index :",i,"=>move =",(catagory.includes('move')))
-                if (catagory.includes('move')) {
-                    continue;
-                }
-
-                var time = txid[i].timereceived;
-                time = time * 1000;
-                time = new Date(time);
-                console.log("after time===>", time);
-                time = time + "";
-                console.log("time :", time)
-                var split_time = time.split(" ")
-                var year = split_time[3].split("")
-                var newTime = split_time[1] + " " + split_time[2] + " " + year[2] + "" + year[3];
-                console.log("index :", i, "new time :", newTime)
-
-
-
-
-                if (txid[i].confirmations == 0) {
-                    if (catagory.includes('send')) {
-                        table += `
-                        <tr>
-                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
-                            <td>${catagory}</td>
-                            <td>${txid[i].amount}</td>
-                            <td>${newTime}</td>
-                            <td>${txid[i].confirmations}</td>
-                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
-                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
-                        </tr>
-                    `;
-                    } else if (catagory.includes("receive")) {
-                        table += `
-                        <tr>
-                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
-                            <td>${catagory}</td>
-                            <td>${txid[i].amount}</td>
-                            <td>${newTime}</td>
-                            <td>${txid[i].confirmations}</td>
-                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
-                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
-                        </tr>
-                    `;
+                    // console.log("index :",i,"=>move =",(catagory.includes('move')))
+                    if (catagory.includes('move')) {
+                        continue;
                     }
-                }
-                else if (txid[i].confirmations > 0) {
-                    if (catagory.includes('send')) {
-                        table += `
-                        <tr>
-                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
-                            <td>${catagory}</td>
-                            <td>${txid[i].amount}</td>
-                            <td>${newTime}</td>
-                            <td>${txid[i].confirmations}</td>
-                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
-                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
-                        </tr>
-                    `;
-                    } else if (catagory.includes("receive")) {
-                        table += `
-                        <tr>
-                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
-                            <td>${catagory}</td>
-                            <td>${txid[i].amount}</td>
-                            <td>${newTime}</td>
-                            <td>${txid[i].confirmations}</td>
-                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
-                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
-                        </tr>
-                    `;
-                    }
-                }
 
-            }
-            $('#tableProfile_total').append(table)
-            // $('#tableProfile_success').append(success)
-            // $('#tableProfile_pending').append(pending)
-        })
+                    var time = txid[i].timereceived;
+                    time = time * 1000;
+                    time = new Date(time);
+                    console.log("after time===>", time);
+                    time = time + "";
+                    console.log("time :", time)
+                    var split_time = time.split(" ")
+                    var year = split_time[3].split("")
+                    var newTime = split_time[1] + " " + split_time[2] + " " + year[2] + "" + year[3];
+                    console.log("index :", i, "new time :", newTime)
+
+
+
+
+                    if (txid[i].confirmations == 0) {
+                        if (catagory.includes('send')) {
+                            table += `
+                            <tr>
+                                <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                                <td>${catagory}</td>
+                                <td>${txid[i].amount} Ð</td>
+                                <td>${newTime}</td>
+                                <td>${txid[i].confirmations}</td>
+                                <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
+                                <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                            </tr>
+                        `;
+                        } else if (catagory.includes("receive")) {
+                            table += `
+                            <tr>
+                                <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                                <td>${catagory}</td>
+                                <td>${txid[i].amount} Ð</td>
+                                <td>${newTime}</td>
+                                <td>${txid[i].confirmations}</td>
+                                <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
+                                <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                            </tr>
+                        `;
+                        }
+                    }
+                    else if (txid[i].confirmations > 0) {
+                        if (catagory.includes('send')) {
+                            table += `
+                            <tr>
+                                <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                                <td>${catagory}</td>
+                                <td>${txid[i].amount} Ð</td>
+                                <td>${newTime}</td>
+                                <td>${txid[i].confirmations}</td>
+                                <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
+                                <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                            </tr>
+                        `;
+                        } else if (catagory.includes("receive")) {
+                            table += `
+                            <tr>
+                                <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                                <td>${catagory}</td>
+                                <td>${txid[i].amount} Ð</td>
+                                <td>${newTime}</td>
+                                <td>${txid[i].confirmations}</td>
+                                <td><button class="${txid[i].confirmations > 0 ? 'btn btn-success' : 'btn btn-warning'}" style="background: ${txid[i].confirmations > 0 ? 'limegreen' : '#ffc107'};">${txid[i].confirmations > 0 ? 'success' : 'pending'}</button></td>
+                                <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                            </tr>
+                        `;
+                        }
+                    }
+
+                }
+                $('#tableProfile_total').html(table)
+                // $('#tableProfile_success').append(success)
+                // $('#tableProfile_pending').append(pending)
+            })
+        }
+        else{
+            $('#tableProfile_total').html(``)
+        }
     });
     // $(function(){
     //     document.getElementById('tableProfile_total').style.display = '';
