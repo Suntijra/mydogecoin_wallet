@@ -16,6 +16,10 @@
         crossorigin="anonymous"></script>
     <!-- AJAX -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- jquery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <!-- Font Ausome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- swal2 -->
@@ -66,6 +70,7 @@
     }
 
     .footerbg {
+        width: 100vw;
         background-color: #E9A700;
         height: 70vh;
         border-radius: 36px 36px 0 0;
@@ -203,11 +208,15 @@
         /* display: block; */
         top: 0vh;
     }
+
+    i{
+        cursor: pointer;
+    }
 </style>
 
 
 
-<body style="background-color: black;font-family:mydogefont;">
+<body style="background-color: black;font-family:mydogefont; width: 100vw; height: 100vh;">
 
     <div class="container-fluid d-flex justify-content-center align-items-center flex-column"
         style="font-size: 3rem ; height: 30vh;">
@@ -240,11 +249,12 @@
                             style="position:absolute; left: 35vw; text-align: center;">
                     </div>
                     <br>
-                    <div class="d-flex justify-content-center align-items-center flex-column"
+                    <div class="d-flex justify-content-center align-items-center"
                         style="position: relative;">
                         <img src="./img/pass.png" alt="">
-                        <input id="log_pwd" class="input-s" type="password" placeholder="password"
-                            style="position:absolute;left: 35vw; text-align: center;">
+                            <input id="log_pwd" class="input-s" type="password" placeholder="password" style="position:absolute;left: 35vw; text-align: center;">
+                            <i onclick="tggLog_pwd()" class="fas fa-eye-slash" id="toggleLog_Pwd" style="position:absolute; right: 2vw;"></i>
+                        
                     </div>
                     <br>
                     <sign-in class="d-flex justify-content-center align-items-center">
@@ -276,6 +286,7 @@
 
                         <input id="sign_pwd" class="input-s" type="password" placeholder="password"
                             style="position:absolute;left: 35vw; text-align: center;">
+                            <i onclick="tggSign_pwd()" class="fas fa-eye-slash" id="toggleSign_Pwd" style="position:absolute; right: 2vw;"></i>
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
@@ -284,6 +295,7 @@
 
                         <input id="sign_pwdAg" class="input-s" type="password" placeholder="confirm password"
                             style="position:absolute;left: 35vw; text-align: center;">
+                            <i onclick="tggSign_pwdAg()" class="fas fa-eye-slash" id="toggleSign_PwdAg" style="position:absolute; right: 2vw;"></i>
                     </div>
                     <br>
                     <label style="text-align: center;">
@@ -407,6 +419,38 @@
     span1.onclick = function () {
         modal.css("display", "none");
         console.log("close")
+    }
+
+
+
+    var log_pwd = $('#log_pwd');
+    var sign_pwd = $('#sign_pwd');
+    var sign_pwdAg = $('#sign_pwdAg');
+
+    var tggLog_pwdi = $('#toggleLog_Pwd');
+    var tggSign_pwdi = $('#toggleSign_Pwd');
+    var tggSign_pwdAgi = $('#toggleSign_PwdAg');
+
+    function tggLog_pwd(){
+        type = log_pwd.attr('type') === 'password' ? 'text' : 'password';
+        log_pwd.attr('type', type);
+        toggle = tggLog_pwdi.attr('class') === 'fas fa-eye-slash' ? 'fas fa-eye' : 'fas fa-eye-slash';
+        tggLog_pwdi.attr('class', toggle);
+        // tggLog_pwdi.toggleClass('fa-eye');
+    }
+    function tggSign_pwd(){
+        type = sign_pwd.attr('type') === 'password' ? 'text' : 'password';
+        sign_pwd.attr('type', type);
+        toggle = tggSign_pwdi.attr('class') === 'fas fa-eye-slash' ? 'fas fa-eye' : 'fas fa-eye-slash';
+        tggSign_pwdi.attr('class', toggle);
+        // tggSign_pwdi.toggleClass('fa-eye');
+    }
+    function tggSign_pwdAg(){
+        type = sign_pwdAg.attr('type') === 'password' ? 'text' : 'password';
+        sign_pwdAg.attr('type', type);
+        toggle = tggSign_pwdAgi.attr('class') === 'fas fa-eye-slash' ? 'fas fa-eye' : 'fas fa-eye-slash';
+        tggSign_pwdAgi.attr('class', toggle);
+        // tggSign_pwdAgi.toggleClass('fa-eye');
     }
 
     // span2.onclick = function () {
