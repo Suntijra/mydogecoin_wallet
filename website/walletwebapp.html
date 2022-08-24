@@ -58,31 +58,34 @@
             <button class="btn btn-primary text-center mx-2" data-bs-toggle="modal" data-bs-target="#modelId">Create
                 Dogecoin
                 wallet</button>
-            <button id="btn_open_modal_senddoge" class="btn btn-warning text-center mx-2" data-bs-toggle="modal" data-bs-target="#modalsend">
+            <button id="btn_open_modal_senddoge" class="btn btn-warning text-center mx-2" data-bs-toggle="modal"
+                data-bs-target="#modalsend">
                 Send Dogecoin</button>
         </div>
-        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"
-            style="width: 100vw; overflow-y: hidden;">
-            <button onclick="profile_pending()">pending</button><button
-                onclick="profile_success()">success</button><button onclick="profile_total()">total</button>
-            <table class="table table-striped">
-                <thead style="width: 100vw;">
-                    <tr>
-                        <td>Transactions ID</td>
-                        <td>Catagories</td>
-                        <td>Amount</td>
-                        <td>Time</td>
-                        <td>Confirmations</td>
-                    </tr>
-                </thead>
-                <tbody id="tableProfile_total" class="table table-striped"></tbody>
-                <tbody id="tableProfile_success" class="table table-striped"></tbody>
-                <tbody id="tableProfile_pending" class="table table-striped"></tbody>
-            </table>
+       
+                    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"
+                        style="width: 100vw; overflow-y: hidden;">
+                        <!-- <button onclick="profile_pending()">pending</button><button onclick="profile_success()">success</button><button onclick="profile_total()">total</button> -->
+                        <table class="table table-striped mx-5">
+                            <thead>
+                                <tr>
+                                    <td style="width: 30vw;">Transactions ID</td>
+                                    <td>Catagories</td>
+                                    <td>Amount</td>
+                                    <td>Time</td>
+                                    <td>Confirmations</td>
+                                    <td>Status</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                                <tbody id="tableProfile_total" class="table table-striped"></tbody>
+                                <!-- <tbody id="tableProfile_success"  class="table table-striped"></tbody>
+                <tbody id="tableProfile_pending"  class="table table-striped"></tbody> -->
+                        </table>
 
-        </div>
-        <div class="tab-pane" id="Transfer" role="tabpanel" aria-labelledby="profile-tab"> transfer </div>
-        <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab"> messages </div> -->
+                    </div>
+                    <div class="tab-pane" id="Transfer" role="tabpanel" aria-labelledby="profile-tab"> transfer </div>
+                    <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab"> messages </div> -->
     </div>
 
 
@@ -149,7 +152,7 @@
 
 </html>
 <script>
-    document.querySelector("#btn_open_modal_senddoge").addEventListener("click", function(e) {
+    document.querySelector("#btn_open_modal_senddoge").addEventListener("click", function (e) {
 
     })
     document.querySelector("#senddoge").addEventListener("click", function (e) {
@@ -277,55 +280,70 @@
 
 
 
-                if (txid[i].confirmations > 0) {
-                    success += `
-                    <tr class="table-success">
-                        <td>${txid[i].txid}</td>
-                        <td>${catagory}</td>
-                        <td>${txid[i].amount}</td>
-                        <td>${newTime}</td>
-                        <td>${txid[i].confirmations}</td>
-                    </tr>
-                `;
+
+                if (txid[i].confirmations == 0) {
+                    if (catagory.includes('send')) {
+                        table += `
+                        <tr>
+                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                            <td>${catagory}</td>
+                            <td>${txid[i].amount}</td>
+                            <td>${newTime}</td>
+                            <td>${txid[i].confirmations}</td>
+                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
+                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                        </tr>
+                    `;
+                    } else if (catagory.includes("receive")) {
+                        table += `
+                        <tr>
+                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                            <td>${catagory}</td>
+                            <td>${txid[i].amount}</td>
+                            <td>${newTime}</td>
+                            <td>${txid[i].confirmations}</td>
+                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
+                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                        </tr>
+                    `;
+                    }
                 }
-                else if (txid[i].confirmations == 0) {
-                    pending += `
-                    <tr class="table-warning">
-                        <td>${txid[i].txid}</td>
-                        <td>${catagory}</td>
-                        <td>${txid[i].amount}</td>
-                        <td>${newTime}</td>
-                        <td>${txid[i].confirmations}</td>
-                    </tr>
-                `;
+                else if (txid[i].confirmations > 0) {
+                    if (catagory.includes('send')) {
+                        table += `
+                        <tr>
+                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                            <td>${catagory}</td>
+                            <td>${txid[i].amount}</td>
+                            <td>${newTime}</td>
+                            <td>${txid[i].confirmations}</td>
+                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
+                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                        </tr>
+                    `;
+                    } else if (catagory.includes("receive")) {
+                        table += `
+                        <tr>
+                            <td style="width: 30vw; overflow-x: scroll;">${txid[i].txid}</td>
+                            <td>${catagory}</td>
+                            <td>${txid[i].amount}</td>
+                            <td>${newTime}</td>
+                            <td>${txid[i].confirmations}</td>
+                            <td class="${txid[i].confirmations > 0 ? 'table-success' : 'table-warning'}">${txid[i].confirmations > 0 ? 'success' : 'pending'}</td>
+                            <td><a href="https://chain.so/tx/DOGETEST/${txid[i].txid}" target="_blank">more info</td>
+                        </tr>
+                    `;
+                    }
                 }
 
-
-
-
-                if (catagory.includes('send')) {
-                    table += `
-                    <tr class="table-warning">
-                        <td>${txid[i].txid}</td>
-                        <td>${catagory}</td>
-                        <td>${txid[i].amount}</td>
-                        <td>${newTime}</td>
-                        <td>${txid[i].confirmations}</td>
-                    </tr>
-                `;
-                } else if (catagory.includes("receive")) {
-                    table += `
-                    <tr class="table-success">
-                        <td>${txid[i].txid}</td>
-                        <td>${catagory}</td>
-                        <td>${txid[i].amount}</td>
-                        <td>${newTime}</td>
-                        <td>${txid[i].confirmations}</td>
-                    </tr>
-                `;
-                }
             }
             $('#tableProfile_total').append(table)
+            // $('#tableProfile_success').append(success)
+            // $('#tableProfile_pending').append(pending)
         })
     });
+    // $(function(){
+    //     document.getElementById('tableProfile_total').style.display = '';
+    // })
+
 </script>
