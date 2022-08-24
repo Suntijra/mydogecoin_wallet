@@ -62,30 +62,30 @@
                 data-bs-target="#modalsend">
                 Send Dogecoin</button>
         </div>
-       
-                    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"
-                        style="width: 100vw; overflow-y: hidden;">
-                        <!-- <button onclick="profile_pending()">pending</button><button onclick="profile_success()">success</button><button onclick="profile_total()">total</button> -->
-                        <table class="table table-striped mx-5">
-                            <thead>
-                                <tr>
-                                    <td style="width: 30vw;">Transactions ID</td>
-                                    <td>Catagories</td>
-                                    <td>Amount</td>
-                                    <td>Time</td>
-                                    <td>Confirmations</td>
-                                    <td>Status</td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                                <tbody id="tableProfile_total" class="table table-striped"></tbody>
-                                <!-- <tbody id="tableProfile_success"  class="table table-striped"></tbody>
-                <tbody id="tableProfile_pending"  class="table table-striped"></tbody> -->
-                        </table>
 
-                    </div>
-                    <div class="tab-pane" id="Transfer" role="tabpanel" aria-labelledby="profile-tab"> transfer </div>
-                    <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab"> messages </div> -->
+        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"
+            style="width: 100vw; overflow-y: hidden;">
+            <!-- <button onclick="profile_pending()">pending</button><button onclick="profile_success()">success</button><button onclick="profile_total()">total</button> -->
+            <table class="table table-striped mx-5">
+                <thead>
+                    <tr>
+                        <td style="width: 30vw;">Transactions ID</td>
+                        <td>Catagories</td>
+                        <td>Amount</td>
+                        <td>Time</td>
+                        <td>Confirmations</td>
+                        <td>Status</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody id="tableProfile_total" class="table table-striped"></tbody>
+                <!-- <tbody id="tableProfile_success"  class="table table-striped"></tbody>
+                <tbody id="tableProfile_pending"  class="table table-striped"></tbody> -->
+            </table>
+
+        </div>
+        <div class="tab-pane" id="Transfer" role="tabpanel" aria-labelledby="profile-tab"> transfer </div>
+        <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab"> messages </div> -->
     </div>
 
 
@@ -153,7 +153,10 @@
 </html>
 <script>
     document.querySelector("#btn_open_modal_senddoge").addEventListener("click", function (e) {
-
+        document.getElementById("toaddrtxt").value = ""
+        document.getElementById("amountid").value = ""
+        document.getElementById("your_key").value = ""
+        document.getElementById("txid").value = ""
     })
     document.querySelector("#senddoge").addEventListener("click", function (e) {
         let toaddr = document.getElementById("toaddrtxt").value
@@ -161,30 +164,33 @@
         let key = document.getElementById("your_key").value
         let txid = document.getElementById("txid")
         let txidmadal = document.getElementById("txidmadal")
-        console.log(toaddr)
-        fetch("http://167.99.71.116:3000/api/sendfrom/web", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                "keys": key,
-                "address": toaddr,
-                "amount": amount
+        if (key.length != 0) {
+            fetch("http://167.99.71.116:3000/api/sendfrom/web", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "keys": key,
+                    "address": toaddr,
+                    "amount": amount
+                })
+            }).then(res => res.json()).then(data => {
+                if (data.msg == "success") {
+                    txid.value = data.txid;
+                    txidmadal.classList.remove("d-none")
+                    alert("send dogecoin success")
+                }
+                else {
+                    console.log(data)
+                }
+            }).catch(err => {
+                alert(err.msg)
             })
-        }).then(res => res.json()).then(data => {
-            if (data.msg == "success") {
-                txid.value = data.txid;
-                txidmadal.classList.remove("d-none")
-                alert("send dogecoin success")
-            }
-            else {
-                console.log(data)
-            }
-        }).catch(err => {
-            alert(err.msg)
-        })
+        } else {
+            alert("Please input your key")
+        }
     })
 
     document.querySelector("#btncreate").addEventListener("click", function (e) {
