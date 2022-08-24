@@ -66,7 +66,7 @@
         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"
             style="width: 100vw; overflow-y: hidden;">
             <!-- <button onclick="profile_pending()">pending</button><button onclick="profile_success()">success</button><button onclick="profile_total()">total</button> -->
-            <table class="table table-striped mx-5">
+            <table class="table table-striped mx-3">
                 <thead>
                     <tr>
                         <td style="width: 30vw;">Transactions ID</td>
@@ -142,7 +142,7 @@
                             aria-describedby="inputGroup-sizing-default" placeholder="txid">
                     </div>
                 </div>
-                <span class ="mx-3">fee = 0.1 doge</span>
+                <span id="textamount" class ="mx-3">fee ≈ 0.1 doge &nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <Yes id="senddoge" type="button" class="btn btn-primary" data-bs-dismiss="">Yes</button>
@@ -160,7 +160,7 @@
         document.getElementById("amountid").value = ""
         // document.getElementById("your_key").value = ""
         document.getElementById("txid").value = ""
-        document.getElementById("txidmadal").classList.add("display: none;")
+        document.getElementById("txidmadal").classList.add("d-none")
     })
     document.querySelector("#senddoge").addEventListener("click", function (e) {
         let toaddr = document.getElementById("toaddrtxt").value
@@ -185,6 +185,7 @@
                     txid.value = data.txid;
                     txidmadal.classList.remove("d-none")
                     alert("send dogecoin success")
+                    $('#textamount').append(`${data.sendamount} doge of ${document.getElementById('balanceid').textContent} doge`)
                 }
                 else {
                     console.log(data)
@@ -283,13 +284,13 @@
                     var time = txid[i].timereceived;
                     time = time * 1000;
                     time = new Date(time);
-                    console.log("after time===>", time);
+                    // console.log("after time===>", time);
                     time = time + "";
-                    console.log("time :", time)
+                    // console.log("time :", time)
                     var split_time = time.split(" ")
                     var year = split_time[3].split("")
                     var newTime = split_time[1] + " " + split_time[2] + " " + year[2] + "" + year[3];
-                    console.log("index :", i, "new time :", newTime)
+                    // console.log("index :", i, "new time :", newTime)
 
 
 
