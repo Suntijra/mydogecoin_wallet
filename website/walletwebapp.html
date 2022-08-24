@@ -55,9 +55,11 @@
                 </div>
             </div>
             <br>
-            <button class="btn btn-primary text-center mx-2" data-bs-toggle="modal" data-bs-target="#modelId">Create Dogecoin
+            <button class="btn btn-primary text-center mx-2" data-bs-toggle="modal" data-bs-target="#modelId">Create
+                Dogecoin
                 wallet</button>
-                <button class="btn btn-warning text-center mx-2" data-bs-toggle="modal" data-bs-target="#modalsend">Send Dogecoin</button>
+            <button class="btn btn-warning text-center mx-2" data-bs-toggle="modal" data-bs-target="#modalsend">Send
+                Dogecoin</button>
         </div>
         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="width: 100vw; overflow-y: hidden;">
             <button onclick="profile_pending()">pending</button><button onclick="profile_success()">success</button><button onclick="profile_total()">total</button>
@@ -102,7 +104,12 @@
     </div>
 
     <!-- Modal send dogecoin -->
+<<<<<<< Updated upstream
     <div class="modal fade" id="modalsend" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+=======
+    <div class="modal fade" id="modalsend" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+>>>>>>> Stashed changes
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,19 +117,70 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    senddoge
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Send to </span>
+                        <input id="toaddrtxt" type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" placeholder="address">
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Amount </span>
+                        <input id="amountid" type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" placeholder="numbber">
+                    </div>
+                </div>
+                <div id="txidmadal" class="modal-body d-none">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">TXID </span>
+                        <input id="txid"  type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" placeholder="txid">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <Yes id="senddoge" type="button" class="btn btn-primary" data-bs-dismiss="modal">Yes</button>
+                    <Yes id="senddoge" type="button" class="btn btn-primary" data-bs-dismiss="">Yes</button>
                 </div>
             </div>
         </div>
     </div>
+    
 </body>
 
 </html>
 <script>
+    // document.querySelector("#senddoge").addEventListener("click", function (e) {
+    //     let toaddr = document.getElementById("toaddrtxt").value
+    //     let amount = document.getElementById("amountid").value
+    //     let key = document.getElementById("your_key").value
+    //     let txid = document.getElementById("txid")
+    //     let txmodal = document.getElementById("txidmadal")
+    //     console.log(toaddr)
+    //     fetch("http://167.99.71.116:3000/api/sendfrom/web", {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             "keys": key,
+    //             "address": toaddr,
+    //             "amount": amount
+    //         })
+    //     }).then(res=>res.json()).then(data=>{
+    //         if(data.msg == "success"){
+    //             txid.value = data.txid;
+    //             txmodal.classList.remove("d-none")
+    //             alert("send dogecoin success")
+    //         }
+    //         else{
+    //             console.log(data)
+    //         }
+    //     }).catch(err=>{
+    //         alert(err.msg)
+    //     })
+    // })
+
     document.querySelector("#btncreate").addEventListener("click", function (e) {
         fetch("http://167.99.71.116:3000/api/access/token/web", {
             method: "POST"
@@ -153,6 +211,7 @@
     document.querySelector("#checkkey").addEventListener("click", function (e) {
         let keys = document.querySelector("#your_key").value
         if (keys.length == 32) {
+<<<<<<< Updated upstream
         fetch("http://167.99.71.116:3000/get/publickey", {
             method: "POST",
             headers: {
@@ -169,6 +228,24 @@
             // alert(data)
         })
         }else{
+=======
+            fetch("http://167.99.71.116:3000/get/publickey", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ "keys": keys })
+            }).then((res) => { return res.json() }).then(data => {
+                let publickey = data.publickey
+                let balance = data.balance
+                console.log(data)
+                document.querySelector("#publicaddr").value = publickey
+                document.querySelector("#balanceid").textContent = balance
+                // alert(data)
+            })
+        } else {
+>>>>>>> Stashed changes
             alert("Please input a key or your key incorrect")
         }
     });
