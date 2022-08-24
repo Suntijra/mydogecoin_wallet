@@ -116,12 +116,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Transfer ?</h5>
+                    <h5 class="modal-title">Transfer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Send to </span>
+                        <span class="input-group-text" id="inputGroup-sizing-default">Send to</span>
+                        
                         <input id="toaddrtxt" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" placeholder="address">
                     </div>
@@ -140,6 +141,7 @@
                             aria-describedby="inputGroup-sizing-default" placeholder="txid">
                     </div>
                 </div>
+                <span class ="mx-3">fee = 0.1 doge</span>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <Yes id="senddoge" type="button" class="btn btn-primary" data-bs-dismiss="">Yes</button>
@@ -157,6 +159,7 @@
         document.getElementById("amountid").value = ""
         // document.getElementById("your_key").value = ""
         document.getElementById("txid").value = ""
+        document.getElementById("txidmadal").classList.add("display: none;")
     })
     document.querySelector("#senddoge").addEventListener("click", function (e) {
         let toaddr = document.getElementById("toaddrtxt").value
@@ -184,6 +187,7 @@
                 }
                 else {
                     console.log(data)
+                    alert(data.msg)
                 }
             }).catch(err => {
                 alert(err.msg)
