@@ -12,6 +12,7 @@ btn_back_arrow.onclick = function () {
 const hide_setting = () => { document.querySelector("#setting_main_id").style.display = "none";  document.getElementById("about_usDetail").classList.add("d-none");}
 function setting_about() {
     console.log("About")
+    document.querySelector("#btn_back_tosetting").classList.remove("d-none");
     document.querySelector("#setting_id").textContent = "About us"
     document.getElementById("about_usDetail").classList.remove("d-none")
     document.querySelector("#settingimg").src = "./img/settingv2.svg"
@@ -23,6 +24,7 @@ function setting_about() {
 
 function settingPage() {
     DogeGetBalance()
+    document.querySelector("#btn_back_tosetting").classList.add("d-none");
     document.querySelector("#setting_contentid").classList.remove("d-none");
     document.querySelector("#setting_id").textContent = "Setting"
     document.querySelector("#settingimg").src = "./img/setting1.svg"

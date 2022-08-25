@@ -1,42 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#E9A700" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="My Web App">
-    <meta name="apple-mobile-web-app-title" content="Mobile rules">
-    <meta name="apple-mobile-web-app-status-bar-style" content="red">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="My Web App" />
+    <meta name="apple-mobile-web-app-title" content="Mobile rules" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="red" />
     <title>Main</title>
     <!-- AJAX -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+    ></script>
     <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- swal2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- bootstrap5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
     <!-- Gen QR Pub Key -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- CSS STAR -->
-    <link rel="stylesheet" href="./css/bg_star_getstart.css">
+    <link rel="stylesheet" href="./css/bg_star_getstart.css" />
     <style>
-        /* #addrForSend {
+      /* #addrForSend {
             overflow: hidden;
             white-space: nowrap;
             -o-text-overflow: ellipsis;
@@ -45,383 +60,555 @@
             width: 91px;
         } */
 
-        @font-face {
-            font-family: 'mydogefont';
-            src: url('./font/strawberry_muffins/Strawberry\ Muffins\ Demo.ttf');
-        }
+      @font-face {
+        font-family: "mydogefont";
+        src: url("./font/strawberry_muffins/Strawberry\ Muffins\ Demo.ttf");
+      }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'mydogefont';
-            max-width: 100%;
-            max-height: 100%;
-            overflow: hidden;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "mydogefont";
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+      }
 
-        .footer-tm {
-            background-color: #E9A700;
-            border-radius: 12px 12px 0px 0px;
-            position: absolute;
-            width: 100%;
-            bottom: 0;
-        }
+      .footer-tm {
+        background-color: #e9a700;
+        border-radius: 12px 12px 0px 0px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+      }
 
-        .main-top {
-            background-color: #E9A700;
-            border-radius: 0px 0px 36px 36px;
-            transition: height 0.3s;
-            height: 30vh;
-            box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
-        }
+      .main-top {
+        background-color: #e9a700;
+        border-radius: 0px 0px 36px 36px;
+        transition: height 0.3s;
+        height: 30vh;
+        box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+      }
 
-        img {
-            object-fit: contain;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
+      img {
+        object-fit: contain;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
 
-        .my-modal {
-            display: block;
-            position: fixed;
-            background-color: #F5F5F5;
-            z-index: 5;
-            height: 90%;
-            width: 100%;
-        }
+      .my-modal {
+        display: block;
+        position: fixed;
+        background-color: #f5f5f5;
+        z-index: 5;
+        height: 90%;
+        width: 100%;
+      }
 
-        .my-modal-nav {
-            background-color: #E9A700;
-            height: 10%;
-        }
+      .my-modal-nav {
+        background-color: #e9a700;
+        height: 10%;
+      }
 
-        html {
-            height: 100%;
-        }
+      html {
+        height: 100%;
+      }
 
-        input {
-            bottom: 2vh;
-            left: 5vh;
-            /* width: 40vw; */
-            outline: none;
-            border: none;
-            background: none;
-            color: white;
-        }
+      input {
+        bottom: 2vh;
+        left: 5vh;
+        /* width: 40vw; */
+        outline: none;
+        border: none;
+        background: none;
+        color: white;
+      }
 
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus,
-        input:-webkit-autofill:active {
-            transition: background-color 5000s ease-in-out 0s;
-        }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+      }
 
-        input:-webkit-autofill{
-            -webkit-text-fill-color: white !important;
-        }
+      input:-webkit-autofill {
+        -webkit-text-fill-color: white !important;
+      }
 
-        .line {
-            opacity: 0.5;
-            height: 0px;
-            border: 2px solid rgba(142, 142, 142, 0.5);
-            /* Inside auto layout */
-            border-radius: 10px;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
-        }
+      .line {
+        opacity: 0.5;
+        height: 0px;
+        border: 2px solid rgba(142, 142, 142, 0.5);
+        /* Inside auto layout */
+        border-radius: 10px;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+      }
 
+      /* xcxcxcxcxcxcxcxcx History Page xcxcxcxcxcxcxcxcx */
+      .hide_scrollbar::-webkit-scrollbar {
+        display: none;
+      }
 
-        /* xcxcxcxcxcxcxcxcx History Page xcxcxcxcxcxcxcxcx */
-        .hide_scrollbar::-webkit-scrollbar {
-            display: none;
-        }
+      .hide_scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        position: relative;
+        width: 90%;
+        height: 48vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        margin: 20px 5% 0;
+      }
 
-        .hide_scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            position: relative;
-            width: 90%;
-            height: 48vh;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            margin: 20px 5% 0;
-        }
+      .fa-check {
+        background-color: #4ecb71;
+        color: white;
+        border-radius: 50%;
+        padding: 0.3vh;
+        align-items: center;
+        margin-right: 10px;
+      }
 
-        .fa-check {
-            background-color: #4ECB71;
-            color: white;
-            border-radius: 50%;
-            padding: 0.3vh;
-            align-items: center;
-            margin-right: 10px;
-        }
+      .pending {
+        width: 100%;
+        position: absolute;
+        right: -100vw;
+        transition: 0.5s;
+      }
 
-        .pending {
-            width: 100%;
-            position: absolute;
-            right: -100vw;
-            transition: 0.5s;
-        }
+      .history {
+        width: 100%;
+        position: absolute;
+        left: 0vw;
+        transition: 0.5s;
+      }
 
-        .history {
-            width: 100%;
-            position: absolute;
-            left: 0vw;
-            transition: 0.5s;
-        }
+      .active1 {
+        left: -100vw;
+      }
 
-        .active1 {
-            left: -100vw;
-        }
+      .active2 {
+        right: 0vw;
+      }
 
-        .active2 {
-            right: 0vw;
-        }
+      .cg_line {
+        position: absolute;
+        left: 0;
+        top: -2px;
+        border: 2px solid #435566;
+        background: #435566;
+        width: 30vw;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        transition: 500ms;
+      }
 
-        .cg_line {
-            position: absolute;
-            left: 0;
-            top: -2px;
-            border: 2px solid #435566;
-            background: #435566;
-            width: 30vw;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            transition: 500ms;
-        }
+      .active_line {
+        left: 30vw;
+        width: 30vw;
+      }
 
-        .active_line {
-            left: 30vw;
-            width: 30vw;
-        }
+      .body_content {
+        width: 100%;
+        height: 57vh;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-        .body_content {
-            width: 100%;
-            height: 57vh;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #qrcode > img{
-            width: 30vh;
-        }
+      #qrcode > img {
+        width: 30vh;
+      }
     </style>
+  </head>
 
-
-</head>
-
-<body>
-    <div id="setting_main_id" class="my-modal" style="display: none;">
-        <div class="d-flex main-top flex-column justify-content-center align-items-center position-relative">
-            <div>
-                <div class="fs-1" id="setting_id" style="font-size: 48px !important;">
-                </div>
-            </div>
-            <span id="qr_btn" onclick="switch_toggle()" class="text-center position-absolute"
-                style="bottom:-2.2vh ;z-index: 1;">
-                <img id="settingimg" src="" alt="qr-code">
-            </span>
+  <body>
+    <div id="setting_main_id" class="my-modal" style="display: none">
+      <div
+        class="d-flex main-top flex-column justify-content-center align-items-center position-relative"
+      >
+        <div>
+          <div
+            class="fs-1"
+            id="setting_id"
+            style="font-size: 48px !important"
+          ></div>
         </div>
-        <div id="setting_contentid" class="setting_content p-2 m-2 fs-5 ">
-            <div onclick="setting_about()" class="p-3">
-                About us
-            </div>
-            <div class="line"></div>
-            <div onclick="removeAcc()" class="p-3" style="color: #BA3635;">
-                Remove account
-            </div>
+        <span
+          id="qr_btn"
+          onclick="switch_toggle()"
+          class="text-center position-absolute"
+          style="bottom: -2.2vh; z-index: 1"
+        >
+          <img id="settingimg" src="" alt="qr-code" />
+        </span>
+      </div>
+      <span
+        id="btn_back_tosetting"
+        class="position-absolute p-3 d-none"
+        style="left: 0; top: 0; z-index: 99"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          fill="currentColor"
+          class="bi bi-arrow-left-short"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
+          />
+        </svg>
+      </span>
+      <div id="setting_contentid" class="setting_content p-2 m-2 fs-5">
+        <div onclick="setting_about()" class="p-3">About us</div>
+        <div class="line"></div>
+        <div onclick="removeAcc()" class="p-3" style="color: #ba3635">
+          Remove account
         </div>
-        <div id="about_usDetail" class="setting_content p-2 m-2 fs-5  d-none">
-            <div class="d-flex flex-column justify-content-center align-items-center mt-5 display-3" style="line-height: 20vw;">
-                <span>Sunti Porkhamchan</span>
-                <span>Pongsatorn Saetai</span>
-                <span>Chutima Wongmekaew</span>
-            </div>
-            
+      </div>
+      <div id="about_usDetail" class="setting_content p-2 m-2 fs-5 d-none">
+        <div
+          class="d-flex flex-column justify-content-center align-items-center mt-5 display-3"
+          style="line-height: 20vw"
+        >
+          <span>Sunti Porkhamchan</span>
+          <span>Pongsatorn Saetai</span>
+          <span>Chutima Wongmekaew</span>
         </div>
+      </div>
     </div>
-    
+
     <div id="senddoge_page" class="my-modal">
-        <div class="my-modal-nav container d-flex align-items-center justify-content-center">
-            <span id="btn_back_arrow" class="position-fixed px-3" style="left: 0;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                    class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
-                </svg>
+      <div
+        class="my-modal-nav container d-flex align-items-center justify-content-center"
+      >
+        <span id="btn_back_arrow" class="position-fixed px-3" style="left: 0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="currentColor"
+            class="bi bi-arrow-left-short"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
+            />
+          </svg>
+        </span>
+        <div class="">Send dogecoin</div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="m-3 fs-6">Pay to</div>
+          <div style="position: relative" class="">
+            <img src="./img/Groupinpurs1.svg" alt="" srcset="" />
+            <img
+              id="btn-scan-qr"
+              onclick="modalScan()"
+              src="./img/Vectorscan.svg"
+              class="ps-2"
+              alt=""
+            />
+            <input
+              id="address_tx"
+              class="position-absolute"
+              style="width: 50vw"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="m-3 fs-6">Amount to pay</div>
+          <div class="position-relative">
+            <span class="position-relative">
+              <img src="./img/Groupinputs2.svg" alt="" />
+              <input
+                id="amount_tx"
+                style="
+                  left: 4vw;
+                  bottom: -0.5vh;
+                  width: 28vw;
+                  text-align: right;
+                "
+                class="position-absolute"
+                type="text"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+              />Ð
             </span>
-            <div class="">
-                Send dogecoin
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="m-3 fs-6">
-                    Pay to
-                </div>
-                <div style="position: relative;" class="">
-                    <img src="./img/Groupinpurs1.svg" alt="" srcset="">
-                    <img id="btn-scan-qr" onclick="modalScan()" src="./img/Vectorscan.svg" class="ps-2 " alt="">
-                    <input id="address_tx" class="position-absolute" style="width: 50vw;" type="text">
-                </div>
-            </div>
-            <div class="row">
-                <div class="m-3 fs-6">
-                    Amount to pay
-                </div>
-                <div class="position-relative">
-                    <span class="position-relative">
-                        <img src="./img/Groupinputs2.svg" alt="">
-                        <input id="amount_tx" style="left: 4vw;bottom:-0.5vh ; width: 28vw; text-align: right;" class="position-absolute"
-                            type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">Ð
-                    </span>
 
-                    <span class="mx-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
-                        </svg>
-                    </span>
-                    <span class="position-relative">
-                        <input id="thbid" class="position-absolute" style="left: 8vw;bottom:-0.5vh ; width: 18vw;"
-                            type=" text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">฿
-                        <img width="" src="./img/Groupinputs3.svg" alt="">
-                    </span>
-                </div>
-            </div>
-            <div class="row mt-5 mx-2">
-                <button id="send_tx" onclick="listtxid_history()" class="text-white py-3 px-3"
-                    style="background-color: #514E58 ;border-radius: 228px ;font: size 18px;box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);">
-                    <img src="./img/rockket.svg" alt="">
-                    Send Coin</button>
-            </div>
-            <div class = "position-fixed bottom-0" style="height:40vw; margin-bottom: 12vh; right: 0; ">
-                <img height="100%" src="./img/Groupกล้อง.svg" alt="">
-            </div>
+            <span class="mx-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-arrow-left-right"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"
+                />
+              </svg>
+            </span>
+            <span class="position-relative">
+              <input
+                id="thbid"
+                class="position-absolute"
+                style="left: 8vw; bottom: -0.5vh; width: 18vw"
+                type=" text"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+              />฿
+              <img width="" src="./img/Groupinputs3.svg" alt="" />
+            </span>
+          </div>
         </div>
-
+        <div class="row mt-5 mx-2">
+          <button
+            id="send_tx"
+            onclick="listtxid_history()"
+            class="text-white py-3 px-3"
+            style="
+              background-color: #514e58;
+              border-radius: 228px;
+              font: size 18px;
+              box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+            "
+          >
+            <img src="./img/rockket.svg" alt="" />
+            Send Coin
+          </button>
+        </div>
+        <div
+          class="position-fixed bottom-0"
+          style="height: 40vw; margin-bottom: 12vh; right: 0"
+        >
+          <img height="100%" src="./img/Groupกล้อง.svg" alt="" />
+        </div>
+      </div>
     </div>
     <main class="container-fluid">
+      <div style="position: fixed; left: 0" id="stars"></div>
+      <div style="position: fixed; left: 0" id="stars2"></div>
+      <div style="position: fixed; left: 0" id="stars3"></div>
+      <div style="position: fixed; left: 0" id="stars4"></div>
 
-            <div style="position: fixed; left: 0;"id="stars"></div>
-            <div style="position: fixed; left: 0;"id="stars2"></div>
-            <div style="position: fixed; left: 0;"id="stars3"></div>
-            <div style="position: fixed; left: 0;"id="stars4"></div>
-
-        <div id="row_top_id" class="row" style="height: 40%;">
-            <div id="home_slide_top"
-                class="d-flex main-top flex-column justify-content-center align-items-center position-relative" style="z-index: 2;">
-                <div>
-                    <balance id="doge_balance" class=" d-flex flex-column" style="font-size: 36px;">0.00 DOGE
-                    </balance>
-                    <div id="dogePrice" class="text-center" style="font-size: 16px;">doge ~ err</div>
-                </div>
-                <div id="optionqr" class="d-none d-block" style="text-align: center; margin-top: 1.5vh;">
-                    <span style="font-size: 32px;">My QR-Code</span>
-                    <div id="qrcode-container" style="margin: 10px 0 20px;">
-                        <div id="qrcode" class="qrcode"></div>
-                    </div>
-                    <div style="background: white; padding: 2px 7px; font-size: 1rem; border-radius: 5px;">
-                        <span id="addrForSend" style="margin-right: 10px;" onclick="copyKey()"></span>
-                        <div style="float: right;">
-                            <img id="b_foot" onclick="copyKey()" src="./img/Group.png" style="height: 15px;">
-                        </div>
-                    </div>
-                </div>
-                <span id="qr_btn" onclick="switch_toggle()" class="text-center position-absolute"
-                    style="bottom:-4vh ;z-index: 1;">
-                    <img src="./img/btn_qr.svg" alt="qr-code">
-                </span>
+      <div id="row_top_id" class="row" style="height: 40%">
+        <div
+          id="home_slide_top"
+          class="d-flex main-top flex-column justify-content-center align-items-center position-relative"
+          style="z-index: 2"
+        >
+          <div>
+            <balance
+              id="doge_balance"
+              class="d-flex flex-column"
+              style="font-size: 36px"
+              >0.00 DOGE
+            </balance>
+            <div id="dogePrice" class="text-center" style="font-size: 16px">
+              doge ~ err
             </div>
-            <history-page id="history_page_id" 
-                class="d-flex d-none main-top flex-column justify-content-center align-items-center position-relative">
-                <div>
-                    <balance id="history_balance" class="d-flex flex-column" style="font-size: 36px;">0.00 DOGE
-                    </balance>
-                    <div id="htr_price" class="text-center" style="font-size: 16px;">doge ~ err</div>
-                </div>
-                <div class="p-3 ">
-                    <button id="btn_send" class="text-white py-2 px-3"
-                        style="background-color: #514E58 ;border-radius: 228px ;font: size 18px;box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);">
-                        <img src="./img/rockket.svg" alt="">
-                        Send Coin</button>
-                    <!-- <img id="send_coin" onclick="" src="./img/sendDoge.svg" alt=""> -->
-                </div>
-            </history-page>
+          </div>
+          <div
+            id="optionqr"
+            class="d-none d-block"
+            style="text-align: center; margin-top: 1.5vh"
+          >
+            <span style="font-size: 32px">My QR-Code</span>
+            <div id="qrcode-container" style="margin: 10px 0 20px">
+              <div id="qrcode" class="qrcode"></div>
+            </div>
+            <div
+              style="
+                background: white;
+                padding: 2px 7px;
+                font-size: 1rem;
+                border-radius: 5px;
+              "
+            >
+              <span
+                id="addrForSend"
+                style="margin-right: 10px"
+                onclick="copyKey()"
+              ></span>
+              <div style="float: right">
+                <img
+                  id="b_foot"
+                  onclick="copyKey()"
+                  src="./img/Group.png"
+                  style="height: 15px"
+                />
+              </div>
+            </div>
+          </div>
+          <span
+            id="qr_btn"
+            onclick="switch_toggle()"
+            class="text-center position-absolute"
+            style="bottom: -4vh; z-index: 1"
+          >
+            <img src="./img/btn_qr.svg" alt="qr-code" />
+          </span>
         </div>
+        <history-page
+          id="history_page_id"
+          class="d-flex d-none main-top flex-column justify-content-center align-items-center position-relative"
+        >
+          <div>
+            <balance
+              id="history_balance"
+              class="d-flex flex-column"
+              style="font-size: 36px"
+              >0.00 DOGE
+            </balance>
+            <div id="htr_price" class="text-center" style="font-size: 16px">
+              doge ~ err
+            </div>
+          </div>
+          <div class="p-3">
+            <button
+              id="btn_send"
+              class="text-white py-2 px-3"
+              style="
+                background-color: #514e58;
+                border-radius: 228px;
+                font: size 18px;
+                box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
+              "
+            >
+              <img src="./img/rockket.svg" alt="" />
+              Send Coin
+            </button>
+            <!-- <img id="send_coin" onclick="" src="./img/sendDoge.svg" alt=""> -->
+          </div>
+        </history-page>
+      </div>
     </main>
-    <div id="history_page2_id" class="text-center bg-body" style="width: 100vw; height: 70vh; ">
-        <div class="body_content">
-
-            <div style="display: flex; font-size: 5vw;">
-                <div onclick="active_tab(1)"
-                    style="width: 50%; text-align: end; padding-right: 30px;  margin-top: 20px;">
-                    History</div>
-                <div onclick="active_tab(2)" style="width: 50%; padding-left: 30px;  margin-top: 20px;">Pending</div>
-            </div>
-
-            <div style="position: relative; width: 60%; margin-top: 5px;">
-                <div style="width: 100%; border: 1px solid gray; background: gray;"></div>
-                <div id="id_cg_line" class="cg_line"></div>
-            </div>
-
-            <div class="hide_scrollbar">
-
-                <!-- History -->
-                <div id="history" class="history">
-                    <div
-                        style="width: 100%; border-bottom: 3px solid #bbb; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
-                        <span>Wait a second!</span><br><span>We are downloading</span>
-                    </div>
-                </div>
-
-                <!-- Pending -->
-                <div id="pending" class="pending">
-                    <div
-                        style="width: 100%; border-bottom: 3px solid #bbb; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
-                        <span>Wait a second!</span><br><span>We are downloading</span>
-                    </div>
-                </div>
-            </div>
+    <div
+      id="history_page2_id"
+      class="text-center bg-body"
+      style="width: 100vw; height: 70vh"
+    >
+      <div class="body_content">
+        <div style="display: flex; font-size: 5vw">
+          <div
+            onclick="active_tab(1)"
+            style="
+              width: 50%;
+              text-align: end;
+              padding-right: 30px;
+              margin-top: 20px;
+            "
+          >
+            History
+          </div>
+          <div
+            onclick="active_tab(2)"
+            style="width: 50%; padding-left: 30px; margin-top: 20px"
+          >
+            Pending
+          </div>
         </div>
 
-    </div>
-    <div>
+        <div style="position: relative; width: 60%; margin-top: 5px">
+          <div
+            style="width: 100%; border: 1px solid gray; background: gray"
+          ></div>
+          <div id="id_cg_line" class="cg_line"></div>
+        </div>
 
-    </div>
-    <div id="home_bg_doge" class="position-absolute start-0" style="bottom: 10vh;z-index: 1;">
-        <img style="width: 100%;" src="./img/bbdoge.svg" alt="">
-    </div>
-    <div class=" position-absolute bottom-0" style="width: 100%; z-index: 9999;">
-        <footer class=" d-flex pt-2 justify-content-around align-content-end footer-tm">
-            <div onclick="history_page()" class=" d-flex flex-column justify-content-center">
-                <img class="" style="height: 60%;" src="./img/Groupmenu1svg.svg" alt="">
-                <div class="text-center" style="font-size: 20px;">
-                    History
-                </div>
+        <div class="hide_scrollbar">
+          <!-- History -->
+          <div id="history" class="history">
+            <div
+              style="
+                width: 100%;
+                border-bottom: 3px solid #bbb;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span>Wait a second!</span><br /><span>We are downloading</span>
             </div>
-            <div class=" d-flex flex-column justify-content-center" onclick="wallet_page()">
-                <img class="" style="height: 60%;" src="./img/Group 84838menu2.svg" alt="">
-                <div class="text-center" style="font-size: 20px;">
-                    Wallet
-                </div>
+          </div>
+
+          <!-- Pending -->
+          <div id="pending" class="pending">
+            <div
+              style="
+                width: 100%;
+                border-bottom: 3px solid #bbb;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <span>Wait a second!</span><br /><span>We are downloading</span>
             </div>
-            <div onclick="settingPage()" class=" d-flex flex-column justify-content-center">
-                <img class="" style="height: 60%;" src="./img/menu3.svg" alt="">
-                <div id="setting_page_id" class="text-center " style="font-size: 20px;">
-                    Setting
-                </div>
-            </div>
-        </footer>
+          </div>
+        </div>
+      </div>
     </div>
-
-
-</body>
-
+    <div></div>
+    <div
+      id="home_bg_doge"
+      class="position-absolute start-0"
+      style="bottom: 10vh; z-index: 1"
+    >
+      <img style="width: 100%" src="./img/bbdoge.svg" alt="" />
+    </div>
+    <div class="position-absolute bottom-0" style="width: 100%; z-index: 9999">
+      <footer
+        class="d-flex pt-2 justify-content-around align-content-end footer-tm"
+      >
+        <div
+          onclick="history_page()"
+          class="d-flex flex-column justify-content-center"
+        >
+          <img
+            class=""
+            style="height: 60%"
+            src="./img/Groupmenu1svg.svg"
+            alt=""
+          />
+          <div class="text-center" style="font-size: 20px">History</div>
+        </div>
+        <div
+          class="d-flex flex-column justify-content-center"
+          onclick="wallet_page()"
+        >
+          <img
+            class=""
+            style="height: 60%"
+            src="./img/Group 84838menu2.svg"
+            alt=""
+          />
+          <div class="text-center" style="font-size: 20px">Wallet</div>
+        </div>
+        <div
+          onclick="settingPage()"
+          class="d-flex flex-column justify-content-center"
+        >
+          <img class="" style="height: 60%" src="./img/menu3.svg" alt="" />
+          <div id="setting_page_id" class="text-center" style="font-size: 20px">
+            Setting
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>
 <!-- main fuc -->
 <script src="./js/funcHome.js"></script>
@@ -433,116 +620,147 @@
 <script src="./js/removeAcc.js"></script>
 
 <script>
+  document
+    .querySelector("#btn_back_tosetting")
+    .addEventListener("click", function (e) {
+        settingPage();
+    });
+  // xcxcxcxxcx History Page xcxcxcxxcx
 
-    // xcxcxcxxcx History Page xcxcxcxxcx
-
-    function active_tab(id) {
-        if (id == 2) {
-            $('#id_cg_line').addClass('active_line')
-            $('#pending').addClass('active2')
-            $('#history').addClass('active1')
-        }
-        else if (id == 1) {
-            $('#id_cg_line').removeClass('active_line')
-            $('#pending').removeClass('active2')
-            $('#history').removeClass('active1')
-        }
+  function active_tab(id) {
+    if (id == 2) {
+      $("#id_cg_line").addClass("active_line");
+      $("#pending").addClass("active2");
+      $("#history").addClass("active1");
+    } else if (id == 1) {
+      $("#id_cg_line").removeClass("active_line");
+      $("#pending").removeClass("active2");
+      $("#history").removeClass("active1");
     }
+  }
 
-    getlistaddr()
-    var addressbyuser
+  getlistaddr();
+  var addressbyuser;
 
-    function getlistaddr() {
-        axios.post("http://167.99.71.116:3000/api/listaddress", {
-            "token": localStorage.getItem("token")
-        }).then((result) => {
-            let listaccouunt = result.data.listaddr
-            let innerhtml = ``;
-            listaccouunt.forEach(element => {
-                innerhtml += `<div class="scroll-inside-contant">
+  function getlistaddr() {
+    axios
+      .post("http://167.99.71.116:3000/api/listaddress", {
+        token: localStorage.getItem("token"),
+      })
+      .then((result) => {
+        let listaccouunt = result.data.listaddr;
+        let innerhtml = ``;
+        listaccouunt.forEach((element) => {
+          innerhtml += `<div class="scroll-inside-contant">
             <img style="height: 38px;" src="./img/profilemoon.png" alt="">
             <span class="accgen">${element}</span>
-        </div>`
-            })
-            if (listaccouunt[0].lenght != 0) {
-                $("#addrForSend").append(listaccouunt[0])
-                // document.getElementById("addrForSend").value = listaccouunt[0]
-                console.log("address :", listaccouunt[0])
-                addressbyuser = listaccouunt[0]
-            } else {
-                $("#addrForSend").append("NaN")
-                alert("Error")
-                console.error("Error")
-                window.location.href("./login.html")
-            }
-        }).catch((err) => {
-            console.log(err)
+        </div>`;
         });
-    }
+        if (listaccouunt[0].lenght != 0) {
+          $("#addrForSend").append(listaccouunt[0]);
+          // document.getElementById("addrForSend").value = listaccouunt[0]
+          console.log("address :", listaccouunt[0]);
+          addressbyuser = listaccouunt[0];
+        } else {
+          $("#addrForSend").append("NaN");
+          alert("Error");
+          console.error("Error");
+          window.location.href("./login.html");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-    var data;
-    function listtxid_history() {
-        axios.post("http://167.99.71.116:3000/api/v2/listtransactions", {
-            token: localStorage.getItem('token')
-        }).then(async function (response) {
-            try {
-                var sendding = ``;
-                var pending = ``;
+  var data;
+  function listtxid_history() {
+    axios
+      .post("http://167.99.71.116:3000/api/v2/listtransactions", {
+        token: localStorage.getItem("token"),
+      })
+      .then(async function (response) {
+        try {
+          var sendding = ``;
+          var pending = ``;
 
-                var listtxid = await response.data.data;
+          var listtxid = await response.data.data;
 
-                // กลับส่วนของข้อมูล เพราะข้อมูล
-                listtxid = listtxid.reverse()
-                // var listtxid = data.listtxid;
+          // กลับส่วนของข้อมูล เพราะข้อมูล
+          listtxid = listtxid.reverse();
+          // var listtxid = data.listtxid;
 
-                console.log("DATA HISTORY ======>", listtxid);
+          console.log("DATA HISTORY ======>", listtxid);
 
-                // Object Lenght
-                var HistoryLenght = Object.keys(listtxid).length;
+          // Object Lenght
+          var HistoryLenght = Object.keys(listtxid).length;
 
-                console.log("======>", HistoryLenght);
+          console.log("======>", HistoryLenght);
 
-                for (var i = 0; i < HistoryLenght; i++) {
+          for (var i = 0; i < HistoryLenght; i++) {
+            console.log("index", i, ":", listtxid[i]);
 
-                    console.log("index", i, ":", listtxid[i])
+            console.log("another address=====>", addressbyuser);
 
-                    console.log("another address=====>", addressbyuser)
+            // Check Time
+            var time = listtxid[i].timereceived;
+            time = time * 1000;
+            time = new Date(time);
+            console.log("after time===>", time);
+            time = time + "";
+            console.log("time :", time);
+            var split_time = time.split(" ");
+            var year = split_time[3].split("");
+            var newTime =
+              split_time[1] +
+              " " +
+              split_time[2] +
+              " " +
+              year[2] +
+              "" +
+              year[3];
+            console.log("new time :", newTime);
+            console.log(
+              "index =",
+              i,
+              ":",
+              listtxid[i].address,
+              ", ====  Type ==",
+              listtxid[i].category
+            );
 
+            // Less Word
+            AddReadLess(listtxid[i].address);
 
+            //  ในส่วนของ RECEIVED
 
-
-                    // Check Time
-                    var time = listtxid[i].timereceived;
-                    time = time * 1000;
-                    time = new Date(time);
-                    console.log("after time===>", time);
-                    time = time + "";
-                    console.log("time :", time)
-                    var split_time = time.split(" ")
-                    var year = split_time[3].split("")
-                    var newTime = split_time[1] + " " + split_time[2] + " " + year[2] + "" + year[3];
-                    console.log("new time :", newTime)
-                    console.log("index =", i, ":", listtxid[i].address, ", ====  Type ==", listtxid[i].category)
-
-                    // Less Word
-                    AddReadLess(listtxid[i].address)
-
-                    //  ในส่วนของ RECEIVED
-
-                    if (listtxid[i].confirmations == 0 && listtxid[i].category == 'receive') {
-
-
-                        pending += `
+            if (
+              listtxid[i].confirmations == 0 &&
+              listtxid[i].category == "receive"
+            ) {
+              pending += `
                         <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
-                            <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
+                            <img src=${
+                              listtxid[i].category == "send"
+                                ? "./img/tx_rocket.svg"
+                                : "./img/tx_coin.svg"
+                            } style="width: 10vw; height: 10vw; margin: 10px 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
                                 <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                     <div style="font-size: 20px; font-weight: bolder;">
-                                        ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                        ${
+                                          listtxid[i].category == "send"
+                                            ? "Sending"
+                                            : "Received"
+                                        }
                                     </div>
                                     <div style="line-height: 0.5;">
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;
-                                        <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : Unknown</span>
+                                        <span style="color: gray; font-size: 12px;">${
+                                          listtxid[i].category == "send"
+                                            ? "to"
+                                            : "from"
+                                        } : Unknown</span>
                                     </div>
                                     <div
                                         style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center; line-height: 3;">
@@ -553,32 +771,47 @@
                                     <div style="font-size: 16px; font-weight: bolder;">
                                         ${listtxid[i].amount} DOGE
                                     </div>
-                                    <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                    <a href="https://chain.so/tx/DOGETEST/${
+                                      listtxid[i].txid
+                                    }" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
                                         more info
                                     </a>
                                 </div>
                             </div>
                         </div>`;
-
-
-
-
-
-                    }
-                    else if (listtxid[i].confirmations > 0 && listtxid[i].category == 'receive') {
-
-                        console.log("web index",i," ==> https://chain.so/tx/DOGETEST/",listtxid[i].txid)
-                        sendding += `
+            } else if (
+              listtxid[i].confirmations > 0 &&
+              listtxid[i].category == "receive"
+            ) {
+              console.log(
+                "web index",
+                i,
+                " ==> https://chain.so/tx/DOGETEST/",
+                listtxid[i].txid
+              );
+              sendding += `
                         <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
-                            <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
+                            <img src=${
+                              listtxid[i].category == "send"
+                                ? "./img/tx_rocket.svg"
+                                : "./img/tx_coin.svg"
+                            } style="width: 10vw; height: 10vw; margin: 10px 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
                                 <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                     <div style="font-size: 20px; font-weight: bolder;">
-                                        ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                        ${
+                                          listtxid[i].category == "send"
+                                            ? "Sending"
+                                            : "Received"
+                                        }
                                     </div>
                                     <div style="line-height: 0.5;">
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
-                                            style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : Unknown</span>
+                                            style="color: gray; font-size: 12px;">${
+                                              listtxid[i].category == "send"
+                                                ? "to"
+                                                : "from"
+                                            } : Unknown</span>
                                     </div>
                                     <div style="color: #4ECB71; font-weight: 600; line-height: 3;"><i class="fas fa-check"></i>success</div>
                                 </div>
@@ -586,38 +819,54 @@
                                     <div style="font-size: 16px; font-weight: bolder;">
                                         ${listtxid[i].amount} DOGE
                                     </div>
-                                    <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                    <a href="https://chain.so/tx/DOGETEST/${
+                                      listtxid[i].txid
+                                    }" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
                                         more info
                                     </a>
                                 </div>
                             </div>
                         </div>`;
+            }
 
+            console.log(
+              "True or False",
+              i,
+              ":",
+              listtxid[i].address == addressbyuser
+            );
 
-                    }
+            // if(!listtxid[i].addres){
+            //     continue
+            // }
 
-
-                    console.log("True or False", i, ":", (listtxid[i].address == addressbyuser))
-
-                    // if(!listtxid[i].addres){
-                    //     continue
-                    // }
-
-
-                    if (listtxid[i].confirmations == 0 && listtxid[i].category == 'send') {
-
-
-                        pending += `
+            if (
+              listtxid[i].confirmations == 0 &&
+              listtxid[i].category == "send"
+            ) {
+              pending += `
                     <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
-                        <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
+                        <img src=${
+                          listtxid[i].category == "send"
+                            ? "./img/tx_rocket.svg"
+                            : "./img/tx_coin.svg"
+                        } style="width: 10vw; height: 10vw; margin: 10px 20px;">
                         <div style="display: flex; justify-content: space-between; width: 100%;">
                             <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                 <div style="font-size: 20px; font-weight: bolder;">
-                                    ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                    ${
+                                      listtxid[i].category == "send"
+                                        ? "Sending"
+                                        : "Received"
+                                    }
                                 </div>
                                 <div style="line-height: 0.5;">
                                     <span style="font-size: 12px;">${newTime}</span>&nbsp;
-                                    <span style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                    <span style="color: gray; font-size: 12px;">${
+                                      listtxid[i].category == "send"
+                                        ? "to"
+                                        : "from"
+                                    } : ${strtoadd}</span>
                                 </div>
                                 <div
                                     style="color: rgb(244, 180, 63); font-weight: 600; display: flex; align-items: center; line-height: 3;">
@@ -628,28 +877,41 @@
                                 <div style="font-size: 16px; font-weight: bolder;">
                                     ${listtxid[i].amount} DOGE
                                 </div>
-                                <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                <a href="https://chain.so/tx/DOGETEST/${
+                                  listtxid[i].txid
+                                }" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
                                     more info
                                 </a>
                             </div>
                         </div>
                     </div>`;
-
-
-                    } else if (listtxid[i].confirmations > 0 && listtxid[i].category == 'send') {
-
-
-                        sendding += `
+            } else if (
+              listtxid[i].confirmations > 0 &&
+              listtxid[i].category == "send"
+            ) {
+              sendding += `
                         <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; margin-top: 10px;">
-                            <img src=${listtxid[i].category == 'send' ? "./img/tx_rocket.svg" : "./img/tx_coin.svg"} style="width: 10vw; height: 10vw; margin: 10px 20px;">
+                            <img src=${
+                              listtxid[i].category == "send"
+                                ? "./img/tx_rocket.svg"
+                                : "./img/tx_coin.svg"
+                            } style="width: 10vw; height: 10vw; margin: 10px 20px;">
                             <div style="display: flex; justify-content: space-between; width: 100%;">
                                 <div style="display: flex; flex-direction: column; justify-content: space-between; text-align: left;">
                                     <div style="font-size: 20px; font-weight: bolder;">
-                                        ${listtxid[i].category == 'send' ? "Sending" : "Received"}
+                                        ${
+                                          listtxid[i].category == "send"
+                                            ? "Sending"
+                                            : "Received"
+                                        }
                                     </div>
                                     <div style="line-height: 0.5;">
                                         <span style="font-size: 12px;">${newTime}</span>&nbsp;<span
-                                            style="color: gray; font-size: 12px;">${listtxid[i].category == 'send' ? "to" : "from"} : ${strtoadd}</span>
+                                            style="color: gray; font-size: 12px;">${
+                                              listtxid[i].category == "send"
+                                                ? "to"
+                                                : "from"
+                                            } : ${strtoadd}</span>
                                     </div>
                                     <div style="color: #4ECB71; font-weight: 600; line-height: 3;"><i class="fas fa-check"></i>success</div>
                                 </div>
@@ -657,60 +919,69 @@
                                     <div style="font-size: 16px; font-weight: bolder;">
                                         ${listtxid[i].amount} DOGE
                                     </div>
-                                    <a href="https://chain.so/tx/DOGETEST/${listtxid[i].txid}" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
+                                    <a href="https://chain.so/tx/DOGETEST/${
+                                      listtxid[i].txid
+                                    }" target="_blank" style="line-height: 3; text-align: right; text-decoration: none; color: gray;">
                                         more info
                                     </a>
                                 </div>
                             </div>
                         </div>`;
-
-
-                    } else {
-                        console.log("Throw valid index :", i, ",Type :", listtxid[i].category)
-                        continue
-                    }
-
-
-                }
-                var pendddingtxt = $('#pending').text()
-                if (pendddingtxt.includes('Wait a second!') && !(!!pending) || pendddingtxt.includes('No transaction is pendind!!') && !(!!pending) || !!pendddingtxt && !(!!pending)) {
-                    pending += `
+            } else {
+              console.log(
+                "Throw valid index :",
+                i,
+                ",Type :",
+                listtxid[i].category
+              );
+              continue;
+            }
+          }
+          var pendddingtxt = $("#pending").text();
+          if (
+            (pendddingtxt.includes("Wait a second!") && !!!pending) ||
+            (pendddingtxt.includes("No transaction is pendind!!") &&
+              !!!pending) ||
+            (!!pendddingtxt && !!!pending)
+          ) {
+            pending += `
                     <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex;flex-direction: column;; align-items: center; justify-content: center;">
                         <span>No transaction is pendind!!</span><br><span>Please, give me DogeCoin to feed me</span>
                     </div>`;
-                }
-                var senddingtxt = $('#history').text()
-                if (senddingtxt.includes('Wait a second!') && !(!!sendding) || senddingtxt.includes('No transaction is now!') && !(!!sendding) || !!pendddingtxt && !(!!pending)) {
-                    sendding += `
+          }
+          var senddingtxt = $("#history").text();
+          if (
+            (senddingtxt.includes("Wait a second!") && !!!sendding) ||
+            (senddingtxt.includes("No transaction is now!") && !!!sendding) ||
+            (!!pendddingtxt && !!!pending)
+          ) {
+            sendding += `
                     <div style="width: 100%; border-bottom: 3px solid #bbb; display: flex; align-items: center; justify-content: center;">
                         <span>No transaction is now!</span>
                     </div>`;
-                }
+          }
 
-                $('#pending').html(pending);
-                $('#history').html(sendding);
-            } catch (err) {
-                console.log("Something Error in API :", err)
-            }
-        })
-    }
-
-    var strtoadd
-    function AddReadLess(x) {
-        var carLmt = 10;
-        var lessSymbol = "...";
-        var allstr = x;
-        // console.log("text: ",allstr)
-        if (allstr.length > carLmt) {
-            var firstSet = allstr.substring(0, carLmt);
-            var secdHalf = allstr.substring(carLmt, allstr.length);
-            strtoadd = firstSet + lessSymbol;
-            // console.log("Less Done :", strtoadd)
+          $("#pending").html(pending);
+          $("#history").html(sendding);
+        } catch (err) {
+          console.log("Something Error in API :", err);
         }
-    }
+      });
+  }
 
+  var strtoadd;
+  function AddReadLess(x) {
+    var carLmt = 10;
+    var lessSymbol = "...";
+    var allstr = x;
+    // console.log("text: ",allstr)
+    if (allstr.length > carLmt) {
+      var firstSet = allstr.substring(0, carLmt);
+      var secdHalf = allstr.substring(carLmt, allstr.length);
+      strtoadd = firstSet + lessSymbol;
+      // console.log("Less Done :", strtoadd)
+    }
+  }
 </script>
 <!-- page -->
 <script src="./js/page.js"></script>
-
-
