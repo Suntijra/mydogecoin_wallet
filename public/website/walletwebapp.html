@@ -89,7 +89,6 @@
         <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab"> messages </div> -->
     </div>
 
-
     <!-- Modal -->
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -185,7 +184,7 @@
                     txid.value = data.txid;
                     txidmadal.classList.remove("d-none")
                     alert("send dogecoin success")
-                    $('#textamount').append(`${data.sendamount} doge of ${document.getElementById('balanceid').textContent} doge`)
+                    // $('#textamount').append(`${data.sendamount} doge of ${document.getElementById('balanceid').textContent} doge`)
                 }
                 else {
                     console.log(data)
@@ -227,6 +226,30 @@
 
         }).catch(err => alert(err))
     })
+    setInterval(()=>{
+        realtimeblalance()
+    },1000)
+    function realtimeblalance(){
+        let keys = document.querySelector("#your_key").value
+        console.log(keys)
+        if (keys.length == 32 || keys == "admin") {
+            fetch("http://167.99.71.116:3000/get/publickey", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ "keys": keys })
+            }).then((res) => { return res.json() }).then(data => {
+                let publickey = data.publickey
+                let balance = data.balance
+                console.log(data)
+                document.querySelector("#publicaddr").value = publickey
+                document.querySelector("#balanceid").textContent = balance
+                // alert(data)
+            })
+        } 
+    }
     document.querySelector("#checkkey").addEventListener("click", function (e) {
         let keys = document.querySelector("#your_key").value
         console.log(keys)
