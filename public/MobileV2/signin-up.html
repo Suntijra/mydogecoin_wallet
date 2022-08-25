@@ -555,8 +555,16 @@
                             let result_title = response.data.Result
                             if (status == true) {
 
-                                Swal.fire({ icon: 'success', text: result_title, title: 'Success'})
-                                .then((result) => {
+                                Swal.fire({ 
+                                    icon: 'success', 
+                                    text: result_title, 
+                                    title: 'Success',
+                                    didClose: ()=>{
+                                        $('.signin_detail').removeClass("signin_active");
+                                        $('.signup_detail').removeClass("signup_active");
+                                        document.querySelector('#animate_line').classList.remove("line_active");
+                                    }
+                                }).then((result) => {
                                     if (result.isConfirmed) {
                                         // setTimeout(()=>{
                                             $('.signin_detail').removeClass("signin_active");
