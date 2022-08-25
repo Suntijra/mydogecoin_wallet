@@ -15,7 +15,8 @@ function setting_about() {
     document.querySelector("#btn_back_tosetting").classList.remove("d-none");
     document.querySelector("#setting_id").textContent = "About us"
     document.getElementById("about_usDetail").classList.remove("d-none")
-    document.querySelector("#settingimg").src = "./img/settingv2.svg"
+    document.querySelector("#settingimg").src = "./img/Jigsaw.png";
+    document.querySelector("#settingimg").style.width = "26%";
     document.querySelector("#setting_contentid").classList.add("d-none");
 }
 
@@ -27,7 +28,8 @@ function settingPage() {
     document.querySelector("#btn_back_tosetting").classList.add("d-none");
     document.querySelector("#setting_contentid").classList.remove("d-none");
     document.querySelector("#setting_id").textContent = "Setting"
-    document.querySelector("#settingimg").src = "./img/setting1.svg"
+    document.querySelector("#settingimg").src = "./img/setting1.svg";
+    document.querySelector("#settingimg").style.width = "100%";
     document.querySelector("#setting_main_id").style.display = "block"
     document.querySelector("#home_slide_top").style.height = "30vh";
     document.querySelector("#optionqr").classList.add("d-none");

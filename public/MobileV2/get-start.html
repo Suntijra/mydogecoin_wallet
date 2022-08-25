@@ -14,6 +14,8 @@
         crossorigin="anonymous"></script>
     <!-- CSS STAR -->
     <link rel="stylesheet" href="./css/bg_star_website.css">
+     <!-- Loading -->
+     <link rel="stylesheet" href="./css/loading.css">
 </head>
 <style>
     @font-face {
@@ -98,6 +100,19 @@
 </style>
 
 <body>
+    <div id="id_loading" class="loading">
+        <div class="center">
+            <img style="width: 50%; margin: auto;" src="/Mobile/img/coin.gif" alt="">
+            <span style="font-size:30px;color: white;">loading
+                <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </span>
+        </div>
+    </div>
     <div class="top">
         <img style="width: 80%; object-fit: contain; background-repeat: no-repeat;" src="./img/Logo_MOONDOGE.svg"
             alt="">
@@ -123,5 +138,11 @@
     const btn = document.querySelector("#get_start");
     btn.onclick = () => {
         setTimeout(()=>{window.location.href = "./signin-up.html";},1500)
+    }
+    document.onreadystatechange = () => {
+        if (document.readyState === "complete") {
+            // alert(document.readyState)
+            document.getElementById('id_loading').style.display = 'none';
+        }
     }
 </script>

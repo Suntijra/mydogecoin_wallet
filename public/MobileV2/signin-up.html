@@ -24,6 +24,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- swal2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <!-- Loading -->
+     <link rel="stylesheet" href="./css/loading.css">
 </head>
 <!-- <link rel="stylesheet" href="./css/fontv2.css"> -->
 <style>
@@ -217,6 +219,19 @@
 
 
 <body style="background-color: black;font-family:mydogefont; width: 100vw; height: 100vh;">
+    <div id="id_loading" class="loading">
+        <div class="center">
+            <img style="width: 50%; margin: auto;" src="/Mobile/img/coin.gif" alt="">
+            <span style="font-size:30px;color: white;">loading
+                <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </span>
+        </div>
+    </div>
 
     <div class="container-fluid d-flex justify-content-center align-items-center flex-column"
         style="font-size: 3rem ; height: 30vh;">
@@ -851,4 +866,10 @@ function next_main(){
         $("#chkMneKey"+(i+1)).val(no[i])
     }
 }
+document.onreadystatechange = () => {
+        if (document.readyState === "complete") {
+            // alert(document.readyState)
+            document.getElementById('id_loading').style.display = 'none';
+        }
+    }
 </script>
