@@ -46,6 +46,10 @@ app.listen(port, () => {
     console.log('listening on port ' + port)
     console.log(ip.address() + ':'+port)
 })
+app.get('/api/server/stop_nodejs', (req, resp) => {
+    console.log("Close Server")
+    process.exit();
+  })
 
 // mobile app
 // app.get("/get-start",(req,res) =>{
