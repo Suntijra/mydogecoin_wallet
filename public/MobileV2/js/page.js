@@ -9,10 +9,11 @@ btn_back_arrow.onclick = function () {
     document.getElementById("senddoge_page").style.display = "none";
     history_page()
 }
-const hide_setting = () => { document.querySelector("#setting_main_id").style.display = "none"; }
+const hide_setting = () => { document.querySelector("#setting_main_id").style.display = "none";  document.getElementById("about_usDetail").classList.add("d-none");}
 function setting_about() {
     console.log("About")
     document.querySelector("#setting_id").textContent = "About us"
+    document.getElementById("about_usDetail").classList.remove("d-none")
     document.querySelector("#settingimg").src = "./img/settingv2.svg"
     document.querySelector("#setting_contentid").classList.add("d-none");
 }
@@ -29,6 +30,7 @@ function settingPage() {
     document.querySelector("#home_slide_top").style.height = "30vh";
     document.querySelector("#optionqr").classList.add("d-none");
     document.getElementById("senddoge_page").style.display = "none";
+    document.getElementById("about_usDetail").classList.add("d-none")
 }
 async function switch_toggle() {
     let btn_qr = document.querySelector("#qr_btn")
