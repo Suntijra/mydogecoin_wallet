@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- HTML5 QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.2.1/html5-qrcode.min.js" integrity="sha512-cuVnjPNH3GyigomLiyATgpCoCmR9T3kwjf94p0BnSfdtHClzr1kyaMHhUmadydjxzi1pwlXjM5sEWy4Cd4WScA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
     <!-- CSS STAR -->
     <link rel="stylesheet" href="./css/bg_star_getstart.css" />
@@ -209,6 +212,33 @@
         #qrcode>img {
             width: 30vh;
         }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-right: 1rem;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -323,6 +353,23 @@
             <div class="position-fixed bottom-0" style="height: 40vw; margin-bottom: 12vh; right: 0">
                 <img height="100%" src="./img/Groupกล้อง.svg" alt="" />
             </div>
+
+            <div id="ScanModal" class="modal">
+
+                <!-- Modal content -->
+                <span class="close">&times;</span>
+                <div style="height: 50vh; width: 100vw; display: flex; align-items: center;">
+                    <div id="reader" style="width: 100vw;"></div>
+                </div>
+              
+              </div>
+
+            <!-- <div id="scanQrModal" style="display: none; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.794);">
+                
+            </div> -->
+
+
+
         </div>
     </div>
     <main class="container-fluid">
@@ -787,6 +834,80 @@
     document.onreadystatechange = () => {
         if (document.readyState === "complete") {
             document.getElementById('id_loading').style.display = 'none';
+        }else{
+            document.getElementById('id_loading').style.display = 'block';
         }
+    }
+
+
+    
+    function onScanSuccess(decodedText, decodedResult) {
+        // handle the scanned code as you like, for example:
+        console.log(`Code matched = ${decodedText}`, decodedResult);
+    }
+
+    function onScanFailure(error) {
+        // handle scan failure, usually better to ignore and keep scanning.
+        // for example:
+        console.warn(`Code scan error = ${error}`)
+    }
+
+    function modalScan(){
+        $("#ScanModal").css('display','block')
+        
+        // let refresh = setInterval(()=>{
+        //     console.log("found attr :",$("reader").css('position') == 'relative')
+        //     if($("reader").css('position') == 'relative'){
+        //         document.getElementById('id_loading').style.display = 'block';
+        //     }else{
+        //         document.getElementById('id_loading').style.display = 'none';
+        //         clearInterval(refresh)
+        //     }
+        //     },1000);
+        //     refresh
+
+
+        // document.getElementById('id_loading').style.display = 'block';
+        // let refresh = setInterval(()=>{
+        //     document.onreadystatechange = () => {
+        //         if (document.readyState === "complete") {
+        //             document.getElementById('id_loading').style.display = 'none';
+        //             clearInterval(refresh)
+        //         }
+        //     }
+        // },1000);
+        // refresh
+        
+
+        let html5QrcodeScanner = new Html5QrcodeScanner("reader",{ fps: 10, qrbox: {width: 250, height: 250} },/* verbose= */ false);
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
+        
+        const html5QrCode = new Html5Qrcode("reader");
+        const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+
+            /* handle success */
+            console.log(`Code matched = ${decodedText}`, decodedResult);
+            $("#address_tx").val(decodedText)
+
+            // Stop Scanning
+            html5QrCode.stop().then((ignore) => {
+                // QR Code scanning is stopped.
+                $('#ScanModal').css("display", "none");
+                console.log("======== Stop ====>",ignore)
+            }).catch((err) => {
+                // Stop failed, handle it.
+            });
+
+        };
+        // X symbol = (close)
+        document.getElementsByClassName("close")[0].onclick = function () {
+            $('#ScanModal').css("display", "none");
+            console.log("close")
+            html5QrCode.stop()
+        }
+        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+        // If you want to prefer back camera
+        html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
     }
 </script>
