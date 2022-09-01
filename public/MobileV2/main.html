@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
     <meta name="theme-color" content="#E9A700" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -67,7 +67,7 @@
         .footer-tm {
             background-color: #e9a700;
             border-radius: 12px 12px 0px 0px;
-            position: absolute;
+            position: fixed;
             width: 100%;
             bottom: 0;
         }
@@ -91,7 +91,7 @@
             position: fixed;
             background-color: #f5f5f5;
             z-index: 5;
-            height: 90%;
+            height: 100vh;
             width: 100%;
         }
 
@@ -105,8 +105,8 @@
         }
 
         input {
-            bottom: 2vh;
-            left: 5vh;
+            bottom: 1rem;
+            left: 2.5rem;
             /* width: 40vw; */
             outline: none;
             border: none;
@@ -229,8 +229,8 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
-            margin-top: 1rem;
-            margin-right: 1rem;
+            height: 2.5rem;
+            margin: 1rem;
         }
 
         .close:hover,
@@ -238,6 +238,10 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+        #amount_tx::placeholder, #thbid::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: rgb(156, 155, 155);
+            opacity: 1; /* Firefox */
         }
     </style>
 </head>
@@ -307,7 +311,7 @@
                 <div style="position: relative" class="">
                     <img src="./img/Groupinpurs1.svg" alt="" srcset="" />
                     <img id="btn-scan-qr" onclick="modalScan()" src="./img/Vectorscan.svg" class="ps-2" alt="" />
-                    <input id="address_tx" class="position-absolute" style="width: 50vw" type="text" />
+                    <input id="address_tx" onkeydown="disBottomNav()" class="position-absolute" style="width: 13rem;" type="text" />
                 </div>
             </div>
             <div class="row">
@@ -315,13 +319,8 @@
                 <div class="position-relative">
                     <span class="position-relative">
                         <img src="./img/Groupinputs2.svg" alt="" />
-                        <input id="amount_tx" style="
-                  left: 4vw;
-                  bottom: -0.5vh;
-                  width: 28vw;
-                  text-align: right;
-                " class="position-absolute" type="text"
-                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />Ð
+                        <input id="amount_tx" style="left: 1rem;bottom: -0.3rem;width: 7.5rem;text-align: right;" class="position-absolute" type="text"
+                            onkeydown="disBottomNav()" onkeyup="exchangeTHB()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="0"/>Ð
                     </span>
 
                     <span class="mx-1">
@@ -332,9 +331,8 @@
                         </svg>
                     </span>
                     <span class="position-relative">
-                        <input id="thbid" class="position-absolute" style="left: 8vw; bottom: -0.5vh; width: 18vw"
-                            type=" text"
-                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />฿
+                        <input id="thbid" class="position-absolute" style="left: 1.5rem; bottom: -0.3rem; width: 5.25rem" type=" text"
+                            onkeydown="disBottomNav()" onkeyup="exchangeDOGE()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="0"/>฿
                         <img width="" src="./img/Groupinputs3.svg" alt="" />
                     </span>
                 </div>
@@ -350,19 +348,11 @@
                     Send Coin
                 </button>
             </div>
-            <div class="position-fixed bottom-0" style="height: 40vw; margin-bottom: 12vh; right: 0">
+            <!-- <div class="position-fixed bottom-0" style="height: 40vw; margin-bottom: 12vh; right: 0">
                 <img height="100%" src="./img/Groupกล้อง.svg" alt="" />
-            </div>
+            </div> -->
 
-            <div id="ScanModal" class="modal">
-
-                <!-- Modal content -->
-                <span class="close">&times;</span>
-                <div style="height: 50vh; width: 100vw; display: flex; align-items: center;">
-                    <div id="reader" style="width: 100vw;"></div>
-                </div>
-              
-              </div>
+            
 
             <!-- <div id="scanQrModal" style="display: none; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.794);">
                 
@@ -370,6 +360,15 @@
 
 
 
+        </div>
+        <div id="ScanModal" class="modal">
+
+            <!-- Modal content -->
+            <span class="close">&times;</span>
+            <div style="height: 82vh; width: 100vw; display: flex; align-items: center;">
+                <div id="reader" style="width: 100vw;"></div>
+            </div>
+          
         </div>
     </div>
     <main class="container-fluid">
@@ -394,12 +393,7 @@
                     <div id="qrcode-container" style="margin: 10px 0 20px">
                         <div id="qrcode" class="qrcode"></div>
                     </div>
-                    <div style="
-                background: white;
-                padding: 2px 7px;
-                font-size: 1rem;
-                border-radius: 5px;
-              ">
+                    <div style="background: white;padding: 2px 7px;font-size: 1rem;border-radius: 5px;">
                         <span id="addrForSend" style="margin-right: 10px" onclick="copyKey()"></span>
                         <div style="float: right">
                             <img id="b_foot" onclick="copyKey()" src="./img/Group.png" style="height: 15px" />
@@ -421,12 +415,7 @@
                     </div>
                 </div>
                 <div class="p-3">
-                    <button id="btn_send" class="text-white py-2 px-3" style="
-                background-color: #514e58;
-                border-radius: 228px;
-                font: size 18px;
-                box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);
-              ">
+                    <button id="btn_send" class="text-white py-2 px-3" style="background-color: #514e58;border-radius: 228px;font: size 18px;box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.25);">
                         <img src="./img/rockket.svg" alt="" />
                         Send Coin
                     </button>
@@ -438,12 +427,7 @@
     <div id="history_page2_id" class="text-center bg-body" style="width: 100vw; height: 70vh">
         <div class="body_content">
             <div style="display: flex; font-size: 5vw">
-                <div onclick="active_tab(1)" style="
-              width: 50%;
-              text-align: end;
-              padding-right: 30px;
-              margin-top: 20px;
-            ">
+                <div onclick="active_tab(1)" style="width: 50%;text-align: end;padding-right: 30px;margin-top: 20px;">
                     History
                 </div>
                 <div onclick="active_tab(2)" style="width: 50%; padding-left: 30px; margin-top: 20px">
@@ -459,28 +443,14 @@
             <div class="hide_scrollbar">
                 <!-- History -->
                 <div id="history" class="history">
-                    <div style="
-                width: 100%;
-                border-bottom: 3px solid #bbb;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-              ">
+                    <div style="width: 100%;border-bottom: 3px solid #bbb;display: flex;flex-direction: column;align-items: center;justify-content: center;">
                         <span>Wait a second!</span><br /><span>We are downloading</span>
                     </div>
                 </div>
 
                 <!-- Pending -->
                 <div id="pending" class="pending">
-                    <div style="
-                width: 100%;
-                border-bottom: 3px solid #bbb;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-              ">
+                    <div style="width: 100%;border-bottom: 3px solid #bbb;display: flex;flex-direction: column;align-items: center;justify-content: center;">
                         <span>Wait a second!</span><br /><span>We are downloading</span>
                     </div>
                 </div>
@@ -491,8 +461,8 @@
     <div id="home_bg_doge" class="position-absolute start-0" style="bottom: 10vh; z-index: 1">
         <img style="width: 100%" src="./img/bbdoge.svg" alt="" />
     </div>
-    <div class="position-absolute bottom-0" style="width: 100%; z-index: 9999">
-        <footer class="d-flex pt-2 justify-content-around align-content-end footer-tm">
+    <div id="navBottom" class="container position-absolute bottom-0" style="width: 100%; height: 13%; z-index: 5; padding: 0;">
+        <div class="footer d-flex pt-2 justify-content-around align-content-end footer-tm">
             <div onclick="history_page()" class="d-flex flex-column justify-content-center">
                 <img class="" style="height: 60%" src="./img/Groupmenu1svg.svg" alt="" />
                 <div class="text-center" style="font-size: 20px">History</div>
@@ -507,7 +477,7 @@
                     Setting
                 </div>
             </div>
-        </footer>
+        </div>
     </div>
 </body>
 
@@ -522,9 +492,7 @@
 <script src="./js/removeAcc.js"></script>
 
 <script>
-    document
-        .querySelector("#btn_back_tosetting")
-        .addEventListener("click", function (e) {
+    document.querySelector("#btn_back_tosetting").addEventListener("click", function (e) {
             settingPage();
         });
     // xcxcxcxxcx History Page xcxcxcxxcx
@@ -820,6 +788,12 @@
 <!-- page -->
 <script src="./js/page.js"></script>
 <script>
+    var htmlHeight = document.documentElement.clientHeight;
+    $('body').css('height', htmlHeight);
+    $('.my-modal').css('height', htmlHeight);
+    function disBottomNav() {
+        $('.footer').attr('display','display: none !important;')
+    }
     // window.location.reload
     // window.addEventListener('readyStateChange',(e)=>{
     //     if(document.readyState == 'complete'){
@@ -852,31 +826,80 @@
         console.warn(`Code scan error = ${error}`)
     }
 
+
+    function exchangeDOGE(){
+        let thb = $("#thbid").val();
+        let curency = ExchangeMoney;
+        let result="";
+        let str;
+
+        thb = +thb;
+        curency = +curency;
+        str = thb/curency;
+        str += "";
+
+        console.log("type",typeof(str),"==>",str)
+        console.log(str.length)
+        for (i = 0; i < str.length; i++) {
+            result += str[i]
+            if (str[i] == '.') {
+                k = i + 4
+                // console.log("ทดสอบ")
+                for (j = i + 1; j < k; j++) {
+                    if (!!str[j]) {
+                        result += str[j]
+                        // console.log("ลำดับที่",j,"--->",index)
+                    }
+                    else {
+                        result += '0'
+                    }
+                }
+                break;
+            }
+        }
+        
+        $("#amount_tx").val(result);
+    }
+    function exchangeTHB(){
+        let doge = $("#amount_tx").val();
+        let curency = ExchangeMoney;
+        let result="";
+        let str;
+
+        doge = +doge;
+        curency = +curency;
+        str = doge*curency;
+        str += ""
+        console.log("type",typeof(str),"==>",str)
+        console.log(str.length)
+        for (i = 0; i < str.length; i++) {
+            console.log(str)
+            result += str[i]
+            if (str[i] == '.') {
+                k = i + 4
+                // console.log("ทดสอบ")
+                for (j = i+1; j < k; j++) {
+                        console.log(str[j])
+                    if (!!str[j]) {
+                        result += str[j]
+                        // console.log("ลำดับที่",j,"--->",index)
+                        console.log("1",j)
+                    }
+                    else {
+                        result += '0'
+                        console.log("2")
+                    }
+                }
+                break;
+            }
+        }
+
+        $("#thbid").val(result);
+    }
+
     function modalScan(){
         $("#ScanModal").css('display','block')
-        
-        // let refresh = setInterval(()=>{
-        //     console.log("found attr :",$("reader").css('position') == 'relative')
-        //     if($("reader").css('position') == 'relative'){
-        //         document.getElementById('id_loading').style.display = 'block';
-        //     }else{
-        //         document.getElementById('id_loading').style.display = 'none';
-        //         clearInterval(refresh)
-        //     }
-        //     },1000);
-        //     refresh
-
-
-        // document.getElementById('id_loading').style.display = 'block';
-        // let refresh = setInterval(()=>{
-        //     document.onreadystatechange = () => {
-        //         if (document.readyState === "complete") {
-        //             document.getElementById('id_loading').style.display = 'none';
-        //             clearInterval(refresh)
-        //         }
-        //     }
-        // },1000);
-        // refresh
+        $("#navBottom").css('z-index','4')
         
 
         let html5QrcodeScanner = new Html5QrcodeScanner("reader",{ fps: 10, qrbox: {width: 250, height: 250} },/* verbose= */ false);
@@ -894,6 +917,7 @@
             html5QrCode.stop().then((ignore) => {
                 // QR Code scanning is stopped.
                 $('#ScanModal').css("display", "none");
+                $("#navBottom").css('z-index','5')
                 console.log("======== Stop ====>",ignore)
             }).catch((err) => {
                 // Stop failed, handle it.
@@ -903,6 +927,7 @@
         // X symbol = (close)
         document.getElementsByClassName("close")[0].onclick = function () {
             $('#ScanModal').css("display", "none");
+            $("#navBottom").css('z-index','5')
             console.log("close")
             html5QrCode.stop()
         }

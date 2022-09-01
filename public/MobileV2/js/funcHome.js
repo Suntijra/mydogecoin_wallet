@@ -1,4 +1,5 @@
 //const { split } = require("lodash");
+var ExchangeMoney;
 
 getPriceDOGE()
 function getPriceDOGE() {
@@ -11,9 +12,9 @@ function getPriceDOGE() {
             thb = data
             axios.get('https://www.binance.com/api/v3/ticker/price?symbol=DOGEUSDT').then(res => {
                 result = thb * res.data.price + '';
-                console.log("result :", result)
+                // console.log("result :", result)
                 substr = substrfn(result)
-                console.log(substr)
+                // console.log("ราคาบาท",substr)
                 document.getElementById('dogePrice').innerHTML = substr + ' ฿';
                 document.getElementById('htr_price').innerHTML = substr + ' ฿';
                
@@ -27,7 +28,7 @@ function getPriceDOGE() {
             console.log(resp.data.price)
             result = thb * resp.data.price + ''
             substr = substrfn(result)
-            console.log(substr)
+            // console.log(substr)
             document.getElementById('dogePrice').innerHTML = substr + ' ฿';
         });
 
@@ -37,14 +38,17 @@ function getPriceDOGE() {
 
 function substrfn(str1) {
     var index = str1+"";
-        console.log("text :",index)
+    let result = "";
+        // console.log("text :",index)
     for (i = 0; i < str1.length; i++) {
-        index += str1[i]
+        result += str1[i]
         if (str1[i] == '.') {
             k = i + 4
+            // console.log("ทดสอบ")
             for (j = i + 1; j < k; j++) {
                 if (typeof (str1[j]) != 'undefined') {
-                    index += str1[j]
+                    result += str1[j]
+                    // console.log("ลำดับที่",j,"--->",index)
                 }
                 else {
                     index += '0'
@@ -53,8 +57,9 @@ function substrfn(str1) {
             break;
         }
     }
+    ExchangeMoney = result;
     let substr = index
-    return substr
+    return result
 }
 
 var change = false
