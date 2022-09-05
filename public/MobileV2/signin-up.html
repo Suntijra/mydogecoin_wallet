@@ -523,7 +523,7 @@
 
     function signupGo() {
         let CheckforSure = $("#CheckforSure");
-            axios('http://167.99.71.116:3000/api/get/register').then(res => {
+            axios('https://api.hivr.app/api/get/register').then(res => {
                 // console.log(res.data.Result);
                 let data = res.data.Result
                 let user = $('#sign_user').val();
@@ -555,7 +555,7 @@
                 } else {
                     if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
                         if (pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)) {
-                            axios.post('http://167.99.71.116:3000/api/insert/register', {
+                            axios.post('https://api.hivr.app/api/insert/register', {
                                 username: user,
                                 password: pwd
                             }).then(function (response) {
@@ -732,7 +732,7 @@
             alert("Please fill in all the fields");
         }
         else {
-            axios.post('http://167.99.71.116:3000/api/post/login', {
+            axios.post('https://api.hivr.app/api/post/login', {
                 username: id_user,
                 password: id_pwd
             }).then((result) => {
@@ -767,7 +767,7 @@
 
     var mnKeys;
     function startmnemonic() {
-        axios.post('http://167.99.71.116:3000/api/post/create-wallet', {
+        axios.post('https://api.hivr.app/api/post/create-wallet', {
             token: localStorage.getItem('token')
         }).then((result) => {
             let data = result.data.mnemonic;
@@ -825,7 +825,7 @@
             // console.log('txt     :',mnKeys_txt)
             console.log('checktxt:', chkMneKey_txt)
 
-            axios.post('http://167.99.71.116:3000/api/login/mnemonic', {
+            axios.post('https://api.hivr.app/api/login/mnemonic', {
                 mnemonic: chkMneKey_txt,
             }).then((result) => {
                 result = result.data;

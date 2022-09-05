@@ -514,7 +514,7 @@
 
     function getlistaddr() {
         axios
-            .post("http://167.99.71.116:3000/api/listaddress", {
+            .post("https://api.hivr.app/api/listaddress", {
                 token: localStorage.getItem("token"),
             })
             .then((result) => {
@@ -546,7 +546,7 @@
     var data;
     function listtxid_history() {
         axios
-            .post("http://167.99.71.116:3000/api/v2/listtransactions", {
+            .post("https://api.hivr.app/api/v2/listtransactions", {
                 token: localStorage.getItem("token"),
             })
             .then(async function (response) {

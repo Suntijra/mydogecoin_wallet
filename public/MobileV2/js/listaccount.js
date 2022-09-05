@@ -1,6 +1,6 @@
 getlistaddr()
 // document.getElementById("new_addr").addEventListener("click", () => {
-//     axios.post("http://167.99.71.116:3000/api/getnewaddress", {
+//     axios.post("https://api.hivr.app/api/getnewaddress", {
 //         "token": localStorage.getItem("token")
 //     }).then((response) => {
 //         console.log(response.data)
@@ -12,7 +12,7 @@ getlistaddr()
 var addressbyuser
 
 function getlistaddr() {
-    axios.post("http://167.99.71.116:3000/api/listaddress", {
+    axios.post("https://api.hivr.app/api/listaddress", {
         "token": localStorage.getItem("token")
     }).then((result) => {
         let listaccouunt = result.data.listaddr

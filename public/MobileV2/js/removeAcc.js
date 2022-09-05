@@ -25,7 +25,7 @@ function removeAcc(){
                 // console.log("================>>>>test sendFrom")
                 let amount = document.getElementById("doge_balance").textContent.split(" ");
                 amount = parseFloat(amount[0]);
-                axios.post("http://167.99.71.116:3000/api/removeaccount",{
+                axios.post("https://api.hivr.app/api/removeaccount",{
                     "token": localStorage.getItem("token"),
                     "password": pwd
                 }).then(res => {
@@ -36,7 +36,7 @@ function removeAcc(){
                     console.log("================>>>>2")
                     console.log("err",err)
                 })
-                // axios.post("http://167.99.71.116:3000/api/sendFrom", {
+                // axios.post("https://api.hivr.app/api/sendFrom", {
                 //     "token": localStorage.getItem("token"),
                 //     "address": document.getElementById("addrForSend").textContent,
                 //     "amount": amount,

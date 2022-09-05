@@ -105,7 +105,7 @@ function CreateGo() {
 createWalet()
 function createWalet() {
     document.getElementById("sign_up").addEventListener("click", () => {
-        axios.post("http://167.99.71.116:3000/api/post/create-wallet", {
+        axios.post("https://api.hivr.app/api/post/create-wallet", {
             token: localStorage.getItem('token')
         }).then(function (response) {
             console.log(response.data)

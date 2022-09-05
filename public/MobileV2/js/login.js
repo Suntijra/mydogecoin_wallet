@@ -6,7 +6,7 @@ document.getElementById("login_btn").addEventListener("click", function () {
         alert("Please fill in all the fields");
     }
     else {
-        axios.post('http://167.99.71.116:3000/api/post/login', {
+        axios.post('https://api.hivr.app/api/post/login', {
             username: id_user,
             password: id_pwd
         }).then((result) => {
