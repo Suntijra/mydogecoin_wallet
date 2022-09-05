@@ -320,7 +320,7 @@
                     </div>
                     <br>
                     <label style="text-align: center;">
-                        <input type="checkbox" checked="checked">
+                        <input id="CheckforSure" type="checkbox">
                         agree to terms and conditions
                     </label>
                     <br>
@@ -519,106 +519,116 @@
     var mnKeys;
 
     function signupGo() {
-        axios('http://167.99.71.116:3000/api/get/register').then(res => {
-            // console.log(res.data.Result);
-            let data = res.data.Result
-            let user = $('#sign_user').val();
-            let pwd = $('#sign_pwd').val();
-            let pwd_cf = $('#sign_pwdAg').val();
-            // "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
-            let pattern = /(?=[0-9]+){8,}/;
-            let pattern1 = /(?=[a-z]+){8,}/;
-            let pattern2 = /(?=[A-Z]+){8,}/;
+        let CheckforSure = $("#CheckforSure");
+        if(CheckforSure.prop('checked', false)){
+            swal.fire({
+                icon: "error",
+                title: "Please check checkbox!",
+            })
+        }
+        else{
+            axios('http://167.99.71.116:3000/api/get/register').then(res => {
+                // console.log(res.data.Result);
+                let data = res.data.Result
+                let user = $('#sign_user').val();
+                let pwd = $('#sign_pwd').val();
+                let pwd_cf = $('#sign_pwdAg').val();
+                // "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
+                let pattern = /(?=[0-9]+){8,}/;
+                let pattern1 = /(?=[a-z]+){8,}/;
+                let pattern2 = /(?=[A-Z]+){8,}/;
 
-            // console.log("user :",user,"====>",user.match(pattern),"====>",user.match(pattern1),"====>",user.match(pattern2));
-            // if(user.match(pattern) && user.match(pattern1) && user.match(pattern2)){
-            //     console.log("in")
-            // }
-            // console.log("password :",pwd,"====>",pwd.match(pattern));
-            // console.log("cf password :",pwd_cf,"====>",pwd_cf.match(pattern));
-            if (pwd != pwd_cf) {
-                console.log(pwd, " | ", pwd_cf)
-                console.log('worng')
-                // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
-                Swal.fire({
-                    title: 'Oops..., color',
-                    text: 'Password not match',
-                    imageUrl: './img/moon.png',
-                    imageWidth: 200,
-                    imageHeight: 200,
-                    imageAlt: 'Custom image',
-                })
+                // console.log("user :",user,"====>",user.match(pattern),"====>",user.match(pattern1),"====>",user.match(pattern2));
+                // if(user.match(pattern) && user.match(pattern1) && user.match(pattern2)){
+                //     console.log("in")
+                // }
+                // console.log("password :",pwd,"====>",pwd.match(pattern));
+                // console.log("cf password :",pwd_cf,"====>",pwd_cf.match(pattern));
+                if (pwd != pwd_cf) {
+                    console.log(pwd, " | ", pwd_cf)
+                    console.log('worng')
+                    // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
+                    Swal.fire({
+                        title: 'Oops..., color',
+                        text: 'Password not match',
+                        imageUrl: './img/moon.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
 
-            } else {
-                if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
-                    if (pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)) {
-                        axios.post('http://167.99.71.116:3000/api/insert/register', {
-                            username: user,
-                            password: pwd
-                        }).then(function (response) {
-                            console.log(response.data);
-                            let status = response.data.status
-                            let result_title = response.data.Result
-                            if (status == true) {
+                } else {
+                    if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
+                        if (pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)) {
+                            axios.post('http://167.99.71.116:3000/api/insert/register', {
+                                username: user,
+                                password: pwd
+                            }).then(function (response) {
+                                console.log(response.data);
+                                let status = response.data.status
+                                let result_title = response.data.Result
+                                if (status == true) {
 
-                                Swal.fire({
-                                    icon: 'success',
-                                    text: result_title,
-                                    title: 'Success',
-                                    didClose: () => {
-                                        setTimeout(() => {
-                                            document.getElementById("signintab").click()
-                                        }, 1000)
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: result_title,
+                                        title: 'Success',
+                                        didClose: () => {
+                                            setTimeout(() => {
+                                                document.getElementById("signintab").click()
+                                            }, 1000)
 
-                                    }
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        setTimeout(() => {
-                                            document.getElementById("signintab").click()
-                                        }, 1000)
-                                    }
-                                })
-                                // document.getElementById('id_loading').style.display = 'flex'
-
-
+                                        }
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            setTimeout(() => {
+                                                document.getElementById("signintab").click()
+                                            }, 1000)
+                                        }
+                                    })
+                                    // document.getElementById('id_loading').style.display = 'flex'
 
 
-                            } else {
-                                Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
-                            }
 
-                        }).catch(function (error) {
-                            console.log(error);
-                            Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
-                        });
+
+                                } else {
+                                    Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
+                                }
+
+                            }).catch(function (error) {
+                                console.log(error);
+                                Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                title: 'Password incorrect !',
+                                text: 'Please fill Alphabet and Numeric least 1! 8 characters or more!!',
+                                imageUrl: './img/dogehead.png',
+                                imageWidth: 200,
+                                imageHeight: 200,
+                                imageAlt: 'Custom image',
+                            })
+                        }
                     }
                     else {
+                        // Swal2Alert('error', 'Error', 'Please fill all field')
                         Swal.fire({
-                            title: 'Password incorrect !',
-                            text: 'Please fill Alphabet and Numeric least 1! 8 characters or more!!',
+                            title: 'Username incorrect !',
+                            text: 'Please fill Alphabet and numeric least 1! and 8 characters or more!!',
                             imageUrl: './img/dogehead.png',
                             imageWidth: 200,
                             imageHeight: 200,
                             imageAlt: 'Custom image',
                         })
                     }
-                }
-                else {
-                    // Swal2Alert('error', 'Error', 'Please fill all field')
-                    Swal.fire({
-                        title: 'Username incorrect !',
-                        text: 'Please fill Alphabet and numeric least 1! and 8 characters or more!!',
-                        imageUrl: './img/dogehead.png',
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                    })
-                }
 
-            }
-        }).catch(err => {
-            console.log(err);
-        });
+                }
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+        
     }
 
 
