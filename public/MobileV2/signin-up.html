@@ -520,13 +520,14 @@
 
     function signupGo() {
         let CheckforSure = $("#CheckforSure");
-        if(CheckforSure.prop('checked', false)){
+        if(CheckforSure[0].checked = false){
             swal.fire({
                 icon: "error",
                 title: "Please check checkbox!",
             })
         }
         else{
+            CheckforSure[0].checked = true;
             axios('http://167.99.71.116:3000/api/get/register').then(res => {
                 // console.log(res.data.Result);
                 let data = res.data.Result
