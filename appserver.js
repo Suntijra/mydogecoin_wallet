@@ -52,9 +52,10 @@ app.get('/api/server/stop_nodejs', (req, resp) => {
   })
 
 // mobile app
-// app.get("/get-start",(req,res) =>{
-//     res.sendFile(path.join(__dirname)+"/public/MobileV2/get-start.html");
-// })
+
+app.get('/', function(req, res){
+    res.sendFile("./get-start.html");
+});
 // app.get("/signup",(req,res) =>{
 //     res.sendFile(path.join(__dirname)+"/public/MobileV2/signin-up.html");
 // })
