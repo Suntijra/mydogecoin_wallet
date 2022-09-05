@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+    <!-- AJAX -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- CSS STAR -->
     <link rel="stylesheet" href="./css/bg_star_website.css">
      <!-- Loading -->
@@ -125,7 +127,7 @@
 
         <div id = "get_start" class="btn-get-start" style="color:aliceblue;margin-bottom: 15vh;">
             <input type="checkbox" id="hide-checkbox">
-            <label for="hide-checkbox" class="toggle" onclick="setTimeout(opensignin, 1000).reload(true)">
+            <label for="hide-checkbox" class="toggle">
                 <span class="toggle-button"></span><div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><span>Get start</span></div>
             </label>
         </div>
@@ -137,7 +139,10 @@
 <script>
     const btn = document.querySelector("#get_start");
     btn.onclick = () => {
-        setTimeout(()=>{window.location.href = "./signin-up.html";},1500)
+        setTimeout(()=>{
+            window.location.href = "./signin-up.html";
+            $("#hide-checkbox")[0].checked = false;
+        },1000)
     }
     document.onreadystatechange = () => {
         if (document.readyState === "complete") {

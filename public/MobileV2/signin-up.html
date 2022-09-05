@@ -278,7 +278,7 @@
                     <br>
                     <sign-in class="d-flex justify-content-center align-items-center">
                         <button id="login_btn" class="sign_btn d-flex justify-content-center align-items-center fs-4"
-                            style="height: 8vh;">Sign in
+                            style="height: 4.5rem;">Sign in
                         </button>
                     </sign-in>
                     <br>
@@ -326,7 +326,7 @@
                     <br>
                     <sign-up class="d-flex justify-content-center align-items-center">
                         <button id="sign_up" class="sign_btn d-flex justify-content-center align-items-center fs-4"
-                            id="signupGo" onclick="signupGo()" style="height: 8vh; width: 80vw;">Sign up
+                            id="signupGo" onclick="signupGo()" style="height: 4.5rem; width: 80vw;">Sign up
                         </button>
 
                     </sign-up>
@@ -514,24 +514,16 @@
 
 
 
+
+
+
     // signup
 
     var mnKeys;
 
     function signupGo() {
         let CheckforSure = $("#CheckforSure");
-       
-        let checked = CheckforSure[0].checked
-        console.log("CheckforSure", typeof checked);
-        if (checked === false) {
-            Swal.fire({
-                icon: "error",
-                title: "Please check checkbox!",
-            })
-        }
-        else {
-            // CheckforSure[0].checked = true;
-            axios('http://167.99.71.116:3000/api/get/register').then(res => {
+            axios('https://api.hivr.app/api/get/register').then(res => {
                 // console.log(res.data.Result);
                 let data = res.data.Result
                 let user = $('#sign_user').val();
@@ -563,7 +555,7 @@
                 } else {
                     if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
                         if (pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)) {
-                            axios.post('http://167.99.71.116:3000/api/insert/register', {
+                            axios.post('https://api.hivr.app/api/insert/register', {
                                 username: user,
                                 password: pwd
                             }).then(function (response) {
@@ -571,29 +563,36 @@
                                 let status = response.data.status
                                 let result_title = response.data.Result
                                 if (status == true) {
+                                    if(CheckforSure[0].checked = false){
+                                        swal.fire({
+                                            icon: "error",
+                                            title: "Please check checkbox!",
+                                        })
+                                    }
+                                    else{
+                                        CheckforSure[0].checked = true;
+                                        Swal.fire({
+                                            icon: 'success',
+                                            text: result_title,
+                                            title: 'Success',
+                                            didClose: () => {
+                                                setTimeout(() => {
+                                                    document.getElementById("signintab").click();
+                                                }, 1000)
 
-                                    Swal.fire({
-                                        icon: 'success',
-                                        text: result_title,
-                                        title: 'Success',
-                                        didClose: () => {
-                                            setTimeout(() => {
-                                                document.getElementById("signintab").click()
-                                            }, 1000)
-
-                                        }
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            setTimeout(() => {
-                                                document.getElementById("signintab").click()
-                                            }, 1000)
-                                        }
-                                    })
-                                    // document.getElementById('id_loading').style.display = 'flex'
-
-
-
-
+                                            }
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                setTimeout(() => {
+                                                    document.getElementById("signintab").click();
+                                                    $("#sign_user").val("");
+                                                    $("#sign_pwd").val("");
+                                                    $("#sign_pwdAg").val("");
+                                                }, 1000)
+                                            }
+                                        })
+                                        // document.getElementById('id_loading').style.display = 'flex'
+                                    }
                                 } else {
                                     Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
                                 }
@@ -625,22 +624,24 @@
                             imageAlt: 'Custom image',
                         })
                     }
-
                 }
             }).catch(err => {
                 console.log(err);
             });
-        }
     }
 
 
+
+
+
+
+
+
+
+
+
     // show Mnemonic
-
-
-
-
-
-
+    
     function mnemonicModal_Show() {
         $("#showMnemonicModal").css("display", "block");
         $("#showMneSuccess").css("opacity", "0");
@@ -731,7 +732,7 @@
             alert("Please fill in all the fields");
         }
         else {
-            axios.post('http://167.99.71.116:3000/api/post/login', {
+            axios.post('https://api.hivr.app/api/post/login', {
                 username: id_user,
                 password: id_pwd
             }).then((result) => {
@@ -766,7 +767,7 @@
 
     var mnKeys;
     function startmnemonic() {
-        axios.post('http://167.99.71.116:3000/api/post/create-wallet', {
+        axios.post('https://api.hivr.app/api/post/create-wallet', {
             token: localStorage.getItem('token')
         }).then((result) => {
             let data = result.data.mnemonic;
@@ -824,7 +825,7 @@
             // console.log('txt     :',mnKeys_txt)
             console.log('checktxt:', chkMneKey_txt)
 
-            axios.post('http://167.99.71.116:3000/api/login/mnemonic', {
+            axios.post('https://api.hivr.app/api/login/mnemonic', {
                 mnemonic: chkMneKey_txt,
             }).then((result) => {
                 result = result.data;

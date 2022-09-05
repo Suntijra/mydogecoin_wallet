@@ -19,7 +19,7 @@ document.getElementById("send_tx").addEventListener("click", () => {
             }
             else {
                 console.log("================>>>>test sendFrom")
-                axios.post("http://167.99.71.116:3000/api/sendFrom", {
+                axios.post("https://api.hivr.app/api/sendFrom", {
                     "token": localStorage.getItem("token"),
                     "address": document.getElementById("address_tx").value,
                     "amount": document.getElementById("amount_tx").value,
