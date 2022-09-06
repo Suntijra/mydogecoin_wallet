@@ -180,8 +180,6 @@ function generateQRCode() {
             $("#qrcode-container").css({ 'display': 'flex', 'justify-content': 'center' })
             $("#qrcode").css({ 'padding': '4vw', 'background': 'white', 'border-radius': '5%'})
             // document.getElementById("qrcode-container").style.display = "block";
-        } else {
-            alert("Please enter a valid URL");
         }
     }, 1000)
     
