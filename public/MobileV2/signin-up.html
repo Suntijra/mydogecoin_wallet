@@ -6,7 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no;”">
-
+    <meta name="theme-color" content="#000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Sign-in & sign-up" />
+    <meta name="apple-mobile-web-app-title" content="Mobile rules" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="red" />
     <title>sign in & sign up</title>
     <!-- bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -80,6 +85,7 @@
         height: 70vh;
         border-radius: 36px 36px 0 0;
         box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+        bottom: 0;
         /* overflow-x: hidden;
         overflow-y: scroll; */
     }
@@ -188,7 +194,7 @@
 
     .mne1 {
         position: absolute;
-        padding: 5vh 0;
+        padding: 1rem 0;
         width: 100%;
         transition: all 300ms linear;
         /* display: block; */
@@ -197,21 +203,21 @@
 
     .mne2 {
         position: absolute;
-        padding: 5vh 0 5vh;
+        padding: 1rem 0;
         width: 100%;
         transition: all 300ms linear;
         /* display: none; */
-        top: 60vh;
+        top: 90vh;
     }
 
     .mne1Active {
         /* display: none; */
-        bottom: 60vh;
+        bottom: 90vh;
     }
 
     .mne2Active {
         /* display: block; */
-        top: 0vh;
+        top: 1vh;
     }
 
     i {
@@ -236,8 +242,8 @@
         </div>
     </div>
 
-    <div class="container-fluid d-flex justify-content-center align-items-center flex-column"
-        style="font-size: 3rem ; height: 30vh;">
+    <div id="topper" class="container-fluid d-flex justify-content-center align-items-center flex-column"
+        style="font-size: 3rem; height: 30vh;">
         <span style="font-family:mydogefont;color: #E9A700;">
             Welcome
         </span>
@@ -352,7 +358,7 @@
                 <span style="font-size: 2rem;">Your Recovery Phrase</span>
                 <span>your recovery phrase gives you access to your wallet and all the private keys in the
                     wallet.</span>
-                <div style="width: 100%; position: relative; height: 46vh; z-index: 2; overflow-y: hidden;">
+                <div style="width: 100%; position: relative; height: 22rem; z-index: 2; overflow: hidden;">
                     <div id="mne1" class="mne1"></div>
                     <div id="mne2" class="mne2"></div>
                 </div>
@@ -406,6 +412,10 @@
 <!-- create wallet -->
 <!-- <script src="./js/import-and-create.js"></script> -->
 <script>
+    $(function(){
+        cliHeight = document.documentElement.clientHeight;
+        $('body').css('height', cliHeight);
+    })
     var signin = document.getElementById('signintab');
     var signup = document.getElementById('signuptab');
     signin.onclick = function () {
@@ -675,15 +685,17 @@
                                                 setTimeout(() => {
                                                     document.getElementById("signintab").click();
                                                 }, 1000)
-
                                             }
                                         }).then((result) => {
                                             if (result.isConfirmed) {
+                                                $("#chkuser").text("");
+                                                $("#chkpwd").text("");
                                                 setTimeout(() => {
                                                     document.getElementById("signintab").click();
                                                     $("#sign_user").val("");
                                                     $("#sign_pwd").val("");
                                                     $("#sign_pwdAg").val("");
+                                                    CheckforSure[0].checked = false;
                                                 }, 1000)
                                             }
                                         })

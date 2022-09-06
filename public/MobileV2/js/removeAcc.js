@@ -31,7 +31,7 @@ function removeAcc(){
                 }).then(res => {
                     console.log("================>>>>1")
                     console.log("res",res.data.msg)
-                    window.location.href = "/../MobileV2/signin-up.html"
+                    window.location.href = "./signin-up.html"
                 }).catch(err =>{
                     console.log("================>>>>2")
                     console.log("err",err)

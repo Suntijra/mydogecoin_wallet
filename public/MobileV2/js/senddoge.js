@@ -41,6 +41,9 @@ document.getElementById("send_tx").addEventListener("click", () => {
                                 imageHeight:"200",
                                 title: msg
                             }) 
+                            $("#address_tx").val("");
+                            $("#amount_tx").val("");
+                            $("#thbid").val("");
                         }
                         
                     } catch (e) {
