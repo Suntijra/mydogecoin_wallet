@@ -29,14 +29,16 @@ document.getElementById("send_tx").addEventListener("click", () => {
                         console.log("result =====>", result.data)
                         let data = result.data
                         let msg = data.msg
-                        if (data.msg.status === "failed"){
+                        if (data.status === "failed"){
                             Swal.fire({
                                 icon: 'error',
                                 title: msg
                             })
                         }else{
                             Swal.fire({
-                                icon: 'success',
+                                imageUrl:"./img/dogehead.png",
+                                imageWidth:"200",
+                                imageHeight:"200",
                                 title: msg
                             }) 
                         }
