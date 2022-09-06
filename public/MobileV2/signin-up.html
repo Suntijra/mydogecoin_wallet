@@ -524,7 +524,7 @@
     function signupGo() {
         let CheckforSure = $("#CheckforSure");
 
-       
+
         let checked = CheckforSure[0].checked
         // console.log("CheckforSure", typeof checked);
         if (checked === false) {
@@ -576,13 +576,13 @@
                                 let status = response.data.status
                                 let result_title = response.data.Result
                                 if (status == true) {
-                                    if(CheckforSure[0].checked = false){
+                                    if (CheckforSure[0].checked = false) {
                                         swal.fire({
                                             icon: "error",
                                             title: "Please check checkbox!",
                                         })
                                     }
-                                    else{
+                                    else {
                                         CheckforSure[0].checked = true;
                                         Swal.fire({
                                             icon: 'success',
@@ -641,6 +641,7 @@
             }).catch(err => {
                 console.log(err);
             });
+        }
     }
 
 
@@ -654,7 +655,7 @@
 
 
     // show Mnemonic
-    
+
     function mnemonicModal_Show() {
         $("#showMnemonicModal").css("display", "block");
         $("#showMneSuccess").css("opacity", "0");
