@@ -27,10 +27,20 @@ document.getElementById("send_tx").addEventListener("click", () => {
                 }).then((result) => {
                     try {
                         console.log("result =====>", result.data)
-                        let msg = result.data.msg
-                        Swal.fire({
-                            title: msg
-                        })
+                        let data = result.data
+                        let msg = data.msg
+                        if (data.msg.status === "failed"){
+                            Swal.fire({
+                                icon: 'error',
+                                title: msg
+                            })
+                        }else{
+                            Swal.fire({
+                                icon: 'success',
+                                title: msg
+                            }) 
+                        }
+                        
                     } catch (e) {
                         Swal.fire({
                             title: 'Fail',
