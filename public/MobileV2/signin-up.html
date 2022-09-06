@@ -55,7 +55,7 @@
     }
 
     .input-s::placeholder {
-        color: #fff;
+        color: lightgray;
         text-align: center;
     }
 
@@ -264,13 +264,13 @@
                         style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
                         <input id="log_user" class="input-s" type="text" placeholder="username"
-                            style="position:absolute; left: 35vw; text-align: center;">
+                            style="position:absolute; left: 35vw; text-align: center; font-size: 1.1rem; color: white;">
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center" style="position: relative;">
                         <img src="./img/pass.png" alt="">
                         <input id="log_pwd" class="input-s" type="password" placeholder="password"
-                            style="position:absolute;left: 35vw; text-align: center;">
+                            style="position:absolute;left: 35vw; text-align: center; font-size: 1.1rem; color: white;">
                         <i onclick="tggLog_pwd()" class="fas fa-eye-slash" id="toggleLog_Pwd"
                             style="position:absolute; right: 2vw;"></i>
 
@@ -278,7 +278,7 @@
                     <br>
                     <sign-in class="d-flex justify-content-center align-items-center">
                         <button id="login_btn" class="sign_btn d-flex justify-content-center align-items-center fs-4"
-                            style="height: 4.5rem;">Sign in
+                            style="height: 3.8rem;">Sign in
                         </button>
                     </sign-in>
                     <br>
@@ -294,9 +294,11 @@
                     <div class="d-flex justify-content-center align-items-center flex-column"
                         style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
-
                         <input id="sign_user" class="input-s" type="text" placeholder="username"
-                            style="position:absolute; left: 35vw; text-align: center;">
+                            style="position:absolute; left: 9rem; text-align: center; font-size: 1.1rem; color: white;" onkeyup="chkfill_user()">
+                        <div id="chkuser" style="color: white; position:absolute; left: 8.7rem; text-align: center; top: 4.7rem; font-size: 0.8rem; display: none;">
+                            Please fill at least 8 characters!
+                        </div>
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
@@ -304,9 +306,12 @@
                         <img src="./img/pass.png" alt="">
 
                         <input id="sign_pwd" class="input-s" type="password" placeholder="password"
-                            style="position:absolute;left: 35vw; text-align: center;">
+                            style="position:absolute;left: 9rem; text-align: center; font-size: 1.1rem; color: white;" onkeyup="chkfill_pwd()">
                         <i onclick="tggSign_pwd()" class="fas fa-eye-slash" id="toggleSign_Pwd"
                             style="position:absolute; right: 2vw;"></i>
+                        <div id="chkpwd" style="color: white; position:absolute; left: 8.7rem; text-align: center; top: 4.7rem; font-size: 0.8rem; display: none;">
+                            Please fill at least 8 characters!
+                        </div>
                     </div>
                     <br>
                     <div class="d-flex justify-content-center align-items-center flex-column"
@@ -314,9 +319,10 @@
                         <img src="./img/pass.png" alt="">
 
                         <input id="sign_pwdAg" class="input-s" type="password" placeholder="confirm password"
-                            style="position:absolute;left: 35vw; text-align: center;">
+                            style="position:absolute;left: 9rem; text-align: center; font-size: 1.1rem; color: white;" onkeyup="chkfill_user()">
                         <i onclick="tggSign_pwdAg()" class="fas fa-eye-slash" id="toggleSign_PwdAg"
                             style="position:absolute; right: 2vw;"></i>
+                        
                     </div>
                     <br>
                     <label style="text-align: center;">
@@ -326,7 +332,7 @@
                     <br>
                     <sign-up class="d-flex justify-content-center align-items-center">
                         <button id="sign_up" class="sign_btn d-flex justify-content-center align-items-center fs-4"
-                            id="signupGo" onclick="signupGo()" style="height: 4.5rem; width: 80vw;">Sign up
+                            id="signupGo" onclick="signupGo()" style="height: 3.8rem; width: 80vw;">Sign up
                         </button>
 
                     </sign-up>
@@ -513,7 +519,62 @@
 
 
 
+    function chkfill_user(){
+        let user = $('#sign_user').val();
+        let chkuser = $("#chkuser").text();
+        let pattern = /(?=[0-9]+)/;
+        let pattern1 = /(?=[a-z]+)/;
+        let pattern2 = /(?=[A-Z]+)/;
+        // +++++++++++++++++++===User===+++++++++++++++++++
+        if(!user){
+            $("#chkuser").text("Please fill at least 8 characters!");
+            $("#chkuser").css({"color":"white","display":"block"})
+        }else if(!user.match(pattern2)){
+            $("#chkuser").text("At least 1 uppercase letter");
+            $("#chkuser").css({"color":"white","display":"block"})
+        }else if(!user.match(pattern1)){
+            $("#chkuser").text("At least 1 lowercase letter");
+            $("#chkuser").css({"color":"white","display":"block"})
+        }else if(!user.match(pattern)){
+            $("#chkuser").text("At least 1 digit");
+            $("#chkuser").css({"color":"white","display":"block"})
+        }else if(user.length < 8 ){
+            $("#chkuser").text("Please fill at least 8 characters!");
+            $("#chkuser").css({"color":"white","display":"block"})
+        }else{
+            chkuser = "";
+            $("#chkuser").text("Complate!!");
+            $("#chkuser").css({"color":"lime","display":"block"})
+        }
+    }
 
+    function chkfill_pwd(){
+        let pwd = $('#sign_pwd').val();
+        let chkpwd = $("#chkpwd").text();
+        let pattern = /(?=[0-9]+)/;
+        let pattern1 = /(?=[a-z]+)/;
+        let pattern2 = /(?=[A-Z]+)/;
+        if(!pwd){
+            $("#chkpwd").text("Please fill at least 8 characters!");
+            $("#chkpwd").css({"color":"white","display":"block"})
+        }else if(!pwd.match(pattern2)){
+            $("#chkpwd").text("At least 1 uppercase letter");
+            $("#chkpwd").css({"color":"white","display":"block"})
+        }else if(!pwd.match(pattern1)){
+            $("#chkpwd").text("At least 1 lowercase letter");
+            $("#chkpwd").css({"color":"white","display":"block"})
+        }else if(!pwd.match(pattern)){
+            $("#chkpwd").text("At least 1 digit");
+            $("#chkpwd").css({"color":"white","display":"block"})
+        }else if(pwd.length < 8 ){
+            $("#chkpwd").text("Please fill at least 8 characters!");
+            $("#chkpwd").css({"color":"white","display":"block"})
+        }else{
+            chkpwd = "";
+            $("#chkpwd").text("Complate!!");
+            $("#chkpwd").css({"color":"lime","display":"block"})
+        }
+    }
 
 
 
@@ -523,18 +584,6 @@
 
     function signupGo() {
         let CheckforSure = $("#CheckforSure");
-
-
-        let checked = CheckforSure[0].checked
-        // console.log("CheckforSure", typeof checked);
-        if (checked === false) {
-            Swal.fire({
-                icon: "error",
-                title: "Please check checkbox!",
-            })
-        }
-        else {
-            // CheckforSure[0].checked = true;
             axios('https://api.hivr.app/api/get/register').then(res => {
 
                 // console.log(res.data.Result);
@@ -558,8 +607,8 @@
                     console.log('worng')
                     // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
                     Swal.fire({
-                        title: 'Oops..., color',
-                        text: 'Password not match',
+                        title: 'Password not match',
+                        text: 'Plase check password again',
                         imageUrl: './img/moon.png',
                         imageWidth: 200,
                         imageHeight: 200,
@@ -568,21 +617,20 @@
                 } else {
                     if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
                         if (pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)) {
-                            axios.post('https://api.hivr.app/api/insert/register', {
-                                username: user,
-                                password: pwd
-                            }).then(function (response) {
-                                console.log(response.data);
-                                let status = response.data.status
-                                let result_title = response.data.Result
-                                if (status == true) {
-                                    if (CheckforSure[0].checked = false) {
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: "Please check checkbox!",
-                                        })
-                                    }
-                                    else {
+                            if (CheckforSure[0].checked == false) {
+                                Swal.fire({
+                                    icon: "warning",
+                                    title: "You must accept the terms and conditions before signup",
+                                })
+                            }else if(CheckforSure[0].checked == true){
+                                axios.post('https://api.hivr.app/api/insert/register', {
+                                    username: user,
+                                    password: pwd
+                                }).then(function (response) {
+                                    console.log(response.data);
+                                    let status = response.data.status
+                                    let result_title = response.data.Result
+                                    if (status == true) {
                                         CheckforSure[0].checked = true;
                                         Swal.fire({
                                             icon: 'success',
@@ -605,20 +653,20 @@
                                             }
                                         })
                                         // document.getElementById('id_loading').style.display = 'flex'
+                                    } else {
+                                        Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
                                     }
-                                } else {
-                                    Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
-                                }
 
-                            }).catch(function (error) {
-                                console.log(error);
-                                Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
-                            });
+                                }).catch(function (error) {
+                                    console.log(error);
+                                    Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
+                                });
+                            }
                         }
                         else {
                             Swal.fire({
-                                title: 'Password incorrect !',
-                                text: 'Please fill Alphabet and Numeric least 1! 8 characters or more!!',
+                                title: 'Please fill at least 1 Alphabet and Numeric! \n fill 8 characters or more!!',
+                                // text: 'Please fill at least 1 Alphabet and Numeric! \n fill 8 characters or more!!',
                                 imageUrl: './img/dogehead.png',
                                 imageWidth: 200,
                                 imageHeight: 200,
@@ -626,11 +674,29 @@
                             })
                         }
                     }
+                    // else if(!user.match(pattern2)){
+                    //     Swal.fire({
+                    //         icon: "Please fill out in Username",
+                    //         title:"At least one uppercase letter",
+                    //     })
+                    // }
+                    // else if(!user.match(pattern1)){
+                    //     Swal.fire({
+                    //         icon: "Please fill out in Username",
+                    //         title:"At least one lowercase letter",
+                    //     })
+                    // }
+                    // else if(!user.match(pattern)){
+                    //     Swal.fire({
+                    //         icon: "",
+                    //         title:"Please fill out in Username",
+                    //         text:"At least one digit",
+                    //     })
+                    // }
                     else {
-                        // Swal2Alert('error', 'Error', 'Please fill all field')
                         Swal.fire({
-                            title: 'Username incorrect !',
-                            text: 'Please fill Alphabet and numeric least 1! and 8 characters or more!!',
+                            title: 'Username uncompleted !',
+                            text: 'Please fill at least 1 Alphabet and Numeric! \n fill at least  8 characters!!',
                             imageUrl: './img/dogehead.png',
                             imageWidth: 200,
                             imageHeight: 200,
@@ -641,7 +707,6 @@
             }).catch(err => {
                 console.log(err);
             });
-        }
     }
 
 
@@ -791,8 +856,8 @@
             let txt1 = ``;
             let txt2 = ``;
             let keyLength = Object.keys(mnKeys);
-            console.log('object :', typeof (mnKeys) == 'object' ? true : false, 'lenght :', keyLength.length);
-            console.log('array :', typeof (mnKeys) == 'array' ? true : false, 'lenght :', mnKeys.lenght);
+            console.log('object :', typeof (mnKeys) == 'object' ? true : false, 'length :', keyLength.length);
+            console.log('array :', typeof (mnKeys) == 'array' ? true : false, 'length :', mnKeys.length);
 
 
             txt1 += `<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2.5vw;">`;
