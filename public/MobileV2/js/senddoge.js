@@ -1,6 +1,6 @@
 document.getElementById("send_tx").addEventListener("click", () => {
 
-    swal.fire({
+    Swal.fire({
         title: 'Please input your password to confirm!',
         input: 'password',
         showCancelButton: true,
@@ -11,7 +11,7 @@ document.getElementById("send_tx").addEventListener("click", () => {
             pwd = $('.swal2-input').val();
             console.log(!!pwd)
             if (!!pwd == false) {
-                swal.fire({
+                Swal.fire({
                     title: "please input password!",
                     icon: "warning",
                     timer: 1500
@@ -27,12 +27,12 @@ document.getElementById("send_tx").addEventListener("click", () => {
                 }).then((result) => {
                     try {
                         console.log("result =====>", result.data)
-                        swal.fire({
-                            title: 'Success',
-                            icon: 'success',
+                        let msg = result.data.msg
+                        Swal.fire({
+                            title: msg
                         })
                     } catch (e) {
-                        swal.fire({
+                        Swal.fire({
                             title: 'Fail',
                             icon: 'error',
                         })
@@ -40,7 +40,7 @@ document.getElementById("send_tx").addEventListener("click", () => {
 
                 }).catch((err) => {
                     // console.log("err ===>", err)
-                    swal.fire({
+                    Swal.fire({
                         title: 'Error',
                         icon: 'error',
                         text: 'err',
