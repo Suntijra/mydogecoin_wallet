@@ -602,10 +602,45 @@
                 // }
                 // console.log("password :",pwd,"====>",pwd.match(pattern));
                 // console.log("cf password :",pwd_cf,"====>",pwd_cf.match(pattern));
-                if (pwd != pwd_cf) {
+
+                if (!user && !pwd && !pwd_cf) {
+                    Swal.fire({
+                        title: 'Please fill Username and password',
+                        text: 'Plase check again',
+                        imageUrl: './img/dogehead.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                } else if (!user) {
+                    Swal.fire({
+                        title: 'Please fill Username',
+                        text: 'Plase check again',
+                        imageUrl: './img/dogehead.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                } else if(!pwd){
+                    Swal.fire({
+                        title: 'Please fill Password',
+                        text: 'Plase check again',
+                        imageUrl: './img/dogehead.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                } else if(!pwd_cf){
+                    Swal.fire({
+                        title: 'Please fill Confirm password',
+                        text: 'Plase check again',
+                        imageUrl: './img/dogehead.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                } else if(pwd != pwd_cf) {
                     console.log(pwd, " | ", pwd_cf)
-                    console.log('worng')
-                    // Swal2Alert(icon = 'error', title = 'Oops...', text = 'Password not match')
                     Swal.fire({
                         title: 'Password not match',
                         text: 'Plase check password again',
