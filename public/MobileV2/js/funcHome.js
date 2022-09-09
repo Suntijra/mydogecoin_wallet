@@ -102,8 +102,8 @@ async function DogeGetBalance() {
         token: localStorage.getItem('token')
     }).then
         (async function (response) {
-            
-            var balance = response.data.balance.balances+"";
+            console.log("response balance : " ,response.data.balances )
+            var balance = response.data.balances+"";
             if(balance.includes('.')){
                 var balanceSplit = balance.split('.');
                 balance = balanceSplit[0];
