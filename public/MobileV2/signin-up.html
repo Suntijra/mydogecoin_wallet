@@ -676,22 +676,23 @@
                                         text: result_title,
                                         title: 'Success',
                                         didClose: () => {
-                                            setTimeout(() => {
-                                                document.getElementById("signintab").click();
-                                            }, 1000)
+                                            bypasslogin(user, pwd)
+                                            // setTimeout(() => {
+                                            //     document.getElementById("signintab").click();
+                                            // }, 1000)
                                         }
                                     }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            $("#chkuser").text("");
-                                            $("#chkpwd").text("");
-                                            setTimeout(() => {
-                                                document.getElementById("signintab").click();
-                                                $("#sign_user").val("");
-                                                $("#sign_pwd").val("");
-                                                $("#sign_pwdAg").val("");
-                                                CheckforSure[0].checked = false;
-                                            }, 1000)
-                                        }
+                                        // if (result.isConfirmed) {
+                                        //     $("#chkuser").text("");
+                                        //     $("#chkpwd").text("");
+                                        //     setTimeout(() => {
+                                        //         document.getElementById("signintab").click();
+                                        //         $("#sign_user").val("");
+                                        //         $("#sign_pwd").val("");
+                                        //         $("#sign_pwdAg").val("");
+                                        //         CheckforSure[0].checked = false;
+                                        //     }, 1000)
+                                        // }
                                     })
                                     // document.getElementById('id_loading').style.display = 'flex'
                                 } else {
@@ -733,7 +734,36 @@
 
 
 
+    function bypasslogin(id_user, id_pwd) {
+        axios.post('https://api.hivr.app/api/post/login', {
+            username: id_user,
+            password: id_pwd
+        }).then((result) => {
+            let data = result.data
+            console.log(data)
+            if (data.status == "success") {
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('addr_count', data.addr_count)
+                // Swal.fire({ icon: 'success', text: data.Result, title: 'success' })
 
+                if (data.addr_count == 0) {
+                    startmnemonic();
+                    setTimeout(mnemonicModal_Show(), 1000);
+                }
+                else {
+                    window.location.href = "./main.html";
+                }
+            }
+            else {
+                Swal.fire({ icon: 'error', title: 'Wrong username or password' })
+                // alert("Wrong username or password");
+            }
+
+        }).catch((err) => {
+            console.log(err)
+            Swal.fire({ icon: 'error', text: 'server catch!!', title: 'error' })
+        });
+    }
 
 
 
