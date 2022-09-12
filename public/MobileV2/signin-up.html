@@ -301,8 +301,10 @@
                         style="position: relative;">
                         <img src="./img/Groupuserinput.png" alt="">
                         <input id="sign_user" class="input-s" type="text" placeholder="username"
-                            style="position:absolute; left: 9rem; text-align: center; font-size: 1.1rem; color: white;" onkeyup="chkfill_user()">
-                        <div id="chkuser" style="color: white; position:absolute; left: 8.7rem; text-align: center; top: 4.7rem; font-size: 0.8rem; display: none;">
+                            style="position:absolute; left: 9rem; text-align: center; font-size: 1.1rem; color: white;"
+                            onkeyup="chkfill_user()">
+                        <div id="chkuser"
+                            style="color: white; position:absolute; left: 8.7rem; text-align: center; top: 4.7rem; font-size: 0.8rem; display: none;">
                             Please fill at least 8 characters!
                         </div>
                     </div>
@@ -312,10 +314,12 @@
                         <img src="./img/pass.png" alt="">
 
                         <input id="sign_pwd" class="input-s" type="password" placeholder="password"
-                            style="position:absolute;left: 9rem; text-align: center; font-size: 1.1rem; color: white;" onkeyup="chkfill_pwd()">
+                            style="position:absolute;left: 9rem; text-align: center; font-size: 1.1rem; color: white;"
+                            onkeyup="chkfill_pwd()">
                         <i onclick="tggSign_pwd()" class="fas fa-eye-slash" id="toggleSign_Pwd"
                             style="position:absolute; right: 2vw;"></i>
-                        <div id="chkpwd" style="color: white; position:absolute; left: 8.7rem; text-align: center; top: 4.7rem; font-size: 0.8rem; display: none;">
+                        <div id="chkpwd"
+                            style="color: white; position:absolute; left: 8.7rem; text-align: center; top: 4.7rem; font-size: 0.8rem; display: none;">
                             Please fill at least 8 characters!
                         </div>
                     </div>
@@ -325,10 +329,11 @@
                         <img src="./img/pass.png" alt="">
 
                         <input id="sign_pwdAg" class="input-s" type="password" placeholder="confirm password"
-                            style="position:absolute;left: 9rem; text-align: center; font-size: 1.1rem; color: white;" onkeyup="chkfill_user()">
+                            style="position:absolute;left: 9rem; text-align: center; font-size: 1.1rem; color: white;"
+                            onkeyup="chkfill_user()">
                         <i onclick="tggSign_pwdAg()" class="fas fa-eye-slash" id="toggleSign_PwdAg"
                             style="position:absolute; right: 2vw;"></i>
-                        
+
                     </div>
                     <br>
                     <label style="text-align: center;">
@@ -412,7 +417,7 @@
 <!-- create wallet -->
 <!-- <script src="./js/import-and-create.js"></script> -->
 <script>
-    $(function(){
+    $(function () {
         cliHeight = document.documentElement.clientHeight;
         $('body').css('height', cliHeight);
     })
@@ -490,10 +495,6 @@
         // tggSign_pwdAgi.toggleClass('fa-eye');
     }
 
-    // span2.onclick = function () {
-    //     console.log("close")
-    //     $("#showMnemonicModal").css("display", "none");
-    // }
 
     var checkNext = 1;
     var getMneObj = [];
@@ -529,60 +530,60 @@
 
 
 
-    function chkfill_user(){
+    function chkfill_user() {
         let user = $('#sign_user').val();
         let chkuser = $("#chkuser").text();
         let pattern = /(?=[0-9]+)/;
         let pattern1 = /(?=[a-z]+)/;
         let pattern2 = /(?=[A-Z]+)/;
         // +++++++++++++++++++===User===+++++++++++++++++++
-        if(!user){
+        if (!user) {
             $("#chkuser").text("Please fill at least 8 characters!");
-            $("#chkuser").css({"color":"white","display":"block"})
-        }else if(!user.match(pattern2)){
+            $("#chkuser").css({ "color": "white", "display": "block" })
+        } else if (!user.match(pattern2)) {
             $("#chkuser").text("At least 1 uppercase letter");
-            $("#chkuser").css({"color":"white","display":"block"})
-        }else if(!user.match(pattern1)){
+            $("#chkuser").css({ "color": "white", "display": "block" })
+        } else if (!user.match(pattern1)) {
             $("#chkuser").text("At least 1 lowercase letter");
-            $("#chkuser").css({"color":"white","display":"block"})
-        }else if(!user.match(pattern)){
+            $("#chkuser").css({ "color": "white", "display": "block" })
+        } else if (!user.match(pattern)) {
             $("#chkuser").text("At least 1 digit");
-            $("#chkuser").css({"color":"white","display":"block"})
-        }else if(user.length < 8 ){
+            $("#chkuser").css({ "color": "white", "display": "block" })
+        } else if (user.length < 8) {
             $("#chkuser").text("Please fill at least 8 characters!");
-            $("#chkuser").css({"color":"white","display":"block"})
-        }else{
+            $("#chkuser").css({ "color": "white", "display": "block" })
+        } else {
             chkuser = "";
             $("#chkuser").text("Complate!!");
-            $("#chkuser").css({"color":"lime","display":"block"})
+            $("#chkuser").css({ "color": "lime", "display": "block" })
         }
     }
 
-    function chkfill_pwd(){
+    function chkfill_pwd() {
         let pwd = $('#sign_pwd').val();
         let chkpwd = $("#chkpwd").text();
         let pattern = /(?=[0-9]+)/;
         let pattern1 = /(?=[a-z]+)/;
         let pattern2 = /(?=[A-Z]+)/;
-        if(!pwd){
+        if (!pwd) {
             $("#chkpwd").text("Please fill at least 8 characters!");
-            $("#chkpwd").css({"color":"white","display":"block"})
-        }else if(!pwd.match(pattern2)){
+            $("#chkpwd").css({ "color": "white", "display": "block" })
+        } else if (!pwd.match(pattern2)) {
             $("#chkpwd").text("At least 1 uppercase letter");
-            $("#chkpwd").css({"color":"white","display":"block"})
-        }else if(!pwd.match(pattern1)){
+            $("#chkpwd").css({ "color": "white", "display": "block" })
+        } else if (!pwd.match(pattern1)) {
             $("#chkpwd").text("At least 1 lowercase letter");
-            $("#chkpwd").css({"color":"white","display":"block"})
-        }else if(!pwd.match(pattern)){
+            $("#chkpwd").css({ "color": "white", "display": "block" })
+        } else if (!pwd.match(pattern)) {
             $("#chkpwd").text("At least 1 digit");
-            $("#chkpwd").css({"color":"white","display":"block"})
-        }else if(pwd.length < 8 ){
+            $("#chkpwd").css({ "color": "white", "display": "block" })
+        } else if (pwd.length < 8) {
             $("#chkpwd").text("Please fill at least 8 characters!");
-            $("#chkpwd").css({"color":"white","display":"block"})
-        }else{
+            $("#chkpwd").css({ "color": "white", "display": "block" })
+        } else {
             chkpwd = "";
             $("#chkpwd").text("Complate!!");
-            $("#chkpwd").css({"color":"lime","display":"block"})
+            $("#chkpwd").css({ "color": "lime", "display": "block" })
         }
     }
 
@@ -594,156 +595,119 @@
 
     function signupGo() {
         let CheckforSure = $("#CheckforSure");
-            axios('https://api.hivr.app/api/get/register').then(res => {
+        axios('https://api.hivr.app/api/get/register').then(res => {
 
-                // console.log(res.data.Result);
-                let data = res.data.Result
-                let user = $('#sign_user').val();
-                let pwd = $('#sign_pwd').val();
-                let pwd_cf = $('#sign_pwdAg').val();
-                // "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
-                let pattern = /(?=[0-9]+){8,}/;
-                let pattern1 = /(?=[a-z]+){8,}/;
-                let pattern2 = /(?=[A-Z]+){8,}/;
+            // console.log(res.data.Result);
+            let data = res.data.Result
+            let user = $('#sign_user').val();
+            let pwd = $('#sign_pwd').val();
+            let pwd_cf = $('#sign_pwdAg').val();
+            // "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
+            let pattern = /(?=[0-9]+){8,}/;
+            let pattern1 = /(?=[a-z]+){8,}/;
+            let pattern2 = /(?=[A-Z]+){8,}/;
 
-                // console.log("user :",user,"====>",user.match(pattern),"====>",user.match(pattern1),"====>",user.match(pattern2));
-                // if(user.match(pattern) && user.match(pattern1) && user.match(pattern2)){
-                //     console.log("in")
-                // }
-                // console.log("password :",pwd,"====>",pwd.match(pattern));
-                // console.log("cf password :",pwd_cf,"====>",pwd_cf.match(pattern));
-
-                if (!user && !pwd && !pwd_cf) {
-                    Swal.fire({
-                        title: 'Please fill Username and password',
-                        text: 'Plase check again',
-                        imageUrl: './img/dogehead.png',
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                    })
-                } else if (!user) {
-                    Swal.fire({
-                        title: 'Please fill Username',
-                        text: 'Plase check again',
-                        imageUrl: './img/dogehead.png',
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                    })
-                } else if(!pwd){
-                    Swal.fire({
-                        title: 'Please fill Password',
-                        text: 'Plase check again',
-                        imageUrl: './img/dogehead.png',
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                    })
-                } else if(!pwd_cf){
-                    Swal.fire({
-                        title: 'Please fill Confirm password',
-                        text: 'Plase check again',
-                        imageUrl: './img/dogehead.png',
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                    })
-                } else if(pwd != pwd_cf) {
-                    console.log(pwd, " | ", pwd_cf)
-                    Swal.fire({
-                        title: 'Password not match',
-                        text: 'Plase check password again',
-                        imageUrl: './img/moon.png',
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: 'Custom image',
-                    })
-                } else {
-                    if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
-                        if (pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)) {
-                            if (CheckforSure[0].checked == false) {
-                                Swal.fire({
-                                    icon: "warning",
-                                    title: "You must accept the terms and conditions before signup",
-                                })
-                            }else if(CheckforSure[0].checked == true){
-                                axios.post('https://api.hivr.app/api/insert/register', {
-                                    username: user,
-                                    password: pwd
-                                }).then(function (response) {
-                                    console.log(response.data);
-                                    let status = response.data.status
-                                    let result_title = response.data.Result
-                                    if (status == true) {
-                                        CheckforSure[0].checked = true;
-                                        Swal.fire({
-                                            icon: 'success',
-                                            text: result_title,
-                                            title: 'Success',
-                                            didClose: () => {
-                                                setTimeout(() => {
-                                                    document.getElementById("signintab").click();
-                                                }, 1000)
-                                            }
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                $("#chkuser").text("");
-                                                $("#chkpwd").text("");
-                                                setTimeout(() => {
-                                                    document.getElementById("signintab").click();
-                                                    $("#sign_user").val("");
-                                                    $("#sign_pwd").val("");
-                                                    $("#sign_pwdAg").val("");
-                                                    CheckforSure[0].checked = false;
-                                                }, 1000)
-                                            }
-                                        })
-                                        // document.getElementById('id_loading').style.display = 'flex'
-                                    } else {
-                                        Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
-                                    }
-
-                                }).catch(function (error) {
-                                    console.log(error);
-                                    Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
-                                });
-                            }
-                        }
-                        else {
+            if (!user && !pwd && !pwd_cf) {
+                Swal.fire({
+                    title: 'Please fill Username and password',
+                    text: 'Plase check again',
+                    imageUrl: './img/dogehead.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+            } else if (!user) {
+                Swal.fire({
+                    title: 'Please fill Username',
+                    text: 'Plase check again',
+                    imageUrl: './img/dogehead.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+            } else if (!pwd) {
+                Swal.fire({
+                    title: 'Please fill Password',
+                    text: 'Plase check again',
+                    imageUrl: './img/dogehead.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+            } else if (!pwd_cf) {
+                Swal.fire({
+                    title: 'Please fill Confirm password',
+                    text: 'Plase check again',
+                    imageUrl: './img/dogehead.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+            } else if (pwd != pwd_cf) {
+                console.log(pwd, " | ", pwd_cf)
+                Swal.fire({
+                    title: 'Password not match',
+                    text: 'Plase check password again',
+                    imageUrl: './img/moon.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+            } else {
+                if (user.match(pattern) && user.match(pattern1) && user.match(pattern2)) {
+                    if (pwd.match(pattern) && pwd.match(pattern1) && pwd.match(pattern2)) {
+                        if (CheckforSure[0].checked == false) {
                             Swal.fire({
-                                title: 'Please fill at least 1 Alphabet and Numeric! \n fill 8 characters or more!!',
-                                // text: 'Please fill at least 1 Alphabet and Numeric! \n fill 8 characters or more!!',
-                                imageUrl: './img/dogehead.png',
-                                imageWidth: 200,
-                                imageHeight: 200,
-                                imageAlt: 'Custom image',
+                                icon: "warning",
+                                title: "You must accept the terms and conditions before signup",
                             })
+                        } else if (CheckforSure[0].checked == true) {
+                            axios.post('https://api.hivr.app/api/insert/register', {
+                                username: user,
+                                password: pwd
+                            }).then(function (response) {
+                                console.log(response.data);
+                                let status = response.data.status
+                                let result_title = response.data.Result
+                                if (status == true) {
+                                    CheckforSure[0].checked = true;
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: result_title,
+                                        title: 'Success',
+                                        didClose: () => {
+                                            setTimeout(() => {
+                                                document.getElementById("signintab").click();
+                                            }, 1000)
+                                        }
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            $("#chkuser").text("");
+                                            $("#chkpwd").text("");
+                                            setTimeout(() => {
+                                                document.getElementById("signintab").click();
+                                                $("#sign_user").val("");
+                                                $("#sign_pwd").val("");
+                                                $("#sign_pwdAg").val("");
+                                                CheckforSure[0].checked = false;
+                                            }, 1000)
+                                        }
+                                    })
+                                    // document.getElementById('id_loading').style.display = 'flex'
+                                } else {
+                                    Swal.fire({ icon: 'error', title: result_title, text: 'Plase try again' });
+                                }
+
+                            }).catch(function (error) {
+                                console.log(error);
+                                Swal.fire({ icon: 'error', title: 'Server catch!', text: 'Error' });
+                            });
                         }
                     }
-                    // else if(!user.match(pattern2)){
-                    //     Swal.fire({
-                    //         icon: "Please fill out in Username",
-                    //         title:"At least one uppercase letter",
-                    //     })
-                    // }
-                    // else if(!user.match(pattern1)){
-                    //     Swal.fire({
-                    //         icon: "Please fill out in Username",
-                    //         title:"At least one lowercase letter",
-                    //     })
-                    // }
-                    // else if(!user.match(pattern)){
-                    //     Swal.fire({
-                    //         icon: "",
-                    //         title:"Please fill out in Username",
-                    //         text:"At least one digit",
-                    //     })
-                    // }
                     else {
                         Swal.fire({
-                            title: 'Uncompleted !',
-                            text: 'Please fill at least 1 Alphabet and Numeric! \n fill at least  8 characters!!',
+                            title: 'Please fill at least 1 Alphabet and Numeric! \n fill 8 characters or more!!',
+                            // text: 'Please fill at least 1 Alphabet and Numeric! \n fill 8 characters or more!!',
                             imageUrl: './img/dogehead.png',
                             imageWidth: 200,
                             imageHeight: 200,
@@ -751,9 +715,20 @@
                         })
                     }
                 }
-            }).catch(err => {
-                console.log(err);
-            });
+                else {
+                    Swal.fire({
+                        title: 'Uncompleted !',
+                        text: 'Please fill at least 1 Alphabet and Numeric! \n fill at least  8 characters!!',
+                        imageUrl: './img/dogehead.png',
+                        imageWidth: 200,
+                        imageHeight: 200,
+                        imageAlt: 'Custom image',
+                    })
+                }
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
 
